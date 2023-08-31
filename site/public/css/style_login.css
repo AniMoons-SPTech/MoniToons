@@ -10,8 +10,8 @@ body {
     background: radial-gradient(90.27% 62.78% at 78.02% 58.98%, #E87E1C 2.96%, #AB1A3D 31.58%, #180A35 85.90%);
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    width: 100vw;
-    height: 100vh;
+    min-width: 100vw;
+    min-height: 100vh;
     
 }
 .div_central{
@@ -28,25 +28,76 @@ nav{
     height: 10%;
 }
 .borda_do_botao{
-    margin: 3% 5%;
+    margin: 3% 6%;
     width: 15%;
     height: 50%;
-    padding: 0.3%;
+    padding: 0.4%;
     border-radius: 10px;
     background-image: linear-gradient(to right,  #E87E1C,  #AB1A3D);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+@media only screen and (min-width: 1200px) {
+    .borda_do_botao{
+        width: 15%;
+        height: 50%;
+        border-radius: 10px;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .borda_do_botao{
+        width: 25%;
+        height: 50%;
+        border-radius: 7.5px;
+    }
+}
+@media only screen and (max-width: 600px) {
+    .borda_do_botao{
+        width: 25%;
+        height: 30%;
+        padding: 0.5%;
+        border-radius: 5px;
+    }
 }
 .voltar{
     width: 100%;
     height: 100%;
-    border-radius: 10px;
     color: white;
     border: none;
     background-color: #180A35;
     font-size: large;
     font-style: normal;
-    font-weight: 500;
+    font-family: 'Montserrat Ace Medium';
     line-height: normal;
     cursor: pointer;
+}
+@media only screen and (min-width: 1200px) {
+    .voltar{
+        padding: 5% 0;
+        font-size: large;
+        border-radius: 10px;
+    }
+}
+@media only screen and (max-width: 1199px) {
+    .voltar{
+        padding: 5% 0;
+        font-size: medium;
+        border-radius: 10px;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .voltar{
+        font-size: small;
+        border-radius: 7.5px;
+    }
+}
+@media only screen and (max-width: 600px) {
+    .voltar{
+        font-size: x-small;
+        padding: 7%;
+        border-radius: 5px;
+    }
 }
 .cartao_logar{
     margin: auto;
@@ -63,13 +114,35 @@ nav{
     align-items: center;
     justify-content: end;
 }
+@media only screen and (max-width: 1199px) {
+    .cartao_logar{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+@media only screen and (max-width: 600px) {
+    .cartao_logar{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 60vh;
+        width: 80vw;
+        margin-top: 25%;
+    }
+}
 form{
-    margin-top: 5%;
+    margin-top: 2%;
     width: 50%;
     height: 75%;
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+@media only screen and (max-width: 600px) {
+    form {
+        width: 80%;
+    }
 }
 h1{
     text-align: center;
@@ -77,6 +150,25 @@ h1{
     font-size: xx-large;
     font-family: 'Montserrat Ace SemiBold', sans-serif;
 }
+@media only screen and (max-width: 1199px){
+    h1 {
+        font-size: XX-large;
+        width: 90%;
+    }   
+}
+@media only screen and (max-width: 900px){
+    h1 {
+        font-size: X-large;
+        width: 90%;
+    }   
+}
+@media only screen and (max-width: 768px){
+    h1 {
+        font-size: large;
+        width: 90%;
+    }   
+}
+
 .input_diferente {
     display: flex;
     flex-direction: row;
@@ -87,34 +179,102 @@ h1{
     padding: 2% 5%;
     border-radius: 20px;
 }
-i{
-    margin: 8% 4% 0 0;
+@media only screen and (max-width: 1199px) {
+    .input_diferente{
+        border-radius: 10px;
+        padding: 1% 5%;
+        width: 80%;
+    }
 }
+@media only screen and (max-width: 768px) {
+    .input_diferente{
+        border-radius: 10px;
+        padding: 1% 5%;
+        width: 100%;
+    }
+}
+@media only screen and (max-width: 600px) {
+    .input_diferente{
+        border-radius: 10px;
+        padding: 1% 5%;
+        width: 100%;
+        height: 8%;
+    }
+}
+
+@media only screen and (min-width: 1200px){
+    #icone{
+        margin: auto 5% auto auto;  
+        display: block;
+    } 
+}
+@media only screen and (max-width: 1199px) {
+    #icone {
+        margin: auto 5% auto auto;
+        display: block;
+        font-size: medium;
+    } 
+}
+@media only screen and (max-width: 768px){
+    #icone {
+        display: none;
+    }   
+}
+
 input{
     background-color: #BABABA;
     border: none;
     font-size: medium;
     width: 100%;
 }
+@media only screen and (max-width: 768px) {
+    input{
+        font-size: medium;
+    }
+}
+@media only screen and (max-width: 768px) {
+    input{
+        font-size: medium;
+    }
+}
+
 input:focus{
     outline: none;
 }
+
 .botao_entrar{
     color: white;
     font-size: x-large;
     font-style: normal;
     font-weight: 500;
-    border-radius: 30px;
+    border-radius: 20px;
     border: none;
     cursor: pointer;
     width: 70%;
-    height: 15%;
-    margin: 5% 0 2%;
+    height: 20%;
+    margin: 4% 0 3%;
     background: linear-gradient(126deg, #180A35 31.25%, #AB1A3D 100%);
+}
+@media only screen and (max-width: 1199px) {
+    .botao_entrar{
+        font-size: medium;
+        width: 55%;
+        height: 10%;
+        border-radius: 5px;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .botao_entrar{
+        font-size: medium;
+        width: 55%;
+        height: 12%;
+        border-radius: 5px;
+    }
 }
 input::-webkit-input-placeholder {
     color: black;
 }
+
 a{
     text-decoration: none;
     cursor: pointer;
@@ -122,4 +282,9 @@ a{
 }
 a:hover{
     color: #AB1A3D;
+}
+@media only screen and (max-width: 768px) {
+    a{
+        font-size: small;
+    }
 }
