@@ -1,0 +1,365 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap');
+
+body {
+    margin: 0;
+    height: 0;
+    background-color: #180A35;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.main{
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    flex-direction: column;
+}
+
+
+.navbar{
+    display: flex;
+    height: 8%;
+    width: 98%;
+}
+
+.opcoes{
+    display: flex;
+    flex-direction: row;
+    width: 98%;
+    gap: 5%;
+    justify-content: end;
+    align-items: center;
+    font-size: 1.3vmax;
+    list-style: none;
+}
+
+li{
+    cursor: pointer;
+    color: white;
+}
+
+.borda_do_botao{
+    width: 7%;
+    height: 50%;
+    padding: 0.1%;
+    border-radius: 10px;
+    background-image: linear-gradient(to right,  #E87E1C,  #AB1A3D);
+}
+
+.entrar{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    color: white;
+    border: none;
+    background-color: #180A35;
+    font-size: large;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    cursor: pointer;
+}
+
+.conteudo {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    height: 40%;
+    color: white;
+    margin-left: 8%;
+    margin-top: 15%;
+}
+
+.botao_do_conteudo{
+    background-image: linear-gradient(to right,  #E87E1C,  #AB1A3D);
+    height: 80%;
+    border: 0;
+    width: 50%;
+    border-radius: 0.5vmax;
+    font-size: 1.2vmax;
+    font-weight: 800;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+}
+
+.titulo {
+    display: flex;
+    align-items: center;
+    height: 20%;
+    font-size: 2vmax;
+    font-weight: 800;
+    margin-left: 2%;
+    background: linear-gradient(to right, #AB1A3D, #E87E1C);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+  }
+
+.texto{
+    height: 60%;
+    font-size: 1.5vmax;
+    margin-left: 2%;
+}
+
+.conteudo_baixo {
+    height: 20%;
+    display: flex;
+    align-items: center;
+    margin-left: 2%;
+}
+
+.imagem {
+    background-image: url(../assets/Lovepik_com-828906606-Hand\ drawn\ office\ computer\ character\ scene\ design\ element\ 03\ 1.png);
+    height: 80%;
+    width: 40%;
+    background-size: cover;
+    margin-left: 10%;
+    margin-top: 1%;
+}
+
+.box{
+    display: flex;
+    height: 92%;
+    width: 100%;
+    flex-direction: row;
+}
+
+.sobre {
+    background-color: white;
+    height: 75vh;
+    flex-direction: row;
+    display: flex;
+}
+
+.video {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 40%;
+}
+
+.conteudo_video {
+    height: 70%;
+    width: 70%;
+}
+
+.conteudo_sobre {
+    display: flex;
+    height: 100%;
+    width: 40%;
+    margin-top: 11%;
+    flex-direction: column;
+}
+
+.conteudo_interno{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+}
+
+.titulo_sobre {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bolder;
+    font-size: 2vmax;
+    background: linear-gradient(to right, #AB1A3D, #E87E1C);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+}
+
+.texto_sobre {
+    font-size: 1.5vmax;
+}
+
+.icones_rodapé {
+    display: flex;
+    width: 20%;
+    height: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: end;
+}
+
+.imagem_rodapé {
+    background-image: url(../assets/Group\ 25.png);
+    background-size: cover;
+    height: 16%;
+    width: 30%;
+    margin-right: 25%;
+    margin-bottom: 25%;
+}
+
+.valores {
+    height: 100vh;
+    flex-direction: row;
+    display: flex;
+    margin-bottom: 5%;
+}
+
+.valores_esquerda{
+    width: 50%;
+    height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 5%;
+}
+
+.conteudo_valores {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 75%;
+    gap: 5%;
+}
+
+.valores_direita {
+    width: 50%;
+    height: 100%;
+    margin-left: 10%;
+}
+
+.titulo_valores {
+    background-color: #AB1A3D;
+    font-size: 2vmax;
+    font-weight: bolder;
+    width: 80%;
+    background: linear-gradient(to right, #AB1A3D, #E87E1C);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+}
+
+.texto_valores{
+    font-size: 1.5vmax;
+    width: 80%;
+    color: white;
+}
+
+.servico {
+    height: 100vh;
+    width: 100%;
+}
+
+.imagem_icones {
+    background-image: url(../assets/ImagemExportar.png);
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    margin-top: 2%;
+}
+
+.titulo_servicos {
+    display: flex;
+    width: 100%;
+    height: 10%;
+    align-items: center;
+    justify-content: center;
+    font-size: 2vmax;
+    font-weight: bolder;
+    color: white;
+}
+
+.conteudo_servicos {
+    height: 80%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.servicos_esquerda {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.servicos_direita {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.titulo_servicos_conteudo{
+    font-size: 2vmax;
+    font-weight: bolder;
+    color: white;
+    margin-left: 2%;
+}
+
+.texto_servicos{
+    font-size: 1.5vmax;
+    color: white;
+    margin-left: 2%;
+}
+
+.box_servicos {
+    display: flex;
+    background: linear-gradient(to right, #AB1A3D, #E87E1C);
+    width: 70%;
+    height: 90%;
+    border-radius: 1vmax;
+    justify-content: center;
+    align-items: center;
+}
+.conteudo_interno_servicos {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    height: 90%;
+    gap: 5%;
+    justify-content: center;
+}
+
+.imagem_servicos {
+    background-image: url('../assets/Group\ 8.png');
+    height: 90%;
+    width: 90%;
+    background-size: cover;
+}
+
+.planos {
+    height: 100vh;
+    width: 100%;
+}
+
+.titulo_planos {
+    display: flex;
+    width: 100%;
+    height: 10%;
+    align-items: center;
+    justify-content: center;
+    font-size: 2vmax;
+    font-weight: bolder;
+    color: white;
+}
+
+.area_cards{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    height: 100%;
+}
+
+.card {
+    background-color: white;
+    width: 23% ;
+    height: 90%;
+    border-radius: 1vmax;
+}
+
+.conteudo_planos {
+    height: 90%;
+}
