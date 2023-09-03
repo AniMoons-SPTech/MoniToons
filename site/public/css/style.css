@@ -2,7 +2,6 @@ body {
     margin: 0;
     height: 0;
     background: var(--Radial, radial-gradient(82.96% 46.27% at 50% 28.22%, #23104D 1.04%, #1D0D40 37.5%, #170A34 62.57%, #0D0324 96%));
-    ;
     background-size: 100% 100%;
     background-attachment: fixed;
     background-repeat: no-repeat;
@@ -199,86 +198,6 @@ li {
     width: 30%;
     margin-right: 25%;
     margin-bottom: 25%;
-}
-
-.servico {
-    height: 100vh;
-    width: 100%;
-}
-
-.titulo_servicos {
-    display: flex;
-    width: 100%;
-    height: 10%;
-    align-items: center;
-    justify-content: center;
-    font-size: 2vmax;
-    font-weight: bolder;
-    color: white;
-}
-
-.conteudo_servicos {
-    height: 80%;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-}
-
-.servicos_esquerda {
-    height: 100%;
-    width: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.servicos_direita {
-    height: 100%;
-    width: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.titulo_servicos_conteudo {
-    font-size: 2vmax;
-    font-weight: bolder;
-    color: white;
-    margin-left: 2%;
-}
-
-.texto_servicos {
-    font-size: 1.5vmax;
-    color: white;
-    margin-left: 2%;
-}
-
-.box_servicos {
-    display: flex;
-    background: linear-gradient(to right, #AB1A3D, #E87E1C);
-    width: 70%;
-    height: 90%;
-    border-radius: 1vmax;
-    justify-content: center;
-    align-items: center;
-}
-
-.conteudo_interno_servicos {
-    display: flex;
-    flex-direction: column;
-    width: 90%;
-    height: 90%;
-    gap: 5%;
-    justify-content: center;
-}
-
-.imagem_servicos {
-    background-image: url('../assets/Group\ 8.png');
-    height: 90%;
-    width: 90%;
-    background-size: cover;
 }
 
 .planos {
