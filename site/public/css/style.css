@@ -332,6 +332,7 @@ li{
 .planos {
     height: 100vh;
     width: 100%;
+    margin-bottom: 5%;
 }
 
 .titulo_planos {
@@ -343,6 +344,7 @@ li{
     font-size: 2vmax;
     font-weight: bolder;
     color: white;
+    margin-bottom: 2%;
 }
 
 .area_cards{
@@ -358,8 +360,146 @@ li{
     width: 23% ;
     height: 90%;
     border-radius: 1vmax;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    gap: 5%;
 }
 
 .conteudo_planos {
     height: 90%;
 }
+
+.opcao_plano {
+    background: rgb(171,26,61);
+    background: linear-gradient(180deg, rgba(171,26,61,1) 33%, rgba(232,126,28,1) 99%);
+    border-radius: 1vmax;
+    height: 15%;
+    width: 80%;
+    position: absolute;
+    top: -10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.opcao_plano span{
+    font-size: 1.5vmax;
+    font-weight: bolder;
+    color: white;
+}
+
+.opcao_plano_espaçamento {
+    height: 5%;
+    width: 80%;
+}
+
+.imagem_plano_1 {
+    width: 55%;
+    height: 30%;
+    background-size: cover;
+    background-image: url(../assets/magenta_6.png);
+}
+
+.imagem_plano_2 {
+    width: 55%;
+    height: 30%;
+    background-size: cover;
+    background-image: url(../assets/magenta_8.png);
+}
+
+.imagem_plano_3 {
+    width: 55%;
+    height: 30%;
+    background-size: cover;
+    background-image: url(../assets/magenta_9.png);
+}
+
+.texto_planos{
+    display: flex;
+    flex-direction: column;
+    gap: 2%;
+    width: 95%;
+    height: 50%;
+    font-size: 1.2vmax;
+}
+
+.comentarios {
+    width: 100%;
+    background-color: white;
+    height: 75vh;
+}
+
+.footer {
+    margin-top: 4%;
+    height: 40vh;
+    background-color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+}
+
+.logo {
+    background-image: url(../assets/logo.png);
+    background-size: cover;
+    height: 12%;
+    width: 15%;
+}
+
+.contato{
+    width: 20%;
+    height: 40%;
+    display: flex;
+    align-items: center;
+}
+
+.suporte {
+    width: 20%;
+    height: 40%;
+    display: flex;
+    align-items: center;
+}
+
+.redes_sociais{
+    width: 20%;
+    height: 40%;
+    display: flex;
+    align-items: center;
+}
+
+.conteudo_footer{
+    display: flex;
+    flex-direction: column;
+    font-size: 1.2vmax;
+    justify-content: center;
+    height: 100%;
+}
+
+.icones_redes_sociais{
+    height: 40%;
+}
+
+.icones_redes_sociais img{
+    height: 50%;
+    width: 20%;
+}
+
+.copyright {
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 0.7vmax;
+}
+
+.titulo_gradient {
+    background: linear-gradient(to right, #AB1A3D, #E87E1C);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+}
+
