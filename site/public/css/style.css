@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap');
-
 body {
     margin: 0;
     height: 0;
-    background-color: #180A35;
-    font-family: 'Montserrat', sans-serif;
+    background: var(--Radial, radial-gradient(82.96% 46.27% at 50% 28.22%, #23104D 1.04%, #1D0D40 37.5%, #170A34 62.57%, #0D0324 96%));;
+    background-size: 100% 100%;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    font-family: 'Montserrat Ace Regular';
 }
 
 .main{
@@ -13,13 +13,19 @@ body {
     height: 100vh;
     width: 100%;
     flex-direction: column;
+    background-image: url(../assets/img_entrada.png);
+    background-attachment: local;
+    background-size: 100% 185%;
+    background-repeat: no-repeat;
+    background-position: 0vw 3vh;
 }
 
 
 .navbar{
     display: flex;
     height: 8%;
-    width: 98%;
+    width: 90%;
+    margin: auto;
 }
 
 .opcoes{
@@ -108,15 +114,6 @@ li{
     display: flex;
     align-items: center;
     margin-left: 2%;
-}
-
-.imagem {
-    background-image: url(../assets/Lovepik_com-828906606-Hand\ drawn\ office\ computer\ character\ scene\ design\ element\ 03\ 1.png);
-    height: 80%;
-    width: 40%;
-    background-size: cover;
-    margin-left: 10%;
-    margin-top: 1%;
 }
 
 .box{
@@ -330,6 +327,7 @@ li{
 }
 
 .planos {
+    background-image: url(../assets/textura.png);
     height: 100vh;
     width: 100%;
     margin-bottom: 5%;
@@ -355,7 +353,7 @@ li{
     height: 100%;
 }
 
-.card {
+.plano {
     background-color: white;
     width: 23% ;
     height: 90%;
@@ -425,11 +423,6 @@ li{
     font-size: 1.2vmax;
 }
 
-.comentarios {
-    width: 100%;
-    background-color: white;
-    height: 75vh;
-}
 
 .footer {
     margin-top: 4%;
@@ -442,9 +435,8 @@ li{
 }
 
 .logo {
-    background-image: url(../assets/logo.png);
-    background-size: cover;
-    height: 12%;
+    height: 60%;
+    margin: 1% 0 0 0;
     width: 15%;
 }
 
