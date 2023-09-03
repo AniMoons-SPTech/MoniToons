@@ -1,0 +1,304 @@
+@media only screen and (min-width: 1200px) {
+  .footer {
+    margin-top: 4%;
+    height: 40vh;
+    background-color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+  }
+
+  .logo_footer {
+    height: 60%;
+    margin: 1% 0 0 0;
+    width: 15%;
+    background-image: url(../assets/logo.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+  }
+
+  .contato {
+    width: 20%;
+    height: 40%;
+    display: flex;
+    align-items: center;
+  }
+
+  .suporte {
+    width: 20%;
+    height: 40%;
+    display: flex;
+    align-items: center;
+  }
+
+  .redes_sociais {
+    width: 20%;
+    height: 40%;
+    display: flex;
+    align-items: center;
+  }
+
+  .conteudo_footer {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.2vmax;
+    justify-content: center;
+    height: 100%;
+  }
+
+  .icones_redes_sociais {
+    height: 40%;
+  }
+
+  .icones_redes_sociais img {
+    height: 50%;
+    width: auto;
+  }
+
+  .copyright {
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 0.7vmax;
+  }
+
+  .titulo_gradient {
+    background: linear-gradient(to right, #AB1A3D, #E87E1C);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
+@media only screen and (max-width: 1199px) {
+  .footer {
+    margin-top: 4%;
+    height: 40vh;
+    background-color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+  }
+
+  .logo_footer {
+    height: 60%;
+    margin: 1% 0 0 0;
+    width: 15%;
+    background-image: url(../assets/logo.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+  }
+
+  .contato {
+    width: 20%;
+    height: 40%;
+    display: flex;
+    align-items: center;
+  }
+
+  .suporte {
+    width: 20%;
+    height: 40%;
+    display: flex;
+    align-items: center;
+  }
+
+  .redes_sociais {
+    width: 20%;
+    height: 40%;
+    display: flex;
+    align-items: center;
+  }
+
+  .conteudo_footer {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.8vmax;
+    justify-content: center;
+    height: 100%;
+  }
+
+  .icones_redes_sociais {
+    height: content;
+  }
+
+  .icones_redes_sociais img {
+    height: 50%;
+    width: auto;
+  }
+
+  .copyright {
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 1.25vmax;
+  }
+
+  .titulo_gradient {
+    background: linear-gradient(to right, #AB1A3D, #E87E1C);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .footer {
+    display: flex;
+    flex-direction: column;
+    padding: 10%;
+    margin-top: 5%;
+    background-color: white;
+    align-items: center;
+    position: relative;
+    gap: 25px;
+  }
+
+  .logo_footer {
+    width: 100%;
+    background-image: url(../assets/logo.png);
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: center;
+  }
+
+  .contato {
+    width: max-content;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+  }
+
+  .suporte {
+    width: max-content;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+  }
+
+  .redes_sociais {
+    width: max-content;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+  }
+
+  .conteudo_footer {
+    display: flex;
+    flex-direction: column;
+    font-size: 2.5vmax;
+    justify-content: center;
+    width: 30vw;
+  }
+
+  .icones_redes_sociais {
+    height: content;
+  }
+
+  .icones_redes_sociais img {
+    height: 70%;
+    width: auto;
+  }
+
+  .copyright {
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 1.75vmax;
+  }
+
+  .titulo_gradient {
+    background: linear-gradient(to right, #AB1A3D, #E87E1C);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .footer {
+    display: flex;
+    flex-direction: column;
+    padding: 15%;
+    margin-top: 5%;
+    background-color: white;
+    align-items: center;
+    position: relative;
+    gap: 25px;
+  }
+
+  .logo_footer {
+    width: 100%;
+    background-image: url(../assets/logo.png);
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: center;
+  }
+
+  .contato {
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+  }
+
+  .suporte {
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+  }
+
+  .redes_sociais {
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+  }
+
+  .conteudo_footer {
+    display: flex;
+    flex-direction: column;
+    font-size: 2.5vmax;
+    justify-content: center;
+  }
+
+  .icones_redes_sociais {
+    height: content;
+  }
+
+  .icones_redes_sociais img {
+    height: 70%;
+    width: auto;
+  }
+
+  .copyright {
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 1.75vmax;
+  }
+
+  .titulo_gradient {
+    background: linear-gradient(to right, #AB1A3D, #E87E1C);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+  }
+}

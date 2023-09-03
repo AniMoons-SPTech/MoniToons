@@ -297,74 +297,11 @@ li {
     font-size: 1.2vmax;
 }
 
-
-.footer {
-    margin-top: 4%;
-    height: 40vh;
-    background-color: white;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    position: relative;
-}
-
 .logo {
     height: 60%;
     margin: 1% 0 0 0;
     width: 15%;
-}
-
-.contato {
-    width: 20%;
-    height: 40%;
-    display: flex;
-    align-items: center;
-}
-
-.suporte {
-    width: 20%;
-    height: 40%;
-    display: flex;
-    align-items: center;
-}
-
-.redes_sociais {
-    width: 20%;
-    height: 40%;
-    display: flex;
-    align-items: center;
-}
-
-.conteudo_footer {
-    display: flex;
-    flex-direction: column;
-    font-size: 1.2vmax;
-    justify-content: center;
-    height: 100%;
-}
-
-.icones_redes_sociais {
-    height: 40%;
-}
-
-.icones_redes_sociais img {
-    height: 50%;
-    width: 20%;
-}
-
-.copyright {
-    height: 5vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    font-size: 0.7vmax;
-}
-
-.titulo_gradient {
-    background: linear-gradient(to right, #AB1A3D, #E87E1C);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    color: transparent;
+    background-image: url(../assets/logo_branca.png);
+    background-repeat: no-repeat;
+    background-size: contain;
 }
