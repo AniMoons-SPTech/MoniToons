@@ -40,6 +40,17 @@ body {
     list-style: none;
 }
 
+.lista_opcoes{
+    display: flex;
+    flex-direction: row;
+    width: 98%;
+    gap: 5%;
+    justify-content: end;
+    align-items: center;
+    font-size: 1.3vmax;
+    list-style: none;
+}
+
 li {
     cursor: pointer;
     color: white;
@@ -126,7 +137,6 @@ li {
 
 .sobre {
     background-color: white;
-    height: 75vh;
     flex-direction: row;
     display: flex;
 }
@@ -191,66 +201,9 @@ li {
     margin-bottom: 25%;
 }
 
-.valores {
-    height: 100vh;
-    flex-direction: row;
-    display: flex;
-    margin-bottom: 5%;
-}
-
-.valores_esquerda {
-    width: 50%;
-    height: 90%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-left: 5%;
-}
-
-.conteudo_valores {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 75%;
-    gap: 5%;
-}
-
-.valores_direita {
-    width: 50%;
-    height: 100%;
-    margin-left: 10%;
-}
-
-.titulo_valores {
-    background-color: #AB1A3D;
-    font-size: 2vmax;
-    font-weight: bolder;
-    width: 80%;
-    background: linear-gradient(to right, #AB1A3D, #E87E1C);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    color: transparent;
-}
-
-.texto_valores {
-    font-size: 1.5vmax;
-    width: 80%;
-    color: white;
-}
-
 .servico {
     height: 100vh;
     width: 100%;
-}
-
-.imagem_icones {
-    background-image: url(../assets/ImagemExportar.png);
-    background-size: cover;
-    height: 100%;
-    width: 100%;
-    margin-top: 2%;
 }
 
 .titulo_servicos {
