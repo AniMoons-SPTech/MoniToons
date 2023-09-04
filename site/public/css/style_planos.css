@@ -20,7 +20,6 @@
 .area_cards {
     display: flex;
     align-items: center;
-    justify-content: space-around;
     width: 100%;
     height: 100%;
 }
@@ -103,4 +102,137 @@
     background-image: url(../assets/logo_branca.png);
     background-repeat: no-repeat;
     background-size: contain;
+}
+
+@media only screen and (max-width: 1999px){
+    .titulo_planos {
+        font-size: 1.8em;
+        font-family: 'Montserrat Ace SemiBold';
+    }
+    .area_cards {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        width: 100%;
+        height: 100%;
+    }
+    .planos {
+        background-image: url(../assets/textura.png);
+        background-position: 50% 0%;
+        height: 80vh;
+    }
+    .plano {
+        height: 80%;
+        width: 30%;
+    }
+    .opcao_plano span {
+        font-size: 1.4em;
+        font-weight: bolder;
+        color: white;
+    }
+    .texto_planos {
+        display: flex;
+        flex-direction: column;
+        gap: 2%;
+        width: 80%;
+        height: 50%;
+        margin: auto;
+        font-size: 1.2em;
+        overflow: scroll;
+    }
+}
+@media only screen and (max-width: 768px){
+    .planos{
+        background-position: 50% 20%;
+    }
+    .area_cards{
+        justify-content: space-around;
+    }
+    .titulo_planos {
+        font-size: 1.6em;
+        font-family: 'Montserrat Ace SemiBold';
+    }
+    .opcao_plano span {
+        font-size: 1.3em;
+        font-weight: bolder;
+        color: white;
+    }
+    .texto_planos {
+        display: flex;
+        flex-direction: column;
+        gap: 2%;
+        width: 80%;
+        height: 50%;
+        margin: auto;
+        font-size: 1em;
+    }
+}
+@media only screen and (max-width: 600px){
+    .planos {
+        overflow-x: scroll;
+        overflow-y: hidden;
+        background: none;
+    }
+    .plano{
+        min-width: 80%;
+    }
+    .area_cards {
+        width: 100%;
+        margin: auto;
+        justify-content: start;
+        overflow-x: scroll;
+        gap: 5vw;
+        align-items: center;
+        margin: 2% 0%;
+    }
+    .opcao_plano span {
+        font-size: 1.3em;
+        font-weight: bolder;
+        color: white;
+    }
+    .titulo_planos {
+        font-size: 1.5em;
+        font-family: 'Montserrat Ace SemiBold';
+    }
+    .texto_planos {
+        display: flex;
+        flex-direction: column;
+        gap: 2%;
+        width: 80%;
+        height: 60%;
+        margin: auto;
+        font-size: 1.1em;
+    }
+}
+@media only screen and (min-width: 1200px){
+    .planos {
+        background-image: url(../assets/textura.png);
+        height: 100vh;
+        width: 100%;
+        margin-bottom: 5%;
+    }
+    .area_cards {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        width: 100%;
+        height: 100%;
+    }
+    .plano {
+        height: 90%;
+        width: 25%;
+    }
+    .titulo_planos {
+        font-size: 2em;
+        font-family: 'Montserrat Ace SemiBold';
+    }
+    .texto_planos {
+        display: flex;
+        flex-direction: column;
+        gap: 2%;
+        width: 80%;
+        height: 60%;
+        margin: auto;
+        font-size: 1.2em;
+    }
 }

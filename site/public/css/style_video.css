@@ -76,9 +76,6 @@ video {
         height: 450px;
         clip-path: url(#clipBlobMedio);
     }
-    .texto_sobre{
-        font-size: 1.35em;
-    }
     #pathGrande{
         display: none;
     }
@@ -88,6 +85,17 @@ video {
     #pathPequeno{
         display: none;
     } 
+    .conteudo_sobre{
+        margin-top: 20%;
+    }
+    
+    .titulo_sobre {
+        font-size: 2em;
+    }
+    
+    .texto_sobre {
+        font-size: 1.4em;
+    }
 }
 @media only screen and (max-width: 950px) {
     .sobre {

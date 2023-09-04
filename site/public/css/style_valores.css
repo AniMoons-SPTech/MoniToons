@@ -32,9 +32,9 @@
   }
 
   .titulo_valores {
+    font-family: 'Montserrat Ace SemiBold';
     background-color: #AB1A3D;
     font-size: 2vmax;
-    font-weight: bolder;
     width: 80%;
     background: linear-gradient(to right, #AB1A3D, #E87E1C);
     -webkit-background-clip: text;
@@ -64,7 +64,7 @@
     width: 100%;
     flex-direction: row;
     display: flex;
-    margin-bottom: 5%;
+    /* margin-bottom: 5%; */
   }
 
   .valores_esquerda {
@@ -92,7 +92,7 @@
   .titulo_valores {
     background-color: #AB1A3D;
     font-size: 3vmax;
-    font-weight: bolder;
+    font-family: 'Montserrat Ace SemiBold';
     background: linear-gradient(to right, #AB1A3D, #E87E1C);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -150,7 +150,7 @@
   .titulo_valores {
     background-color: #AB1A3D;
     font-size: 3.5vmax;
-    font-weight: bolder;
+    font-family: 'Montserrat Ace SemiBold';
     background: linear-gradient(to right, #AB1A3D, #E87E1C);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -210,7 +210,7 @@
   .titulo_valores {
     background-color: #AB1A3D;
     font-size: 3.5vmax;
-    font-weight: bolder;
+    font-family: 'Montserrat Ace SemiBold';
     background: linear-gradient(to right, #AB1A3D, #E87E1C);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
