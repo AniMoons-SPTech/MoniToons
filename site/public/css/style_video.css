@@ -18,54 +18,10 @@ video {
     clip-path: url(#clipBlob);
     position: absolute;
 }
-@media only screen and (min-width:1200px){
-    #pathGrande{
-        display: block;
-    }
-    #pathMedio{
-        display: none;
-    } 
-}
-@media only screen and (max-width: 1199px){
-    video{
-        margin: -30px 0 0 30px;
-        width: 450px;
-        height: 450px;
-        clip-path: url(#clipBlobMenor);
-    }
-    .texto_sobre{
-        font-size: 1.35em;
-    }
-    #pathGrande{
-        display: none;
-    }
-    #pathMedio{
-        display: flex;
-    } 
-}
-@media only screen and (max-width: 950px) {
-    .sobre {
-    display: flex;
-    flex-direction: column;
-    padding: 5%;
-    align-items: center;
-}
-.texto_sobre{
-    margin-top: 2%;
-    text-align: center;
-}
-}
-@media only screen and (max-width:600px) {
-    .sobre{
-        overflow: hidden;
-    }
-}
-
 .conteudo_sobre {
     display: flex;
     height: 100%;
     width: 40%;
-    margin: 11% 0 0 10%;
     flex-direction: column;
 }
 
@@ -77,8 +33,7 @@ video {
 }
 
 .titulo_sobre {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: bolder;
+    font-family: 'Montserrat Ace Bold', sans-serif;
     font-size: 2vmax;
     background: linear-gradient(to right, #AB1A3D, #E87E1C);
     -webkit-background-clip: text;
@@ -90,12 +45,126 @@ video {
 .texto_sobre {
     font-size: 1.5vmax;
 }
-
-.imagem_rodapé {
-    background-image: url(../assets/Group\ 25.png);
-    background-size: cover;
-    width: 20%;
-    height: 20%;
-    margin-top: 18%;
-    align-self: self-end;
+@media only screen and (min-width:1200px){
+    .conteudo_sobre{
+        align-items: center;
+        margin: 13% auto;
+        width: 45%;
+    }
+    .titulo_sobre {
+        font-size: 2em;
+        margin-bottom: 5%;
+    }
+    
+    .texto_sobre {
+        font-size: 1.5em;
+    }
+    #pathGrande{
+        display: block;
+    }
+    #pathMedio{
+        display: none;
+    } 
+    #pathPequeno{
+        display: none;
+    } 
 }
+@media only screen and (max-width: 1199px){
+    video{
+        margin: -30px 0 0 30px;
+        width: 450px;
+        height: 450px;
+        clip-path: url(#clipBlobMedio);
+    }
+    .texto_sobre{
+        font-size: 1.35em;
+    }
+    #pathGrande{
+        display: none;
+    }
+    #pathMedio{
+        display: flex;
+    } 
+    #pathPequeno{
+        display: none;
+    } 
+}
+@media only screen and (max-width: 950px) {
+    .sobre {
+    height: 95vh;
+    display: flex;
+    flex-direction: column;
+    padding: 1%;
+    align-items: center;
+}
+.conteudo_sobre {
+    display: flex;
+    height: 100%;
+    width: 80%;
+    flex-direction: column;
+    margin: 0;
+}
+
+.conteudo_interno{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    height: 80%;
+    text-align: center;
+}
+
+.titulo_sobre {
+    font-size: 2em;
+}
+
+.texto_sobre {
+    font-size: 1.4em;
+}
+}
+
+@media only screen and (max-width:600px) {
+    .sobre{
+        overflow: hidden;
+        padding-left: 5%;
+        min-width: 100vw;
+    }
+    video{
+        margin: -150px 0 0 20px;
+        width: 350px;
+        height: 350px;
+        clip-path: url(#clipBlobPequeno);
+    }
+    .forma{
+        padding-top: 195px;
+        min-height: 155px;
+        width: 375px;
+        overflow: hidden;
+        margin: 1%;
+    }
+    .borda{
+        height: 533px;
+        width: 561px;
+        position: absolute;
+    }
+    #pathGrande{
+        display: none;
+    }
+    #pathMedio{
+        display: none;
+    } 
+    #pathPequeno{
+        display: flex;
+    } 
+    .conteudo_sobre {
+        height: 100%;
+        width: 90%;
+        margin: auto;
+    }
+    
+    .titulo_sobre {
+        font-family: 'Montserrat Ace SemiBold', sans-serif;
+        font-size: 1.8em;
+        text-align: center;
+    }   
+}
+

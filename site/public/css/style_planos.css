@@ -1,0 +1,106 @@
+.planos {
+    background-image: url(../assets/textura.png);
+    height: 100vh;
+    width: 100%;
+    margin-bottom: 5%;
+}
+
+.titulo_planos {
+    display: flex;
+    width: 100%;
+    height: 10%;
+    align-items: center;
+    justify-content: center;
+    font-size: 2vmax;
+    font-weight: bolder;
+    color: white;
+    margin-bottom: 2%;
+}
+
+.area_cards {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    height: 100%;
+}
+
+.plano {
+    background-color: white;
+    width: 23%;
+    height: 90%;
+    border-radius: 1vmax;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    gap: 5%;
+}
+
+.conteudo_planos {
+    height: 90%;
+}
+
+.opcao_plano {
+    background: rgb(171, 26, 61);
+    background: linear-gradient(180deg, rgba(171, 26, 61, 1) 33%, rgba(232, 126, 28, 1) 99%);
+    border-radius: 1vmax;
+    height: 15%;
+    width: 80%;
+    position: absolute;
+    top: -10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.opcao_plano span {
+    font-size: 1.5vmax;
+    font-weight: bolder;
+    color: white;
+}
+
+.opcao_plano_espaçamento {
+    height: 5%;
+    width: 80%;
+}
+
+.imagem_plano_1 {
+    width: 155px;
+    height: 152px;
+    background-size: cover;
+    background-image: url(../assets/magenta_6.png);
+}
+
+.imagem_plano_2 {
+    width: 155px;
+    height: 152px;
+    background-size: cover;
+    background-image: url(../assets/magenta_8.png);
+}
+
+.imagem_plano_3 {
+    width: 155px;
+    height: 152px;
+    background-size: cover;
+    background-image: url(../assets/magenta_9.png);
+}
+
+.texto_planos {
+    display: flex;
+    flex-direction: column;
+    gap: 2%;
+    width: 80%;
+    height: 60%;
+    margin: auto;
+    font-size: 1.2vmax;
+}
+
+.logo {
+    height: 60%;
+    margin: 1% 0 0 0;
+    width: 15%;
+    background-image: url(../assets/logo_branca.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+}

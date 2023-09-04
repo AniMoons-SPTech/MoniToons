@@ -5,6 +5,7 @@
     flex-direction: column;
     background-color: #f3f3f3;
     margin-bottom: 2vh;
+    box-sizing: border-box;
 }   
 .titulo_comentarios{
     margin: 2% 0 2% 2%;
@@ -79,7 +80,7 @@
 }
 @media only screen and (min-width: 1200px) {
     .user{
-        min-width: 250px;
+        width: 250px;
         min-height: 250px;
     } 
 }
@@ -113,7 +114,7 @@
         box-shadow: 0px 6px 20px 0px rgba(0,0,0,0.75);
     }
     .user{
-        min-width: 200px;
+        width: 200px;
         min-height: 200px;
         margin: auto;
     }
@@ -150,7 +151,7 @@
     }
     .user{
         width: 200px;
-        height: 200px; 
+        min-height: 200px; 
     }
     .card{
         min-width: 70%;
@@ -218,8 +219,8 @@
         overflow-x: hidden;
     }
     .user{
-        width: 200px;
-        min-height: 200px; 
+        width: 150px;
+        min-height: 150px; 
     }
     .textos{
         width: 85%;
