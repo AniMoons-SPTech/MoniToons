@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style_navbar.css">
     <link rel="stylesheet" href="css/style_video.css">
     <link rel="stylesheet" href="css/style_coment.css">
     <link rel="stylesheet" href="css/style_valores.css">
@@ -19,20 +20,25 @@
 <body>
     <div>
         <section class="main">
-            <div class="navbar">
+            <nav class="navbar">
                 <div class="logo"></div>
                 <div class="opcoes">
+                    <div class="menu_hamburguer">
+                        <div class="barra"></div>
+                        <div class="barra"></div>
+                        <div class="barra"></div>
+                    </div>
                     <ul class="lista_opcoes">
                         <li>Início</li>
                         <li>Valores</li>
                         <li>Sobre nós</li>
                         <li>Planos</li>
+                        <li class="borda_do_botao">
+                            <button class="entrar" onclick="">Entrar</button>
+                        </li>
                     </ul>
-                    <div class="borda_do_botao">
-                        <button class="entrar" onclick="">Entrar</button>
-                    </div>
                 </div>
-            </div>
+            </nav>
             <div class="box">
                 <div class="conteudo">
                     <span class="titulo">
@@ -296,5 +302,14 @@
         </section>
     </div>
 </body>
+<script>
+    const menuIcon = document.querySelector('.menu_hamburguer')
+    const menu = document.querySelector('.lista_opcoes')
+
+    menuIcon.addEventListener('click', () => {
+        menu.classList.toggle('show')
+        console.log("sla")
+    });
+</script>
 
 </html>
