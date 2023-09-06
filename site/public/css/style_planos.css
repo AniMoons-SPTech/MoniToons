@@ -23,6 +23,17 @@
     width: 100%;
     height: 100%;
 }
+.area_cards::-webkit-scrollbar {
+    height: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+
+}
+
+.area_cards::-webkit-scrollbar-thumb {
+    background-color: white;
+    border-radius: 5px;
+}
 
 .plano {
     background-color: white;
@@ -33,7 +44,7 @@
     flex-direction: column;
     align-items: center;
     position: relative;
-    gap: 5%;
+    gap: 3%;
 }
 
 .conteudo_planos {
@@ -138,11 +149,12 @@
         height: 50%;
         margin: auto;
         font-size: 1.2em;
-        overflow: scroll;
+        overflow-y: auto;
     }
 }
 @media only screen and (max-width: 768px){
     .planos{
+        background-image: url(../assets/textura.png);
         background-position: 50% 20%;
     }
     .area_cards{
@@ -169,19 +181,27 @@
 }
 @media only screen and (max-width: 600px){
     .planos {
-        overflow-x: scroll;
-        overflow-y: hidden;
-        background: none;
+        /* overflow-x: scroll;
+        overflow-y: hidden; */
+        height: 95vh;
+        background-image: url(../assets/background_glow.png);
+        background-position: 100% 70%;
     }
     .plano{
         min-width: 80%;
+    }
+    .plano:first-child{
+        margin-left: 8vw;
+    }
+    .plano:last-child{
+        margin-right: 8vw;
     }
     .area_cards {
         width: 100%;
         margin: auto;
         justify-content: start;
         overflow-x: scroll;
-        gap: 5vw;
+        gap: 8vw;
         align-items: center;
         margin: 2% 0%;
     }
