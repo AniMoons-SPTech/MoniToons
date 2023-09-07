@@ -13,7 +13,7 @@
     height: 60%;
     margin: 1% 0 0 0;
     width: 15%;
-    background-image: url(../assets/logo.png);
+    background-image: url(../assets/logo1.png);
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
@@ -68,6 +68,9 @@
 
   .titulo_gradient {
     background: linear-gradient(to right, #AB1A3D, #E87E1C);
+    padding-bottom: 3px;
+    margin-bottom: 10px;
+    border-bottom: solid #AB1A3D 1.5px;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -90,7 +93,7 @@
     height: 60%;
     margin: 1% 0 0 0;
     width: 15%;
-    background-image: url(../assets/logo.png);
+    background-image: url(../assets/logo1.png);
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
@@ -145,6 +148,9 @@
 
   .titulo_gradient {
     background: linear-gradient(to right, #AB1A3D, #E87E1C);
+    padding-bottom: 3px;
+    margin-bottom: 10px;
+    border-bottom: solid #AB1A3D 1.5px;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -166,7 +172,7 @@
 
   .logo_footer {
     width: 100%;
-    background-image: url(../assets/logo.png);
+    background-image: url(../assets/logo1.png);
     background-repeat: no-repeat;
     background-size: auto;
     background-position: center;
@@ -221,6 +227,9 @@
 
   .titulo_gradient {
     background: linear-gradient(to right, #AB1A3D, #E87E1C);
+    padding-bottom: 3px;
+    margin-bottom: 10px;
+    border-bottom: solid #AB1A3D 1.5px;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -242,7 +251,7 @@
 
   .logo_footer {
     width: 100%;
-    background-image: url(../assets/logo.png);
+    background-image: url(../assets/logo1.png);
     background-repeat: no-repeat;
     background-size: auto;
     background-position: center;
@@ -296,6 +305,9 @@
 
   .titulo_gradient {
     background: linear-gradient(to right, #AB1A3D, #E87E1C);
+    padding-bottom: 3px;
+    margin-bottom: 10px;
+    border-bottom: solid #AB1A3D 1.5px;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;

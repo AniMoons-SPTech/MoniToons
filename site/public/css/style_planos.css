@@ -105,16 +105,6 @@
     margin: auto;
     font-size: 1.2vmax;
 }
-
-.logo {
-    height: 60%;
-    margin: 1% 0 0 0;
-    width: 15%;
-    background-image: url(../assets/logo_branca.png);
-    background-repeat: no-repeat;
-    background-size: contain;
-}
-
 @media only screen and (max-width: 1999px){
     .titulo_planos {
         font-size: 1.8em;

@@ -20,10 +20,10 @@
   }
 
   .logo {
-    height: 60%;
+    height: 80%;
     margin: 1% 0 0 0;
-    width: 20vmax;
-    background-image: url(../assets/logo_branca.png);
+    width: 40vmax;
+    background-image: url(../assets/logo2.png);
     background-repeat: no-repeat;
     background-size: contain;
   }
@@ -182,7 +182,7 @@
     height: 60%;
     margin: 1% 0 0 0;
     width: 20vmax;
-    background-image: url(../assets/logo_branca.png);
+    background-image: url(../assets/logo2.png);
     background-repeat: no-repeat;
     background-size: contain;
   }
