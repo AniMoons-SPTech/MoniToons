@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="assets/moon.png"/>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/style_navbar.css">
     <link rel="stylesheet" href="css/style_video.css">
@@ -29,12 +29,12 @@
                         <div class="barra"></div>
                     </div>
                     <ul class="lista_opcoes">
-                        <li>Início</li>
-                        <li>Valores</li>
-                        <li>Sobre nós</li>
-                        <li>Planos</li>
+                        <li><a href="" class="botao_inicio">Início</a></li>
+                        <li><a href="#secao_valores">Valores</a></li>
+                        <li><a href="#secao_sobre">Sobre nós</a></li>
+                        <li><a href="#secao_planos">Planos</a></li>
                         <li class="borda_do_botao">
-                            <button class="entrar" onclick="">Entrar</button>
+                            <button class="entrar" onclick="redirecionar()">Entrar</button>
                         </li>
                     </ul>
                 </div>
@@ -55,7 +55,7 @@
                 </div>
             </div>
         </section>
-        <section class="sobre">
+        <section class="sobre" id="secao_sobre">
             <div class="forma">
                 <video autoplay muted loop>
                     <source
@@ -113,7 +113,7 @@
                 </div>
             </div>
         </section>
-        <section class="valores">
+        <section class="valores" id="secao_valores">
             <div class="valores_esquerda">
                 <div class="conteudo_valores">
                     <span class="titulo_valores">
@@ -135,7 +135,7 @@
                 </div>
             </div>
         </section>
-        <section class="servicos">
+        <section class="servicos" id="secao_servicos">
             <div class="titulo_servicos">
                 <span>SERVIÇOS</span>
             </div>
@@ -160,7 +160,7 @@
                 </div>
             </div>
         </section>
-        <section class="planos">
+        <section class="planos" id="secao_planos">
             <div class="titulo_planos">
                 <span>PLANOS</span>
             </div>
@@ -214,13 +214,13 @@
                 </div>
             </div>
         </section>
-        <section class="comentarios">
+        <section class="comentarios" id="secao_comentarios">
             <h1 class="titulo_comentarios">Veja os comentários de quem utiliza o MoniToons em seu dia a dia</h1>
             <div class="carrosel">
                 <div class="card">
-                    <div class="user"></div>
+                    <div class="user foto1"></div>
                     <div class="textos">
-                        <h2 class="username">USUARIO 1</h2>
+                        <h2 class="username">Patricia Magalhães</h2>
                         <p class="comentario"> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem,
                             beatae? Quos eaque rerum nostrum! Voluptate quam delectus, tempore est exercitationem
                             numquam, nesciunt molestiae ex aperiam incidunt laudantium repellendus fugit accusantium?
@@ -228,9 +228,9 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="user"></div>
+                    <div class="user foto2"></div>
                     <div class="textos">
-                        <h2 class="username">USUARIO 1</h2>
+                        <h2 class="username">Leila Hassan</h2>
                         <p class="comentario"> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem,
                             beatae? Quos eaque rerum nostrum! Voluptate quam delectus, tempore est exercitationem
                             numquam, nesciunt molestiae ex aperiam incidunt laudantium repellendus fugit accusantium?
@@ -238,9 +238,9 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="user"></div>
+                    <div class="user foto3"></div>
                     <div class="textos">
-                        <h2 class="username">USUARIO 1</h2>
+                        <h2 class="username">Julio Duarte</h2>
                         <p class="comentario"> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem,
                             beatae? Quos eaque rerum nostrum! Voluptate quam delectus, tempore est exercitationem
                             numquam, nesciunt molestiae ex aperiam incidunt laudantium repellendus fugit accusantium?
@@ -248,19 +248,9 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="user"></div>
+                    <div class="user foto4"></div>
                     <div class="textos">
-                        <h2 class="username">USUARIO 1</h2>
-                        <p class="comentario"> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem,
-                            beatae? Quos eaque rerum nostrum! Voluptate quam delectus, tempore est exercitationem
-                            numquam, nesciunt molestiae ex aperiam incidunt laudantium repellendus fugit accusantium?
-                        </p>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="user"></div>
-                    <div class="textos">
-                        <h2 class="username">USUARIO 1</h2>
+                        <h2 class="username">Mônica Ramires</h2>
                         <p class="comentario"> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem,
                             beatae? Quos eaque rerum nostrum! Voluptate quam delectus, tempore est exercitationem
                             numquam, nesciunt molestiae ex aperiam incidunt laudantium repellendus fugit accusantium?
@@ -310,6 +300,9 @@
         menu.classList.toggle('show')
         console.log("sla")
     });
+    function redirecionar(){
+        window.location.href = "login.html"
+    }
 </script>
 
 </html>

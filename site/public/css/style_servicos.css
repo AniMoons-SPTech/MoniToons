@@ -10,9 +10,10 @@
     height: 10%;
     align-items: center;
     justify-content: center;
-    font-size: 2vmax;
+    font-size: 2.3em;
     font-weight: bolder;
     color: white;
+    font-family: 'Montserrat Ace Bold', sans-serif;
   }
 
   .conteudo_servicos {
@@ -42,7 +43,7 @@
 
   .titulo_servicos_conteudo {
     font-size: 2vmax;
-    font-weight: bolder;
+    font-family: 'Montserrat Ace Bold', sans-serif;
     color: white;
     margin-left: 2%;
   }
@@ -51,6 +52,7 @@
     font-size: 1.5vmax;
     color: white;
     margin-left: 2%;
+    line-height: 1.3em;
   }
 
   .box_servicos {

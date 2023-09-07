@@ -59,6 +59,7 @@ video {
     
     .texto_sobre {
         font-size: 1.5em;
+        line-height: 1.5em;
     }
     #pathGrande{
         display: block;

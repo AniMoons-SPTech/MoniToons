@@ -47,6 +47,7 @@
     font-size: 1.5vmax;
     width: 80%;
     color: white;
+    line-height: 1.5em;
   }
 
   .imagem_icones {
@@ -104,6 +105,7 @@
     text-align: left;
     color: white;
     font-size: 2vmax;
+    line-height: 1.3em;
   }
 
   .imagem_icones {
