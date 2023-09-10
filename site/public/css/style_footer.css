@@ -247,9 +247,11 @@
     align-items: center;
     position: relative;
     gap: 25px;
+    height: 60vh;
   }
 
   .logo_footer {
+    height: 15vh;
     width: 100%;
     background-image: url(../assets/logo1.png);
     background-repeat: no-repeat;
