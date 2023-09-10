@@ -1,6 +1,8 @@
-html, body{
+html,
+body {
     scroll-behavior: smooth;
 }
+
 body {
     margin: 0;
     height: 0;
@@ -10,17 +12,19 @@ body {
     background-repeat: no-repeat;
     font-family: 'Montserrat Ace Regular';
 }
-body::-webkit-scrollbar{
-width: 10px;
-background-color: transparent;
-border-top-left-radius: 5px;
+
+body::-webkit-scrollbar {
+    width: 10px;
+    background-color: transparent;
+    border-top-left-radius: 5px;
 
 }
-body::-webkit-scrollbar-thumb{
+
+body::-webkit-scrollbar-thumb {
     width: 10px;
-    background-color:#1D0D40 ;
+    background-color: #1D0D40;
     border-top-left-radius: 2px;
     border-top-right-radius: 2px;
     border-bottom-left-radius: 2px;
     border-bottom-right-radius: 2px;
-    }
+}
