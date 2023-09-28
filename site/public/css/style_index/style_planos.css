@@ -1,5 +1,5 @@
 .planos {
-    background-image: url(../assets/textura.png);
+    background-image: url(../../assets/textura.png);
     height: 100vh;
     width: 100%;
     margin-bottom: 5%;
@@ -79,21 +79,21 @@
     width: 155px;
     height: 152px;
     background-size: cover;
-    background-image: url(../assets/magenta_6.png);
+    background-image: url(../../assets/magenta_6.png);
 }
 
 .imagem_plano_2 {
     width: 155px;
     height: 152px;
     background-size: cover;
-    background-image: url(../assets/magenta_8.png);
+    background-image: url(../../assets/magenta_8.png);
 }
 
 .imagem_plano_3 {
     width: 155px;
     height: 152px;
     background-size: cover;
-    background-image: url(../assets/magenta_9.png);
+    background-image: url(../../assets/magenta_9.png);
 }
 
 .texto_planos {
@@ -118,7 +118,7 @@
         height: 100%;
     }
     .planos {
-        background-image: url(../assets/textura.png);
+        background-image: url(../../assets/textura.png);
         background-position: 50% 0%;
         height: 80vh;
     }
@@ -144,7 +144,7 @@
 }
 @media only screen and (max-width: 768px){
     .planos{
-        background-image: url(../assets/textura.png);
+        background-image: url(../../assets/textura.png);
         background-position: 50% 20%;
     }
     .area_cards{
@@ -174,7 +174,7 @@
         /* overflow-x: scroll;
         overflow-y: hidden; */
         height: 95vh;
-        background-image: url(../assets/background_glow.png);
+        background-image: url(../../assets/background_glow.png);
         background-position: 100% 70%;
     }
     .plano{
@@ -216,7 +216,7 @@
 }
 @media only screen and (min-width: 1200px){
     .planos {
-        background-image: url(../assets/textura.png);
+        background-image: url(../../assets/textura.png);
         height: 100vh;
         width: 100%;
         margin-bottom: 5%;

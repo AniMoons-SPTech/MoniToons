@@ -63,7 +63,7 @@
   }
 
   .imagem_icones {
-    background-image: url(../assets/ImagemExportar.png);
+    background-image: url(../../assets/ImagemExportar.png);
     background-size: cover;
     height: 70%;
     width: 100%;
@@ -130,7 +130,7 @@
   }
 
   .imagem_icones {
-    background-image: url(../assets/ImagemExportar.png);
+    background-image: url(../../assets/ImagemExportar.png);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: right;
@@ -199,7 +199,7 @@
   }
 
   .imagem_icones {
-    background-image: url(../assets/ImagemExportarV2.png);
+    background-image: url(../../assets/ImagemExportarV2.png);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -269,7 +269,7 @@
   }
 
   .imagem_icones {
-    background-image: url(../assets/ImagemExportarV2.png);
+    background-image: url(../../assets/ImagemExportarV2.png);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;

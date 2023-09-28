@@ -13,7 +13,7 @@
     height: 60%;
     margin: 1% 0 0 0;
     width: 15%;
-    background-image: url(../assets/logo1.png);
+    background-image: url(../../assets/logo1.png);
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
@@ -93,7 +93,7 @@
     height: 60%;
     margin: 1% 0 0 0;
     width: 15%;
-    background-image: url(../assets/logo1.png);
+    background-image: url(../../assets/logo1.png);
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
@@ -172,7 +172,7 @@
 
   .logo_footer {
     width: 100%;
-    background-image: url(../assets/logo1.png);
+    background-image: url(../../assets/logo1.png);
     background-repeat: no-repeat;
     background-size: auto;
     background-position: center;
@@ -253,7 +253,7 @@
   .logo_footer {
     height: 15vh;
     width: 100%;
-    background-image: url(../assets/logo1.png);
+    background-image: url(../../assets/logo1.png);
     background-repeat: no-repeat;
     background-size: auto;
     background-position: center;

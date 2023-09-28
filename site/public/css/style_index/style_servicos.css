@@ -75,7 +75,7 @@
   }
 
   .imagem_servicos {
-    background-image: url('../assets/Group\ 8.png');
+    background-image: url('../../assets/Group\ 8.png');
     height: 90%;
     width: 90%;
     background-size: cover;
@@ -158,7 +158,7 @@
   }
 
   .imagem_servicos {
-    background-image: url('../assets/Group\ 8.png');
+    background-image: url('../../assets/Group\ 8.png');
     height: 90%;
     width: 90%;
     background-size: contain;
@@ -240,7 +240,7 @@
   }
 
   .imagem_servicos {
-    background-image: url('../assets/Group_9.png');
+    background-image: url('../../assets/Group_9.png');
     height: 90%;
     width: 90%;
     background-size: contain;
@@ -322,7 +322,7 @@
   }
 
   .imagem_servicos {
-    background-image: url('../assets/Group_9.png');
+    background-image: url('../../assets/Group_9.png');
     height: 90%;
     width: 90%;
     background-size: cover;
