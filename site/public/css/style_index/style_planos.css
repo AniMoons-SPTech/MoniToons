@@ -105,6 +105,12 @@
     margin: auto;
     font-size: 1.2vmax;
 }
+
+.plano_destaque{
+    color: #E87E1C;
+    font-weight: 900;
+}
+
 @media only screen and (max-width: 1999px){
     .titulo_planos {
         font-size: 1.8em;
