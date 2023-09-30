@@ -1,6 +1,10 @@
-// function enviarEmail(email) {
+function enviarEmail(email) {
 
+  const layoutEmailJS = require("./modeloEmail/modeloEmail.js")
   const nodeMailer = require("nodemailer")
+
+  const nome = "Matheus"  // Nome do usuário
+  const link = "https://www.google.com.br"  // Link para recuperação de senha
 
   let transporter = nodeMailer.createTransport({
     host: "smtp.gmail.com",
@@ -12,13 +16,7 @@
     }
   })
 
-  layoutEmail = `
-    <h1>Recuperação de senha</h1>
-    <p>Olá, tudo bem?</p>
-    <p>Recebemos uma solicitação de recuperação de senha para a sua conta.</p>
-    <p>Para alterar sua senha, clique no botão abaixo:</p>
-    <button href="http://localhost:3000/alterar-senha">Alterar senha</button>
-  `;
+  let layoutEmail = layoutEmailJS.modeloEmail(nome, link)
 
   let mailOptions = {
     from: "Suporte AniMoons <animoons.contato@gmail.com>",
@@ -36,8 +34,10 @@
     }).finally(() => {
       console.log("Email enviado com sucesso!")
     })
-// }
+}
 
-// module.exports = {
-//   enviarEmail
-// }
+enviarEmail("mat.587263@gmail.com");
+
+module.exports = {
+  enviarEmail
+}
