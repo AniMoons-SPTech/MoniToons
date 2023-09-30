@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="assets/fontes/fonts.css">
     <link rel="icon" type="image/png" href="assets/moon.png"/>
     <script src="https://kit.fontawesome.com/c52875e8e8.js" crossorigin="anonymous"></script>
+    <script src="js/mostrarSenhas.js"></script>
  </head>
  <body>
     <div class="div_central">
@@ -20,13 +21,13 @@
             <form action="" class="formulario_generico">
                 <h1>Faça o login com sua conta!</h1>
                 <div class="input_diferente">
-                    <i class="fa-solid fa-user fa-xl" id="icone"></i>
+                    <i class="fa-solid fa-user fa-xl icone"></i>
                     <input type="text" placeholder="Username">
                 </div>
                 <div class="input_diferente">
-                    <i class="fa-solid fa-lock fa-xl" id="icone"></i>
-                    <input type="password" placeholder="Senha">
-
+                    <i class="fa-solid fa-lock fa-xl icone"></i>
+                    <input type="password" placeholder="Senha" class="input_senha">
+                    <i class="fa-solid fa-eye-slash icone" onclick="mostrarSenha()" id="icone_olho"></i>
                 </div>
                 <button class="botao_entrar" type="button">LOGIN</button>
                 <a onclick="mudaSenha()">Esqueceu a senha?</a>

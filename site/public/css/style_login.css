@@ -203,20 +203,20 @@ h1{
 }
 
 @media only screen and (min-width: 1200px){
-    #icone{
+    .icone{
         margin: auto 5% auto auto;  
         display: block;
     } 
 }
 @media only screen and (max-width: 1199px) {
-    #icone {
+    .icone {
         margin: auto 5% auto auto;
         display: block;
         font-size: medium;
     } 
 }
 @media only screen and (max-width: 768px){
-    #icone {
+    .icone {
         display: none;
     }   
 }
