@@ -10,9 +10,23 @@ body {
     background: radial-gradient(90.27% 62.78% at 78.02% 58.98%, #E87E1C 2.96%, #AB1A3D 31.58%, #180A35 85.90%);
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    min-width: 100vw;
+    min-width: 100%;
     min-height: 100vh;
     
+}
+.bloqueio{
+    display: none;
+}
+@media only screen and (max-width: 1000px) {
+    .bloqueio{
+        z-index: 4;
+        display: flex;
+        background-color: rgba(0, 0, 0, 0.97);
+        width: 100%;
+        height: 150vh;
+        position: absolute;
+        padding: 55% 0;
+    }
 }
 .div_central{
     width: 100%;
@@ -114,6 +128,151 @@ nav{
     align-items: center;
     justify-content: end;
 }
+.cartao{
+    margin: auto;
+    margin-top: 3%;
+    background: #f3f3f3;
+    width: 65vw;
+    height: 120vh;
+    border: none;
+    border-radius: 15pt;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 5%;
+}
+#formulario{
+    width: 100%;
+    height: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.label {
+    margin-top: 0.8%;
+    font-size: 1.1em;
+    position: absolute;
+    font-family: 'Montserrat Ace Medium';
+    pointer-events: none;
+}
+.animacao_subir_label{
+    animation: subir 0.5s ease forwards;
+}
+.input_date:required:invalid::-webkit-datetime-edit {
+    color: transparent;
+}
+.input_date:focus::-webkit-datetime-edit {
+    color: black !important;
+}
+@keyframes subir {
+    0% {
+        transform: translate(0 , 0%);
+    } 
+    100% {
+        transform: translate(-15px, -250%);
+    }   
+}
+@keyframes descer {
+    0% {
+        transform: translate(-20%, -250%);
+    } 
+    100% {
+        transform: translate(0% , 0%);        
+    }   
+}
+.muda_dados{
+    height: 4vh;
+    width: 15%;
+    font-size: medium;
+    border: 0;
+    background: transparent;
+}
+.muda_dados:first-child{
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    border-right: black 1px solid;
+}
+.muda_dados:last-child{
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-left: black 1px solid;
+}
+.botao_ativado{
+    transition: background-color 0.3s, font-weight 0.3s;
+    background-color: #BABABA;
+    font-weight: bolder;
+}
+.mesma_linha{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+}
+.mesma_linha .campo_simples:first-child{
+    margin-right: 5%;
+}
+.campo_simples{
+    display: flex;
+    flex-direction: row;
+    width: 35%;
+    height: 5vh;
+    background-color: #BABABA;
+    margin: 5% 0 0%;
+    padding: 1% 2%;
+    border-radius: 10px;
+    justify-items: center;
+}
+.email{
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+    width: 79.5%;
+    height: 5vh;
+    background-color: #BABABA;
+    margin: 4% 0 0%;
+    padding: 1% 2%;
+    border-radius: 10px;
+}
+#short_aviso{
+    margin-top: 2%;
+}
+.titulo_escolha{
+    margin-top: 5%;
+}
+#controle{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 5%;
+    width: 100%;
+    height: 8vh;
+}
+.botao_acao{
+    border: 0;
+    width: 30%;
+    border-radius: 10px;
+    background-image: linear-gradient(to right, #E87E1C, #AB1A3D);
+    font-size: 1.2em;
+    color: white;
+    font-family: 'Montserrat Ace SemiBold', sans-serif;
+    cursor: pointer;
+    outline: none;
+}
+.selecao_planos{
+    width: 100%;
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.selecao_planos input{
+    width: 8%;
+    height: 50%;
+}
+.selecao_planos label{
+    font-size: 1.2em;
+    font-family: 'Montserrat Ace Medium';
+}
 @media only screen and (max-width: 1199px) {
     .cartao_logar{
         display: flex;
@@ -144,26 +303,33 @@ nav{
         width: 80%;
     }
 }
-h1{
+.texto_login{
+    text-align: center;
+    width: 80%;
+    font-size: xx-large;
+    font-family: 'Montserrat Ace SemiBold', sans-serif;
+}
+.texto_compra{
+    margin: 5% auto;
     text-align: center;
     width: 80%;
     font-size: xx-large;
     font-family: 'Montserrat Ace SemiBold', sans-serif;
 }
 @media only screen and (max-width: 1199px){
-    h1 {
+    .texto_login {
         font-size: XX-large;
         width: 90%;
     }   
 }
 @media only screen and (max-width: 900px){
-    h1 {
+    .texto_login {
         font-size: X-large;
         width: 90%;
     }   
 }
 @media only screen and (max-width: 768px){
-    h1 {
+    .texto_login {
         font-size: large;
         width: 90%;
     }   
@@ -240,6 +406,7 @@ input{
 
 input:focus{
     outline: none;
+    border-bottom: black 0.5px solid;
 }
 
 .botao_entrar{

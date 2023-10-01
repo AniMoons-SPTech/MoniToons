@@ -190,7 +190,7 @@
                 <span>PLANOS</span>
             </div>
             <div class="div_botao">
-                <button class="botao_plano">ASSINAR</button>
+                <button class="botao_plano" onclick="redirecionarCompra()">ASSINAR</button>
             </div>
             
             <div class="conteudo_planos">
@@ -337,9 +337,11 @@
     menuIcon.addEventListener('click', () => {
         menu.classList.toggle('show')
     })
-
     function redirecionar() {
         window.location.href = "login.html"
+    }
+    function redirecionarCompra(){
+        window.location.href = "compra_plano.html"
     }
     function redSaibaMais() {
         window.location.href = "#secao_sobre"

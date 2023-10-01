@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | MoniToons</title>
+    <link rel="stylesheet" href="css/style_compra.css">
+    <link rel="stylesheet" href="css/style_formularios.css">
+    <link rel="stylesheet" href="css/style_barra.css">
+    <link rel="stylesheet" href="assets/fontes/fonts.css">
+    <link rel="icon" type="image/png" href="assets/moon.png" />
+    <script src="https://kit.fontawesome.com/c52875e8e8.js" crossorigin="anonymous"></script>
+    <script src="js/mostrarSenhas.js"></script>
+    <script src="js/formulario.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="bloqueio">
+        <h1 class="texto_compra" style="color: white;">
+            Desculpe, só é possível realizar a assinatura por um computador 
+        </h1>
+    </div>
+    <div class="div_central">
+        <nav>
+            <div class="borda_do_botao">
+                <button class="voltar" onclick="redirecionar()">Voltar</button>
+            </div>
+        </nav>
+
+        <div class="cartao" id="cartao_logar">
+            <ol id="barra-controle-personalizado" class="large">
+                <li>Cadastro</li>
+                <li>Pagamento</li>
+                <li>Login</li>
+            </ol>
+            <form id="formulario">
+                <h1 class="texto_compra">Preencha os campos para assinar o serviço Monitoons</h1>
+                <div class="mesma_linha">
+                    <input type="button" class="muda_dados botao_ativado" onclick="mudaPessoa(1)" value="Pessoa Física">
+                    <input type="button" class="muda_dados" id="botao" onclick="mudaPessoa(2)" value="Pessoa Jurídica">
+                </div>
+                <div class="mesma_linha">
+                    <div class="campo_simples">
+                        <h2 class="label">Nome </h2>
+                        <input type="text" class="input" onfocus="subirLabel(1)" onfocusout="descerLabel(1)">
+                    </div>
+                    <div class="campo_simples">
+                        <h2 class="label">Sobrenome</h2>
+                        <input type="text" class="input" onfocus="subirLabel(2)" onfocusout="descerLabel(2)">
+                    </div>
+                </div>
+                <div class="email">
+                    <h2 class="label">Email</h2>
+                    <input type="text" class="input" onfocus="subirLabel(3)" onfocusout="descerLabel(3)">
+                </div>
+                <div class="mesma_linha">
+                    <div class="campo_simples">
+                        <h2 class="label">Senha</h2>
+                        <input type="password" onkeyup="checarSenha()" id="input_nova_senha" class="input_senha input"
+                            onfocus="subirLabel(4)" onfocusout="descerLabel(4)">
+                        <i class="fa-solid fa-eye-slash icone" onclick="mostrarSenha()" id="icone_olho"></i>
+                    </div>
+                    <div class="campo_simples">
+                        <h2 class="label">Confirmar senha</h2>
+                        <input type="password" onkeyup="checarSenha()" class="input_senha input" id="input_confirmar_senha"
+                            onfocus="subirLabel(5)" onfocusout="descerLabel(5)">
+                        <i class="fa-solid fa-eye-slash icone" onclick="mostrarSenha()" id="icone_olho"></i>
+                    </div>
+                </div>
+                <short id="short_aviso" style="color: red;"></short>
+                <div class="mesma_linha">
+                    <div class="campo_simples">
+                        <h2 class="label" id="label_rg_nome_fantasia">RG</h2>
+                        <input type="text" class="input" onfocus="subirLabel(6)" onfocusout="descerLabel(6)">
+                    </div>
+                    <div class="campo_simples">
+                        <h2 class="label" id="label_cpf_cnpj">CPF</h2>
+                        <input type="text" class="input" onfocus="subirLabel(7)" onfocusout="descerLabel(7)">
+                    </div>
+                </div>        
+            </form>
+            <div id="controle"></div> 
+        </div>
+    </div>
+
+</body>
+
+</html>
+<script>
+
+    function redirecionar() {
+        window.location.href = "index.html"
+    };
+    function mudaPessoa(tipoPessoa) {
+        var botoes = document.querySelectorAll(".muda_dados")
+        if(tipoPessoa == 1){
+            label_rg_nome_fantasia.innerHTML = "RG"
+            label_cpf_cnpj.innerHTML = "CPF"
+        } else if (tipoPessoa == 2){
+            label_rg_nome_fantasia.innerHTML = "Nome Fantasia"
+            label_cpf_cnpj.innerHTML = "CNPJ"
+        }
+        if (!botoes[(tipoPessoa-1)].classList.contains("botao_ativado")){
+            botoes.forEach((botao) => {
+                botao.classList.toggle("botao_ativado")
+            })
+        }
+      
+    }
+    function subirLabel(numeroLabel) {
+        var listaLabels = document.querySelectorAll(".label")
+
+        listaLabels[(numeroLabel - 1)].style = "animation: subir 0.5s ease forwards;"
+    }
+    function descerLabel(numeroLabel) {
+        var listaLabels = document.querySelectorAll(".label")
+        var listaInputs = document.querySelectorAll(".input")
+        if (listaInputs[(numeroLabel - 1)].value == "") {
+            listaLabels[(numeroLabel - 1)].style = "animation: descer 0.5s ease forwards;"
+        }
+    }
+    function checarSenha() {
+        var novaSenha = input_nova_senha.value
+        var confirmaSenha = input_confirmar_senha.value
+
+        if (novaSenha != confirmaSenha) {
+            short_aviso.innerHTML = "As senhas não correspondem"
+        } else {
+            short_aviso.innerHTML = ""
+        }
+    }
+    function enviarEmail() {
+        cartao_logar.innerHTML = `
+        <form action="" class="formulario_generico">
+            <h1>Enviamos um email para o endereço fornecido. Para recuperar sua senha siga o passo a passo enviado no email</h1>
+            <button class="botao_entrar" onclick="voltar()">Voltar</button>
+        </form>
+        `
+    }
+    jQuery.fn.extend({
+        stepProgressBar: function (currentStep) {
+            currentStep = currentStep || this.currentStep() || 1;
+            let childs = this
+                .addClass("step-progress-bar")
+                .find("li")
+                .removeClass("step-past step-present step-future");
+
+            childs.find(".content-stick").removeClass("step-past step-future");
+
+            let size = childs.length < 1 ? 100 : 100 / childs.length;
+            childs.css("width", size + "%");
+
+            for (let i = 0; i < childs.length; i++) {
+                let child = $(childs[i]);
+                if (child.find("span.content-wrapper").length === 0) {
+                    child.wrapInner("<span class='content-wrapper'></span>");
+                    if (i > 0) child.append("<span class='content-stick'></span>");
+                    child.prepend("<span class='content-bullet'>" + (i + 1) + "</span>");
+                }
+                let stepName = i < currentStep - 1 ? "step-past"
+                    : i === currentStep - 1 ? "step-present"
+                        : "step-future";
+                child.addClass(stepName);
+                if (i > 0) {
+                    let stickName = stepName === "step-present" ? "step-past" : stepName;
+                    child.find(".content-stick").addClass(stickName);
+                }
+                child.css("z-index", childs.length - i);
+                child.find(":before").css("z-index", childs.length - i + 2);
+            }
+            return this;
+        },
+
+        currentStep: function () {
+            var childs = this.find("li");
+            for (let i = 0; i < childs.length; i++) {
+                if ($(childs[i]).is(".step-present")) return i + 1;
+            }
+            return 1;
+        },
+
+        countSteps: function () {
+            return this.find("li").length;
+        },
+
+        isLastStep: function () {
+            return this.countSteps() === this.currentStep();
+        },
+
+
+        nextStep: function () {
+            if (!this.isLastStep()) {
+                this.stepProgressBar(this.currentStep() + 1);
+            }
+        },
+
+        controlProgressBar: function (progressBar) {
+            let next = function () { progressBar.nextStep(), formularioPagamento() };
+            this.empty();
+            $("<button type='submit' class='botao_acao next'>Continuar</button>").on('click', next).appendTo(this);
+
+            return this;
+        }
+    });
+
+    /* JavaScript na página. */
+
+    let ca = $("#barra-controle-personalizado").stepProgressBar(1);
+    let cb = $("#controle").controlProgressBar(ca);
+    cb.find(".rewind, .fast-forward").remove();
+
+</script>

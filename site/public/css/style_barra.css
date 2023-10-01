@@ -1,0 +1,95 @@
+/* CSS principal da barra de progresso. Não deve ser alterado. */
+
+ol{
+    margin-top: 3%;
+}
+ol.step-progress-bar {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 80%;
+}
+
+ol.step-progress-bar li {
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+    flex: 1 1;
+    position: relative;
+    margin: 0 5px 0;
+}
+
+ol.step-progress-bar li span.content-bullet {
+    border-radius: 100%;
+    display: block;
+    text-align: center;
+    transform: translateX(-50%);
+    margin-left: 50%;
+}
+
+ol.step-progress-bar li span.content-wrapper {
+    display: inline-block;
+    overflow: visible;
+    width: 100%;
+    padding: 0;
+}
+
+ol.step-progress-bar li span.content-stick {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 1px;
+    z-index: -1;
+    transform: translate(-50%, -50%);
+}
+
+/* Cor padrão.
+   Passado: #2dcd73 (verde) e branco.
+   Presente: #4c92d9 (azul) e branco.
+   Futuro: #dde2e3 (cinza claro) e #869398 (cinza escuro).
+*/
+
+ol.step-progress-bar li.step-past *,
+ol.step-progress-bar li.step-present .content-stick {
+    color: #2dcd73;
+    background: #2dcd73;
+}
+
+ol.step-progress-bar li.step-present * {
+    color: #4c92d9;
+    background: #4c92d9;
+}
+
+ol.step-progress-bar li .content-bullet {
+    color: white;
+}
+
+ol.step-progress-bar li.step-future * {
+    color: #869398;
+    background: #dde2e3;
+}
+
+ol.step-progress-bar li .content-wrapper {
+    background: transparent;
+}
+/* Tamanho grande:
+   Bolinha de 49px de diâmetro.
+   Fonte 120%.
+   Conector 8px de altura.
+*/
+
+ol.step-progress-bar.large li .content-bullet {
+    width: 49px;
+    line-height: 49px;
+}
+
+ol.step-progress-bar.large li {
+    font-size: 125%;
+}
+
+ol.step-progress-bar.large li .content-stick {
+    top: 24.5px; /* Metade do diâmetro. */
+    height: 8px;
+}
