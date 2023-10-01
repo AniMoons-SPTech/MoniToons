@@ -46,20 +46,20 @@ ol.step-progress-bar li span.content-stick {
 }
 
 /* Cor padrão.
-   Passado: #2dcd73 (verde) e branco.
-   Presente: #4c92d9 (azul) e branco.
+   Passado: #E87E1C (verde) e branco.
+   Presente: #AB1A3D (azul) e branco.
    Futuro: #dde2e3 (cinza claro) e #869398 (cinza escuro).
 */
 
 ol.step-progress-bar li.step-past *,
 ol.step-progress-bar li.step-present .content-stick {
-    color: #2dcd73;
-    background: #2dcd73;
+    color: #AB1A3D ;
+    background: #AB1A3D;
 }
 
 ol.step-progress-bar li.step-present * {
-    color: #4c92d9;
-    background: #4c92d9;
+    color: #E87E1C;
+    background: #E87E1C;
 }
 
 ol.step-progress-bar li .content-bullet {
@@ -86,6 +86,8 @@ ol.step-progress-bar.large li .content-bullet {
 }
 
 ol.step-progress-bar.large li {
+    font-family: 'Montserrat Ace SemiBold';
+    font-weight: bold;
     font-size: 125%;
 }
 
