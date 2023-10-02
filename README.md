@@ -1,4 +1,4 @@
-![image](https://github.com/AniMoons-SPTech/MoniToons/assets/89167232/b9a8fd16-23a7-4852-b9b9-6c67551532a1)
+![logo1](https://github.com/AniMoons-SPTech/MoniToons/assets/89167232/ba1446d7-4927-4904-a5ef-ec6b7780fe46)
 
 # **AniMoons**
 
