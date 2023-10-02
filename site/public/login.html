@@ -9,6 +9,7 @@
     <link rel="icon" type="image/png" href="assets/moon.png"/>
     <script src="https://kit.fontawesome.com/c52875e8e8.js" crossorigin="anonymous"></script>
     <script src="js/mostrarSenhas.js"></script>
+    <script src="js/validarSessao.js"></script>
  </head>
  <body>
     <div class="div_central">
@@ -22,14 +23,14 @@
                 <h1 class="texto_login">Faça o login com sua conta!</h1>
                 <div class="input_diferente">
                     <i class="fa-solid fa-user fa-xl icone"></i>
-                    <input type="text" placeholder="Username">
+                    <input id="inputEmail" type="text" placeholder="Email">
                 </div>
                 <div class="input_diferente">
                     <i class="fa-solid fa-lock fa-xl icone"></i>
-                    <input type="password" placeholder="Senha" class="input_senha">
+                    <input id="inputSenha" type="password" placeholder="Senha" class="input_senha">
                     <i class="fa-solid fa-eye-slash icone" onclick="mostrarSenha()" id="icone_olho"></i>
                 </div>
-                <button class="botao_entrar" type="button">LOGIN</button>
+                <button  onclick="entrar()" class="botao_entrar" type="button">LOGIN</button>
                 <a onclick="mudaSenha()">Esqueceu a senha?</a>
             </form>
 
@@ -39,6 +40,66 @@
  </body>
  </html>
  <script>
+    function entrar(){
+        var email = inputEmail.value;
+        var senha = inputSenha.value;
+
+        if(email == "" || senha == ""){
+            alert("Campos Vazios!")
+        }else if (!email.includes("@")){
+            alert("Email inválido!")
+        }else if(senha.length < 8){
+            alert("Senha curta demais!")
+        }else{
+            fetch("/usuarios/autenticar",{
+                method: "POST",
+                headers:{
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    email,
+                    senha
+                })
+            }).then(function (resposta){
+                console.log("Estamos no THEN")
+
+                if(resposta.ok){
+                    console.log(resposta);
+
+                    resposta.json().then(json => {
+                        console.log(json);
+                        console.log(JSON.stringify(json));
+
+                        sessionStorage.EMAIL_USUARIO = json.email;
+                        sessionStorage.NOME_USUARIO = json.nome;
+                        sessionStorage.CARGO_USUARIO = json.cargo;
+                        sessionStorage.ID_USUARIO = json.idUsuario;
+
+                        setTimeout(function(){
+
+                            if(json.cargo == "Admin"){
+                                window.location = "./dashboard/dashboard.html"
+                            }else{
+                                window.location = "./dashboard/dashboardMaquina.html"
+                            }
+                            
+                        },1000);
+                    })
+                } else {
+                    alert("Login não existente!")
+                    console.log("Login não existente!");
+
+                    resposta.text().then(texto => {
+                        console.error(texto);
+                    });
+                }
+            }).catch(function(erro){
+                console.log(erro);
+            })
+        }
+        
+    }
+
     function redirecionar(){
         window.location.href = "index.html"
     };
