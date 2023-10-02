@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
   <meta charset="UTF-8">
@@ -18,135 +18,112 @@
         <div class="line"></div>
       </div>
     </div>
-    <ul class="nav-links">
+    <ul class="bar-links">
       <li><a href="#">Geral</a></li>
       <li><a href="#">Computadores</a></li>
       <li><a href="#">Dúvidas</a></li>
     </ul>
   </nav>
-  <div class="espaco-nav"></div>
+
+  <nav>
+    <div class="barra-superior">
+      <div class="usuario item-barra">
+        <div class="imagem-usuario">
+          <img src="../img/usuario.png" alt="Usuário">
+        </div>
+        <div class="nome-usuario item-barra">
+          <span class="nome">Usuário</span>
+          <span class="cargo">Administrador</span>
+        </div>
+      </div>
+      <div class="pesquisa item-barra">
+        <input type="text" placeholder="Pesquisar">
+      </div>
+      <div class="sair item-barra">
+        <a href="#">SAIR</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="espaco-barra-lateral"></div>
   <section class="sessao-computadores">
     <div class="container">
       <div class="titulo-sessao-computadores">
         <span class="titulo">Computadores</span>
       </div>
       <div class="espaco-titulo-sessao-computadores"></div>
-      <div class="card">
-        <div class="imgBx">
-          <img src="../assets/pc1.jpg" alt="">
-        </div>
-        <div class="content">
-          <h2>Computador 1</h2>
-          <p>Descrição do computador 1</p>
-          <a href="#">Ver mais</a>
-        </div>
-      </div>
-      <div class="card">
-        <div class="imgBx">
-          <img src="../assets/pc2.jpg" alt="">
-        </div>
-        <div class="content">
-          <h2>Computador 2</h2>
-          <p>Descrição do computador 2</p>
-          <a href="#">Ver mais</a>
-        </div>
-      </div>
-      <div class="card">
-        <div class="content">
-          <h2>Computador 3</h2>
-          <p>Descrição do computador 3</p>
-          <a href="#">Ver mais</a>
-        </div>
-      </div>
-      <div class="card">
-        <div class="content">
-          <h2>Computador 3</h2>
-          <p>Descrição do computador 3</p>
-          <a href="#">Ver mais</a>
-        </div>
-      </div>
-      <div class="card">
-        <div class="content">
-          <h2>Computador 3</h2>
-          <p>Descrição do computador 3</p>
-          <a href="#">Ver mais</a>
-        </div>
-      </div>
-      <div class="card">
-        <div class="content">
-          <h2>Computador 3</h2>
-          <p>Descrição do computador 3</p>
-          <a href="#">Ver mais</a>
-        </div>
-      </div>
-      <div class="card">
-        <div class="content">
-          <h2>Computador 3</h2>
-          <p>Descrição do computador 3</p>
-          <a href="#">Ver mais</a>
-        </div>
-      </div>
-      <div class="card">
-        <div class="content">
-          <h2>Computador 3</h2>
-          <p>Descrição do computador 3</p>
-          <a href="#">Ver mais</a>
-        </div>
-      </div>
-      <div class="card">
-        <div class="content">
-          <h2>Computador 3</h2>
-          <p>Descrição do computador 3</p>
-          <a href="#">Ver mais</a>
-        </div>
-      </div>
-      <div class="card">
-        <div class="content">
-          <h2>Computador 3</h2>
-          <p>Descrição do computador 3</p>
-          <a href="#">Ver mais</a>
-        </div>
-      </div>
 
-      <div class="card">
-        <div class="content">
-          <h2>Computador 3</h2>
-          <p>Descrição do computador 3</p>
-          <a href="#">Ver mais</a>
-        </div>
+      <div class="botao-adicionar-computador">
+        +
       </div>
-      <div class="card">
-        <div class="content">
-          <h2>Computador 3</h2>
-          <p>Descrição do computador 3</p>
-          <a href="#">Ver mais</a>
-        </div>
-      </div>
+      <div class="cards" id="cards">
 
-      <div class="card">
-        <div class="content">
-          <h2>Computador 3</h2>
-          <p>Descrição do computador 3</p>
-          <a href="#">Ver mais</a>
-        </div>
-      </div>
-      <div class="card">
-        <div class="content">
-          <h2>Computador 3</h2>
-          <p>Descrição do computador 3</p>
-          <a href="#">Ver mais</a>
-        </div>
-      </div>
-      <div class="card">
-        <div class="content">
-          <h2>Computador 3</h2>
-          <p>Descrição do computador 3</p>
-          <a href="#">Ver mais</a>
-        </div>
       </div>
     </div>
   </section>
 </body>
-<script src="../js/mail.js"></script>
+<script src="../js/enviarEmail.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+
+  // Load the Visualization API and the corechart package.
+  google.charts.load('current', { 'packages': ['corechart'] })
+
+  // Set a callback to run when the Google Visualization API is loaded.
+  google.charts.setOnLoadCallback(desenharGraficoCPU)
+
+  // Callback that creates and populates a data table,
+  // instantiates the pie chart, passes in the data and
+  // draws it.
+  function desenharGraficoCPU(memoria, disco, cpu) {
+
+    // Create the data table.
+    var comp = "CPU"
+    var data = new google.visualization.DataTable()
+    data.addColumn('string', 'Topping')
+    data.addColumn('number', 'Slices')
+    data.addRows([
+      ['Livres', 30],
+      ['Em Uso', 70]
+    ])
+
+    // Set chart options
+    var options = {
+      'title': comp,
+      'height': 160,
+      'width': 160,
+      'backgroundColor': 'transparent',
+      'legend': 'none',
+      pieHole: 0.35
+    }
+
+    // Instantiate and draw our chart, passing in some options.
+    for (let i = 0; i < 10; i+=2) {
+
+      var div_cards = document.getElementById("cards")
+
+      div_cards.innerHTML += `
+        <div class="card">
+          <div class="content">
+            <h2>Computador ${i}</h2>
+            <div class="graficos">
+              <div class="grafico" id="chart_div${i}"></div>
+              <div class="grafico" id="chart_div${i + 1}"></div>
+            </div>
+            <a href="#">Ver mais</a>
+          </div>
+        </div>
+      `
+
+      var chart = new google.visualization.PieChart(document.getElementById(`chart_div${i}`))
+      chart.draw(data, options)
+
+      var chart = new google.visualization.PieChart(document.getElementById(`chart_div${i + 1}`))
+      chart.draw(data, options)
+    }
+
+  }
+
+</script>
 
 </html>
