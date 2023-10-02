@@ -1,7 +1,5 @@
 ![logo1](https://github.com/AniMoons-SPTech/MoniToons/assets/89167232/ba1446d7-4927-4904-a5ef-ec6b7780fe46)
 
-# **AniMoons**
-
 Conheça o MoniToons o sistema de monitoração de Hardware de computadores e notebooks para animadores!
 
 
