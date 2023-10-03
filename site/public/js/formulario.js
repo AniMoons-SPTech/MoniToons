@@ -1,7 +1,8 @@
 var paginaFormulario = 0
 function formularioPagamento(){
     paginaFormulario++
-    var layout_formulario = document.querySelector("#div_campos_formulario");
+    setTimeout(() => {
+        var layout_formulario = document.querySelector("#div_campos_formulario");
     var formulario = document.querySelector("#formulario_compra")
     var botao_continuar = document.getElementById("button_continuar")
     var botao_finalizar = document.getElementById("button_finalizar")
@@ -9,12 +10,12 @@ function formularioPagamento(){
         layout_formulario.innerHTML = `
         <h1 class='texto_compra'>Escolha o seu plano</h1>
             <div class='selecao_planos'>
-                  <input type='radio' id='html' name='fav_language' value='HTML'>
-                  <label for='html'>Plano Básico</label><br>
-                  <input type='radio' id='css' name='fav_language' value='CSS'>
-                  <label for='css'>Plano Intermediário</label><br>
-                  <input type='radio' id='javascript' name='fav_language' value='JavaScript'>
-                  <label for='javascript'>Plano Premium</label>
+                  <input type='radio' id='plano_doodle' name='plano' value='Doodle'>
+                  <label for='plano_doodle'>Plano Doodle</label><br>
+                  <input type='radio' id='plano_sketchPro' name='plano' value='SketchPro'>
+                  <label for='plano_sketchPro'>Plano SketchPro</label><br>
+                  <input type='radio' id='plano_ultimate' name='plano' value='Ultimate'>
+                  <label for='plano_ultimate'>Plano Ultimate</label>
             </div>
                 <h2 class='texto_compra'>Informe os dados do seu cartão de crédito</h2>
                 <div class='email'>
@@ -44,5 +45,7 @@ function formularioPagamento(){
         <h1 class='texto_compra'>Pronto! Agora é só baixar o arquivo abaixo e efetuar o login com a conta que você registrou</h1>
         `
     }
+    
+    }, 100)
     
 }
