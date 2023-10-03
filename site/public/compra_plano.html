@@ -51,52 +51,55 @@
                         <div class="campo_simples">
                             <h2 class="label">Nome </h2>
                             <input type="text" class="input" onfocus="subirLabel(1)" onfocusout="descerLabel(1)"
-                                id="input_nome">
+                                onkeyup="validarNome(this)" id="input_nome">
+                            <div class="tooltip" id="tooltip-nome">Preencha o nome corretamente.</div>
                         </div>
                         <div class="campo_simples">
                             <h2 class="label">Sobrenome</h2>
                             <input type="text" class="input" onfocus="subirLabel(2)" onfocusout="descerLabel(2)"
-                                id="input_sobrenome">
+                                onkeyup="validarSobrenome(this)" id="input_sobrenome">
+                            <div class="tooltip" id="tooltip-sobrenome">Preencha o sobrenome corretamente.</div>
                         </div>
                     </div>
 
                     <div class="email">
                         <h2 class="label">Email</h2>
                         <input type="text" class="input" onfocus="subirLabel(3)" onfocusout="descerLabel(3)"
-                            id="input_email">
+                            onkeyup="validarEmail(this)" id="input_email">
+                        <div class="tooltip" id="tooltip-email">Preencha um email válido.</div>
                     </div>
 
                     <div class="mesma_linha">
                         <div class="campo_simples">
                             <h2 class="label">Senha</h2>
-                            <input type="password" onkeyup="checarSenha()" id="input_senha" class="input_senha input"
-                                onfocus="subirLabel(4)" onfocusout="descerLabel(4)">
+                            <input type="password" id="input_senha" class="input_senha input"
+                                onkeyup="validarSenha(this)" onfocus="subirLabel(4)" onfocusout="descerLabel(4)">
                             <i class="fa-solid fa-eye-slash icone" onclick="mostrarSenha()" id="icone_olho"></i>
+                            <div class="tooltip" id="tooltip-senha">A senha deve ter pelo menos 8 caracteres.</div>
                         </div>
                         <div class="campo_simples">
                             <h2 class="label">Confirmar senha</h2>
-                            <input type="password" onkeyup="checarSenha()" class="input_senha input"
+                            <input type="password" class="input_senha input" onkeyup="validarConfirmacaoSenha(this)"
                                 id="input_confirmar_senha" onfocus="subirLabel(5)" onfocusout="descerLabel(5)">
                             <i class="fa-solid fa-eye-slash icone" onclick="mostrarSenha()" id="icone_olho"></i>
+                            <div class="tooltip" id="tooltip-confirmar-senha">As senhas não coincidem.</div>
                         </div>
                     </div>
-
-                    <short id="short_aviso_senha" style="color: red;"></short>
 
                     <div class="mesma_linha">
                         <div class="campo_simples">
                             <h2 class="label" id="label_rg_nome_fantasia">RG</h2>
                             <input type="text" class="input" onfocus="subirLabel(6)" onfocusout="descerLabel(6)"
-                                id="input_rg_nome_fantasia">
+                                onkeyup="validarRG(this)" id="input_rg_nome_fantasia">
+                            <div class="tooltip" id="tooltip-rg">Preencha o RG corretamente.</div>
                         </div>
                         <div class="campo_simples">
                             <h2 class="label" id="label_cpf_cnpj">CPF</h2>
                             <input type="text" class="input" onfocus="subirLabel(7)" onfocusout="descerLabel(7)"
-                                id="input_cpf_cnpj">
+                                onkeyup="validarCPF(this)" id="input_cpf_cnpj">
+                            <div class="tooltip" id="tooltip-cpf">Preencha o CPF corretamente.</div>
                         </div>
                     </div>
-                    <short id="short_aviso_cpf_rg" style="color: red;"></short>
-
                 </div>
 
                 <div id="controle">
@@ -111,6 +114,7 @@
 
 </html>
 <script>
+    var paginaDoFormulario = 0;
 
     function redirecionar() {
         window.location.href = "index.html"
@@ -146,54 +150,123 @@
     }
 
 
-    function checarCampos() {
-        var nome = input_nome.value
-        var sobrenome = input_sobrenome.value
-        var email = input_email.value
-        var novaSenha = input_senha.value
-        var confirmaSenha = input_confirmar_senha.value
-        var cpfOuCnpj = input_cpf_cnpj.value
-        var rgOuNomeFantasia = input_rg_nome_fantasia.value
+    function exibirTooltip(elementId) {
+        document.getElementById(elementId).style.display = "block";
+    }
 
-        var botaoContinuar = document.getElementById("botao_continuar")
+    function ocultarTooltip(elementId) {
+        document.getElementById(elementId).style.display = "none";
+    }
 
-        if (nome == "" || email == "" || senha == "" || confirmaSenha == "") {
-            botaoContinuar.disabled = true;
+    function validarNome(inputNome) {
+        const nome = inputNome.value.trim();
+        const tooltip = "tooltip-nome";
 
-        } else if (email.indexOf('@') == -1 ||
-                (email.indexOf('.com') == -1 &&
-                email.indexOf('.br') == -1 &&
-                email.indexOf('.school') == -1)) {
-            botaoContinuar.disabled = true;
-
-        } else if (senha.length < 8) {
-            short_aviso.innerHTML = "Sua senha precisa ter ao menos 8 caractéres"
-            botaoContinuar.disabled = true;
-        } else if (senha != confirmaSenha) {
-            short_aviso_senha.innerHTML = "As senhas não correspondem"
-            botaoContinuar.disabled = true;
-
-        } else if (cpfOuCnpj.length < 11) {
-            short_aviso_cpf_rg.innerHTML = "Preencha corretamente as informações"
-            botaoContinuar.disabled = true;
-        } else if (rgOuNomeFantasia < 9){
-            short_aviso_cpf_rg.innerHTML = "Preencha corretamente as informações"
-            botaoContinuar.disabled = true;
+        if (nome === "") {
+            exibirTooltip(tooltip);
+            return false;
         } else {
-            short_aviso_senha.innerHTML = ""
-            short_aviso_cpf_rg.innerHTML = ""
-            botaoContinuar.disabled = true;
-            
+            ocultarTooltip(tooltip);
+            return true;
         }
     }
 
-    function enviarEmail() {
-        cartao_logar.innerHTML = `
-        <form action="" class="formulario_generico">
-            <h1>Enviamos um email para o endereço fornecido. Para recuperar sua senha siga o passo a passo enviado no email</h1>
-            <button class="botao_entrar" onclick="voltar()">Voltar</button>
-        </form>
-        `
+    function validarSobrenome(inputSobrenome) {
+        const sobrenome = inputSobrenome.value.trim();
+        const tooltip = "tooltip-sobrenome";
+
+        if (sobrenome === "") {
+            exibirTooltip(tooltip);
+            return false;
+        } else {
+            ocultarTooltip(tooltip);
+            return true;
+        }
+    }
+
+    function validarEmail(inputEmail) {
+        const email = inputEmail.value.trim();
+        const tooltip = "tooltip-email";
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!emailRegex.test(email)) {
+            exibirTooltip(tooltip);
+            return false;
+        } else {
+            ocultarTooltip(tooltip);
+            return true;
+        }
+    }
+
+    function validarSenha(inputSenha) {
+        const senha = inputSenha.value;
+        const tooltip = "tooltip-senha";
+
+        if (senha.length < 8) {
+            exibirTooltip(tooltip);
+            return false;
+        } else {
+            ocultarTooltip(tooltip);
+            return true;
+        }
+    }
+
+    function validarConfirmacaoSenha(inputConfirmarSenha) {
+        const senha = document.getElementById("input_senha").value;
+        const confirmarSenha = inputConfirmarSenha.value;
+        const tooltip = "tooltip-confirmar-senha";
+
+        if (senha !== confirmarSenha) {
+            exibirTooltip(tooltip);
+            return false;
+        } else {
+            ocultarTooltip(tooltip);
+            return true;
+        }
+    }
+
+    function validarRG(inputRG) {
+        const rg = inputRG.value.trim();
+        const tooltip = "tooltip-rg";
+
+        if (rg === "") {
+            exibirTooltip(tooltip);
+            return false;
+        } else {
+            ocultarTooltip(tooltip);
+            return true;
+        }
+    }
+
+    function validarCPF(inputCPF) {
+        const cpf = inputCPF.value.trim();
+        const tooltip = "tooltip-cpf";
+        const cpfRegex = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
+
+        if (!cpfRegex.test(cpf)) {
+            exibirTooltip(tooltip);
+            return false;
+        } else {
+            ocultarTooltip(tooltip);
+            return true;
+        }
+    }
+
+    function validarFormulario() {
+        var resultadoNome = validarNome(document.getElementById("input_nome"));
+        var resultadoSobrenome = validarSobrenome(document.getElementById("input_sobrenome"));
+        var resultadoEmail = validarEmail(document.getElementById("input_email"));
+        var resultadoSenha = validarSenha(document.getElementById("input_senha"));
+        var resultadoConfirmarSenha = validarConfirmacaoSenha(document.getElementById("input_confirmar_senha"));
+        var resultadoRGNomeFantasia = validarRG(document.getElementById("input_rg_nome_fantasia"));
+        var resultadoCpfCnpj = validarCPF(document.getElementById("input_cpf_cnpj"));
+
+        if (resultadoNome && resultadoSobrenome && resultadoSenha && resultadoConfirmarSenha && resultadoRGNomeFantasia && resultadoRGNomeFantasia) {
+            return true;
+        } else {
+            return true;
+        }
+
     }
 
     /* Seção barra de progresso assinatura */
@@ -251,12 +324,28 @@
 
         nextStep: function () {
             if (!this.isLastStep()) {
-                this.stepProgressBar(this.currentStep() + 1);
+
+                if (paginaDoFormulario == 0) {
+                    var resultadoValidacao = validarFormulario();
+
+                    if (resultadoValidacao) {
+                        this.stepProgressBar(this.currentStep() + 1);
+                        formularioPagamento();
+                        paginaDoFormulario++
+                    }
+                } else if (paginaDoFormulario == 1) {
+                    var resultadoPagamento = validarPagamento();
+                    if (resultadoPagamento) {
+                        this.stepProgressBar(this.currentStep() + 1);
+                        formularioPagamento();
+                        paginaDoFormulario++;
+                    }
+                }
             }
         },
 
         controlProgressBar: function (progressBar) {
-            let next = function () { progressBar.nextStep(), formularioPagamento() };
+            let next = function () { progressBar.nextStep() };
             this.empty();
             $("<button type='button' id='button_continuar' class='botao_acao next'>Continuar</button>").on('click', next).appendTo(this);
             $("<button type='button' id='button_finalizar' class='botao_acao next'>Finalizar</button>")
@@ -297,7 +386,7 @@
 
         usuario.nomeCompleto = input_nome.value + " " + input_sobrenome.value;
         usuario.email = input_email.value;
-        usuario.senha = input_senha;
+        usuario.senha = input_senha.value;
 
         var tipoPessoaSelecionado = document.querySelector(".botao_ativado");
 

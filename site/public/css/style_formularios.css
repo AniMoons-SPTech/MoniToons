@@ -133,7 +133,7 @@ nav{
     margin-top: 3%;
     background: #f3f3f3;
     width: 65vw;
-    height: 120vh;
+    height: 130vh;
     border: none;
     border-radius: 15pt;
     display: flex;
@@ -237,8 +237,14 @@ nav{
     padding: 1% 2%;
     border-radius: 10px;
 }
-short{
-    margin-top: 2%;
+.tooltip {
+    display: none;
+    position: absolute;
+    background-color: #ff0000;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    margin-top: 2.5%;
 }
 .titulo_escolha{
     margin-top: 5%;
