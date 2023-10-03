@@ -1,9 +1,12 @@
 var paginaFormulario = 0
 function formularioPagamento(){
     paginaFormulario++
-    var formulario = document.querySelector("#formulario");
+    var layout_formulario = document.querySelector("#div_campos_formulario");
+    var formulario = document.querySelector("#formulario_compra")
+    var botao_continuar = document.getElementById("button_continuar")
+    var botao_finalizar = document.getElementById("button_finalizar")
     if(paginaFormulario == 1){
-        formulario.innerHTML = `
+        layout_formulario.innerHTML = `
         <h1 class='texto_compra'>Escolha o seu plano</h1>
             <div class='selecao_planos'>
                   <input type='radio' id='html' name='fav_language' value='HTML'>
@@ -34,6 +37,8 @@ function formularioPagamento(){
                     </div>
                 </div>
         `
+        botao_continuar.style.display = "none"
+        botao_finalizar.style.display = "block"
     } else if (paginaFormulario == 2){
         formulario.innerHTML = `
         <h1 class='texto_compra'>Pronto! Agora é só baixar o arquivo abaixo e efetuar o login com a conta que você registrou</h1>
