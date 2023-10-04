@@ -62,7 +62,7 @@
                         </div>
                     </div>
 
-                    <div class="email">
+                    <div class="campo_maior">
                         <h2 class="label">Email</h2>
                         <input type="text" class="input" onfocus="subirLabel(3)" onfocusout="descerLabel(3)"
                             onkeyup="validarEmail(this)" id="input_email">
@@ -119,155 +119,6 @@
     function redirecionar() {
         window.location.href = "index.html"
     };
-
-    function mudaPessoa(numeroPessoa) {
-        var botoes = document.querySelectorAll(".muda_dados")
-        if (numeroPessoa == 1) {
-            label_rg_nome_fantasia.innerHTML = "RG"
-            label_cpf_cnpj.innerHTML = "CPF"
-        } else if (numeroPessoa == 2) {
-            label_rg_nome_fantasia.innerHTML = "Nome Fantasia"
-            label_cpf_cnpj.innerHTML = "CNPJ"
-        }
-        if (!botoes[(numeroPessoa - 1)].classList.contains("botao_ativado")) {
-            botoes.forEach((botao) => {
-                botao.classList.toggle("botao_ativado")
-            })
-        }
-
-    }
-    function subirLabel(numeroLabel) {
-        var listaLabels = document.querySelectorAll(".label")
-
-        listaLabels[(numeroLabel - 1)].style = "animation: subir 0.5s ease forwards;"
-    }
-    function descerLabel(numeroLabel) {
-        var listaLabels = document.querySelectorAll(".label")
-        var listaInputs = document.querySelectorAll(".input")
-        if (listaInputs[(numeroLabel - 1)].value == "") {
-            listaLabels[(numeroLabel - 1)].style = "animation: descer 0.5s ease forwards;"
-        }
-    }
-
-
-    function exibirTooltip(elementId) {
-        document.getElementById(elementId).style.display = "block";
-    }
-
-    function ocultarTooltip(elementId) {
-        document.getElementById(elementId).style.display = "none";
-    }
-
-    function validarNome(inputNome) {
-        const nome = inputNome.value.trim();
-        const tooltip = "tooltip-nome";
-
-        if (nome === "") {
-            exibirTooltip(tooltip);
-            return false;
-        } else {
-            ocultarTooltip(tooltip);
-            return true;
-        }
-    }
-
-    function validarSobrenome(inputSobrenome) {
-        const sobrenome = inputSobrenome.value.trim();
-        const tooltip = "tooltip-sobrenome";
-
-        if (sobrenome === "") {
-            exibirTooltip(tooltip);
-            return false;
-        } else {
-            ocultarTooltip(tooltip);
-            return true;
-        }
-    }
-
-    function validarEmail(inputEmail) {
-        const email = inputEmail.value.trim();
-        const tooltip = "tooltip-email";
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-        if (!emailRegex.test(email)) {
-            exibirTooltip(tooltip);
-            return false;
-        } else {
-            ocultarTooltip(tooltip);
-            return true;
-        }
-    }
-
-    function validarSenha(inputSenha) {
-        const senha = inputSenha.value;
-        const tooltip = "tooltip-senha";
-
-        if (senha.length < 8) {
-            exibirTooltip(tooltip);
-            return false;
-        } else {
-            ocultarTooltip(tooltip);
-            return true;
-        }
-    }
-
-    function validarConfirmacaoSenha(inputConfirmarSenha) {
-        const senha = document.getElementById("input_senha").value;
-        const confirmarSenha = inputConfirmarSenha.value;
-        const tooltip = "tooltip-confirmar-senha";
-
-        if (senha !== confirmarSenha) {
-            exibirTooltip(tooltip);
-            return false;
-        } else {
-            ocultarTooltip(tooltip);
-            return true;
-        }
-    }
-
-    function validarRG(inputRG) {
-        const rg = inputRG.value.trim();
-        const tooltip = "tooltip-rg";
-
-        if (rg === "") {
-            exibirTooltip(tooltip);
-            return false;
-        } else {
-            ocultarTooltip(tooltip);
-            return true;
-        }
-    }
-
-    function validarCPF(inputCPF) {
-        const cpf = inputCPF.value.trim();
-        const tooltip = "tooltip-cpf";
-        const cpfRegex = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
-
-        if (!cpfRegex.test(cpf)) {
-            exibirTooltip(tooltip);
-            return false;
-        } else {
-            ocultarTooltip(tooltip);
-            return true;
-        }
-    }
-
-    function validarFormulario() {
-        var resultadoNome = validarNome(document.getElementById("input_nome"));
-        var resultadoSobrenome = validarSobrenome(document.getElementById("input_sobrenome"));
-        var resultadoEmail = validarEmail(document.getElementById("input_email"));
-        var resultadoSenha = validarSenha(document.getElementById("input_senha"));
-        var resultadoConfirmarSenha = validarConfirmacaoSenha(document.getElementById("input_confirmar_senha"));
-        var resultadoRGNomeFantasia = validarRG(document.getElementById("input_rg_nome_fantasia"));
-        var resultadoCpfCnpj = validarCPF(document.getElementById("input_cpf_cnpj"));
-
-        if (resultadoNome && resultadoSobrenome && resultadoSenha && resultadoConfirmarSenha && resultadoRGNomeFantasia && resultadoRGNomeFantasia) {
-            return true;
-        } else {
-            return true;
-        }
-
-    }
 
     /* Seção barra de progresso assinatura */
 
@@ -382,6 +233,8 @@
         planoAdquirido: ""
     }
 
+    /* Eveng */
+
     botaoContinuar.addEventListener("click", function (event) {
 
         usuario.nomeCompleto = input_nome.value + " " + input_sobrenome.value;
@@ -405,7 +258,7 @@
 
         var plano = document.querySelector("input[name='plano']:checked")
 
-        usuario.planoAdquirido = plano.value;
+        usuario.planoAdquirido = plano[0];
 
         fetch('/usuarios/cadastrar', {
             method: 'POST',
