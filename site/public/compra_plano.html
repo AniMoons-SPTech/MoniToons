@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | MoniToons</title>
+    <title>Assinar | MoniToons</title>
     <link rel="stylesheet" href="css/style_formularios.css">
     <link rel="stylesheet" href="css/style_barra.css">
     <link rel="stylesheet" href="assets/fontes/fonts.css">
@@ -18,7 +18,7 @@
 <body>
     <div class="bloqueio">
         <h1 class="texto_compra" style="color: white;">
-            Desculpe, só é possível realizar a assinatura por um computador 
+            Desculpe, só é possível realizar a assinatura por um computador
         </h1>
     </div>
     <div class="div_central">
@@ -38,62 +38,73 @@
 
                 <div id="div_campos_formulario">
 
-                <h1 class="texto_compra">Preencha os campos para assinar o serviço Monitoons</h1>
+                    <h1 class="texto_compra">Preencha os campos para assinar o serviço Monitoons</h1>
 
-                <div class="mesma_linha">
-                    <input type="button" class="muda_dados botao_ativado" onclick="mudaPessoa(1)" value="Pessoa Física">
-                    <input type="button" class="muda_dados" id="botao" onclick="mudaPessoa(2)" value="Pessoa Jurídica">
+                    <div class="mesma_linha">
+                        <input type="button" class="muda_dados botao_ativado" onclick="mudaPessoa(1)"
+                            value="Pessoa Física">
+                        <input type="button" class="muda_dados" id="botao" onclick="mudaPessoa(2)"
+                            value="Pessoa Jurídica">
+                    </div>
+
+                    <div class="mesma_linha">
+                        <div class="campo_simples">
+                            <h2 class="label">Nome </h2>
+                            <input type="text" class="input" onfocus="subirLabel(1)" onfocusout="descerLabel(1)"
+                                onkeyup="validarNome(this)" id="input_nome">
+                            <div class="tooltip" id="tooltip-nome">Preencha o nome corretamente.</div>
+                        </div>
+                        <div class="campo_simples">
+                            <h2 class="label">Sobrenome</h2>
+                            <input type="text" class="input" onfocus="subirLabel(2)" onfocusout="descerLabel(2)"
+                                onkeyup="validarSobrenome(this)" id="input_sobrenome">
+                            <div class="tooltip" id="tooltip-sobrenome">Preencha o sobrenome corretamente.</div>
+                        </div>
+                    </div>
+
+                    <div class="campo_maior">
+                        <h2 class="label">Email</h2>
+                        <input type="text" class="input" onfocus="subirLabel(3)" onfocusout="descerLabel(3)"
+                            onkeyup="validarEmail(this)" id="input_email">
+                        <div class="tooltip" id="tooltip-email">Preencha um email válido.</div>
+                    </div>
+
+                    <div class="mesma_linha">
+                        <div class="campo_simples">
+                            <h2 class="label">Senha</h2>
+                            <input type="password" id="input_senha" class="input_senha input"
+                                onkeyup="validarSenha(this)" onfocus="subirLabel(4)" onfocusout="descerLabel(4)">
+                            <i class="fa-solid fa-eye-slash icone" onclick="mostrarSenha()" id="icone_olho"></i>
+                            <div class="tooltip" id="tooltip-senha">A senha deve ter pelo menos 8 caracteres.</div>
+                        </div>
+                        <div class="campo_simples">
+                            <h2 class="label">Confirmar senha</h2>
+                            <input type="password" class="input_senha input" onkeyup="validarConfirmacaoSenha(this)"
+                                id="input_confirmar_senha" onfocus="subirLabel(5)" onfocusout="descerLabel(5)">
+                            <i class="fa-solid fa-eye-slash icone" onclick="mostrarSenha()" id="icone_olho"></i>
+                            <div class="tooltip" id="tooltip-confirmar-senha">As senhas não coincidem.</div>
+                        </div>
+                    </div>
+
+                    <div class="mesma_linha">
+                        <div class="campo_simples">
+                            <h2 class="label" id="label_rg_nome_fantasia">RG</h2>
+                            <input type="text" class="input" onfocus="subirLabel(6)" onfocusout="descerLabel(6)"
+                                onkeyup="validarRG(this)" id="input_rg_nome_fantasia">
+                            <div class="tooltip" id="tooltip-rg">Preencha o RG corretamente.</div>
+                        </div>
+                        <div class="campo_simples">
+                            <h2 class="label" id="label_cpf_cnpj">CPF</h2>
+                            <input type="text" class="input" onfocus="subirLabel(7)" onfocusout="descerLabel(7)"
+                                onkeyup="validarCPF(this)" id="input_cpf_cnpj">
+                            <div class="tooltip" id="tooltip-cpf">Preencha o CPF corretamente.</div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="mesma_linha">
-                    <div class="campo_simples">
-                        <h2 class="label">Nome </h2>
-                        <input type="text" class="input" onfocus="subirLabel(1)" onfocusout="descerLabel(1)">
-                    </div>
-                    <div class="campo_simples">
-                        <h2 class="label">Sobrenome</h2>
-                        <input type="text" class="input" onfocus="subirLabel(2)" onfocusout="descerLabel(2)">
-                    </div>
+                <div id="controle">
+
                 </div>
-
-                <div class="email">
-                    <h2 class="label">Email</h2>
-                    <input type="text" class="input" onfocus="subirLabel(3)" onfocusout="descerLabel(3)">
-                </div>
-                
-                <div class="mesma_linha">
-                    <div class="campo_simples">
-                        <h2 class="label">Senha</h2>
-                        <input type="password" onkeyup="checarSenha()" id="input_nova_senha" class="input_senha input"
-                            onfocus="subirLabel(4)" onfocusout="descerLabel(4)">
-                        <i class="fa-solid fa-eye-slash icone" onclick="mostrarSenha()" id="icone_olho"></i>
-                    </div>
-                    <div class="campo_simples">
-                        <h2 class="label">Confirmar senha</h2>
-                        <input type="password" onkeyup="checarSenha()" class="input_senha input" id="input_confirmar_senha"
-                            onfocus="subirLabel(5)" onfocusout="descerLabel(5)">
-                        <i class="fa-solid fa-eye-slash icone" onclick="mostrarSenha()" id="icone_olho"></i>
-                    </div>
-                </div>
-
-                <short id="short_aviso" style="color: red;"></short>
-
-                <div class="mesma_linha">
-                    <div class="campo_simples">
-                        <h2 class="label" id="label_rg_nome_fantasia">RG</h2>
-                        <input type="text" class="input" onfocus="subirLabel(6)" onfocusout="descerLabel(6)">
-                    </div>
-                    <div class="campo_simples">
-                        <h2 class="label" id="label_cpf_cnpj">CPF</h2>
-                        <input type="text" class="input" onfocus="subirLabel(7)" onfocusout="descerLabel(7)">
-                    </div>
-                </div> 
-
-            </div>
-
-            <div id="controle">
-
-            </div> 
 
             </form>
         </div>
@@ -103,56 +114,14 @@
 
 </html>
 <script>
+    var paginaDoFormulario = 0;
 
     function redirecionar() {
         window.location.href = "index.html"
     };
-    function mudaPessoa(tipoPessoa) {
-        var botoes = document.querySelectorAll(".muda_dados")
-        if(tipoPessoa == 1){
-            label_rg_nome_fantasia.innerHTML = "RG"
-            label_cpf_cnpj.innerHTML = "CPF"
-        } else if (tipoPessoa == 2){
-            label_rg_nome_fantasia.innerHTML = "Nome Fantasia"
-            label_cpf_cnpj.innerHTML = "CNPJ"
-        }
-        if (!botoes[(tipoPessoa-1)].classList.contains("botao_ativado")){
-            botoes.forEach((botao) => {
-                botao.classList.toggle("botao_ativado")
-            })
-        }
-      
-    }
-    function subirLabel(numeroLabel) {
-        var listaLabels = document.querySelectorAll(".label")
 
-        listaLabels[(numeroLabel - 1)].style = "animation: subir 0.5s ease forwards;"
-    }
-    function descerLabel(numeroLabel) {
-        var listaLabels = document.querySelectorAll(".label")
-        var listaInputs = document.querySelectorAll(".input")
-        if (listaInputs[(numeroLabel - 1)].value == "") {
-            listaLabels[(numeroLabel - 1)].style = "animation: descer 0.5s ease forwards;"
-        }
-    }
-    function checarSenha() {
-        var novaSenha = input_nova_senha.value
-        var confirmaSenha = input_confirmar_senha.value
+    /* Seção barra de progresso assinatura */
 
-        if (novaSenha != confirmaSenha) {
-            short_aviso.innerHTML = "As senhas não correspondem"
-        } else {
-            short_aviso.innerHTML = ""
-        }
-    }
-    function enviarEmail() {
-        cartao_logar.innerHTML = `
-        <form action="" class="formulario_generico">
-            <h1>Enviamos um email para o endereço fornecido. Para recuperar sua senha siga o passo a passo enviado no email</h1>
-            <button class="botao_entrar" onclick="voltar()">Voltar</button>
-        </form>
-        `
-    }
     jQuery.fn.extend({
         stepProgressBar: function (currentStep) {
             currentStep = currentStep || this.currentStep() || 1;
@@ -206,12 +175,28 @@
 
         nextStep: function () {
             if (!this.isLastStep()) {
-                this.stepProgressBar(this.currentStep() + 1);
+
+                if (paginaDoFormulario == 0) {
+                    var resultadoValidacao = validarFormulario();
+
+                    if (resultadoValidacao) {
+                        this.stepProgressBar(this.currentStep() + 1);
+                        formularioPagamento();
+                        paginaDoFormulario++
+                    }
+                } else if (paginaDoFormulario == 1) {
+                    var resultadoPagamento = validarPagamento();
+                    if (resultadoPagamento) {
+                        this.stepProgressBar(this.currentStep() + 1);
+                        formularioPagamento();
+                        paginaDoFormulario++;
+                    }
+                }
             }
         },
 
         controlProgressBar: function (progressBar) {
-            let next = function () { progressBar.nextStep(), formularioPagamento() };
+            let next = function () { progressBar.nextStep() };
             this.empty();
             $("<button type='button' id='button_continuar' class='botao_acao next'>Continuar</button>").on('click', next).appendTo(this);
             $("<button type='button' id='button_finalizar' class='botao_acao next'>Finalizar</button>")
@@ -228,30 +213,72 @@
     let cb = $("#controle").controlProgressBar(ca);
     cb.find(".rewind, .fast-forward").remove();
 
+
+    /* Seção configuração de formulário */
+
+    var botaoContinuar = document.getElementById("button_continuar")
     var botaoFinalizar = document.getElementById("button_finalizar")
     var formulario = document.getElementById("formulario_compra")
 
-    botaoFinalizar.addEventListener("click", function(event) {
-        const formData = new FormData(formulario);
+    /* Campos formulário */
 
-        // Realize a solicitação POST usando a API fetch
-        fetch('http://localhost:3333/compra', {
-            method: 'POST',
-            body: formData // Passa os dados do formulário como corpo da solicitação
-        })
-        .then(response => {
-            if (response.ok) {
-                return response.text();
-            }
-            throw new Error('Erro na solicitação POST');
-        })
-        .then(data => {
-            // Faça algo com a resposta do servidor, se necessário
-            console.log('Resposta do servidor:', data);
-        })
-        .catch(error => {
-            console.error('Erro:', error);
-        });
+    var usuario = {
+        nomeCompleto: "",
+        email: "",
+        senha: "",
+        cpf: "",
+        rg: "",
+        cnpj: "",
+        nomeFantasia: "",
+        planoAdquirido: ""
+    }
+
+    /* Eveng */
+
+    botaoContinuar.addEventListener("click", function (event) {
+
+        usuario.nomeCompleto = input_nome.value + " " + input_sobrenome.value;
+        usuario.email = input_email.value;
+        usuario.senha = input_senha.value;
+
+        var tipoPessoaSelecionado = document.querySelector(".botao_ativado");
+
+        if (tipoPessoaSelecionado.value === "Pessoa Física") {
+            usuario.cpf = input_cpf_cnpj.value;
+            usuario.rg = input_rg_nome_fantasia.value;
+
+        } else if (tipoPessoaSelecionado.value === "Pessoa Jurídica") {
+            cnpj = document.querySelector("#label_cpf_cnpj").textContent;
+            nomeFantasia = input_rg_nome_fantasia.value;
+        }
+
     });
+
+    botaoFinalizar.addEventListener("click", function (event) {
+
+        var plano = document.querySelector("input[name='plano']:checked")
+
+        usuario.planoAdquirido = plano[0];
+
+        fetch('/usuarios/cadastrar', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(usuario)
+
+        }).then(response => {
+            if (!response.ok) {
+                throw new Error('Erro na solicitação POST');
+            }
+            return response.text();
+        })
+            .then(data => {
+                console.log('Resposta do servidor:', data);
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+            })
+    })
 
 </script>

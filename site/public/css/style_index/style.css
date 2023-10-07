@@ -28,3 +28,17 @@ body::-webkit-scrollbar-thumb {
     border-bottom-left-radius: 2px;
     border-bottom-right-radius: 2px;
 }
+.texto_planos::-webkit-scrollbar-thumb {
+    width: 5px;
+    background-color: black;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+}
+.texto_planos::-webkit-scrollbar {
+    width: 5px;
+    background-color: transparent;
+    border-top-left-radius: 5px;
+
+}
