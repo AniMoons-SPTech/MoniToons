@@ -1,40 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Funcionários | MoniToons</title>
     <link rel="stylesheet" href="../css/style_dashboard.css">
+    <link rel="stylesheet" href="../css/style_funcionarios.css">
 </head>
+
 <body>
+
+    <div class="atualizar-funcionario">
+        <div class="card-atualizacao">
+            <h1>Preencha os campos abaixo!</h1>
+            <form action="funcionarios.html" class="formulario-atualizacao">
+                <div class="campos-linha" id="campos-linha-1">
+                    <div class="campo">
+                        <label for="nome">Nome</label>
+                        <input type="text" name="nome" id="nome">
+                    </div>
+                    <div class="campo">
+                        <label for="cargo">Cargo</label>
+                        <input type="text" name="cargo" id="cargo">
+                    </div>
+                </div>
+                <div class="campos-linha">
+                    <div class="campo">
+                        <label for="email">Email</label>
+                        <input type="text" name="email" id="email">
+                    </div>
+                    <div class="campo">
+                        <label for="cfp_rne">CPF / RNE</label>
+                        <input type="text" name="cfp_rne" id="cfp_rne">
+                    </div>
+                </div>
+                <div class="campos-linha">
+                    <div class="campo">
+                        <label for="senha">Senha</label>
+                        <input type="password" name="senha" id="senha">
+                    </div>
+                    <div class="campo">
+                        <label for="telefone">Telefone</label>
+                        <input type="number" name="telefone" id="telefone">
+                    </div>
+                </div>
+                <button class="botao-atualizar">Atualizar Funcionário</button>
+            </form>
+        </div>
+    </div>
+
     <nav class="barra-lateral">
         <div class="titulo-barra-lateral">
-          <span class="titulo">MoniToons</span>
-          <div class="burger">
-            <div class="line"></div>
-            <div class="line"></div>
-            <div class="line"></div>
-          </div>
+            <span class="titulo">MoniToons</span>
+            <div class="burger">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
         </div>
         <div class="usuario-barra-lateral">
-          <div class="imagem-usuario-barra-lateral">
-            <img src="../img/usuario.png" alt="Usuário">
-          </div>
-          <div class="info-usuario-barra-lateral">
-            <span class="nome-barra-lateral" id="nome_usuario">Usuário</span>
-            <span class="cargo-barra-lateral" id="cargo_usuario">Administrador</span>
-          </div>
+            <div class="imagem-usuario-barra-lateral">
+                <img src="../img/usuario.png" alt="Usuário">
+            </div>
+            <div class="info-usuario-barra-lateral">
+                <span class="nome-barra-lateral" id="nome_usuario">Usuário</span>
+                <span class="cargo-barra-lateral" id="cargo_usuario">Administrador</span>
+            </div>
         </div>
         <ul class="bar-links">
-          <li><a href="#">Geral</a></li>
-          <li><a href="#">Computadores</a></li>
-          <li><a href="./funcionarios.html">Funcionários</a></li>
-          <li><a href="#">Dúvidas</a></li>
+            <li><a href="#">Geral</a></li>
+            <li><a href="#">Computadores</a></li>
+            <li><a href="./funcionarios.html">Funcionários</a></li>
+            <li><a href="#">Dúvidas</a></li>
         </ul>
         <div class="sair-barra-lateral">
-          <a href="">SAIR</a>
+            <a href="">SAIR</a>
         </div>
-      </nav>
-      <div class="espaco-barra-lateral"></div>
+    </nav>
+    <div class="espaco-barra-lateral"></div>
+    <section class="sessao-funcionarios">
+        <div class="container-funcionarios">
+            <div class="titulo-sessao">
+                <div class="titulo">Funcionários</div>
+            </div>
+            <div class="espaco-titulo-sessao"></div>
+            <div class="botao-adicionar">+</div>
+            <div class="funcionarios" id="cards_func">
+                <div class="card-funcionario">
+                    <div class="imagem-funcionario">
+                        <img src="../assets/estrela-cadente.gif" alt="">
+                    </div>
+                    <div class="info-funcionario">
+                        <div class="nome-funcionario">
+                            <h1 id="nome_func">Matheus Henrique</h1>
+                        </div>
+                        <div class="cargo-funcionario">
+                            Cargo: <span id="cargo_func">Desenvolvedor Fullstack</span>
+                        </div>
+                        <div class="email-funcionario">
+                            Email: <span id="email_func">exemplo@gmail.com</span>
+                        </div>
+                        <div class="telefone-funcionario">
+                            Telefone: <span id="tel_func">(11) 99999-9999</span>
+                        </div>
+                    </div>
+                    <div class="excluir-funcionario">
+                        <img src="../assets/excluir-funcionario.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
+
 </html>
+<script type="text/javascript">
+
+    for (let i = 0; i < 10; i++) {
+
+        var div_cards = document.getElementById("cards_func")
+
+        div_cards.innerHTML += `
+            <div class="card-funcionario">
+                <div class="imagem-funcionario">
+                    <img src="../assets/estrela-cadente.gif" alt="">
+                </div>
+                <div class="info-funcionario">
+                    <div class="nome-funcionario">
+                        <h1 id="nome_func">Matheus Henrique</h1>
+                    </div>
+                    <div class="cargo-funcionario">
+                        Cargo: <span id="cargo_func">Desenvolvedor Fullstack</span>
+                    </div>
+                    <div class="email-funcionario">
+                        Email: <span id="email_func">exemplo@gmail.com</span>
+                    </div>
+                    <div class="telefone-funcionario">
+                        Telefone: <span id="tel_func">(11) 99999-9999</span>
+                    </div>
+                </div>    
+                <div class="excluir-funcionario">
+                    <img src="../assets/excluir-funcionario.png" alt="">
+                </div>
+            </div>
+        `
+
+
+    }
+</script>

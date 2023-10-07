@@ -1,0 +1,238 @@
+:root {
+    --Gradiente-pica: linear-gradient(241deg, #E87E1C 9.88%, #AB1A3D 80.47%);
+    --Gradiente-pica-escuro: linear-gradient(241deg, #c06816 9.88%, #8b1531 80.47%);
+    --Radial: radial-gradient(82.96% 46.27% at 50% 28.22%, #23104D 1.04%, #1D0D40 37.5%, #170A34 62.57%, #0D0324 96%);
+}
+
+.sessao-funcionarios {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    height: 100%;
+    width: calc(100% - 250px);
+}
+
+.container-funcionarios {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    width: 100%;
+    height: 100%;
+}
+
+.titulo-funcionarios {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.titulo-funcionarios h1 {
+    font-size: 30px;
+    font-weight: 600;
+    color: #23104D;
+}
+
+.funcionarios {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    width: 100%;
+}
+
+.card-funcionario {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    height: 175px;
+    background: var(--Gradiente-pica);
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+    transition: all 0.3s;
+}
+
+.card-funcionario:hover {
+    transform: scale(1.01);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+}
+
+.imagem-funcionario {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+    height: 100%;
+}
+
+.imagem-funcionario img {
+    background-color: antiquewhite;
+    height: 90%;
+    border-radius: 0 50px 0 50px;
+}
+
+.info-funcionario {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 30%;
+    height: 100%;
+    padding-left: 20px;
+    gap: 10px;
+}
+
+.nome-funcionario {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.nome-funcionario h1 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.cargo-funcionario {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    color: #fff;
+    gap: 10px;
+}
+
+.email-funcionario {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    color: #fff;
+    gap: 10px;
+}
+
+.telefone-funcionario {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    color: #fff;
+    gap: 10px;
+}
+
+.excluir-funcionario {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: right;
+    width: 10%;
+    height: 100%;
+}
+
+.excluir-funcionario img {
+    margin: 10px 10px 0 0;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+
+.atualizar-funcionario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.card-atualizacao{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 60%;
+    height: 60%;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+.card-atualizacao h1{
+    font-size: 30px;
+    font-weight: 600;
+    color: #E87E1C;
+}
+
+.formulario-atualizacao{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    height: 80%;
+    gap: 20px;
+}
+
+.campos-linha{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 10%;
+}
+
+.campo{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+    gap: 10px;
+}
+
+.campo label{
+    font-size: 20px;
+    font-weight: 600;
+    color: #23104D;
+}
+
+.campo input{
+    width: calc(100% - 10px);
+    height: 40px;
+    border-radius: 5px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #23104D;
+}
+
+.formulario-atualizacao button{
+    width: 50%;
+    height: 50px;
+    border-radius: 5px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #fff;
+    background: var(--Gradiente-pica);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+
