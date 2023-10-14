@@ -1,0 +1,125 @@
+:root {
+  --Gradiente-pica: linear-gradient(241deg, #E87E1C 9.88%, #AB1A3D 80.47%);
+  --Gradiente-pica-escuro: linear-gradient(241deg, #c06816 9.88%, #8b1531 80.47%);
+  --Radial: radial-gradient(82.96% 46.27% at 50% 28.22%, #23104D 1.04%, #1D0D40 37.5%, #170A34 62.57%, #0D0324 96%);
+}
+
+html {
+  height: 100vh;
+  width: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  background: var(--Radial);
+  background-size: 100% 100%;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+}
+
+.sessao-dashboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%;
+  width: calc(100% - 250px);
+}
+
+.container-dashboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  width: 100%;
+}
+
+.area-graficos{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  width: 100%
+}
+
+.metricas{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  height: 100px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.card-metrica{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 30%;
+  height: 100%;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+  transition: all 0.3s;
+}
+
+.card-metrica:hover{
+  transform: scale(1.01);
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+}
+
+.card-grafico-cpu{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  height: 350px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+  transition: all 0.3s;
+}
+
+.card-grafico-cpu:hover{
+  transform: scale(1.01);
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+}
+
+.graficos-menores{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  height: 200px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.card-grafico-menor{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 48%;
+  height: 100%;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+  transition: all 0.3s;
+}
+
+.card-grafico-menor:hover{
+  transform: scale(1.01);
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+}
