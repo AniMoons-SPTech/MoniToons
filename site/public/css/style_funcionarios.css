@@ -265,6 +265,16 @@
     color: #23104D;
 }
 
+.campo select {
+    width: calc(100% - 10px);
+    height: 40px;
+    border-radius: 5px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #23104D;
+}
+
+
 .formulario-atualizacao button {
     width: 50%;
     height: 50px;
@@ -275,7 +285,7 @@
     background: var(--Gradiente-pica);
     border: none;
     cursor: pointer;
-    transition: all 0.3s;
+    transition: all 0.10s;
 }
 
 .formulario-atualizacao button:hover {

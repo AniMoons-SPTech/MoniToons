@@ -37,6 +37,91 @@ function autenticar(req, res) {
 
 }
 
+function validacao(req, res){
+    var {email} = req.params;
+    if (email == undefined){
+        res.status(400).send("Email indefinido")
+    }else{
+        usuarioModel.validacao(email).then(function (resultado) {
+            if(resultado.length > 0){
+                res.status(200).json(resultado)
+            } else{
+                res.status(204).send("Nenhum resultado emcontrado!")
+            }
+        }).catch(function (erro) {
+        console.log(erro) 
+        console.log("Erro!" , erro.sqlMessage)
+        res.status(500).json(erro.sqlMessage);
+    })   
+    }
+}
+
+function listar(req, res){
+    var { idEmpresa } = req.params;
+
+    if(idEmpresa == undefined) {
+        res.status(400).send("Id da empresa está indefinido!");
+    }else{
+        usuarioModel.listar(idEmpresa).then(function (resultado) {
+            if(resultado.length > 0){
+                res.status(200).json(resultado);
+            }else{
+                res.status(204).send("Nenhum funcionário cadastrado!")
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+            res.status(500).json(erro.sqlMessage);
+        });
+    }
+}
+
+function cadastrarFuncionario(req, res){
+    var {nome, cargo, registro, email,senha,fkEmpresa} = req.body;
+
+    if(nome == undefined){
+        res.status(400).send("Seu nome está undefined!");
+    }else if(email == undefined){
+        res.status(400).send("Seu email está undefined!");
+    }else if(senha == undefined){
+        res.status(400).send("Seu senha está undefined!");
+    } else{
+        usuarioModel.cadastrarFuncionario(nome, cargo, registro, email,senha,fkEmpresa)
+            .then(
+                function(resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro! Erro:",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
+function excluirFuncionario(req, res){
+    var  {idUsuario}  = req.params;
+    console.log(idUsuario)
+
+    usuarioModel.excluirFuncionario(idUsuario)
+    .then(
+        function (resultado) {
+            res.json(resultado);
+        }
+    ).catch(
+        function (erro) {
+        console.log(erro),
+        console.log("Houve um erro ao excluir", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+        }
+    )
+
+}
+
 function cadastrar(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     var nome = req.body.usuario.nomeCompleto;
@@ -86,6 +171,10 @@ function cadastrar(req, res) {
 }
 
 module.exports = {
+    cadastrarFuncionario,
+    validacao,
     autenticar,
-    cadastrar
+    cadastrar,
+    listar,
+    excluirFuncionario
 }

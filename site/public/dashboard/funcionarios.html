@@ -7,9 +7,15 @@
     <title>Funcionários | MoniToons</title>
     <link rel="stylesheet" href="../css/style_maquinas.css">
     <link rel="stylesheet" href="../css/style_funcionarios.css">
+    <script src="../js/funcionario/listarFuncionario.js" defer></script>
+    <script src="../js/funcionario/cadastrofuncionario.js" defer></script>
+    <script src="../js/funcionario/excluirFuncionario.js" defer></script>
+
+    
+    
 </head>
 
-<body>
+<body onload="listar()">
 
     <div class="confirmar-exclusao" id="popup-excluir-funcionario">
         <div class="card-confirmar-exclusao">
@@ -18,7 +24,7 @@
             </div>
             <div class="botoes-card-confirmar-exclusao">
                 <button class="botao-exclusao" onclick="mostrarPopupExcluirFunc()">Cancelar</button>
-                <button class="botao-exclusao" onclick="mostrarPopupExcluirFunc()">Confirmar</button>
+                <button class="botao-exclusao" onclick="excluirFuncionario()">Confirmar</button>
             </div>
         </div>
     </div>
@@ -34,38 +40,42 @@
                 <div class="campos-linha" id="campos-linha-1">
                     <div class="campo campo-50">
                         <label for="nome">Nome</label>
-                        <input type="text" name="nome" id="nome">
+                        <input type="text" name="nome" id="nomeInput">
                     </div>
                     <div class="campo campo-50">
                         <label for="cargo">Cargo</label>
-                        <input type="text" name="cargo" id="cargo">
+                        <select  id="cargoInput">
+                            <option value="Administrador">Administrador</option>
+                            <option value="Comum">Comum</option>
+                        </select>
+
                     </div>
                 </div>
                 <div class="campos-linha">
                     <div class="campo campo-70">
                         <label for="email">Email</label>
-                        <input type="text" name="email" id="email">
+                        <input type="text" name="email" id="emailInput">
                     </div>
                     <div class="campo campo-30">
                         <label for="cfp_rne">CPF / RNE</label>
-                        <input type="text" name="cfp_rne" id="cfp_rne">
+                        <input type="text" name="cfp_rne" id="registroInput">
                     </div>
                 </div>
                 <div class="campos-linha">
                     <div class="campo campo-1-3">
                         <label for="senha">Senha</label>
-                        <input type="password" name="senha" id="senha">
+                        <input type="password" name="senha" id="senhaInput">
                     </div>
                     <div class="campo campo-1-3">
                         <label for="telefone">Telefone</label>
-                        <input type="number" name="telefone" id="telefone">
+                        <input type="number" name="telefone" id="telefoneInput">
                     </div>
                     <div class="campo campo-1-3">
                         <label for="telefone">Telefone</label>
-                        <input type="number" name="telefone" id="telefone">
+                        <input type="number" name="telefone" id="telefone1Input">
                     </div>
                 </div>
-                <button class="botao-atualizar">Adicionar ao Grupo</button>
+                <button class="botao-atualizar" onclick="validar()" >Adicionar ao Grupo</button>
             </form>
         </div>
     </div>
@@ -138,13 +148,13 @@
             </div>
         </div>
         <ul class="bar-links">
-            <li><a href="#">Geral</a></li>
+            <li><a href="maquinas.html">Geral</a></li>
             <li><a href="#">Computadores</a></li>
-            <li><a href="./funcionarios.html">Funcionários</a></li>
+            <li><a href="#">Funcionários</a></li>
             <li><a href="#">Dúvidas</a></li>
         </ul>
         <div class="sair-barra-lateral">
-            <a href="">SAIR</a>
+            <a href="../index.html">SAIR</a>
         </div>
     </nav>
     <div class="espaco-barra-lateral"></div>
@@ -156,30 +166,6 @@
             <div class="espaco-titulo-sessao"></div>
             <div class="botao-adicionar" onclick="mostrarPopupAdicionarFunc()">+</div>
             <div class="funcionarios" id="cards_func">
-                <div class="card-funcionario">
-                    <div class="imagem-funcionario">
-                        <img src="../assets/magenta_8.png" alt="">
-                        <img class="botao-atualizar-funcionario" src="../assets/att-func.png" alt=""
-                            onclick="mostrarPopupAtualizarFunc()">
-                    </div>
-                    <div class="info-funcionario">
-                        <div class="nome-funcionario">
-                            <h1 id="nome_func">Matheus Henrique</h1>
-                        </div>
-                        <div class="cargo-funcionario">
-                            Cargo: <span id="cargo_func">Desenvolvedor Fullstack</span>
-                        </div>
-                        <div class="email-funcionario">
-                            Email: <span id="email_func">exemplo@gmail.com</span>
-                        </div>
-                        <div class="telefone-funcionario">
-                            Telefone: <span id="tel_func">(11) 99999-9999</span>
-                        </div>
-                    </div>
-                    <div class="excluir-funcionario">
-                        <img src="../assets/excluir-funcionario.png" onclick="mostrarPopupExcluirFunc()">
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -188,38 +174,6 @@
 </html>
 <script type="text/javascript">
 
-    for (let i = 0; i < 10; i++) {
-
-        var div_cards = document.getElementById("cards_func")
-
-        div_cards.innerHTML += `
-            <div class="card-funcionario">
-                <div class="imagem-funcionario">
-                    <img src="../assets/Lovepik_com-828906606-Hand drawn office computer character scene design element 03 1.png" alt="">
-                    <img class="botao-atualizar-funcionario" src="../assets/att-func.png" onclick="mostrarPopupAtualizarFunc()">
-                </div>
-                <div class="info-funcionario">
-                    <div class="nome-funcionario">
-                        <h1 id="nome_func">Matheus Henrique </h1>
-                    </div>
-                    <div class="cargo-funcionario">
-                        Cargo: <span id="cargo_func">Desenvolvedor Fullstack</span>
-                    </div>
-                    <div class="email-funcionario">
-                        Email: <span id="email_func">exemplo@gmail.com</span>
-                    </div>
-                    <div class="telefone-funcionario">
-                        Telefone: <span id="tel_func">(11) 99999-9999</span>
-                    </div>
-                </div>
-                <div class="excluir-funcionario">
-                    <img src="../assets/excluir-funcionario.png" onclick="mostrarPopupExcluirFunc()">
-                </div>
-            </div>
-        `
-
-
-    }
 
     function mostrarPopupAtualizarFunc() {
         var popup = document.getElementById("popup-atualizar-funcionario")

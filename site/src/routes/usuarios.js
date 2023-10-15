@@ -12,4 +12,20 @@ router.post("/autenticar", function (req, res) {
     usuarioController.autenticar(req, res);
 });
 
+router.get("/validacao/:email", function (req, res) {
+    usuarioController.validacao(req,res);
+})
+
+router.get("/listar/:idEmpresa", function (req , res) {
+    usuarioController.listar(req,res);
+})
+
+router.post("/cadastrarFuncionario", function(req,res){
+    usuarioController.cadastrarFuncionario(req,res);
+})
+
+router.delete("/excluirFuncionario/:idUsuario", function(req,res){
+    usuarioController.excluirFuncionario(req,res);
+})
+
 module.exports = router;

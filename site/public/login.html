@@ -74,10 +74,11 @@
                         sessionStorage.NOME_USUARIO = json.nome;
                         sessionStorage.CARGO_USUARIO = json.cargo;
                         sessionStorage.ID_USUARIO = json.idUsuario;
+                        sessionStorage.FK_EMPRESA = json.fkEmpresa;
 
                         setTimeout(function(){
 
-                            if(json.cargo == "Admin"){
+                            if(json.cargo == "Administrador"){
                                 window.location = "./dashboard/maquinas.html"
                             }else{
                                 window.location = "./dashboard/dashboard.html"
