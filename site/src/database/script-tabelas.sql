@@ -1,17 +1,23 @@
 /*Crie o usuário: 'animoons' e senha: 'animoons'*/
 
-CREATE DATABASE animoons;
+CREATE DATABASE IF NOT EXISTS animoos;
 USE animoons;
-CREATE TABLE usuario (
-idUsuario INT primary key auto_increment,
-nome varchar(45),
-sobrenome varchar(45),
-cargo varchar(45),
-email varchar(60),
-senha varchar(10)
+CREATE TABLE empresa(
+idEmpresa int primary key auto_increment,
+nome varchar(50),
+cnpj bigint,
+telefone int
 );
 
-INSERT INTO usuario VALUES (null, "Julya" , "Aiko", "Admin", "julyaaiko@gmail.com", "12345678");
-INSERT INTO usuario VALUES (null, "Julya" , "Aiko", "Animadora", "aikoju@gmail.com", "12345678");
-
-SELECT * from usuario;
+CREATE TABLE usuario(
+idUsuario int primary key auto_increment,
+nome varchar(100),
+cargo varchar(50),
+documento varchar(20),
+email varchar(80),
+senha varchar(20),
+fkEmpresa int,
+constraint fkEmpresa foreign key (fkEmpresa) references empresa(idEmpresa)
+);	
+select * from usuario;
+INSERT INTO empresa values (null, 'Combo studio', 12345678000190, 1123568495);
