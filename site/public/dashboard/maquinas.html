@@ -65,9 +65,15 @@
         <span class="titulo">Computadores</span>
       </div>
       <div class="espaco-titulo-sessao"></div>
+      <div class="botao-adicionar"> + </div>
 
-      <div class="botao-adicionar">
-        +
+      <div class="metricas">
+        <div class="card-metrica">
+          <div>Computadores em Alerta</div>
+          <div>8</div>
+        </div>
+        <div class="card-metrica"></div>
+        <div class="card-metrica"></div>
       </div>
       <div class="cards" id="cards">
 
@@ -111,7 +117,7 @@
     }
 
     // Instantiate and draw our chart, passing in some options.
-    for (let i = 0; i < 10; i+=2) {
+    for (let i = 0; i < 10; i += 2) {
 
       var div_cards = document.getElementById("cards")
 
