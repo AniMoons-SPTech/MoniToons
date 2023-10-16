@@ -2,71 +2,102 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard | MoniToons</title>
-    <link rel="stylesheet" href="../css/style_dachboard.css">
-    <link rel="stylesheet" href="../css/style_maquinas.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | MoniToons</title>
+  <link rel="stylesheet" href="../css/style_dachboard.css">
+  <link rel="stylesheet" href="../css/style_maquinas.css">
 </head>
 
 <body>
-    <nav class="barra-lateral">
-        <div class="titulo-barra-lateral">
-            <span class="titulo">MoniToons</span>
-            <div class="burger">
-                <div class="line"></div>
-                <div class="line"></div>
-                <div class="line"></div>
+  <nav class="barra-lateral">
+    <div class="titulo-barra-lateral">
+      <span class="titulo">MoniToons</span>
+      <div class="burger">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+      </div>
+    </div>
+    <div class="usuario-barra-lateral">
+      <div class="imagem-usuario-barra-lateral">
+        <a href="./perfil.html">
+          <img src="../assets/estrela-cadente.gif" alt="Usuário">
+        </a>
+      </div>
+      <div class="info-usuario-barra-lateral">
+        <div class="nome-barra-lateral" id="nome_usuario">Usuário</div>
+        <div class="cargo-barra-lateral" id="cargo_usuario">Administrador</div>
+      </div>
+    </div>
+    <ul class="bar-links">
+      <li><a href="#">Geral</a></li>
+      <li><a href="#">Computadores</a></li>
+      <li><a href="./funcionarios.html">Funcionários</a></li>
+      <li><a href="#">Dúvidas</a></li>
+    </ul>
+    <div class="sair-barra-lateral">
+      <a href="">SAIR</a>
+    </div>
+  </nav>
+  <div class="espaco-barra-lateral"></div>
+  <section class="sessao-dashboard">
+    <div class="container-dashboard">
+      <div class="titulo-sessao">
+        <div class="titulo">Computador X</div>
+      </div>
+      <div class="espaco-titulo-sessao"></div>
+      <div class="area-graficos">
+        <div class="graficos">
+          <div class="card-grafico">
+            <div class="grafico"></div>
+            <div class="legenda-grafico">
+              CPU: <p>55</p>%
             </div>
+          </div>
+          <div class="card-grafico">
+            <div class="grafico"></div>
+            <div class="legenda-grafico">
+              CPU: <p>55</p>%
+            </div>
+          </div>
+          <div class="card-grafico">
+            <div class="grafico"></div>
+            <div class="legenda-grafico">
+              CPU: <p>55</p>%
+            </div>
+          </div>
         </div>
-        <div class="usuario-barra-lateral">
-            <div class="imagem-usuario-barra-lateral">
-                <a href="./perfil.html">
-                    <img src="../assets/estrela-cadente.gif" alt="Usuário">
-                </a>
+        <div class="area-aplicativos">
+          <div class="card-aplicativos-proibidos">
+            <div class="titulo-aplicativos-proibidos">
+              Aplicativos Proibidos
             </div>
-            <div class="info-usuario-barra-lateral">
-                <div class="nome-barra-lateral" id="nome_usuario">Usuário</div>
-                <div class="cargo-barra-lateral" id="cargo_usuario">Administrador</div>
+            <div class="lista-aplicativos-rolavel">
+              <div class="lista-aplicativos">
+                <div class="item-aplicativo">WhatsApp</div>
+                <div class="item-aplicativo">WhatsApp</div>
+                <div class="item-aplicativo">WhatsApp</div>
+                <div class="item-aplicativo">WhatsApp</div>
+                <div class="item-aplicativo">WhatsApp</div>
+                <div class="item-aplicativo">WhatsApp</div>
+              </div>
             </div>
+          </div>
+          <div class="redirecionmento-aplicativos">
+            <div class="card-redirecionamento">
+              Aplicativos Abertos
+              <img class="icone-redirecionamento" src="../assets/redirecionar.png" alt="">
+            </div>
+            <div class="card-redirecionamento">
+              Aplicativos Abertos
+              <img class="icone-redirecionamento" src="../assets/redirecionar.png" alt="">
+            </div>
+          </div>
         </div>
-        <ul class="bar-links">
-            <li><a href="#">Geral</a></li>
-            <li><a href="#">Computadores</a></li>
-            <li><a href="./funcionarios.html">Funcionários</a></li>
-            <li><a href="#">Dúvidas</a></li>
-        </ul>
-        <div class="sair-barra-lateral">
-            <a href="">SAIR</a>
-        </div>
-    </nav>
-    <div class="espaco-barra-lateral"></div>
-    <section class="sessao-dashboard">
-        <div class="container-dashboard">
-            <div class="titulo-sessao">
-                <div class="titulo">Computador X</div>
-            </div>
-            <div class="espaco-titulo-sessao"></div>
-            <div class="area-graficos">
-                <div class="metricas">
-                    <div class="card-metrica"></div>
-                    <div class="card-metrica"></div>
-                    <div class="card-metrica"></div>
-                </div>
-                <div class="card-grafico-cpu">
-
-                </div>
-                <div class="graficos-menores">
-                    <div class="card-grafico-menor">
-
-                    </div>
-                    <div class="card-grafico-menor">
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+      </div>
+    </div>
+  </section>
 </body>
 
 </html>
