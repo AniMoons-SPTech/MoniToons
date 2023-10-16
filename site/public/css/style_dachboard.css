@@ -4,11 +4,6 @@
   --Radial: radial-gradient(82.96% 46.27% at 50% 28.22%, #23104D 1.04%, #1D0D40 37.5%, #170A34 62.57%, #0D0324 96%);
 }
 
-html {
-  height: 100vh;
-  width: 100%;
-}
-
 body {
   display: flex;
   flex-direction: row;
