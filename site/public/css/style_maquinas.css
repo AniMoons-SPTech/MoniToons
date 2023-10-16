@@ -469,7 +469,7 @@ body {
   margin: 10px 0;
 }
 
-.graficos {
+.graficos-maquina {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -478,7 +478,7 @@ body {
   height: calc(100% - 50px);
 }
 
-.grafico {
+.grafico-maquina {
   display: flex;
   flex-direction: column;
   align-items: center;
