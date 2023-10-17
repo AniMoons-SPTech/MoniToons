@@ -30,7 +30,7 @@ function listar(){
             <div class="card-funcionario">
                 <div class="imagem-funcionario">
                     <img src="../assets/Lovepik_com-828906606-Hand drawn office computer character scene design element 03 1.png" alt="">
-                    <img class="botao-atualizar-funcionario" src="../assets/att-func.png" onclick="mostrarPopupAtualizarFunc()">
+                    <img class="botao-atualizar-funcionario" src="../assets/att-func.png" onclick="mostrarPopupAtualizarFunc(),atualizar(${vetor[i].idUsuario})">
                 </div>
                 <div class="info-funcionario">
                     <div class="nome-funcionario">
@@ -43,7 +43,7 @@ function listar(){
                         Email: <span id="email_func">${vetor[i].email}</span>
                     </div>
                     <div class="telefone-funcionario">
-                        Telefone: <span id="tel_func">(11) 99999-9999</span>
+                        Telefone: <span id="tel_func">${vetor[i].telefone}</span>
                     </div>
                 </div>
                 <div class="excluir-funcionario">

@@ -12,8 +12,8 @@ router.post("/autenticar", function (req, res) {
     usuarioController.autenticar(req, res);
 });
 
-router.get("/validacao/:email", function (req, res) {
-    usuarioController.validacao(req,res);
+router.get("/validar/:email", function (req, res) {
+    usuarioController.validar(req,res);
 })
 
 router.get("/listar/:idEmpresa", function (req , res) {
@@ -26,6 +26,14 @@ router.post("/cadastrarFuncionario", function(req,res){
 
 router.delete("/excluirFuncionario/:idUsuario", function(req,res){
     usuarioController.excluirFuncionario(req,res);
+})
+
+router.get("/dadosFuncionario/:idUsuario", function(req,res){
+    usuarioController.dadosFuncionario(req,res);
+})
+
+router.post("/atualizarFuncionario/:idUsuario", function(req, res){
+    usuarioController.atualizarFuncionario(req,res);
 })
 
 module.exports = router;
