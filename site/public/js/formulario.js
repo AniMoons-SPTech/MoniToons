@@ -73,18 +73,7 @@ function mudaPessoa(numeroPessoa) {
     }
 
 }
-function subirLabel(numeroLabel) {
-    var listaLabels = document.querySelectorAll(".label")
 
-    listaLabels[(numeroLabel - 1)].style = "animation: subir 0.5s ease forwards;"
-}
-function descerLabel(numeroLabel) {
-    var listaLabels = document.querySelectorAll(".label")
-    var listaInputs = document.querySelectorAll(".input")
-    if (listaInputs[(numeroLabel - 1)] == "") {
-        listaLabels[(numeroLabel - 1)].style = "animation: descer 0.5s ease forwards;"
-    }
-}
 
 
 function exibirTooltip(elementId) {

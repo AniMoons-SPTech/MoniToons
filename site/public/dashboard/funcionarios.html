@@ -12,11 +12,11 @@
     <script src="../js/funcionario/cadastrofuncionario.js" defer></script>
     <script src="../js/funcionario/excluirFuncionario.js" defer></script>
 
-    
-    
+
+
 </head>
 
-<body onload="listar()">
+<body onload="listar(); mudaBarraApp()">
 
     <div class="confirmar-exclusao" id="popup-excluir-funcionario">
         <div class="card-confirmar-exclusao">
@@ -45,7 +45,7 @@
                     </div>
                     <div class="campo campo-50">
                         <label for="cargo">Cargo</label>
-                        <select  id="cargoInput">
+                        <select id="cargoInput">
                             <option value="Administrador">Administrador</option>
                             <option value="Comum">Comum</option>
                         </select>
@@ -76,7 +76,7 @@
                         <input type="number" name="telefone" id="telefone1Input">
                     </div>
                 </div>
-                <button class="botao-atualizar" onclick="validar()" >Adicionar ao Grupo</button>
+                <button class="botao-atualizar" onclick="validar()">Adicionar ao Grupo</button>
             </form>
         </div>
     </div>
@@ -95,7 +95,7 @@
                         <input type="text" name="nome" id="nomeAtualizar">
                     </div>
                     <div class="campo campo-50">
-                        <select  id="cargoAtualizar">
+                        <select id="cargoAtualizar">
                             <option value="Administrador">Administrador</option>
                             <option value="Comum">Comum</option>
                         </select>
@@ -152,9 +152,9 @@
         </div>
         <ul class="bar-links">
             <li><a href="maquinas.html">Geral</a></li>
-            <li><a href="#">Computadores</a></li>
-            <li><a href="#">Funcionários</a></li>
-            <li><a href="#">Dúvidas</a></li>
+            <!-- <li><a href="#">Computadores</a></li> -->
+            <li><a href="./funcionarios.html">Funcionários</a></li>
+            <li><a href="./aplicativos.html" id="link_app">Aplicativos proibidos</a></li>
         </ul>
         <div class="sair-barra-lateral">
             <a href="../index.html">SAIR</a>
@@ -176,7 +176,14 @@
 
 </html>
 <script type="text/javascript">
-
+    function mudaBarraApp() {
+        var linkApp = document.getElementById("link_app")
+        if (sessionStorage.CARGO_USUARIO == "FUNCIONARIO") {
+            linkApp.innerHTML = "Aplicativos abertos"
+        } else if (sessionStorage.CARGO_USUARIO == "ADMIN") {
+            linkApp.innerHTML = "Aplicativos proibidos"
+        }
+    }
 
     function mostrarPopupAtualizarFunc() {
         var popup = document.getElementById("popup-atualizar-funcionario")

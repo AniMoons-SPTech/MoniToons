@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="../css/style_maquinas.css">
 </head>
 
-<body>
+<body onload="mudaBarraApp()">
   <nav class="barra-lateral">
     <div class="titulo-barra-lateral">
       <span class="titulo">MoniToons</span>
@@ -31,10 +31,10 @@
       </div>
     </div>
     <ul class="bar-links">
-      <li><a href="#">Geral</a></li>
-      <li><a href="#">Computadores</a></li>
+      <li><a href="./maquinas.html">Geral</a></li>
+      <!-- <li><a href="#">Computadores</a></li> -->
       <li><a href="./funcionarios.html">Funcionários</a></li>
-      <li><a href="#">Dúvidas</a></li>
+      <li><a href="./aplicativos.html" id="link_app">Aplicativos proibidos</a></li>
     </ul>
     <div class="sair-barra-lateral">
       <a href="">SAIR</a>
@@ -99,5 +99,14 @@
     </div>
   </section>
 </body>
-
+<script>
+    function mudaBarraApp(){
+    var linkApp = document.getElementById("link_app")
+    if(sessionStorage.CARGO_USUARIO == "FUNCIONARIO"){
+      linkApp.innerHTML = "Aplicativos abertos"
+    } else if(sessionStorage.CARGO_USUARIO == "ADMIN") {
+      linkApp.innerHTML = "Aplicativos proibidos"
+    }
+  }
+</script>
 </html>

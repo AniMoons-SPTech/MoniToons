@@ -5,11 +5,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Aplicativos | MoniToons</title>
+  <link rel="stylesheet" href="../css/style_aplicativos.css">
   <link rel="stylesheet" href="../css/style_barra.css">
   <link rel="stylesheet" href="../css/style_maquinas.css">
+  <script src="https://kit.fontawesome.com/c52875e8e8.js" crossorigin="anonymous"></script>
+
 </head>
 
-<body>
+<body onload="plotarTabela()">
   <nav class="barra-lateral">
     <div class="titulo-barra-lateral">
       <span class="titulo">MoniToons</span>
@@ -31,10 +34,11 @@
       </div>
     </div>
     <ul class="bar-links">
-      <li><a href="#">Geral</a></li>
-      <li><a href="#">Computadores</a></li>
+      <li><a href="./maquinas.html">Geral</a></li>
+      <!-- <li><a href="#">Computadores</a></li> -->
       <li><a href="./funcionarios.html">Funcionários</a></li>
-      <li><a href="#">Dúvidas</a></li>
+      <!-- <li><a href="#">Dúvidas</a></li> -->
+      <li><a href="./aplicativos.html" class="link_apps">Aplicativos proibidos</a></li>
     </ul>
     <div class="sair-barra-lateral">
       <a href="">SAIR</a>
@@ -43,13 +47,240 @@
   <div class="espaco-barra-lateral"></div>
   <section class="sessao-aplicativos">
     <div class="titulo-sessao">
-      <div class="titulo">Consumo dos Aplicativos</div>
+      <div class="titulo titulo_tabela"></div>
     </div>
     <div class="espaco-titulo-sessao"></div>
     <div class="card-aplicativos">
-
+      <div class="caixa_tabela">
+      <table id="tabela">
+          <tr id="cabecalho_tabela"></tr>
+        <tbody id="corpo_tabela">
+          
+        </tbody>
+      </table>
+    </div>
     </div>
   </section>
+  <div class="botao-adicionar" onclick="mostrarPopupAdicionarApp()">+</div>
+
+  <div class="atualizar-app" id="popup-adicionar-aplicativo">
+    <div class="card-atualizacao">
+        <div class="titulo-card-atualizacao">
+            <div class="apoio"></div>
+            <h1>Preencha os campos abaixo!</h1>
+            <img src="../assets/Vector.png" alt="" onclick="mostrarPopupAdicionarApp()">
+        </div>
+        <form action="aplicativos.html" class="formulario-atualizacao">
+          <div class="campos-linha" id="campos-linha-1">
+              <div class="campo campo-50">
+                  <label for="nome">Nome do Aplicativo</label>
+                  <input type="text" name="nome" id="nomeAdicionar">
+                </div>
+                  <div class="campo campo-70">
+                    <label for="diretorio">Diretório</label>
+                    <input type="text" name="diretorio" id="diretorioAdicionar">
+                </div>         
+          </div>
+          <button class="botao-atualizar" onclick="adicionarAplicativo()">Atualizar aplicativo proibido</button>
+        </form>
+    </div>
+  </div>
+  <div class="atualizar-app" id="popup-atualizar-aplicativo">
+    <div class="card-atualizacao">
+        <div class="titulo-card-atualizacao">
+            <div class="apoio"></div>
+            <h1>Preencha os campos abaixo!</h1>
+            <img src="../assets/Vector.png" alt="" onclick="mostrarPopupAtualizarApp()">
+        </div>
+        <form action="aplicativos.html" class="formulario-atualizacao">
+          <div class="campos-linha" id="campos-linha-1">
+              <div class="campo campo-50">
+                  <label for="nome">Nome do Aplicativo</label>
+                  <input type="text" name="nome" id="nomeAtualizar">
+                </div>
+                  <div class="campo campo-70">
+                    <label for="diretorio">Diretório</label>
+                    <input type="text" name="diretorio" id="diretorioAtualizar">
+                </div>
+          </div>
+          <button class="botao-atualizar" onclick="atualizarAplicativo()">Atualizar aplicativo proibido</button>
+        </form>
+    </div>
+</div>
 </body>
 
 </html>
+<script>
+  function plotarTabela() {
+    var titulo = document.querySelector(".titulo_tabela")
+    var linkApps = document.querySelector(".link_apps")
+    var cabecalhoTabela = document.getElementById("cabecalho_tabela")
+    var corpoTabela = document.getElementById("corpo_tabela")
+
+    var colunaNomeApp = document.createElement("th")
+
+    colunaNomeApp.innerHTML = "Aplicativo"
+
+    cabecalhoTabela.appendChild(colunaNomeApp)
+
+    if (sessionStorage.CARGO_USUARIO != "FUNCIONARIO") { 
+
+      titulo.innerHTML = "Aplicativos abertos"
+      linkApps.innerHTML = "Aplicativos abertos"
+
+      var colunaCPUApp = document.createElement("th")
+      var colunaMemApp = document.createElement("th")
+      var colunaDiscoApp = document.createElement("th")
+      var colunaPlacaVideoApp = document.createElement("th")
+
+      colunaCPUApp.innerHTML = "Uso CPU"
+      colunaMemApp.innerHTML = "Uso RAM"
+      colunaDiscoApp.innerHTML = "Uso Disco"
+      colunaPlacaVideoApp.innerHTML = "Uso Placa de Vídeo"
+
+      cabecalhoTabela.appendChild(colunaCPUApp)
+      cabecalhoTabela.appendChild(colunaMemApp)
+      cabecalhoTabela.appendChild(colunaDiscoApp)
+      cabecalhoTabela.appendChild(colunaPlacaVideoApp)
+
+      corpoTabela.innerHTML = `
+      <tr class="linha">
+        <td class="td_nome td_func">Chrome</td>
+        <td class="td_func">20%</td>
+        <td class="td_func">30%</td>
+        <td class="td_func">34%</td>
+        <td class="td_func">10%</td>
+      </tr>
+      <tr class="linha">  
+        <td class="td_nome td_func">Microsoft Edge</td>
+        <td class="td_func">20%</td>
+        <td class="td_func">50%</td>
+        <td class="td_func">54%</td>
+        <td class="td_func">10%</td>
+      </tr>
+      <tr class="linha">  
+        <td class="td_nome td_func">Blender</td>
+        <td class="td_func">20%</td>
+        <td class="td_func">50%</td>
+        <td class="td_func">34%</td>
+        <td class="td_func">90%</td>
+      </tr>
+      <tr class="linha">  
+        <td class="td_nome td_func">Cinema 4D</td>
+        <td class="td_func">20%</td>
+        <td class="td_func">20%</td>
+        <td class="td_func">34%</td>
+        <td class="td_func">10%</td>
+      </tr>
+      <tr class="linha">  
+        <td class="td_nome td_func">Photoshop</td>
+        <td class="td_func">20%</td>
+        <td class="td_func">50%</td>
+        <td class="td_func">34%</td>
+        <td class="td_func">60%</td>
+      </tr>
+      <tr class="linha">  
+        <td class="td_nome td_func">Ópera GX</td>
+        <td class="td_func">20%</td>
+        <td class="td_func">50%</td>
+        <td class="td_func">34%</td>
+        <td class="td_func">10%</td>
+      </tr> 
+      <tr class="linha">  
+        <td class="td_nome td_func">Adobe After Effects</td>
+        <td class="td_func">4%</td>
+        <td class="td_func">5%</td>
+        <td class="td_func">32%</td>
+        <td class="td_func">9%</td>
+      </tr>
+      <tr class="linha">  
+        <td class="td_nome td_func">The Binding of Isaac</td>
+        <td class="td_func">20%</td>
+        <td class="td_func">50%</td>
+        <td class="td_func">34%</td>
+        <td class="td_func">10%</td>
+      </tr>
+      <tr class="linha">  
+        <td class="td_nome td_func">League of Legends</td>
+        <td class="td_func">10%</td>
+        <td class="td_func">10%</td>
+        <td class="td_func">24%</td>
+        <td class="td_func">10%</td>
+      </tr> 
+      <tr class="linha">
+        <td class="td_nome td_func">Discord</td>
+        <td class="td_func">10%</td>
+        <td class="td_func">35%</td>
+        <td class="td_func">24%</td>
+        <td class="td_func">20%</td>
+      </tr>
+      `
+
+    } else if (sessionStorage.CARGO_USUARIO == "ADMIN"){
+
+      titulo.innerHTML = "Aplicativos proibidos"
+      linkApps.innerHTML = "Aplicativos proibidos"
+
+      var colunaDirApp = document.createElement("th")
+      var colunaExcluirApp = document.createElement("th")
+      var colunaMudaApp = document.createElement("th")
+
+      // var botaoExcluir = document.createElement("button")
+      // var botaoModificar = document.createElement("button")
+
+      
+
+      colunaNomeApp.innerHTML = "Aplicativo"
+      cabecalhoTabela.appendChild(colunaExcluirApp)
+      cabecalhoTabela.appendChild(colunaMudaApp)
+      corpoTabela.innerHTML = `
+      <tr class="linha">  
+        <td class="td_nome td_admin">Chrome</td>
+        <td class="td_admin"><button class="botao_excluir" onclick="excluirApp"><i class="fa-solid fa-trash"></i></button></td>
+        <td class="td_admin"><button class="botao_modificar" onclick="mostrarPopupAtualizarApp()"><i class="fa-solid fa-gear"></i></button></td>
+      </tr>
+      <tr class="linha">  
+        <td class="td_nome td_admin">Microsoft Edge</td>
+        <td class="td_admin"><button class="botao_excluir" onclick="excluirApp"><i class="fa-solid fa-trash"></i></button></td>
+        <td class="td_admin"><button class="botao_modificar" onclick="mostrarPopupAtualizarApp()"><i class="fa-solid fa-gear"></i></button></td>
+      </tr>
+      <tr class="linha">  
+        <td class="td_nome td_admin">Spotify</td>
+        <td class="td_admin"><button class="botao_excluir" onclick="excluirApp"><i class="fa-solid fa-trash"></i></button></td>
+        <td class="td_admin"><button class="botao_modificar" onclick="mostrarPopupAtualizarApp()"><i class="fa-solid fa-gear"></i></button></td>
+      </tr>
+      <tr class="linha">  
+        <td class="td_nome td_admin">Steam</td>
+        <td class="td_admin"><button class="botao_excluir" onclick="excluirApp()"><i class="fa-solid fa-trash"></i></td>
+        <td class="td_admin"><button class="botao_modificar" onclick="mostrarPopupAtualizarApp()"><i class="fa-solid fa-gear"></i></button></td>
+      </tr>
+      <tr class="linha">  
+        <td class="td_nome td_admin">League of Legends</td>
+        <td class="td_admin"><button class="botao_excluir" onclick="excluirApp()"><i class="fa-solid fa-trash"></i></td>
+        <td class="td_admin"><button class="botao_modificar" onclick="mostrarPopupAtualizarApp()"><i class="fa-solid fa-gear"></i></button></td>
+      </tr>      
+      <tr class="linha">  
+        <td class="td_nome td_admin">Whatsapp</td>
+        <td class="td_admin"><button class="botao_excluir" onclick="excluirApp()"><i class="fa-solid fa-trash"></i></td>
+        <td class="td_admin"><button class="botao_modificar" onclick="mostrarPopupAtualizarApp()"><i class="fa-solid fa-gear"></i></button></td>
+      </tr>
+      `
+    }
+  }
+  function mostrarPopupAdicionarApp() {
+        var popup = document.getElementById("popup-adicionar-aplicativo")
+        if (popup.style.display == "flex") {
+            popup.style.display = "none"
+        } else {
+            popup.style.display = "flex"
+        }
+    }
+  function mostrarPopupAtualizarApp() {
+        var popup = document.getElementById("popup-atualizar-aplicativo")
+        if (popup.style.display == "flex") {
+            popup.style.display = "none"
+        } else {
+            popup.style.display = "flex"
+        }
+    }
+</script>

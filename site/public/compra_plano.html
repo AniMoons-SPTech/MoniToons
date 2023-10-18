@@ -50,7 +50,7 @@
                     <div class="mesma_linha">
                         <div class="campo_simples">
                             <h2 class="label">Nome </h2>
-                            <input type="text" class="input" onfocus="subirLabel(1)" onfocusout="descerLabel(1)"
+                            <input type="text" class="input" onfocusin="subirLabel(1)" onfocusout="descerLabel(1)"
                                 onkeyup="validarNome(this)" id="input_nome">
                             <div class="tooltip" id="tooltip-nome">Preencha o nome corretamente.</div>
                         </div>
@@ -115,7 +115,18 @@
 </html>
 <script>
     var paginaDoFormulario = 0;
+    function subirLabel(numeroLabel) {
+    var listaLabels = document.querySelectorAll(".label")
 
+    listaLabels[(numeroLabel - 1)].style = "animation: subir 0.5s ease forwards;"
+}
+function descerLabel(numeroLabel) {
+    var listaLabels = document.querySelectorAll(".label")
+    var listaInputs = document.querySelectorAll(".input")
+    if (listaInputs[(numeroLabel - 1)] === "") {
+        listaLabels[(numeroLabel - 1)].style = "animation: descer 0.5s ease forwards;"
+    }
+}
     function redirecionar() {
         window.location.href = "index.html"
     };

@@ -1,3 +1,7 @@
+body {
+  height: auto;
+  min-height: 100vh;
+}
 .sessao-aplicativos{
   display: flex;
   flex-direction: column;
@@ -10,6 +14,222 @@
   display: flex;
   flex-direction: column;
   width: 90%;
-  background-color: #fff;
+  height: 90%;
+  /* background-color: #fff; */
+  background: linear-gradient(to right, #AB1A3D, #E87E1C);
   border-radius: 15px;
+  margin: 1%;
+  align-items: center;
+  justify-content: center;
 }
+.caixa_tabela{
+  width: 95%;
+  height: 95%;
+  max-height: 80vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-radius: 10pt;
+  background-color: white;
+
+}
+#tabela {
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  margin: 1%;
+  padding: 1%;
+  font-size: larger;
+}
+th{
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+  padding-bottom: 2%;
+}
+th:last-child{
+  border-right: 0;
+}
+.linha{
+  height: 10vh;
+  width: auto;
+  border-bottom: 1px solid black;
+}
+.linha .td_func{
+  text-align: center;
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+}
+
+.linha .td_func:last-child {
+  border-right: 0;
+}
+.linha:last-child .td_func, .linha:last-child .td_admin {
+  border-bottom: none;
+}
+.td_nome {
+  text-align: justify;
+}
+.td_admin{
+  border-bottom: 1px solid black;
+}
+.botao_excluir, .botao_modificar{
+  min-height: 40px;
+  min-width: 40px;
+  border-radius: 50%;
+  margin: 10% 30%;
+  border: none;
+  filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.42));
+  cursor: pointer;
+  color: white;
+  font-size: medium;
+}
+.botao_excluir{
+  background-color: red;
+}
+.botao_excluir:hover{
+  background-color: rgb(156, 10, 10);
+}
+.botao_modificar{
+  background-color: green;
+}
+.botao_modificar:hover{
+  background-color: rgb(13, 100, 13);
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+  background-color: transparent;
+  border-top-left-radius: 5px;
+
+}
+
+*::-webkit-scrollbar-thumb {
+  width: 10px;
+  background-color: #1D0D40;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+.atualizar-app {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.adicionar-app {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+.card-atualizacao {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 60%;
+  height: 65%;
+  background: #fff;
+  gap: 5%;
+  border-radius: 20px;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+.titulo-card-atualizacao {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 80%;
+  height: 20%;
+}
+
+.titulo-card-atualizacao h1 {
+  font-size: 30px;
+  font-weight: 600;
+  color: #E87E1C;
+}
+
+.titulo-card-atualizacao img {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+.campos-linha {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 10%;
+  margin-bottom: 5%;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: auto;
+  gap: 10px;
+}
+
+.campo label {
+  font-size: 20px;
+  font-weight: 600;
+  color: #23104D;
+}
+
+.campo input {
+  width: calc(100% - 10px);
+  height: 40px;
+  border-radius: 5px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #23104D;
+}
+
+.campo select {
+  width: calc(100% - 10px);
+  height: 40px;
+  border-radius: 5px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #23104D;
+}
+
+
+.formulario-atualizacao button {
+  width: 50%;
+  height: 50px;
+  border-radius: 5px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #fff;
+  background: var(--Gradiente-pica);
+  border: none;
+  cursor: pointer;
+  transition: all 0.10s;
+  margin: 0 22%;
+}
+
+.formulario-atualizacao button:hover {
+  background: var(--Gradiente-pica-escuro);
+}
+
+
+.campo-70 {
+  width: 70%;
+}
+

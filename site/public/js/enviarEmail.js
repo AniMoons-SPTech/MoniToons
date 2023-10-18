@@ -1,10 +1,10 @@
-function enviarEmail(email) {
+function enviarEmail(id, nome, email) {
 
   const layoutEmailJS = require("./modeloEmail/modeloEmail.js")
   const nodeMailer = require("nodemailer")
 
-  const nome = "Matheus"  // Nome do usuário
-  const link = "https://www.google.com.br"  // Link para recuperação de senha
+  const nome = nome  // Nome do usuário
+  const link = "http://localhost:3333/troca_senha.html"  // Link para recuperação de senha
 
   let transporter = nodeMailer.createTransport({
     host: "smtp.gmail.com",
