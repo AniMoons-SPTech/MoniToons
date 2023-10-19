@@ -70,7 +70,7 @@ function atualizarFuncionario(idUsuario,nome, cargo, registro, telefone, telefon
 function cadastrarInicial(nome, email, senha, documento, telefone, plano, idEmpresa, cargo){
     var instrucao = `
     INSERT INTO usuario (nome, cargo, email, senha, documento, telefone, plano, fkEmpresa) 
-    VALUES ('${nome}', '${email}', '${senha}', '${documento}', ${telefone}, '${plano}', ${idEmpresa}, '${cargo}');
+    VALUES ('${nome}', '${cargo}', '${email}', ${senha}, '${documento}', ${telefone}, '${plano}', ${idEmpresa});
     `
     return database.executar(instrucao);
 }
