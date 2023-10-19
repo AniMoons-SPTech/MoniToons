@@ -1,4 +1,5 @@
 var usuarioModel = require("../models/usuarioModel");
+var empresaModel = require("../models/empresaModel")
 
 
 function autenticar(req, res) {
@@ -165,7 +166,7 @@ function excluirFuncionario(req, res){
         }
 
     }
-function cadastrar(req, res) {
+async function cadastrar(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     console.log(req)
     var tipoPessoa = req.body.cadastroServer.tipoPessoa;
@@ -196,58 +197,19 @@ function cadastrar(req, res) {
     } else {
         var cargo;
         if(tipoPessoa == "Pessoa Jurídica"){
-            var idEmpresa;
-            cargo = "ADMIN"
-            empresaModel.cadastrar(nomeFantasia, telefoneEmpresa, cnpj)
-            .then(
-                function (resultado) {
-                    res.json(resultado);
-                }
-            ).catch(
-                function (erro) {
-                    console.log(erro);
-                    console.log(
-                        "\nHouve um erro ao realizar o cadastro! Erro: ",
-                        erro.sqlMessage
-                    );
-                    res.status(500).json(erro.sqlMessage);
-                }
-            );
-            empresaModel.buscarPorCnpj(cnpj)
-            .then(
-                function (resultado) {
-                    idEmpresa = resultado[0].idEmpresa;
-                    res.json(resultado);
-                }
-            ).catch(
-                function (erro) {
-                    console.log(erro);
-                    console.log(
-                        "\nHouve um erro ao realizar o cadastro! Erro: ",
-                        erro.sqlMessage
-                    );
-                    res.status(500).json(erro.sqlMessage);
-                }
-            );
-            usuarioModel.cadastrarAdminInicial(nome, email, senha, documento, telefoneAdmin, plano, idEmpresa, cargo)
-            .then(
-                function (resultado) {
-                    res.json(resultado);
-                }
-            ).catch(
-                function (erro) {
-                    console.log(erro);
-                    console.log(
-                        "\nHouve um erro ao realizar o cadastro! Erro: ",
-                        erro.sqlMessage
-                    );
-                    res.status(500).json(erro.sqlMessage);
-                }
-            );
+            var fkEmpresa;
+            cargo = "ADMINISTRADOR"
+
+            await empresaModel.cadastrar(nomeFantasia, telefoneEmpresa, cnpj)
+            
+            var busca = await empresaModel.buscarPorCnpj(cnpj)
+            fkEmpresa = busca[0].idEmpresa;
+
+            await usuarioModel.cadastrarInicial(nome, email, senha, documento, telefoneAdmin, plano, fkEmpresa, cargo)
 
         } else if(tipoPessoa == "Pessoa Física") {
-            cargo = "FUNCIONARIO"
-            usuarioModel.cadastrarInicial(nome, email, senha, documento, telefoneAdmin, plano, "null", cargo)
+            cargo = "COMUM"
+            usuarioModel.cadastrarInicial(nome, cargo, email, senha, documento, telefoneAdmin, plano, "null")
             .then(
                 function (resultado) {
                     res.json(resultado);

@@ -6,7 +6,7 @@ CREATE TABLE empresa(
 idEmpresa int primary key auto_increment,
 nome varchar(50),
 cnpj varchar(18),
-telefone int
+telefone varchar(11)
 );
 
 CREATE TABLE usuario(
