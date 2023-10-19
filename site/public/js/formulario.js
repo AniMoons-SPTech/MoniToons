@@ -59,14 +59,21 @@ function formularioPagamento(){
 }
 function mudaPessoa(numeroPessoa) {
     var botoes = document.querySelectorAll(".muda_dados")
+    var camposEmpresa = document.querySelectorAll(".campos_empresa")
+    var cartaologar = document.getElementById("cartao_logar")
+
     if (numeroPessoa == 1) {
-        label_nome.innerHTML = "Nome"
-        label_rg_nome_fantasia.innerHTML = "RG"
-        label_cpf_cnpj.innerHTML = "CPF"
+        camposEmpresa.forEach((campo) => {
+            campo.style.display = "none"
+        })
+        cartaologar.style.height = "130vh"
+
     } else if (numeroPessoa == 2) {
-        label_nome.innerHTML = "Nome Fantasia"
-        label_rg_nome_fantasia.innerHTML = "Telefone"
-        label_cpf_cnpj.innerHTML = "CNPJ"
+        camposEmpresa.forEach((campo) => {
+            campo.style.display = "flex"
+        })
+        cartaologar.style.height = "180vh"
+
     }
     if (!botoes[(numeroPessoa - 1)].classList.contains("botao_ativado")) {
         botoes.forEach((botao) => {
@@ -86,9 +93,8 @@ function ocultarTooltip(elementId) {
     document.getElementById(elementId).style.display = "none";
 }
 
-function validarNome(inputNome) {
+function validarNome(inputNome, tooltip) {
     const nome = inputNome.value.trim();
-    const tooltip = "tooltip-nome";
 
     if (nome === "") {
         exibirTooltip(tooltip);
@@ -99,22 +105,8 @@ function validarNome(inputNome) {
     }
 }
 
-function validarSobrenome(inputSobrenome) {
-    const sobrenome = inputSobrenome.value.trim();
-    const tooltip = "tooltip-sobrenome";
-
-    if (sobrenome === "") {
-        exibirTooltip(tooltip);
-        return false;
-    } else {
-        ocultarTooltip(tooltip);
-        return true;
-    }
-}
-
-function validarEmail(inputEmail) {
+function validarEmail(inputEmail, tooltip) {
     const email = inputEmail.value.trim();
-    const tooltip = "tooltip-email";
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (!emailRegex.test(email)) {
@@ -126,9 +118,8 @@ function validarEmail(inputEmail) {
     }
 }
 
-function validarSenha(inputSenha) {
+function validarSenha(inputSenha, tooltip) {
     const senha = inputSenha.value;
-    const tooltip = "tooltip-senha";
 
     if (senha.length < 8) {
         exibirTooltip(tooltip);
@@ -139,10 +130,9 @@ function validarSenha(inputSenha) {
     }
 }
 
-function validarConfirmacaoSenha(inputConfirmarSenha) {
+function validarConfirmacaoSenha(inputConfirmarSenha, tooltip) {
     const senha = document.getElementById("input_senha").value;
     const confirmarSenha = inputConfirmarSenha.value;
-    const tooltip = "tooltip-confirmar-senha";
 
     if (senha !== confirmarSenha) {
         exibirTooltip(tooltip);
@@ -153,11 +143,10 @@ function validarConfirmacaoSenha(inputConfirmarSenha) {
     }
 }
 
-function validarRG(inputRG) {
-    const rg = inputRG.value.trim();
-    const tooltip = "tooltip-rg";
+function validarTelefone(inputTelefone, tooltip) {
+    const telefone = inputTelefone.value.trim();
 
-    if (rg === "") {
+    if (telefone.length < 11) {
         exibirTooltip(tooltip);
         return false;
     } else {
@@ -166,12 +155,24 @@ function validarRG(inputRG) {
     }
 }
 
-function validarCPF(inputCPF) {
-    const cpf = inputCPF.value.trim();
-    const tooltip = "tooltip-cpf";
+function validarDocumento(inputDocumento, tooltip) {
+    const documento = inputDocumento.value.trim();
     const cpfRegex = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
+    const rneRegex = /^[A-Z]\d{8}\-\d{1}$/
 
-    if (!cpfRegex.test(cpf)) {
+    if (!cpfRegex.test(documento) && !rneRegex.test(documento)) {
+        exibirTooltip(tooltip);
+        return false;
+    } else {
+        ocultarTooltip(tooltip);
+        return true;
+    }
+}
+function validarCNPJ(inputCNPJ, tooltip) {
+    const cnpj = inputCNPJ.value.trim();
+    const cnpjRegex = /[0-9]{2}\.?[0-9]{3}\.?[0-9]{3}\/?[0-9]{4}\-?[0-9]{2}/;
+
+    if (!cnpjRegex.test(cnpj)) {
         exibirTooltip(tooltip);
         return false;
     } else {
@@ -181,15 +182,44 @@ function validarCPF(inputCPF) {
 }
 
 function validarFormulario() {
-    var resultadoNome = validarNome(document.getElementById("input_nome"));
-    var resultadoSobrenome = validarSobrenome(document.getElementById("input_sobrenome"));
-    var resultadoEmail = validarEmail(document.getElementById("input_email"));
-    var resultadoSenha = validarSenha(document.getElementById("input_senha"));
-    var resultadoConfirmarSenha = validarConfirmacaoSenha(document.getElementById("input_confirmar_senha"));
-    var resultadoRGNomeFantasia = validarRG(document.getElementById("input_rg_nome_fantasia"));
-    var resultadoCpfCnpj = validarCPF(document.getElementById("input_cpf_cnpj"));
+    var botaoPessoa = document.querySelector(".muda_dados")
+    var cartaologar = document.getElementById("cartao_logar")
 
-    if (resultadoNome && resultadoSobrenome && resultadoSenha && resultadoConfirmarSenha && resultadoRGNomeFantasia && resultadoRGNomeFantasia) {
+    tipoCadastro = botaoPessoa.innerHTML;
+    var resultadoNomeFantasia;
+    var resultadoTelefoneEmpresa;
+    var resultadoCNPJ;
+
+
+    if(tipoCadastro == "Pessoa Jurídica"){
+        resultadoNomeFantasia = validarNome(document.getElementById("input_nome_fantasia"),
+                                            "tooltip-nome-fantasia");
+            resultadoTelefoneEmpresa = validarTelefone(document.getElementById("input_telefone_empresa"),
+                                                       "tooltip-telefone-empresa");
+        resultadoCNPJ = validarCNPJ(document.getElementById("input_cnpj"),
+                                    "tooltip-cnpj")
+    } else {
+        resultadoNomeFantasia = true;
+        resultadoTelefoneEmpresa = true;
+        resultadoCNPJ = true
+    }
+    
+    var resultadoNome = validarNome(document.getElementById("input_nome"), 
+                                    "tooltip-nome");
+    var resultadoEmail = validarEmail(document.getElementById("input_email"), 
+                                     "tooltip-email");
+    var resultadoSenha = validarSenha(document.getElementById("input_senha"),
+                                      "tooltip-senha");
+    var resultadoConfirmarSenha = validarConfirmacaoSenha(document.getElementById("input_confirmar_senha"),
+                                                          "tooltip-confirmar-senha");
+    var resultadoTelefone = validarTelefone(document.getElementById("input_telefone_admin"),
+                                            "tooltip-telefone-admin");
+    var resultadoDocumento = validarDocumento(document.getElementById("input_documento"),
+                                  "tooltip-documento");
+
+    if (resultadoNome && resultadoEmail && resultadoSenha && resultadoConfirmarSenha && resultadoTelefone && resultadoDocumento
+        && resultadoNomeFantasia && resultadoTelefoneEmpresa && resultadoCNPJ) {
+        cartaologar.style.height = "130vh";
         return true;
     } else {
         return false;
@@ -199,7 +229,7 @@ function validarPlano() {
     const planoSelecionados = document.querySelectorAll("input[name='plano']:checked")
     const tooltip = "tooltip-planos";
 
-    if (planoSelecionados.length === 1) {
+    if (planoSelecionados.length != 1 ) {
         exibirTooltip(tooltip);
         return false;
     } else {

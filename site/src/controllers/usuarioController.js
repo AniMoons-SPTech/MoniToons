@@ -167,14 +167,19 @@ function excluirFuncionario(req, res){
     }
 function cadastrar(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
-    var nome = req.body.usuario.nomeCompleto;
-    var email = req.body.usuario.email;
-    var senha = req.body.usuario.senha;
-    var cpf = req.body.usuario.cpf;
-    var rg = req.body.usuario.rg;
-    var cnpj = req.body.usuario.cnpj;
-    var nomeFantasia = req.body.usuario.nomeFantasia;
-    var plano = req.body.usuario.planoAdquirido;
+    console.log(req)
+    var tipoPessoa = req.body.cadastroServer.tipoPessoa;
+
+    var nome = req.body.cadastroServer.usuario.nomeCompleto;
+    var email = req.body.cadastroServer.usuario.email;
+    var senha = req.body.cadastroServer.usuario.senha;
+    var documento = req.body.cadastroServer.usuario.documento;
+    var telefoneAdmin = req.body.cadastroServer.usuario.telefone;
+    var plano = req.body.cadastroServer.usuario.planoAdquirido;
+
+    var nomeFantasia = req.body.cadastroServer.empresa.nomeFantasia;
+    var telefoneEmpresa = req.body.cadastroServer.empresa.telefone;
+    var cnpj = req.body.cadastroServer.empresa.cnpj;
     // Faça as validações dos valores
     if (nome == undefined) {
         res.status(400).send("Seu nome está undefined!");
@@ -182,20 +187,18 @@ function cadastrar(req, res) {
         res.status(400).send("Seu email está undefined!");
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
-    } else if (cpf == undefined) {
-            res.status(400).send("Seu CPF está undefined!");
-    } else if (rg == undefined) {
-            res.status(400).send("Seu RG está undefined!");
-    } else if (cnpj == undefined) {
-            res.status(400).send("Sua CNPJ está undefined!");
-    } else if (nomeFantasia == undefined) {
-            res.status(400).send("Seu nomeFantasia está undefined!");
+    } else if (documento == undefined) {
+            res.status(400).send("Seu documento está undefined!");
+    } else if (telefoneAdmin == undefined) {
+            res.status(400).send("Sua telefone está undefined!");
     } else if (plano == undefined) {
             res.status(400).send("Sua plano está undefined!");
     } else {
-
-        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nome, email, senha, cpf, rg, cnpj, nomeFantasia, plano)
+        var cargo;
+        if(tipoPessoa == "Pessoa Jurídica"){
+            var idEmpresa;
+            cargo = "ADMIN"
+            empresaModel.cadastrar(nomeFantasia, telefoneEmpresa, cnpj)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -210,6 +213,58 @@ function cadastrar(req, res) {
                     res.status(500).json(erro.sqlMessage);
                 }
             );
+            empresaModel.buscarPorCnpj(cnpj)
+            .then(
+                function (resultado) {
+                    idEmpresa = resultado[0].idEmpresa;
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o cadastro! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+            usuarioModel.cadastrarAdminInicial(nome, email, senha, documento, telefoneAdmin, plano, idEmpresa, cargo)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o cadastro! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+
+        } else if(tipoPessoa == "Pessoa Física") {
+            cargo = "FUNCIONARIO"
+            usuarioModel.cadastrarInicial(nome, email, senha, documento, telefoneAdmin, plano, "null", cargo)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o cadastro! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+        } else if(tipoPessoa == undefined){
+            res.status(400).send("O tipo do cadastro está undefined!");
+        }
     }
 }
 

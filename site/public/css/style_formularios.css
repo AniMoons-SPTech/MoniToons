@@ -237,6 +237,9 @@ nav{
     padding: 1% 2%;
     border-radius: 10px;
 }
+.campos_empresa{
+    display: none;
+}
 .tooltip {
     display: none;
     position: absolute;

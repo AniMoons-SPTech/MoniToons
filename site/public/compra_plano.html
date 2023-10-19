@@ -46,35 +46,57 @@
                         <input type="button" class="muda_dados" id="botao" onclick="mudaPessoa(2)"
                             value="Pessoa Jurídica">
                     </div>
-
+                    <div class="mesma_linha campos_empresa">
+                        <div class="campo_maior">
+                            <h2 class="label" id="label_nome_fantasia">Nome Fantasia</h2>
+                            <input type="text" class="input" onfocus="subirLabel(1)" onfocusout="descerLabel(1)"
+                                onkeyup="validarNome(this, 'tooltip-nome-fantasia')" id="input_nome_fantasia">
+                            <div class="tooltip" id="tooltip-nome-fantasia">Preencha um nome válido.</div>
+                        </div>
+                    </div>
+                    <div class="mesma_linha campos_empresa">
+                        <div class="campo_simples">
+                            <h2 class="label" id="label_telefone_empresa">Telefone</h2>
+                            <input type="text" class="input" onfocus="subirLabel(2)" onfocusout="descerLabel(2)"
+                                onkeyup="validarTelefone(this, 'tooltip-telefone-empresa')" id="input_telefone_empresa">
+                            <div class="tooltip" id="tooltip-telefone-empresa">Preencha o telefone corretamente. Utilize o DD.</div>
+                        </div>
+                        <div class="campo_simples">
+                            <h2 class="label" id="label_cnpj">CNPJ</h2>
+                            <input type="text" class="input" onfocus="subirLabel(3)" onfocusout="descerLabel(3)"
+                                onkeyup="validarCNPJ(this, 'tooltip-cnpj')" id="input_cnpj">
+                            <div class="tooltip" id="tooltip-cnpj">Preencha o CNPJ corretamente. Utilize "." , "/" e "-".</div>
+                        </div>
+                    </div>
+                    <h1 class="texto_compra campos_empresa">Configure a conta do administrador desse serviço na sua empresa</h1>
                     <div class="mesma_linha">
                         <div class="campo_maior">
                             <h2 class="label" id="label_nome">Nome</h2>
-                            <input type="text" class="input" onfocus="subirLabel(1)" onfocusout="descerLabel(1)"
-                                onkeyup="validarEmail(this)" id="input_nome">
-                            <div class="tooltip" id="tooltip-email">Preencha um nome válido.</div>
+                            <input type="text" class="input" onfocus="subirLabel(4)" onfocusout="descerLabel(4)"
+                                onkeyup="validarNome(this, 'tooltip-nome')" id="input_nome">
+                            <div class="tooltip" id="tooltip-nome">Preencha um nome válido.</div>
                         </div>
                     </div>
 
                     <div class="campo_maior">
-                        <h2 class="label">Email</h2>
-                        <input type="text" class="input" onfocus="subirLabel(2)" onfocusout="descerLabel(2)"
-                            onkeyup="validarEmail(this)" id="input_email">
+                        <h2 class="label" id="label_email">Email</h2>
+                        <input type="text" class="input" onfocus="subirLabel(5)" onfocusout="descerLabel(5)"
+                            onkeyup="validarEmail(this, 'tooltip-email')" id="input_email">
                         <div class="tooltip" id="tooltip-email">Preencha um email válido.</div>
                     </div>
 
                     <div class="mesma_linha">
                         <div class="campo_simples">
-                            <h2 class="label">Senha</h2>
+                            <h2 class="label" id="label_senha">Senha</h2>
                             <input type="password" id="input_senha" class="input_senha input"
-                                onkeyup="validarSenha(this)" onfocus="subirLabel(3)" onfocusout="descerLabel(3)">
+                                onkeyup="validarSenha(this, 'tooltip-senha')" onfocus="subirLabel(6)" onfocusout="descerLabel(6)">
                             <i class="fa-solid fa-eye-slash icone" onclick="mostrarSenha()" id="icone_olho"></i>
                             <div class="tooltip" id="tooltip-senha">A senha deve ter pelo menos 8 caracteres.</div>
                         </div>
                         <div class="campo_simples">
-                            <h2 class="label">Confirmar senha</h2>
-                            <input type="password" class="input_senha input" onkeyup="validarConfirmacaoSenha(this)"
-                                id="input_confirmar_senha" onfocus="subirLabel(4)" onfocusout="descerLabel(4)">
+                            <h2 class="label" id="label_conf_senha">Confirmar senha</h2>
+                            <input type="password" class="input_senha input" onkeyup="validarConfirmacaoSenha(this, 'tooltip-confirmar-senha')"
+                                id="input_confirmar_senha" onfocus="subirLabel(7)" onfocusout="descerLabel(7)">
                             <i class="fa-solid fa-eye-slash icone" onclick="mostrarSenha()" id="icone_olho"></i>
                             <div class="tooltip" id="tooltip-confirmar-senha">As senhas não coincidem.</div>
                         </div>
@@ -82,16 +104,17 @@
 
                     <div class="mesma_linha">
                         <div class="campo_simples">
-                            <h2 class="label" id="label_rg_nome_fantasia">RG</h2>
-                            <input type="text" class="input" onfocus="subirLabel(5)" onfocusout="descerLabel(5)"
-                                onkeyup="validarRG(this)" id="input_rg_telefone">
-                            <div class="tooltip" id="tooltip-rg">Preencha o RG corretamente.</div>
+                            <h2 class="label" id="label_telefone_admin">Telefone</h2>
+                            <input type="text" class="input" onfocus="subirLabel(8)" onfocusout="descerLabel(8)"
+                                onkeyup="validarTelefone(this, 'tooltip-telefone-admin')" id="input_telefone_admin">
+                            <div class="tooltip" id="tooltip-telefone-admin">Preencha o telefone corretamente.</div>
                         </div>
                         <div class="campo_simples">
-                            <h2 class="label" id="label_cpf_cnpj">CPF</h2>
-                            <input type="text" class="input" onfocus="subirLabel(6)" onfocusout="descerLabel(6)"
-                                onkeyup="validarCPF(this)" id="input_cpf_cnpj">
-                            <div class="tooltip" id="tooltip-cpf">Preencha o CPF corretamente.</div>
+                            <h2 class="label" id="label_cpf,">CPF/RNE</h2>
+                            <input type="text" class="input" onfocus="subirLabel(9)" onfocusout="descerLabel(9)"
+                                onkeyup="validarDocumento(this, 'tooltip-documento')" id="input_documento">
+                            <div class="tooltip" id="tooltip-documento">Preencha o CPF/RNE corretamente. Utilize "." e "-".
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -117,7 +140,7 @@
 function descerLabel(numeroLabel) {
     var listaLabels = document.querySelectorAll(".label")
     var listaInputs = document.querySelectorAll(".input")
-    if (listaInputs[(numeroLabel - 1)] === "") {
+    if (listaInputs[(numeroLabel - 1)].value == "") {
         listaLabels[(numeroLabel - 1)].style = "animation: descer 0.5s ease forwards;"
     }
 }
@@ -180,7 +203,7 @@ function descerLabel(numeroLabel) {
 
         nextStep: function () {
             if (!this.isLastStep()) {
-
+                window.scrollTo(0,0)
                 if (paginaDoFormulario == 0) {
                     var resultadoValidacao = validarFormulario();
 
@@ -227,50 +250,62 @@ function descerLabel(numeroLabel) {
 
     /* Campos formulário */
 
+    var tipoCadastro = "";
     var usuario = {
         nomeCompleto: "",
         email: "",
         senha: "",
-        cpf: "",
-        rg: "",
-        cnpj: "",
+        documento: "",
         telefone: "",
         planoAdquirido: ""
     }
-
+    var empresa = {
+        nomeFantasia: "",
+        telefone: "",
+        cnpj: ""
+    }
+    var cadastro = {
+            tipoPessoa: "",
+            usuario: usuario,
+            empresa: empresa
+        }
     /* Eveng */
 
     botaoContinuar.addEventListener("click", function (event) {
 
+        var botaoPessoa = document.querySelector(".muda_dados")
+        cadastro.tipoPessoa = botaoPessoa.value;
+
         usuario.nomeCompleto = input_nome.value;
         usuario.email = input_email.value;
         usuario.senha = input_senha.value;
+        usuario.documento = input_documento.value;
+        usuario.telefone = input_telefone_admin.value;
 
-        var tipoPessoaSelecionado = document.querySelector(".botao_ativado");
-
-        if (tipoPessoaSelecionado.value === "Pessoa Física") {
-            usuario.cpf = input_cpf_cnpj.value;
-            usuario.rg = input_rg_telefone.value;
-
-        } else if (tipoPessoaSelecionado.value === "Pessoa Jurídica") {
-            cnpj = document.querySelector("#label_cpf_cnpj").textContent;
-            telefone = input_rg_telefone.value;
+   
+        if(tipoPessoa = "Pessoa Jurídica"){
+            empresa.nomeFantasia = input_nome_fantasia.value;
+            empresa.telefone = input_telefone_empresa.value;
+            empresa.cnpj = input_cnpj.value;
         }
-
     });
 
     botaoFinalizar.addEventListener("click", function (event) {
 
         var plano = document.querySelector("input[name='plano']:checked")
 
-        usuario.planoAdquirido = plano[0];
+        usuario.planoAdquirido = plano.value;
+        console.log(cadastro.tipoPessoa)
+
 
         fetch('/usuarios/cadastrar', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(usuario)
+            body: JSON.stringify({
+                cadastroServer: cadastro
+            })
 
         }).then(response => {
             if (!response.ok) {
