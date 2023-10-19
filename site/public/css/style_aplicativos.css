@@ -65,8 +65,12 @@ th:last-child{
 .linha:last-child .td_func, .linha:last-child .td_admin {
   border-bottom: none;
 }
-.td_nome {
+.td_nome_func {
+  width: 60%;
+}
+.td_nome_admin {
   text-align: justify;
+  width: 85%;
 }
 .td_admin{
   border-bottom: 1px solid black;

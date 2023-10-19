@@ -48,23 +48,17 @@
                     </div>
 
                     <div class="mesma_linha">
-                        <div class="campo_simples">
-                            <h2 class="label">Nome </h2>
-                            <input type="text" class="input" onfocusin="subirLabel(1)" onfocusout="descerLabel(1)"
-                                onkeyup="validarNome(this)" id="input_nome">
-                            <div class="tooltip" id="tooltip-nome">Preencha o nome corretamente.</div>
-                        </div>
-                        <div class="campo_simples">
-                            <h2 class="label">Sobrenome</h2>
-                            <input type="text" class="input" onfocus="subirLabel(2)" onfocusout="descerLabel(2)"
-                                onkeyup="validarSobrenome(this)" id="input_sobrenome">
-                            <div class="tooltip" id="tooltip-sobrenome">Preencha o sobrenome corretamente.</div>
+                        <div class="campo_maior">
+                            <h2 class="label" id="label_nome">Nome</h2>
+                            <input type="text" class="input" onfocus="subirLabel(1)" onfocusout="descerLabel(1)"
+                                onkeyup="validarEmail(this)" id="input_nome">
+                            <div class="tooltip" id="tooltip-email">Preencha um nome válido.</div>
                         </div>
                     </div>
 
                     <div class="campo_maior">
                         <h2 class="label">Email</h2>
-                        <input type="text" class="input" onfocus="subirLabel(3)" onfocusout="descerLabel(3)"
+                        <input type="text" class="input" onfocus="subirLabel(2)" onfocusout="descerLabel(2)"
                             onkeyup="validarEmail(this)" id="input_email">
                         <div class="tooltip" id="tooltip-email">Preencha um email válido.</div>
                     </div>
@@ -73,14 +67,14 @@
                         <div class="campo_simples">
                             <h2 class="label">Senha</h2>
                             <input type="password" id="input_senha" class="input_senha input"
-                                onkeyup="validarSenha(this)" onfocus="subirLabel(4)" onfocusout="descerLabel(4)">
+                                onkeyup="validarSenha(this)" onfocus="subirLabel(3)" onfocusout="descerLabel(3)">
                             <i class="fa-solid fa-eye-slash icone" onclick="mostrarSenha()" id="icone_olho"></i>
                             <div class="tooltip" id="tooltip-senha">A senha deve ter pelo menos 8 caracteres.</div>
                         </div>
                         <div class="campo_simples">
                             <h2 class="label">Confirmar senha</h2>
                             <input type="password" class="input_senha input" onkeyup="validarConfirmacaoSenha(this)"
-                                id="input_confirmar_senha" onfocus="subirLabel(5)" onfocusout="descerLabel(5)">
+                                id="input_confirmar_senha" onfocus="subirLabel(4)" onfocusout="descerLabel(4)">
                             <i class="fa-solid fa-eye-slash icone" onclick="mostrarSenha()" id="icone_olho"></i>
                             <div class="tooltip" id="tooltip-confirmar-senha">As senhas não coincidem.</div>
                         </div>
@@ -89,13 +83,13 @@
                     <div class="mesma_linha">
                         <div class="campo_simples">
                             <h2 class="label" id="label_rg_nome_fantasia">RG</h2>
-                            <input type="text" class="input" onfocus="subirLabel(6)" onfocusout="descerLabel(6)"
-                                onkeyup="validarRG(this)" id="input_rg_nome_fantasia">
+                            <input type="text" class="input" onfocus="subirLabel(5)" onfocusout="descerLabel(5)"
+                                onkeyup="validarRG(this)" id="input_rg_telefone">
                             <div class="tooltip" id="tooltip-rg">Preencha o RG corretamente.</div>
                         </div>
                         <div class="campo_simples">
                             <h2 class="label" id="label_cpf_cnpj">CPF</h2>
-                            <input type="text" class="input" onfocus="subirLabel(7)" onfocusout="descerLabel(7)"
+                            <input type="text" class="input" onfocus="subirLabel(6)" onfocusout="descerLabel(6)"
                                 onkeyup="validarCPF(this)" id="input_cpf_cnpj">
                             <div class="tooltip" id="tooltip-cpf">Preencha o CPF corretamente.</div>
                         </div>
@@ -240,7 +234,7 @@ function descerLabel(numeroLabel) {
         cpf: "",
         rg: "",
         cnpj: "",
-        nomeFantasia: "",
+        telefone: "",
         planoAdquirido: ""
     }
 
@@ -248,7 +242,7 @@ function descerLabel(numeroLabel) {
 
     botaoContinuar.addEventListener("click", function (event) {
 
-        usuario.nomeCompleto = input_nome.value + " " + input_sobrenome.value;
+        usuario.nomeCompleto = input_nome.value;
         usuario.email = input_email.value;
         usuario.senha = input_senha.value;
 
@@ -256,11 +250,11 @@ function descerLabel(numeroLabel) {
 
         if (tipoPessoaSelecionado.value === "Pessoa Física") {
             usuario.cpf = input_cpf_cnpj.value;
-            usuario.rg = input_rg_nome_fantasia.value;
+            usuario.rg = input_rg_telefone.value;
 
         } else if (tipoPessoaSelecionado.value === "Pessoa Jurídica") {
             cnpj = document.querySelector("#label_cpf_cnpj").textContent;
-            nomeFantasia = input_rg_nome_fantasia.value;
+            telefone = input_rg_telefone.value;
         }
 
     });

@@ -60,10 +60,12 @@ function formularioPagamento(){
 function mudaPessoa(numeroPessoa) {
     var botoes = document.querySelectorAll(".muda_dados")
     if (numeroPessoa == 1) {
+        label_nome.innerHTML = "Nome"
         label_rg_nome_fantasia.innerHTML = "RG"
         label_cpf_cnpj.innerHTML = "CPF"
     } else if (numeroPessoa == 2) {
-        label_rg_nome_fantasia.innerHTML = "Nome Fantasia"
+        label_nome.innerHTML = "Nome Fantasia"
+        label_rg_nome_fantasia.innerHTML = "Telefone"
         label_cpf_cnpj.innerHTML = "CNPJ"
     }
     if (!botoes[(numeroPessoa - 1)].classList.contains("botao_ativado")) {

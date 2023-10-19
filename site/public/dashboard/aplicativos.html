@@ -116,6 +116,7 @@
     var linkApps = document.querySelector(".link_apps")
     var cabecalhoTabela = document.getElementById("cabecalho_tabela")
     var corpoTabela = document.getElementById("corpo_tabela")
+    var botaoAdicionar = document.querySelector(".botao-adicionar")
 
     var colunaNomeApp = document.createElement("th")
 
@@ -124,6 +125,7 @@
     cabecalhoTabela.appendChild(colunaNomeApp)
 
     if (sessionStorage.CARGO_USUARIO != "FUNCIONARIO") { 
+      botaoAdicionar.style.display = "none"
 
       titulo.innerHTML = "Aplicativos abertos"
       linkApps.innerHTML = "Aplicativos abertos"
@@ -145,70 +147,70 @@
 
       corpoTabela.innerHTML = `
       <tr class="linha">
-        <td class="td_nome td_func">Chrome</td>
+        <td class="td_nome_func td_func">Chrome</td>
         <td class="td_func">20%</td>
         <td class="td_func">30%</td>
         <td class="td_func">34%</td>
         <td class="td_func">10%</td>
       </tr>
       <tr class="linha">  
-        <td class="td_nome td_func">Microsoft Edge</td>
+        <td class="td_nome_func td_func">Microsoft Edge</td>
         <td class="td_func">20%</td>
         <td class="td_func">50%</td>
         <td class="td_func">54%</td>
         <td class="td_func">10%</td>
       </tr>
       <tr class="linha">  
-        <td class="td_nome td_func">Blender</td>
+        <td class="td_nome_func td_func">Blender</td>
         <td class="td_func">20%</td>
         <td class="td_func">50%</td>
         <td class="td_func">34%</td>
         <td class="td_func">90%</td>
       </tr>
       <tr class="linha">  
-        <td class="td_nome td_func">Cinema 4D</td>
+        <td class="td_nome_func td_func">Cinema 4D</td>
         <td class="td_func">20%</td>
         <td class="td_func">20%</td>
         <td class="td_func">34%</td>
         <td class="td_func">10%</td>
       </tr>
       <tr class="linha">  
-        <td class="td_nome td_func">Photoshop</td>
+        <td class="td_nome_func td_func">Photoshop</td>
         <td class="td_func">20%</td>
         <td class="td_func">50%</td>
         <td class="td_func">34%</td>
         <td class="td_func">60%</td>
       </tr>
       <tr class="linha">  
-        <td class="td_nome td_func">Ópera GX</td>
+        <td class="td_nome_func td_func">Ópera GX</td>
         <td class="td_func">20%</td>
         <td class="td_func">50%</td>
         <td class="td_func">34%</td>
         <td class="td_func">10%</td>
       </tr> 
       <tr class="linha">  
-        <td class="td_nome td_func">Adobe After Effects</td>
+        <td class="td_nome_func td_func">Adobe After Effects</td>
         <td class="td_func">4%</td>
         <td class="td_func">5%</td>
         <td class="td_func">32%</td>
         <td class="td_func">9%</td>
       </tr>
       <tr class="linha">  
-        <td class="td_nome td_func">The Binding of Isaac</td>
+        <td class="td_nome_func td_func">The Binding of Isaac</td>
         <td class="td_func">20%</td>
         <td class="td_func">50%</td>
         <td class="td_func">34%</td>
         <td class="td_func">10%</td>
       </tr>
       <tr class="linha">  
-        <td class="td_nome td_func">League of Legends</td>
+        <td class="td_nome_func td_func">League of Legends</td>
         <td class="td_func">10%</td>
         <td class="td_func">10%</td>
         <td class="td_func">24%</td>
         <td class="td_func">10%</td>
       </tr> 
       <tr class="linha">
-        <td class="td_nome td_func">Discord</td>
+        <td class="td_nome_func td_func">Discord</td>
         <td class="td_func">10%</td>
         <td class="td_func">35%</td>
         <td class="td_func">24%</td>
@@ -217,6 +219,7 @@
       `
 
     } else if (sessionStorage.CARGO_USUARIO == "ADMIN"){
+      botaoAdicionar.style.display = "flex"
 
       titulo.innerHTML = "Aplicativos proibidos"
       linkApps.innerHTML = "Aplicativos proibidos"
@@ -235,32 +238,32 @@
       cabecalhoTabela.appendChild(colunaMudaApp)
       corpoTabela.innerHTML = `
       <tr class="linha">  
-        <td class="td_nome td_admin">Chrome</td>
+        <td class="td_nome_admin td_admin">Chrome</td>
         <td class="td_admin"><button class="botao_excluir" onclick="excluirApp"><i class="fa-solid fa-trash"></i></button></td>
         <td class="td_admin"><button class="botao_modificar" onclick="mostrarPopupAtualizarApp()"><i class="fa-solid fa-gear"></i></button></td>
       </tr>
       <tr class="linha">  
-        <td class="td_nome td_admin">Microsoft Edge</td>
+        <td class="td_nome_admin td_admin">Microsoft Edge</td>
         <td class="td_admin"><button class="botao_excluir" onclick="excluirApp"><i class="fa-solid fa-trash"></i></button></td>
         <td class="td_admin"><button class="botao_modificar" onclick="mostrarPopupAtualizarApp()"><i class="fa-solid fa-gear"></i></button></td>
       </tr>
       <tr class="linha">  
-        <td class="td_nome td_admin">Spotify</td>
+        <td class="td_nome_admin td_admin">Spotify</td>
         <td class="td_admin"><button class="botao_excluir" onclick="excluirApp"><i class="fa-solid fa-trash"></i></button></td>
         <td class="td_admin"><button class="botao_modificar" onclick="mostrarPopupAtualizarApp()"><i class="fa-solid fa-gear"></i></button></td>
       </tr>
       <tr class="linha">  
-        <td class="td_nome td_admin">Steam</td>
+        <td class="td_nome_admin td_admin">Steam</td>
         <td class="td_admin"><button class="botao_excluir" onclick="excluirApp()"><i class="fa-solid fa-trash"></i></td>
         <td class="td_admin"><button class="botao_modificar" onclick="mostrarPopupAtualizarApp()"><i class="fa-solid fa-gear"></i></button></td>
       </tr>
       <tr class="linha">  
-        <td class="td_nome td_admin">League of Legends</td>
+        <td class="td_nome_admin td_admin">League of Legends</td>
         <td class="td_admin"><button class="botao_excluir" onclick="excluirApp()"><i class="fa-solid fa-trash"></i></td>
         <td class="td_admin"><button class="botao_modificar" onclick="mostrarPopupAtualizarApp()"><i class="fa-solid fa-gear"></i></button></td>
       </tr>      
       <tr class="linha">  
-        <td class="td_nome td_admin">Whatsapp</td>
+        <td class="td_nome_admin td_admin">Whatsapp</td>
         <td class="td_admin"><button class="botao_excluir" onclick="excluirApp()"><i class="fa-solid fa-trash"></i></td>
         <td class="td_admin"><button class="botao_modificar" onclick="mostrarPopupAtualizarApp()"><i class="fa-solid fa-gear"></i></button></td>
       </tr>
