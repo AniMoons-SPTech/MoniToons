@@ -1,3 +1,4 @@
+const { enviarEmail } = require("../../public/js/enviarEmail");
 var usuarioModel = require("../models/usuarioModel");
 
 
@@ -268,6 +269,19 @@ function cadastrar(req, res) {
     }
 }
 
+function recuperarSenha(req, res){
+    var {email} = req.body;
+
+    console.log(email);
+
+    if(email == undefined){
+        res.status(400).send("Seu email está undefined!");
+    }else{
+        enviarEmail(email);
+        res.status(200).send("Email enviado com sucesso!");
+    }
+}
+
 module.exports = {
     cadastrarFuncionario,
     validar,
@@ -276,5 +290,6 @@ module.exports = {
     listar,
     excluirFuncionario,
     dadosFuncionario,
-    atualizarFuncionario
+    atualizarFuncionario,
+    recuperarSenha
 }

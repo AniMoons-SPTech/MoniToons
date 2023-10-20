@@ -36,4 +36,8 @@ router.post("/atualizarFuncionario/:idUsuario", function(req, res){
     usuarioController.atualizarFuncionario(req,res);
 })
 
+router.post("/recuperarSenha", function(req,res){
+    usuarioController.recuperarSenha(req,res);
+})
+
 module.exports = router;
