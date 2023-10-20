@@ -112,12 +112,12 @@
                 console.log(erro);
             })
         }
-
     }
 
     function redirecionar(){
         window.location.href = "index.html"
-    };
+    }
+
     function mudaSenha(){
 
         const form_login = document.getElementById("form_login");
@@ -127,11 +127,9 @@
         form_mensagem.style.display = "none";
 
         const form_recuperar_senha = document.getElementById("form_recuperar_senha");
-        form_recuperar_senha.style.display = "flex";
-
-
-        
+        form_recuperar_senha.style.display = "flex"; 
     }
+
     function btnEnviarEmail(){
         const email = document.getElementById("input_email_recuperacao").value;
 
@@ -162,9 +160,11 @@
             } else {
                 alert("Login não existente!")
                 console.log("Login não existente!");
+
             }
         }).catch(function(erro){
             console.log(erro);
+            
         })
         
     }
