@@ -9,7 +9,6 @@
     <link rel="icon" type="image/png" href="assets/moon.png"/>
     <script src="https://kit.fontawesome.com/c52875e8e8.js" crossorigin="anonymous"></script>
     <script src="js/mostrarSenhas.js"></script>
-    <script src="js/validarSessao.js"></script>
  </head>
  <body>
     <div class="div_central">
@@ -19,7 +18,7 @@
             </div>
         </nav>
         <div class="cartao_logar" id="cartao_logar">
-            <form action="" class="formulario_generico">
+            <form id="form_login" action="" class="formulario_login">
                 <h1 class="texto_login">Faça o login com sua conta!</h1>
                 <div class="input_diferente">
                     <i class="fa-solid fa-user fa-xl icone"></i>
@@ -33,6 +32,21 @@
                 <button  onclick="entrar()" class="botao_entrar" type="button">LOGIN</button>
                 <a onclick="mudaSenha()">Esqueceu a senha?</a>
             </form>
+
+            <form id="form_recuperar_senha" action="" class="formulario_recuperacao">
+                <h1 class="texto_login">Digite o seu email para recuperar sua senha</h1>
+                <div class="input_diferente">
+                        <i class="fa-solid fa-envelope fa-xl icone"></i>
+                        <input id="input_email_recuperacao" type="text" placeholder="Email">
+                </div>
+                <button class="botao_entrar" onclick="btnEnviarEmail()" type="button">Recuperar senha</button>
+                <a href="">Voltar</a>
+            </form>
+
+            <div id="form_mensagem" action="" class="formulario_mensagem">
+                <h1 class="texto_login">Enviamos um email para o endereço fornecido. Para recuperar sua senha siga o passo a passo enviado no email</h1>
+                <button class="botao_entrar" onclick="voltar()">Voltar</button>
+            </div>
 
         </div>
     </div>
@@ -100,72 +114,58 @@
         }
 
     }
-    function enviarEmail(){
-        var email = input_email_rec.value;
-
-        if (!email.includes("@")){
-            alert("Email inválido!")
-        }else{
-            fetch("/usuarios/autenticar",{
-                method: "POST",
-                headers:{
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    email
-                })
-            }).then(function (resposta){
-                console.log("Estamos no THEN")
-
-                if(resposta.ok){
-                    console.log(resposta);
-
-                    resposta.json().then(json => {
-                        console.log(json);
-                        console.log(JSON.stringify(json));
-
-                        sessionStorage.EMAIL_USUARIO = json.email;
-                        sessionStorage.NOME_USUARIO = json.nome;
-                        sessionStorage.ID_USUARIO = json.idUsuario;
-                    })
-                } else {
-                    alert("Esse email não existe!");
-                    console.log("Esse email não existente!");
-
-                    resposta.text().then(texto => {
-                        console.error(texto);
-                    });
-                }
-            }).catch(function(erro){
-                console.log(erro);
-            })
-        }
-
-    }
 
     function redirecionar(){
         window.location.href = "index.html"
     };
     function mudaSenha(){
-        cartao_logar.innerHTML = `
 
-        <form action="" class="formulario_generico">
-            <h1 class="texto_login">Digite o seu email para recuperar sua senha</h1>
-            <div class="input_diferente">
-                    <i class="fa-solid fa-envelope fa-xl icone"></i>
-                    <input type="text" placeholder="Email" id="input_email_rec">
-            </div>
-            <button class="botao_entrar" onclick="enviarEmail()">Recuperar senha</button>
-            <a href="">Voltar</a>
-        </form>
-        `
+        const form_login = document.getElementById("form_login");
+        form_login.style.display = "none";
+
+        const form_mensagem = document.getElementById("form_mensagem");
+        form_mensagem.style.display = "none";
+
+        const form_recuperar_senha = document.getElementById("form_recuperar_senha");
+        form_recuperar_senha.style.display = "flex";
+
+
+        
     }
-    function enviarEmail(){
-        cartao_logar.innerHTML = `
-        <form action="" class="formulario_generico">
-            <h1 class="texto_login">Enviamos um email para o endereço fornecido. Para recuperar sua senha siga o passo a passo enviado no email</h1>
-            <button class="botao_entrar" onclick="voltar()">Voltar</button>
-        </form>
-        `
+    function btnEnviarEmail(){
+        const email = document.getElementById("input_email_recuperacao").value;
+
+        const form_recuperar_senha = document.getElementById("form_recuperar_senha");
+        form_recuperar_senha.style.display = "none";
+
+        const form_login = document.getElementById("form_login");
+        form_login.style.display = "none";
+
+        const form_mensagem = document.getElementById("form_mensagem");
+        form_mensagem.style.display = "flex";
+
+        console.log(email);
+
+        fetch("/usuarios/recuperarSenha",{
+            method: "POST",
+            headers:{
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                email
+            })
+        }).then(function (resposta){
+
+            if(resposta.ok){
+                console.log(resposta);
+
+            } else {
+                alert("Login não existente!")
+                console.log("Login não existente!");
+            }
+        }).catch(function(erro){
+            console.log(erro);
+        })
+        
     }
  </script>
