@@ -67,10 +67,10 @@ function atualizarFuncionario(idUsuario,nome, cargo, registro, telefone, telefon
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
-function cadastrarInicial(nome, email, senha, documento, telefone, plano, idEmpresa, cargo){
+function cadastrarInicial(nome,  cargo, email, senha, documento, telefone, plano, idEmpresa){
     var instrucao = `
     INSERT INTO usuario (nome, cargo, email, senha, documento, telefone, plano, fkEmpresa) 
-    VALUES ('${nome}', '${email}', '${senha}', '${documento}', ${telefone}, '${plano}', ${idEmpresa}, '${cargo}');
+    VALUES ('${nome}', '${cargo}', '${email}', ${senha}, '${documento}', ${telefone}, '${plano}', ${idEmpresa});
     `
     return database.executar(instrucao);
 }

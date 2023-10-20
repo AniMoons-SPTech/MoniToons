@@ -154,7 +154,7 @@
             <li><a href="maquinas.html">Geral</a></li>
             <!-- <li><a href="#">Computadores</a></li> -->
             <li><a href="./funcionarios.html">Funcionários</a></li>
-            <li><a href="./aplicativos.html" id="link_app">Aplicativos proibidos</a></li>
+            <li><a href="./aplicativos.html" id="link_app"></a></li>
         </ul>
         <div class="sair-barra-lateral">
             <a href="../index.html">SAIR</a>
@@ -178,9 +178,9 @@
 <script type="text/javascript">
     function mudaBarraApp() {
         var linkApp = document.getElementById("link_app")
-        if (sessionStorage.CARGO_USUARIO == "FUNCIONARIO") {
+        if (sessionStorage.CARGO_USUARIO == "COMUM") {
             linkApp.innerHTML = "Aplicativos abertos"
-        } else if (sessionStorage.CARGO_USUARIO == "ADMIN") {
+        } else if (sessionStorage.CARGO_USUARIO == "ADMINISTRADOR") {
             linkApp.innerHTML = "Aplicativos proibidos"
         }
     }

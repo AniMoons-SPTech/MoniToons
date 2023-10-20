@@ -247,7 +247,7 @@ function descerLabel(numeroLabel) {
     var botaoContinuar = document.getElementById("button_continuar")
     var botaoFinalizar = document.getElementById("button_finalizar")
     var formulario = document.getElementById("formulario_compra")
-
+    var botaoPessoa;
     /* Campos formulário */
 
     var tipoCadastro = "";
@@ -273,8 +273,7 @@ function descerLabel(numeroLabel) {
 
     botaoContinuar.addEventListener("click", function (event) {
 
-        var botaoPessoa = document.querySelector(".muda_dados")
-        cadastro.tipoPessoa = botaoPessoa.value;
+        botaoPessoa = document.querySelector(".botao_ativado")
 
         usuario.nomeCompleto = input_nome.value;
         usuario.email = input_email.value;
@@ -295,7 +294,9 @@ function descerLabel(numeroLabel) {
         var plano = document.querySelector("input[name='plano']:checked")
 
         usuario.planoAdquirido = plano.value;
-        console.log(cadastro.tipoPessoa)
+
+        
+        cadastro.tipoPessoa = botaoPessoa.value;
 
 
         fetch('/usuarios/cadastrar', {

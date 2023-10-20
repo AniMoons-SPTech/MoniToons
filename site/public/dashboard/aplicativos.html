@@ -38,10 +38,10 @@
       <!-- <li><a href="#">Computadores</a></li> -->
       <li><a href="./funcionarios.html">Funcionários</a></li>
       <!-- <li><a href="#">Dúvidas</a></li> -->
-      <li><a href="./aplicativos.html" class="link_apps">Aplicativos proibidos</a></li>
+      <li><a href="./aplicativos.html" class="link_apps"></a></li>
     </ul>
     <div class="sair-barra-lateral">
-      <a href="">SAIR</a>
+      <a href="../index.html">SAIR</a>
     </div>
   </nav>
   <div class="espaco-barra-lateral"></div>
@@ -81,7 +81,7 @@
                     <input type="text" name="diretorio" id="diretorioAdicionar">
                 </div>         
           </div>
-          <button class="botao-atualizar" onclick="adicionarAplicativo()">Atualizar aplicativo proibido</button>
+          <button class="botao-atualizar" onclick="adicionarAplicativo()">Adicionar aplicativo proibido</button>
         </form>
     </div>
   </div>
@@ -124,7 +124,7 @@
 
     cabecalhoTabela.appendChild(colunaNomeApp)
 
-    if (sessionStorage.CARGO_USUARIO != "FUNCIONARIO") { 
+    if (sessionStorage.CARGO_USUARIO == "COMUM") { 
       botaoAdicionar.style.display = "none"
 
       titulo.innerHTML = "Aplicativos abertos"
@@ -218,7 +218,7 @@
       </tr>
       `
 
-    } else if (sessionStorage.CARGO_USUARIO == "ADMIN"){
+    } else if (sessionStorage.CARGO_USUARIO == "ADMINISTRADOR"){
       botaoAdicionar.style.display = "flex"
 
       titulo.innerHTML = "Aplicativos proibidos"
