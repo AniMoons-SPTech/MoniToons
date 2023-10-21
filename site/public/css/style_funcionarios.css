@@ -180,7 +180,7 @@
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
-    z-index: 1;
+    z-index: 2;
 }
 
 .card-atualizacao {
@@ -190,6 +190,8 @@
     justify-content: center;
     width: 60%;
     height: 65%;
+    min-height: 500px;
+    min-width: 600px;
     background: #fff;
     border-radius: 20px;
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
@@ -266,8 +268,8 @@
 }
 
 .campo select {
-    width: calc(100% - 10px);
-    height: 40px;
+    width: 100%;
+    height: 48px;
     border-radius: 5px;
     font-size: 20px;
     font-weight: 600;
