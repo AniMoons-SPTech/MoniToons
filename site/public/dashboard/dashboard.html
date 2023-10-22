@@ -8,6 +8,8 @@
   <link rel="stylesheet" href="../css/style_dachboard.css">
   <link rel="stylesheet" href="../css/style_maquinas.css">
   <script src="../js/funcionario/exibirNome" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="../js/dashboard/dashboard.js" defer></script>
 </head>
 
 <body onload="mudaBarraApp()">
@@ -49,19 +51,99 @@
       </div>
       <div class="espaco-titulo-sessao"></div>
       <div class="area-graficos">
-        
+        <div class="card-grafico">
+          <div class="grafico-componente">
+            <canvas id="grafico-CPU"></canvas>
+            <canvas id="grafico-GPU"></canvas>
+            <canvas id="grafico-RAM"></canvas>
+            <canvas id="grafico-DISCO"></canvas>
+          </div>
+          <div class="info-componente">
+            <div class="titulo-info-componente">Componentes</div>
+            <div class="info-componente-item ativo" id="CPU" onclick="mudarGrafico('grafico-CPU', 'CPU')">
+              <div class="borda-aviso"></div>
+              <div class="div-auxiliar">
+                <div class="info-componente-item-titulo">CPU</div>
+                <div class="info-componente-item-valor">Intel Core i5-9400F</div>
+              </div>
+              <div class="borda-aviso critico"></div>
+            </div>
+            <div class="info-componente-item" id="GPU" onclick="mudarGrafico('grafico-GPU', 'GPU')">
+              <div class="borda-aviso"></div>
+              <div class="div-auxiliar">
+                <div class="info-componente-item-titulo">GPU</div>
+                <div class="info-componente-item-valor">NVIDIA GeForce GTX 1660</div>
+              </div>
+              <div class="borda-aviso medio"></div>
+            </div>
+            <div class="info-componente-item" id="RAM" onclick="mudarGrafico('grafico-RAM', 'RAM')">
+              <div class="borda-aviso"></div>
+              <div class="div-auxiliar">
+                <div class="info-componente-item-titulo">RAM</div>
+                <div class="info-componente-item-valor">8GB DDR4</div>
+              </div>
+              <div class="borda-aviso bom"></div>
+            </div>
+            <div class="info-componente-item" id="DISCO" onclick="mudarGrafico('grafico-DISCO', 'DISCO')">
+              <div class="borda-aviso"></div>
+              <div class="div-auxiliar">
+                <div class="info-componente-item-titulo">DISCO</div>
+                <div class="info-componente-item-valor">1TB HDD</div>
+              </div>
+              <div class="borda-aviso bom">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cards-adicionais">
+          <div class="card-info-adicional">
+            <div class="titulo-info-adicional">
+              Porcentagem de uso (%)
+            </div>
+            <div class="conteudo-info-adicional">
+              40%
+            </div>
+          </div>
+          <div class="card-info-adicional">
+            <div class="titulo-info-adicional">
+              Temperatura (°C)
+            </div>
+            <div class="conteudo-info-adicional">
+              50°C
+            </div>
+          </div>
+          <div class="card-info-adicional">
+            <div class="titulo-info-adicional">
+              Tempo de uso (h)
+            </div>
+            <div class="conteudo-info-adicional">
+              10h
+            </div>
+          </div>
+          <div class="card-info-adicional">
+            <div class="titulo-info-adicional">
+              Nível de alerta
+            </div>
+            <div class="conteudo-info-adicional">
+              Crítico
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 </body>
 <script>
-    function mudaBarraApp(){
+  function mudaBarraApp() {
     var linkApp = document.getElementById("link_app")
-    if(sessionStorage.CARGO_USUARIO == "COMUM"){
+    if (sessionStorage.CARGO_USUARIO == "COMUM") {
       linkApp.innerHTML = "Aplicativos abertos"
-    } else if(sessionStorage.CARGO_USUARIO == "ADMINISTRADOR") {
+    } else if (sessionStorage.CARGO_USUARIO == "ADMINISTRADOR") {
       linkApp.innerHTML = "Aplicativos proibidos"
     }
   }
+
+
 </script>
+
 </html>
