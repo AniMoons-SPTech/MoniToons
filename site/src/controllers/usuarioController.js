@@ -171,7 +171,6 @@ async function cadastrar(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     console.log(req)
     var tipoPessoa = req.body.cadastroServer.tipoPessoa;
-
     var nome = req.body.cadastroServer.usuario.nomeCompleto;
     var email = req.body.cadastroServer.usuario.email;
     var senha = req.body.cadastroServer.usuario.senha;
@@ -206,7 +205,7 @@ async function cadastrar(req, res) {
             var busca = await empresaModel.buscarPorCnpj(cnpj)
             fkEmpresa = busca[0].idEmpresa;
 
-            await usuarioModel.cadastrarInicial(nome, email, senha, documento, telefoneAdmin, plano, fkEmpresa, cargo)
+            await usuarioModel.cadastrarInicial(nome, cargo, email, senha, documento, telefoneAdmin, plano, fkEmpresa)
 
         } else if(tipoPessoa == "Pessoa Física") {
             cargo = "COMUM"

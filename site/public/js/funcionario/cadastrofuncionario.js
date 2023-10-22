@@ -20,22 +20,22 @@ function validar(){
     var email2 = email.value;
     var senha2 = senha.value;
 
-    fetch(`/usuarios/validar/${email2}`,{
-            method: 'GET',
-            headers: {
-                "Content-Type": "application/json"
-            },
-        }).then((response) => {
-            if(response.ok) {
-                response.json().then((resposta) => {
-                    if(resposta.length > 0){
-                        emailExistente = resposta
-                    }else{
-                        emailExistente = []
-                    } 
-                })
-            }
-        })
+    // fetch(`/usuarios/validar/${email2}`,{
+    //         method: 'GET',
+    //         headers: {
+    //             "Content-Type": "application/json"
+    //         },
+    //     }).then((response) => {
+    //         if(response.ok) {
+    //             response.json().then((resposta) => {
+    //                 if(resposta.length > 0){
+    //                     emailExistente = resposta
+    //                 }else{
+    //                     emailExistente = []
+    //                 } 
+    //             })
+    //         }
+    //     })
     
     if(nome2 == "" || cargo2 == "" || email2 == "" || registro2 == "" || senha2 == "" || telefone2 == ""){
         alert("Campos vazios!");
