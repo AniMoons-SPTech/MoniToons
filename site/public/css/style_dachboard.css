@@ -68,23 +68,23 @@ body {
 }
 
 #grafico-CPU{
-  display: flex !important;
+  display: flex;
 }
 
 #grafico-GPU{
-  display: none !important;
+  display: none;
 }
 
 #grafico-RAM{
-  display: none !important;
+  display: none;
 }
 
 #grafico-DISCO{
-  display: none !important;
+  display: none;
 }
 
 .info-componente{
-  display: flex;
+  display: flex !important;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
