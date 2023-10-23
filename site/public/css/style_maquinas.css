@@ -159,12 +159,13 @@ body {
 .bar-links {
   display: flex;
   flex-direction: column;
-  align-items: start;
+  align-items: center;
   justify-content: start;
   height: 100%;
+  width: 100%;
   list-style: none;
   padding: 0;
-  margin: 50px 0 0 20px;
+  gap: 20px;
 }
 
 .bar-links li {
@@ -172,7 +173,7 @@ body {
   flex-direction: row;
   align-items: center;
   justify-content: start;
-  margin: 10px 0;
+  width: calc(100% - 60px);
   cursor: pointer;
   transition: all 0.3s;
 }
@@ -187,11 +188,11 @@ body {
   flex-direction: row;
   align-items: center;
   justify-content: start;
+  width: 100%;
   text-decoration: none;
   color: #fff;
   font-size: 18px;
-  margin-left: 10px;
-  padding: 5px 10px;
+  padding: 5px 20px;
 }
 
 .bar-links li a:hover {
