@@ -70,14 +70,32 @@
 
       <div class="metricas">
         <div class="card-metrica">
-          <div>Computadores em Alerta</div>
-          <div>8</div>
+          <div class="titulo-metrica">Computadores em Alerta</div>
+          <div class="conteudo-metrica">8</div>
         </div>
-        <div class="card-metrica"></div>
-        <div class="card-metrica"></div>
+        <div class="card-metrica">
+          <div class="titulo-metrica">Computadores em Crítico</div>
+          <div class="conteudo-metrica">2</div>
+        </div>
+        <div class="card-metrica">
+          <div class="titulo-metrica">Total de Computadores</div>
+          <div class="conteudo-metrica">25</div>
+        </div>
       </div>
       <div class="cards" id="cards">
-
+        <div class="card">
+          <div class="conteudo">
+            <span class="titulo-conteudo">Computador de Marcos</span>
+            <div class="centro-conteudo">
+              <img src="../assets/computador.png" alt="computador">
+              <div class="resumo">
+                <div class="titulo-resumo">Estado</div>
+                <div class="conteudo-resumo critico">Crítico</div>
+              </div>
+            </div>
+            <a href="./dashboard.html">Ver mais</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -92,63 +110,6 @@
     } else if(sessionStorage.CARGO_USUARIO == "ADMINISTRADOR") {
       linkApp.innerHTML = "Aplicativos proibidos"
     }
-  }
-  // Load the Visualization API and the corechart package.
-  google.charts.load('current', { 'packages': ['corechart'] })
-
-  // Set a callback to run when the Google Visualization API is loaded.
-  google.charts.setOnLoadCallback(desenharGraficoCPU)
-
-  // Callback that creates and populates a data table,
-  // instantiates the pie chart, passes in the data and
-  // draws it.
-  function desenharGraficoCPU(memoria, disco, cpu) {
-
-    // Create the data table.
-    var comp = "CPU"
-    var data = new google.visualization.DataTable()
-    data.addColumn('string', 'Topping')
-    data.addColumn('number', 'Slices')
-    data.addRows([
-      ['Livres', 30],
-      ['Em Uso', 70]
-    ])
-
-    // Set chart options
-    var options = {
-      'title': comp,
-      'height': 160,
-      'width': 160,
-      'backgroundColor': 'transparent',
-      'legend': 'none',
-      pieHole: 0.35
-    }
-
-    // Instantiate and draw our chart, passing in some options.
-    for (let i = 0; i < 10; i += 2) {
-
-      var div_cards = document.getElementById("cards")
-
-      div_cards.innerHTML += `
-        <div class="card">
-          <div class="content">
-            <h2>Computador ${i}</h2>
-            <div class="graficos-maquina">
-              <div class="grafico-maquina" id="chart_div${i}"></div>
-              <div class="grafico-maquina" id="chart_div${i + 1}"></div>
-            </div>
-            <a href="./dashboard.html">Ver mais</a>
-          </div>
-        </div>
-      `
-
-      var chart = new google.visualization.PieChart(document.getElementById(`chart_div${i}`))
-      chart.draw(data, options)
-
-      var chart = new google.visualization.PieChart(document.getElementById(`chart_div${i + 1}`))
-      chart.draw(data, options)
-    }
-
   }
 
 </script>
