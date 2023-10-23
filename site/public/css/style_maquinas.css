@@ -58,7 +58,6 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 200px;
   margin: 20px 0;
 }
 
@@ -75,6 +74,12 @@ body {
 }
 
 .imagem-usuario-barra-lateral img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.imagem-usuario-barra-lateral a img {
   width: 100%;
   height: 100%;
   border-radius: 50%;
@@ -111,7 +116,8 @@ body {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin-bottom: 20px;
+  width: 100%;
+  height: 100px;
   font-size: 18px;
   font-weight: bold;
   cursor: pointer;
@@ -124,11 +130,11 @@ body {
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  width: 150px;
+  height: 40px;
   text-decoration: none;
-  color: #fff;
+  color: #E5E5E5;
   font-size: 18px;
-  margin-bottom: 10px;
-  padding: 5px 10px;
   border-radius: 20px;
   background: var(--Gradiente-pica);
   border-radius: 5px;
@@ -161,7 +167,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: start;
-  height: 100%;
+  height: calc(100% - 420px);
   width: 100%;
   list-style: none;
   padding: 0;

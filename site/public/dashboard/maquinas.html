@@ -21,7 +21,7 @@
     </div>
     <div class="usuario-barra-lateral">
       <div class="imagem-usuario-barra-lateral">
-        <img src="../img/usuario.png" alt="Usuário">
+        <img src="../assets/estrela-cadente.gif" alt="Usuário">
       </div>
       <div class="info-usuario-barra-lateral">
         <span class="nome-barra-lateral" id="nome_usuario">Usuário</span>
@@ -83,7 +83,7 @@
         </div>
       </div>
       <div class="cards" id="cards">
-        <div class="card">
+        <div class="card" onclick="abrirDashboard()">
           <div class="conteudo">
             <span class="titulo-conteudo">Computador de Marcos</span>
             <div class="centro-conteudo">
@@ -110,6 +110,10 @@
     } else if(sessionStorage.CARGO_USUARIO == "ADMINISTRADOR") {
       linkApp.innerHTML = "Aplicativos proibidos"
     }
+  }
+
+  function abrirDashboard(){
+    window.location.href = "./dashboard.html"
   }
 
 </script>
