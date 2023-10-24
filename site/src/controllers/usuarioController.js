@@ -78,7 +78,7 @@ function listar(req, res){
 }
 
 function cadastrarFuncionario(req, res){
-    var {nome, cargo, registro, telefone, telefone1, email,senha,fkEmpresa} = req.body;
+    var {nome, cargo, registro, telefone, telefone1, email,senha,plano,fkEmpresa, fkResponsavel} = req.body;
 
     if(nome == undefined){
         res.status(400).send("Seu nome está undefined!");
@@ -87,7 +87,7 @@ function cadastrarFuncionario(req, res){
     }else if(senha == undefined){
         res.status(400).send("Seu senha está undefined!");
     } else{
-        usuarioModel.cadastrarFuncionario(nome, cargo, registro, telefone, telefone1, email,senha,fkEmpresa)
+        usuarioModel.cadastrarFuncionario(nome, cargo, registro, telefone, telefone1, email,senha,plano,fkEmpresa,fkResponsavel)
             .then(
                 function(resultado) {
                     res.json(resultado);

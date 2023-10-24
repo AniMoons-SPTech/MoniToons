@@ -5,10 +5,9 @@ var telefone1 = document.getElementById("telefone1Input")
 var email = document.getElementById("emailInput")
 var registro = document.getElementById("registroInput")
 var senha = document.getElementById("senhaInput")
-var fkEmpresa = sessionStorage.FK_EMPRESA
-var emailExistente = [];
-
-
+var fkEmpresa = sessionStorage.FK_EMPRESA;
+var fkResponsavel = sessionStorage.ID_USUARIO;
+var plano = sessionStorage.PLANO_USUARIO;
  
 
 function validar(){
@@ -49,9 +48,6 @@ function validar(){
     else if(telefone2.length > 11){
         alert("Número de telefone inválido!")
     }
-    else if(emailExistente.length = 1){
-        alert("Email já cadastrado!")
-    }
     else{
         var telefone2Valor = telefone12 !== '' ? `'${telefone12}'` : 'null';
         fetch("/usuarios/cadastrarFuncionario", {
@@ -67,7 +63,9 @@ function validar(){
                 telefone1: telefone2Valor,
                 email: email2,
                 senha: senha2,
-                fkEmpresa : fkEmpresa
+                plano:plano,
+                fkEmpresa : fkEmpresa,
+                fkResponsavel : fkResponsavel
             }) 
         }).then(function (resposta) {
     

@@ -29,11 +29,11 @@ function listar(idEmpresa){
 }
 
 // Coloque os mesmos parâmetros aqui. Vá para a var instrucao
-function cadastrarFuncionario(nome, cargo, registro, telefone, telefone1, email,senha,fkEmpresa) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", nome, cargo, registro, telefone, telefone1, email,senha,fkEmpresa);
+function cadastrarFuncionario(nome, cargo, registro, telefone, telefone1, email,senha,plano,fkEmpresa, fkResponsavel) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", nome, cargo, registro, telefone, telefone1, email,senha, plano,fkEmpresa,fkResponsavel);
 
     var instrucao = `
-        INSERT INTO usuario VALUES (null ,'${nome}', '${cargo}', '${registro}', ${telefone}, ${telefone1}, '${email}', '${senha}', ${fkEmpresa});
+        INSERT INTO usuario VALUES (null ,'${nome}', '${cargo}', '${registro}', ${telefone}, ${telefone1}, '${email}', '${senha}','${plano}', ${fkEmpresa},${fkResponsavel});
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
