@@ -1,3 +1,5 @@
+import 'chartjs-plugin-datalabels'
+
 // Configuração dos gráficos de CPU
 const dataCPU = [
     { data: '01:00', count: 20 },
@@ -20,6 +22,7 @@ const dadosCPU = {
         label: "USO DE CPU",
         data: dataCPU.map((item) => item.count),
         borderColor: '#5271FF',
+        backgroundColor: '#5271FF',
         radius: 1,
     }]
 }
@@ -31,7 +34,7 @@ const configCPU = {
         scales: {
             y: {
                 beginAtZero: true,
-
+                max: 100
             }
         },
         responsive: true,
@@ -77,7 +80,7 @@ const configGPU = {
         scales: {
             y: {
                 beginAtZero: true,
-
+                max: 100
             }
         },
         responsive: true,
@@ -123,7 +126,7 @@ const configRAM = {
         scales: {
             y: {
                 beginAtZero: true,
-
+                max: 18
             }
         },
         responsive: true,
@@ -160,10 +163,24 @@ const configDISCO = {
     type: 'pie',
     data: dadosDISCO,
     options: {
+        scales: {
+            y: {
+                beginAtZero: true,
+                max: 100
+            }
+        },
         responsive: true,
         maintainAspectRatio: false,
         animation: {
             duration: 0
+        },
+        plugins: {
+            datalabels: {
+                color: '#fff',
+                formater: (value, context) => {
+                    return value
+                }
+            }
         }
     }
 }
