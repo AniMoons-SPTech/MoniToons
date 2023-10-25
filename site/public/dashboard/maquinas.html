@@ -7,6 +7,7 @@
   <title>Máquinas | MoniToons</title>
   <link rel="stylesheet" href="../css/style_maquinas.css">
   <script src="../js/funcionario/exibirNome" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
 </head>
 
 <body onload="mudaBarraApp()">
@@ -66,31 +67,82 @@
         <span class="titulo">Computadores</span>
       </div>
       <div class="espaco-titulo-sessao"></div>
-      <div class="botao-adicionar"> + </div>
 
       <div class="metricas">
         <div class="card-metrica">
-          <div class="titulo-metrica">Computadores em Alerta</div>
-          <div class="conteudo-metrica">8</div>
+          <div class="titulo-metrica">Computadores em Crítico</div>
+          <div class="conteudo-metrica">1</div>
         </div>
         <div class="card-metrica">
-          <div class="titulo-metrica">Computadores em Crítico</div>
-          <div class="conteudo-metrica">2</div>
+          <div class="titulo-metrica">Computadores em Alerta</div>
+          <div class="conteudo-metrica">1</div>
         </div>
         <div class="card-metrica">
           <div class="titulo-metrica">Total de Computadores</div>
-          <div class="conteudo-metrica">25</div>
+          <div class="conteudo-metrica">5</div>
         </div>
       </div>
       <div class="cards" id="cards">
         <div class="card" onclick="abrirDashboard()">
           <div class="conteudo">
-            <span class="titulo-conteudo">Computador de Marcos</span>
+            <span class="titulo-conteudo">Marcos</span>
             <div class="centro-conteudo">
-              <img src="../assets/computador.png" alt="computador">
+              <img src="../assets/computador-critico.png" alt="computador">
               <div class="resumo">
                 <div class="titulo-resumo">Estado</div>
                 <div class="conteudo-resumo critico">Crítico</div>
+              </div>
+            </div>
+            <a href="./dashboard.html">Ver mais</a>
+          </div>
+        </div>
+        <div class="card" onclick="abrirDashboard()">
+          <div class="conteudo">
+            <div class="titulo-conteudo">Matheus</div>
+            <div class="centro-conteudo">
+              <img src="../assets/computador-perigo.png" alt="computador">
+              <div class="resumo">
+                <div class="titulo-resumo">Estado</div>
+                <div class="conteudo-resumo perigo">Perigo</div>
+              </div>
+            </div>
+            <a href="./dashboard.html">Ver mais</a>
+          </div>
+        </div>
+        <div class="card" onclick="abrirDashboard()">
+          <div class="conteudo">
+            <div class="titulo-conteudo">Carlos</div>
+            <div class="centro-conteudo">
+              <img src="../assets/computador-alerta.png" alt="computador">
+              <div class="resumo">
+                <div class="titulo-resumo">Estado</div>
+                <div class="conteudo-resumo alerta">Alerta</div>
+              </div>
+            </div>
+            <a href="./dashboard.html">Ver mais</a>
+          </div>
+        </div>
+        <div class="card" onclick="abrirDashboard()">
+          <div class="conteudo">
+            <div class="titulo-conteudo">Joana</div>
+            <div class="centro-conteudo">
+              <img src="../assets/computador-bom.png" alt="computador">
+              <div class="resumo">
+                <div class="titulo-resumo">Estado</div>
+                <div class="conteudo-resumo bom">Bom</div>
+              </div>
+            </div>
+            <a href="./dashboard.html">Ver mais</a>
+          </div>
+        </div>
+        <div class="card" onclick="abrirDashboard()">
+          <div class="conteudo">
+            <div class="titulo-conteudo">Maria</div>
+            <div class="centro-conteudo">
+              <img src="../assets/computador-offline.png" alt="computador">
+              <div class="resumo">
+                <div class="titulo-resumo">Estado</div>
+                <div class="conteudo-resumo">Offline</div>
               </div>
             </div>
             <a href="./dashboard.html">Ver mais</a>
