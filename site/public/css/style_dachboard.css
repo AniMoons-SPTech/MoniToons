@@ -15,7 +15,7 @@ body {
   background-attachment: fixed;
   background-repeat: no-repeat;
   min-height: 100vh;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Montserrat Ace Regular'
 }
 
 .sessao-dashboard {
@@ -168,11 +168,11 @@ body {
 }
 
 .critico{
-  background: #FF0000;
+  background: #EF0303;
 }
 
 .perigo{
-  background: #FF6A1F;
+  background: #F87736;
 }
 
 .alerta{
