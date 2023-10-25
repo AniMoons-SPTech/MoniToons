@@ -1,5 +1,3 @@
-import 'chartjs-plugin-datalabels'
-
 // Configuração dos gráficos de CPU
 const dataCPU = [
     { data: '01:00', count: 20 },
@@ -173,14 +171,6 @@ const configDISCO = {
         maintainAspectRatio: false,
         animation: {
             duration: 0
-        },
-        plugins: {
-            datalabels: {
-                color: '#fff',
-                formater: (value, context) => {
-                    return value
-                }
-            }
         }
     }
 }
