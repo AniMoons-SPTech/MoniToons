@@ -4,6 +4,39 @@ var campoNome = document.getElementById("nome_usuario");
 var campoCargo = document.getElementById("cargo_usuario");
 var nomeUser = sessionStorage.NOME_USUARIO;
 var cargoUser = sessionStorage.CARGO_USUARIO;
+var idUsuario = sessionStorage.ID_USUARIO;
+var spanNome = document.getElementById("spanNome");
+var spanEmail = document.getElementById("spanEmail");
+var spanCpf = document.getElementById("spanCpf");
+var spanCargo = document.getElementById("spanCargo");
+var spanEmpresa = document.getElementById("spanEmpresa");
+
+
+
+
+
+function listarDados(){
+    fetch(`/usuarios//dadosFuncionario/${idUsuario}`, {
+        method: 'GET',
+        headers: {
+            "Content-Type": "application/json"
+        },
+    }).then((response) => {
+        if(response.ok) {
+            response.json().then((resposta) => {
+                exibirDados(resposta);
+            })
+        }
+    })
+    
+}
+
+function exibirDados(vetor){
+    spanNome.innerHTML = vetor[0].nome;
+    spanEmail.innerHTML = vetor[0].email;
+    spanCpf.innerHTML = vetor[0].documento;
+    spanCargo.innerHTML = vetor[0].cargo;
+}
 
 function listar(){
     campoNome.innerHTML  = nomeUser;

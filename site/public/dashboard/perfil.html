@@ -8,9 +8,10 @@
   <title>Perfil | MoniToons</title>
   <link rel="stylesheet" href="../css/style_perfil.css">
   <link rel="stylesheet" href="../assets/fontes/fonts.css">
+  <script defer src="../js/funcionario/listarFuncionario.js"></script>
 </head>
 
-<body>
+<body onload="listarDados()">
   <div class="barra-superior">
     <div class="borda-botao">
       <button class="botao-voltar" onclick="voltarTelaAnterior()">VOLTAR</button>
@@ -25,27 +26,27 @@
     <div class="informacoes-usuario">
       <div class="campo-informacao">
         <h3>NOME:</h3>
-        <span class="informacao-campo" id="span_nome">Fulano de Tal</span>
+        <span class="informacao-campo" id="spanNome"></span>
       </div>
       <span class="linha-gradient"></span>
       <div class="campo-informacao">
         <h3>EMAIL:</h3>
-        <span class="informacao-campo" id="span_nome">exemplo.email@gmail.com</span>
+        <span class="informacao-campo" id="spanEmail"></span>
       </div>
       <span class="linha-gradient"></span>
       <div class="campo-informacao">
         <h3>CPF:</h3>
-        <span class="informacao-campo" id="span_nome">xxx.xxx.xxx-xx</span>
+        <span class="informacao-campo" id="spanCpf"></span>
       </div>
       <span class="linha-gradient"></span>
       <div class="campo-informacao">
         <h3>CARGO:</h3>
-        <span class="informacao-campo" id="span_nome">Desenvolvedor Fullstack</span>
+        <span class="informacao-campo" id="spanCargo"></span>
       </div>
       <span class="linha-gradient"></span>
       <div class="campo-informacao">
         <h3>EMPRESA:</h3>
-        <span class="informacao-campo" id="span_nome">AniMoons</span>
+        <span class="informacao-campo" id="spanEmpresa"></span>
       </div>
       <span class="linha-gradient"></span>
     </div>
