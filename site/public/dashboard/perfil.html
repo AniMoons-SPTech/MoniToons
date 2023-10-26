@@ -4,21 +4,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="../assets/moon.png" />
   <title>Perfil | MoniToons</title>
   <link rel="stylesheet" href="../css/style_perfil.css">
+  <link rel="stylesheet" href="../assets/fontes/fonts.css">
 </head>
 
 <body>
   <div class="barra-superior">
-    <a href="./funcionarios.html">
-      <div class="borda-botao">
-        <button class="botao-voltar">VOLTAR</button>
-      </div>
-    </a>
+    <div class="borda-botao">
+      <button class="botao-voltar" onclick="voltarTelaAnterior()">VOLTAR</button>
+    </div>
   </div>
   <div class="area-usuario">
     <div class="imagem-usuario">
-      <h3>PREMIUM</h3>
+      <h3></h3>
       <img src="../assets/estrela-cadente.gif" alt="Imagem do usuário">
       <span class="atualizar-imagem">ATUALIZAR IMAGEM</span>
     </div>
@@ -51,5 +51,11 @@
     </div>
   </div>
 </body>
+
+<script>
+  function voltarTelaAnterior() {
+    window.history.back();
+  }
+</script>
 
 </html>

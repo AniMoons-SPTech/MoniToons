@@ -27,6 +27,11 @@ body {
   background-color: transparent;
 }
 
+.barra-superior a{
+  text-decoration: none;
+  color: white;
+}
+
 .borda-botao{
   display: flex;
   flex-direction: row;
@@ -87,8 +92,11 @@ body {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  height: 50px;
   cursor: pointer;
+  background: var(--Gradiente-pica);
+  padding: 15px;
+  margin-top: 10px;
+  border-radius: 10px;
 }
 
 .informacoes-usuario{
