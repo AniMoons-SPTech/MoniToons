@@ -54,55 +54,7 @@
       </div>
       <div class="espaco-titulo-sessao"></div>
       <div class="area-graficos">
-        <div class="card-grafico">
-          <div class="grafico-componente" id="grafico-CPU">
-            <canvas id="canvas-grafico-CPU"></canvas>
-          </div>
-          <div class="grafico-componente" id="grafico-GPU">
-            <canvas id="canvas-grafico-GPU"></canvas>
-          </div>
-          <div class="grafico-componente" id="grafico-RAM">
-            <canvas id="canvas-grafico-RAM"></canvas>
-          </div>
-          <div class="grafico-componente" id="grafico-DISCO">
-            <canvas id="canvas-grafico-DISCO"></canvas>
-          </div>
-          <div class="info-componente">
-            <div class="titulo-info-componente">Componentes</div>
-            <div class="info-componente-item ativo" id="CPU" onclick="mudarGrafico('grafico-CPU', 'CPU')">
-              <div class="borda-aviso"></div>
-              <div class="div-auxiliar">
-                <div class="info-componente-item-titulo">CPU</div>
-                <div class="info-componente-item-valor">Intel Core i5-9400F</div>
-              </div>
-              <div class="borda-aviso critico"></div>
-            </div>
-            <div class="info-componente-item" id="GPU" onclick="mudarGrafico('grafico-GPU', 'GPU')">
-              <div class="borda-aviso"></div>
-              <div class="div-auxiliar">
-                <div class="info-componente-item-titulo">GPU</div>
-                <div class="info-componente-item-valor">NVIDIA GeForce GTX 1660</div>
-              </div>
-              <div class="borda-aviso perigo"></div>
-            </div>
-            <div class="info-componente-item" id="RAM" onclick="mudarGrafico('grafico-RAM', 'RAM')">
-              <div class="borda-aviso"></div>
-              <div class="div-auxiliar">
-                <div class="info-componente-item-titulo">RAM</div>
-                <div class="info-componente-item-valor">8GB DDR4</div>
-              </div>
-              <div class="borda-aviso alerta"></div>
-            </div>
-            <div class="info-componente-item" id="DISCO" onclick="mudarGrafico('grafico-DISCO', 'DISCO')">
-              <div class="borda-aviso"></div>
-              <div class="div-auxiliar">
-                <div class="info-componente-item-titulo">DISCO</div>
-                <div class="info-componente-item-valor">1TB HDD</div>
-              </div>
-              <div class="borda-aviso bom">
-              </div>
-            </div>
-          </div>
+        <div class="card-grafico" id="div_card_grafico">
         </div>
         <div class="cards-adicionais">
           <div class="card-info-adicional">

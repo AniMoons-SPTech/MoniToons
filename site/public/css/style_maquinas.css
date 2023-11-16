@@ -408,7 +408,7 @@ body {
   flex-direction: row;
   flex-wrap: wrap;
   align-items: start;
-  justify-content: space-evenly;
+  justify-content: space-between;
   width: 100%;
   max-width: 1400px;
   margin-top: 40px;
@@ -420,14 +420,20 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: start;
-  width: 20%;
-  height: 180px;
+  width: 22%;
+  height: 230px;
   background: #FFFFFF;
   box-shadow: 1px 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
   overflow: hidden;
   padding: 10px;
   transition: all 0.3s;
+}
+.card-metrica:first-child{
+  margin-left: 15px;
+}
+.card-metrica:last-child{
+  margin-right: 15px;
 }
 
 .card-metrica:hover{
@@ -456,10 +462,12 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: xx-large;
+  text-align: center;
+  font-size: 16pt;
   font-weight: 600;
   color: #000000;
   height: calc(100% - 50px);
+  padding: 0 40px;
 }
 
 .cards {

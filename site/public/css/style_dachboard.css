@@ -171,15 +171,15 @@ body {
   background: #EF0303;
 }
 
-.perigo{
+.intermediario{
   background: #F87736;
 }
 
-.alerta{
+.moderado{
   background: #FFBF00;
 }
 
-.bom{
+.saudavel{
   background: #00DF50;
 }
 

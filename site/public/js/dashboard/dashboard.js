@@ -1,4 +1,102 @@
+// PEGANDO ID DA URL
+var queryString = window.location.search.substring(1);
+var params = new URLSearchParams(queryString);
+var idUsuario = params.get("idUsuario")
+var listaDeGraficos = []
+
+
 // Configuração dos gráficos de CPU
+function plotarComponentes(){
+    fetch(`/dadosGraficos//carregarComponentes/${idUsuario}`, {
+        method: 'GET',
+        headers: {
+            "Content-Type": "application/json"
+        },
+    }).then((response) => {
+        if(response.ok) {
+            response.json().then((resposta) => {
+                var divCardGrafico = document.getElementById("div_card_grafico")
+
+                var divInfoComponentesLista = document.createElement("div");
+                divInfoComponentesLista.setAttribute("id", "div_info_componentes_lista");
+                divInfoComponentesLista.classList.add("info-componente");
+
+                var tituloInfoComponente = document.createElement("div");
+                tituloInfoComponente.innerHTML = "Componentes"
+                tituloInfoComponente.classList.add("titulo-info-componente")
+
+                divInfoComponentesLista.appendChild(tituloInfoComponente);
+
+                resposta.forEach(componente => {
+                    var tipoComponente = componente.tipoComponente
+                    var idComponente = componente.idComponente;
+
+                    var graficoComponente = document.createElement("div")
+                    graficoComponente.classList.add("grafico-componente")
+                    graficoComponente.setAttribute("id", `grafico-${tipoComponente}-${idComponente}`)
+
+                    var canvasGrafico = document.createElement("canvas")
+                    canvasGrafico.setAttribute("id", `canvas-grafico-${tipoComponente}-${idComponente}`)
+
+                    listaDeGraficos.push(`canvas-grafico-${tipoComponente}-${idComponente}`)
+
+                    graficoComponente.appendChild(canvasGrafico)
+                    divCardGrafico.appendChild(graficoComponente)
+
+                    // nesse select vou precisar do tipo do componente, do id e do nome dele e o seu grauAlerta
+
+                    // ID, TIPO, NOME, grauAlerta
+
+                    var infoComponente = document.createElement("div")
+                    infoComponente.setAttribute("id", tipoComponente);
+                    infoComponente.setAttribute("onclick", mudarGrafico(`grafico-${tipoComponente}-${idComponente}`, idComponente))
+                    infoComponente.classList.add("info-componente-item")
+
+                    var bordaAvisoComeco = document.createElement("div")
+                    bordaAvisoComeco.classList.add("borda-aviso")
+
+                    var bordaAvisoFinal = document.createElement("div")
+                    bordaAvisoFinal.classList.add("borda-aviso")
+
+                    switch(componente.grauAlerta){
+                        case "CRITICO":
+                            bordaAvisoFinal.classList.add("critico")
+                            break;
+                        case "INTERMEDIARIO":
+                            bordaAvisoFinal.classList.add("intermediario")
+                            break;
+                        case "MODERADO":
+                            bordaAvisoFinal.classList.add("moderado")
+                            break;
+                        default:
+                            bordaAvisoFinal.classList.add("saudavel")
+                    }   
+
+                    var divAuxiliar = document.createElement("div")
+                    divAuxiliar.classList.add("div-auxiliar")
+
+                    var infoComponenteTipo = document.createElement("div")
+                    infoComponenteTipo.classList.add("info-componente-item-titulo")
+                    infoComponenteTipo.innerHTML = tipoComponente
+
+                    var infoComponenteNome = document.createElement("div")
+                    infoComponenteNome,classList.add("info-componente-item-valor")
+                    infoComponenteNome.innerHTML = componente.nomeComponente
+
+                    divAuxiliar.appendChild(infoComponenteTipo);
+                    divAuxiliar.appendChild(infoComponenteNome);
+                    infoComponente.appendChild(bordaAvisoComeco);
+                    infoComponente.appendChild(divAuxiliar);
+                    infoComponente.appendChild(bordaAvisoFinal);
+                    divInfoComponentesLista.appendChild(infoComponente);
+                });
+                
+                divCardGrafico.appendChild(divInfoComponentesLista);
+            })  
+        }
+    })
+}   
+
 const dataCPU = [
     { data: '01:00', count: 45 },
     { data: '02:00', count: 40 },
@@ -15,10 +113,10 @@ const dataCPU = [
 ];
 
 const dadosCPU = {
-    labels: dataCPU.map((item) => item.data),
+    // labels: dataCPU.map((item) => item.data),
     datasets: [{
         label: "USO DE CPU",
-        data: dataCPU.map((item) => item.count),
+        // data: dataCPU.map((item) => item.count),
         borderColor: '#EF0303',
         backgroundColor: '#EF0303',
         radius: 1,
@@ -61,10 +159,10 @@ const dataGPU = [
 ];
 
 const dadosGPU = {
-    labels: dataGPU.map((item) => item.data),
+    // labels: dataGPU.map((item) => item.data),
     datasets: [{
         label: "USO DE GPU",
-        data: dataGPU.map((item) => item.count),
+        // data: dataGPU.map((item) => item.count),
         backgroundColor: '#F87736',
         borderColor: '#F87736',
         radius: 1,
@@ -107,10 +205,10 @@ const dataRAM = [
 ];
 
 const dadosRAM = {
-    labels: dataRAM.map((item) => item.data),
+    // labels: dataRAM.map((item) => item.data),
     datasets: [{
         label: "USO DE RAM",
-        data: dataRAM.map((item) => item.count),
+        // data: dataRAM.map((item) => item.count),
         backgroundColor: '#FFBF00',
         borderColor: '#FFBF00',
         radius: 1,
@@ -175,15 +273,33 @@ const configDISCO = {
     }
 }
 
-
-
-new Chart(document.getElementById('canvas-grafico-CPU'), configCPU);
-new Chart(document.getElementById('canvas-grafico-GPU'), configGPU);
-new Chart(document.getElementById('canvas-grafico-RAM'), configRAM);
-new Chart(document.getElementById('canvas-grafico-DISCO'), configDISCO);
+function criarGraficos(){
+    for(var i = 0; i < listaDeGraficos.length; i++){
+        var infoIdGrafico = listaDeGraficos[i].split("-");
+        
+        switch (infoIdGrafico[2]){
+            case "CPU":
+                new Chart(document.getElementById(listaDeGraficos[i]), configCPU)
+                break;
+            case "RAM":
+                new Chart(document.getElementById(listaDeGraficos[i]), configRAM)
+                break;
+            case "DISCO":
+                new Chart(document.getElementById(listaDeGraficos[i]), configDISCO)
+                break;
+            case "GPU":
+                new Chart(document.getElementById(listaDeGraficos[i]), configGPU)
+                break;
+        }
+    }
+}
 
 
 function mudarGrafico(componente, cardOpcao) {
+
+    // endpoint para cpus / idComponeteCPU
+
+    
     const grafico = document.getElementById(componente);
     const elementoPai = grafico.parentElement;
     const graficos = elementoPai.children;

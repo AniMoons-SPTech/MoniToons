@@ -12,7 +12,7 @@
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
 </head>
 
-<body onload="mudaBarraApp()">
+<body onload="mudaBarraApp() , carregarMetricas()">
   <nav class="barra-lateral">
     <div class="titulo-barra-lateral">
       <span class="titulo">MoniToons</span>
@@ -67,7 +67,7 @@
 
   <div class="espaco-barra-lateral"></div>
   <section class="sessao-computadores">
-    <div class="container">
+    <div class="container" id="container">
       <div class="titulo-sessao">
         <span class="titulo">Computadores</span>
       </div>
@@ -75,167 +75,39 @@
 
       <div class="metricas">
         <div class="card-metrica">
-          <div class="titulo-metrica">Computadores em Crítico</div>
-          <div class="conteudo-metrica">1</div>
+          <div class="titulo-metrica">Uso de CPU</div>
+          <div class="conteudo-metrica">
+            <p><span id="span_metrica_cpu">--</span>% dos computadores do seu grupo estão com o uso maior que 80%</p>
+          </div>
         </div>
         <div class="card-metrica">
-          <div class="titulo-metrica">Computadores em Crítico</div>
-          <div class="conteudo-metrica">1</div>
+          <div class="titulo-metrica">Uso da RAM</div>
+          <div class="conteudo-metrica">
+            <p><span id="span_metrica_ram">--</span>% dos computadores do seu grupo estão com pouca memória disponível
+            </p>
+          </div>
         </div>
         <div class="card-metrica">
-          <div class="titulo-metrica">Computadores em Alerta</div>
-          <div class="conteudo-metrica">1</div>
+          <div class="titulo-metrica">Armazenamento</div>
+          <div class="conteudo-metrica">
+            <p><span id="span_metrica_disco">--</span>% dos computadores do seu grupo estão com pouco espaço disponível
+            </p>
+          </div>
         </div>
         <div class="card-metrica">
-          <div class="titulo-metrica">Total de Computadores</div>
-          <div class="conteudo-metrica">5</div>
+          <div class="titulo-metrica">Temperatura GPU</div>
+          <div class="conteudo-metrica">
+            <p><span id="span_metrica_gpu">--</span>% dos computadores do seu grupo estão com uma temperatura elevada
+            </p>
+          </div>
         </div>
       </div>
 
-      <hr width="1200px" style="margin: 4% 0; border: 0.2px solid white ;">
+      <!-- <hr width="1200px" style="margin: 4% 0; border: 0.2px solid white ;"> -->
 
 
-        <div class="cards" id="cards">
-          <div class="card" onclick="abrirDashboard()">
-            <div class="conteudo">
-              <span class="titulo-conteudo">Marcos</span>
-              <div class="centro-conteudo">
-                <div class="coluna_status">
-                  <p>CPU</p>
-                  <div class="bolinha" id="div_status_cpu"></div>
-                  <p>Crítico</p>
-                </div>
-                <div class="coluna_status">
-                  <p>RAM</p>
-                  <div class="bolinha" id="div_status_ram"></div>
-                  <p>Crítico</p>
-                </div>
-                <div class="coluna_status">
-                  <p>Disco</p>
-                  <div class="bolinha" id="div_status_disco"></div>
-                  <p>Crítico</p>
-                </div>
-                <div class="coluna_status">
-                  <p>RAM</p>
-                  <div class="bolinha" id="div_status_gpu"></div>
-                  <p>Crítico</p>
-                </div>
-              </div>
-              <a href="./dashboard.html">Ver mais</a>
-            </div>
-          </div> 
-          <div class="card" onclick="abrirDashboard()">
-            <div class="conteudo">
-              <span class="titulo-conteudo">Marcos</span>
-              <div class="centro-conteudo">
-                <div class="coluna_status">
-                  <p>CPU</p>
-                  <div class="bolinha" id="div_status_cpu"></div>
-                  <p>Crítico</p>
-                </div>
-                <div class="coluna_status">
-                  <p>RAM</p>
-                  <div class="bolinha" id="div_status_ram"></div>
-                  <p>Crítico</p>
-                </div>
-                <div class="coluna_status">
-                  <p>Disco</p>
-                  <div class="bolinha" id="div_status_disco"></div>
-                  <p>Crítico</p>
-                </div>
-                <div class="coluna_status">
-                  <p>RAM</p>
-                  <div class="bolinha" id="div_status_gpu"></div>
-                  <p>Crítico</p>
-                </div>
-              </div>
-              <a href="./dashboard.html">Ver mais</a>
-            </div>
-          </div> 
-          <div class="card" onclick="abrirDashboard()">
-            <div class="conteudo">
-              <span class="titulo-conteudo">Marcos</span>
-              <div class="centro-conteudo">
-                <div class="coluna_status">
-                  <p>CPU</p>
-                  <div class="bolinha" id="div_status_cpu"></div>
-                  <p>Crítico</p>
-                </div>
-                <div class="coluna_status">
-                  <p>RAM</p>
-                  <div class="bolinha" id="div_status_ram"></div>
-                  <p>Crítico</p>
-                </div>
-                <div class="coluna_status">
-                  <p>Disco</p>
-                  <div class="bolinha" id="div_status_disco"></div>
-                  <p>Crítico</p>
-                </div>
-                <div class="coluna_status">
-                  <p>RAM</p>
-                  <div class="bolinha" id="div_status_gpu"></div>
-                  <p>Crítico</p>
-                </div>
-              </div>
-              <a href="./dashboard.html">Ver mais</a>
-            </div>
-          </div> 
-          <div class="card" onclick="abrirDashboard()">
-            <div class="conteudo">
-              <span class="titulo-conteudo">Marcos</span>
-              <div class="centro-conteudo">
-                <div class="coluna_status">
-                  <p>CPU</p>
-                  <div class="bolinha" id="div_status_cpu"></div>
-                  <p>Crítico</p>
-                </div>
-                <div class="coluna_status">
-                  <p>RAM</p>
-                  <div class="bolinha" id="div_status_ram"></div>
-                  <p>Crítico</p>
-                </div>
-                <div class="coluna_status">
-                  <p>Disco</p>
-                  <div class="bolinha" id="div_status_disco"></div>
-                  <p>Crítico</p>
-                </div>
-                <div class="coluna_status">
-                  <p>RAM</p>
-                  <div class="bolinha" id="div_status_gpu"></div>
-                  <p>Crítico</p>
-                </div>
-              </div>
-              <a href="./dashboard.html">Ver mais</a>
-            </div>
-          </div> 
-          <div class="card" onclick="abrirDashboard()">
-            <div class="conteudo">
-              <span class="titulo-conteudo">Marcos</span>
-              <div class="centro-conteudo">
-                <div class="coluna_status">
-                  <p>CPU</p>
-                  <div class="bolinha" id="div_status_cpu"></div>
-                  <p>Crítico</p>
-                </div>
-                <div class="coluna_status">
-                  <p>RAM</p>
-                  <div class="bolinha" id="div_status_ram"></div>
-                  <p>Crítico</p>
-                </div>
-                <div class="coluna_status">
-                  <p>Disco</p>
-                  <div class="bolinha" id="div_status_disco"></div>
-                  <p>Crítico</p>
-                </div>
-                <div class="coluna_status">
-                  <p>RAM</p>
-                  <div class="bolinha" id="div_status_gpu"></div>
-                  <p>Crítico</p>
-                </div>
-              </div>
-              <a href="./dashboard.html">Ver mais</a>
-            </div>
-          </div>
+      <div class="cards" id="cards">
+
       </div>
     </div>
   </section>
@@ -243,6 +115,9 @@
 <script src="../js/enviarEmail.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
+
+  var quantidadeDeMaquinas = 0;
+
   function mudaBarraApp() {
     var linkApp = document.getElementById("link_app")
     if (sessionStorage.CARGO_USUARIO == "COMUM") {
@@ -252,9 +127,97 @@
     }
   }
 
-  function abrirDashboard() {
-    window.location.href = "./dashboard.html"
+  function carregarMetricas() {
+    var idResponsavel = sessionStorage.ID_USUARIO
+    fetch(`/metricas//carregarAlertas/${idResponsavel}`, {
+      method: 'GET',
+      headers: {
+        "Content-Type": "application/json"
+      },
+    }).then((response) => {
+      if (response.ok) {
+        response.json().then((resposta) => {
+          pegarQuantidadeMaquinas();
+          exibirMetrica(resposta);
+        })
+      }
+    })
   }
+  function exibirMetrica(alertasPorComponente) {
+
+    var spanMetricaCPU = document.getElementById("span_metrica_cpu");
+    var spanMetricaRAM = document.getElementById("span_metrica_ram");
+    var spanMetricaDisco = document.getElementById("span_metrica_disco");
+    var spanMetricaGPU = document.getElementById("span_metrica_gpu");
+
+    alertasPorComponente.forEach((alerta) => {
+      var tipoComponente = alerta.tipoComponente;
+      var quantidadeAlertas = alerta.qtdAlertas;
+      var porcentagem = ((quantidadeAlertas / quantidadeDeMaquinas) * 100).toFixed(1);
+
+      if (tipoComponente == "CPU") {
+        spanMetricaCPU.innerHTML = porcentagem;
+        if (porcentagem >= 50 && porcentagem < 70) {
+          spanMetricaCPU.style.color = "yellow"
+        } else if (porcentagem >= 70 && porcentagem < 85) {
+          spanMetricaCPU.style.color = "orange"
+        } else if (porcentagem >= 85) {
+          spanMetricaCPU.style.color = "red"
+        } else {
+          spanMetricaCPU.style.color = "green"
+        }
+      } else if (tipoComponente == "RAM") {
+        spanMetricaRAM.innerHTML = porcentagem;
+        if (porcentagem >= 50 && porcentagem < 70) {
+          spanMetricaRAM.style.color = "yellow"
+        } else if (porcentagem >= 70 && porcentagem < 85) {
+          spanMetricaRAM.style.color = "orange"
+        } else if (porcentagem >= 85) {
+          spanMetricaRAM.style.color = "red"
+        } else {
+          spanMetricaRAM.style.color = "green"
+        }
+      } else if (tipoComponente == "DISCO") {
+        spanMetricaDisco.innerHTML = porcentagem;
+        if (porcentagem >= 50 && porcentagem < 70) {
+          spanMetricaDisco.style.color = "yellow"
+        } else if (porcentagem >= 70 && porcentagem < 85) {
+          spanMetricaDisco.style.color = "orange"
+        } else if (porcentagem >= 85) {
+          spanMetricaDisco.style.color = "red"
+        } else {
+          spanMetricaDisco.style.color = "green"
+        }
+      } else if (tipoComponente == "GPU") {
+        spanMetricaGPU.innerHTML = porcentagem;
+        if (porcentagem >= 50 && porcentagem < 70) {
+          spanMetricaGPU.style.color = "yellow"
+        } else if (porcentagem >= 70 && porcentagem < 85) {
+          spanMetricaGPU.style.color = "orange"
+        } else if (porcentagem >= 85) {
+          spanMetricaGPU.style.color = "red"
+        } else {
+          spanMetricaGPU.style.color = "green"
+        }
+      }
+    });
+  }
+
+  function pegarQuantidadeMaquinas() {
+    fetch(`/metricas//carregarAlertas/${idResponsavel}`, {
+      method: 'GET',
+      headers: {
+        "Content-Type": "application/json"
+      },
+    }).then((response) => {
+      if (response.ok) {
+        response.json().then((resposta) => {
+          quantidadeDeMaquinas = resposta.qtdMaquinaPorGestor;
+        })
+      }
+    })
+  }
+
 
 </script>
 
