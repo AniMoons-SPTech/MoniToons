@@ -84,16 +84,16 @@
                         console.log(json);
                         console.log(JSON.stringify(json));
 
-                        sessionStorage.EMAIL_USUARIO = json.email;
-                        sessionStorage.NOME_USUARIO = json.nome;
                         sessionStorage.CARGO_USUARIO = json.cargo;
-                        sessionStorage.PLANO_USUARIO = json.plano;
                         sessionStorage.ID_USUARIO = json.idUsuario;
+                        sessionStorage.NOME_USUARIO = json.nomeUsuario;
+                        sessionStorage.EMAIL_USUARIO = json.email;
+                        sessionStorage.PLANO_USUARIO = json.plano;
                         sessionStorage.FK_EMPRESA = json.fkEmpresa;
 
                         setTimeout(function(){
 
-                            if(json.cargo == "Administrador"){
+                            if(json.cargo == "ADMNISTRADOR"){
                                 window.location = "./dashboard/maquinas.html"
                             }else{
                                 window.location = "./dashboard/dashboard.html"

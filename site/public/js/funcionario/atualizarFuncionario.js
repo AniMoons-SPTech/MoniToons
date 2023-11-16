@@ -24,9 +24,9 @@ function atualizar(idUsuario){
 }
 
 function exibirDados(vetor){
-    nomeInput.value = vetor[0].nome;
-    cargoInput.value = vetor[0].cargo;
+    nomeInput.value = vetor[0].nomeUsuario;
     registroInput.value = vetor[0].documento;
+    cargoInput.value = vetor[0].cargo;
     telefoneInput.value = vetor[0].telefone;
     telefone1Input.value = vetor[0].telefone2;
     emailInput.value = vetor[0].email;
@@ -42,7 +42,7 @@ function atualizarFuncionario(){
             "Content-Type" : "application/json"
         },
         body: JSON.stringify({
-            nome: nomeInput.value,
+            nomeUsuario: nomeInput.value,
             cargo: cargoInput.value,
             registro: registroInput.value,
             telefone: telefoneInput.value,

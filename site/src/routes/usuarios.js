@@ -16,7 +16,7 @@ router.get("/validar/:email", function (req, res) {
     usuarioController.validar(req,res);
 })
 
-router.get("/listar/:idEmpresa", function (req , res) {
+router.get("/listar/:idUsuario", function (req , res) {
     usuarioController.listar(req,res);
 })
 

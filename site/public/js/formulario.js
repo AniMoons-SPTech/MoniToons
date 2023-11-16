@@ -146,7 +146,7 @@ function validarConfirmacaoSenha(inputConfirmarSenha, tooltip) {
 function validarTelefone(inputTelefone, tooltip) {
     const telefone = inputTelefone.value.trim();
 
-    if (telefone.length < 11) {
+    if (telefone.length < 10) {
         exibirTooltip(tooltip);
         return false;
     } else {
