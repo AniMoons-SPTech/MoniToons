@@ -204,7 +204,8 @@
   }
 
   function pegarQuantidadeMaquinas() {
-    fetch(`/metricas//carregarAlertas/${idResponsavel}`, {
+    var idResponsavel = sessionStorage.ID_USUARIO
+    fetch(`/metricas//carregarMaquinasGestor/${idResponsavel}`, {
       method: 'GET',
       headers: {
         "Content-Type": "application/json"

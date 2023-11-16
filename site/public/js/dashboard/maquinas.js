@@ -15,6 +15,7 @@ function carregarGrupoMaquinas() {
 
 function plotarCardsMaquinas(maquinas) {
     var cards = document.getElementById(cards);
+
     maquinas.forEach((maquina) => {
 
         // ESTRUTURA DA TUPLA
@@ -36,7 +37,7 @@ function plotarCardsMaquinas(maquinas) {
         var centroConteudo = document.createElement("div")
         centroConteudo.classList.add("centro-conteudo")
 
-        for (let i = 2; i < maquina.length; i++) {
+        for (let i = 0; i < 4; i++) {
             var colunaStatus = document.createElement("div")
             colunaStatus.classList.add("coluna_status")
 
@@ -58,7 +59,17 @@ function plotarCardsMaquinas(maquinas) {
 
             var iconeStatus = document.createElement("img")
             var status = document.createElement("p")
-            switch (maquina.status){
+            var estado = "";
+            if(i == 0){
+                estado = maquina.statusCpu  
+            } else if (i == 1) {
+                estado = maquina.statusRam
+            } else if (i == 2) {
+                estado = maquina.statusDisco
+            } else if (i == 3) {
+                estado = maquina.statusGpu
+            }
+            switch (estado){
                 case "CRITICO":
                     iconeStatus.setAttribute("src", "../assets/")
                     status.innerHTML = maquina.status
