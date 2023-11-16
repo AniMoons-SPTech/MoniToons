@@ -1,103 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="../assets/moon.png" />
-    <title>Mural de Alertas | MoniToons</title>
-    <link rel="stylesheet" href="../css/style_dachboard.css">
-    <link rel="stylesheet" href="../css/style_maquinas.css">
-    <link rel="stylesheet" href="../assets/fontes/fonts.css">
-    <link rel="stylesheet" href="../css/style_mural_alertas.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="../assets/moon.png" />
+  <title>Mural de Alertas | MoniToons</title>
+  <link rel="stylesheet" href="../css/style_dachboard.css">
+  <link rel="stylesheet" href="../css/style_maquinas.css">
+  <link rel="stylesheet" href="../assets/fontes/fonts.css">
+  <link rel="stylesheet" href="../css/style_mural_alertas.css">
 </head>
+
 <body onload="mudaBarraApp()">
-    <nav class="barra-lateral">
-      <div class="titulo-barra-lateral">
-        <span class="titulo">MoniToons</span>
-        <div class="burger">
-          <div class="line"></div>
-          <div class="line"></div>
-          <div class="line"></div>
-        </div>
+  <nav class="barra-lateral">
+    <div class="titulo-barra-lateral">
+      <span class="titulo">MoniToons</span>
+      <div class="burger">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
       </div>
-      <div class="usuario-barra-lateral">
-        <div class="imagem-usuario-barra-lateral">
-          <a href="./perfil.html">
-            <img src="../assets/estrela-cadente.gif" alt="Usuário">
-          </a>
-        </div>
-        <div class="info-usuario-barra-lateral">
-          <div class="nome-barra-lateral" id="nome_usuario">Usuário</div>
-          <div class="cargo-barra-lateral" id="cargo_usuario">Administrador</div>
-        </div>
-      </div>
-      <ul class="bar-links">
-        <li><a href="./maquinas.html">Geral</a></li>
-        <!-- <li><a href="#">Computadores</a></li> -->
-        <li><a href="./funcionarios.html">Funcionários</a></li>
-        <li><a href="./muraldealertas.html">Alertas</a></li>
-        <li><a href="./aplicativos.html" id="link_app"></a></li>
-      </ul>
-      <div class="sair-barra-lateral">
-        <a href="../index.html">SAIR</a>
-      </div>
-    </nav>
-    <div class="espaco-barra-lateral"></div>
-    <div class="content">
-            <table class="styled-table" border="1">
-                <tr>
-                    <th>DATA HORA</th>
-                    <th>COMPONENTE</th>
-                    <th>GRAU DE ALERTA</th>
-                </tr>
-                <tr>
-                    <td>12/11/2023</td>
-                    <td>CPU</td>
-                    <td class="cor_alerta">VERMELHO</td>
-                </tr>
-                <tr>
-                    <td>12/11/2023</td>
-                    <td>RAM</td>
-                    <td class="cor_alerta">AMARELO</td>
-                </tr>
-                <tr>
-                    <td>12/11/2023</td>
-                    <td>DISCO</td>
-                    <td class="cor_alerta">VERDE</td>
-                </tr>
-                <tr>
-                    <td>12/11/2023</td>
-                    <td>DISCO</td>
-                    <td class="cor_alerta">VERDE</td>
-                </tr>
-            </table>
     </div>
-  </body>
+    <div class="usuario-barra-lateral">
+      <div class="imagem-usuario-barra-lateral">
+        <a href="./perfil.html">
+          <img src="../assets/estrela-cadente.gif" alt="Usuário">
+        </a>
+      </div>
+      <div class="info-usuario-barra-lateral">
+        <div class="nome-barra-lateral" id="nome_usuario">Usuário</div>
+        <div class="cargo-barra-lateral" id="cargo_usuario">Administrador</div>
+      </div>
+    </div>
+    <ul class="bar-links">
+      <li><a href="./maquinas.html">Geral</a></li>
+      <!-- <li><a href="#">Computadores</a></li> -->
+      <li><a href="./funcionarios.html">Funcionários</a></li>
+      <li><a href="./muraldealertas.html">Alertas</a></li>
+      <li><a href="./aplicativos.html" id="link_app"></a></li>
+    </ul>
+    <div class="sair-barra-lateral">
+      <a href="../index.html">SAIR</a>
+    </div>
+  </nav>
+  <div class="espaco-barra-lateral"></div>
+  <div class="content">
+    <div class="cabecalho">
+      <div class="titulo_cabecalho">Mural de Alertas</div>
+    </div>
+    <div class="card_alerta">
+        <span class="title_card">Alerta de {tipodecomponente}</span>
+        <div class="data_datetime">
+          <span class="data">Data do ocorrido: ${data}</span>
+          <span class="data">Hora do ocorrido: ${hora}</span>
+        </div>
+        <div class="data_componente">
+          <span>Componente: {componente}</span>
+          <span>Tipo de dado: {temperatura}</span>
+        </div>
+      </div>
+  </div>
+</body>
+
 </html>
 
 <script>
-    function mudarCorAlerta() {
-            var corAlertas = document.getElementsByClassName("cor_alerta");
+  function mudarCorAlerta() {
+    var corAlertas = document.getElementsByClassName("cor_alerta");
 
-            for (var i = 0; i < corAlertas.length; i++) {
-                var corAlerta = corAlertas[i];
-                var texto = corAlerta.textContent.trim();
+    for (var i = 0; i < corAlertas.length; i++) {
+      var corAlerta = corAlertas[i];
+      var texto = corAlerta.textContent.trim();
 
-                switch (texto) {
-                    case "VERMELHO":
-                        corAlerta.style.color = "red";
-                        break;
-                    case "AMARELO":
-                        corAlerta.style.color = "yellow";
-                        break;
-                    case "VERDE":
-                        corAlerta.style.color = "green";
-                        break;
-                    default:
-                        corAlerta.style.color = "black";
-                        break;
-                }
-            }
-        }
-    mudarCorAlerta();
+      switch (texto) {
+        case "VERMELHO":
+          corAlerta.style.color = "red";
+          break;
+        case "AMARELO":
+          corAlerta.style.color = "yellow";
+          break;
+        case "VERDE":
+          corAlerta.style.color = "green";
+          break;
+        default:
+          corAlerta.style.color = "black";
+          break;
+      }
+    }
+  }
+  mudarCorAlerta();
 </script>

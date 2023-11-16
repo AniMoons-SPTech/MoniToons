@@ -4,33 +4,7 @@
     width: 100%;
     align-items: center;
     flex-direction: column;
-    gap: 10%;
-}
-
-.styled-table {
-    width: 80vw;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-    border-radius: 10px;
-    overflow: hidden;
-    margin-left: 3%;
-}
-
-th, td {
-    padding: 16px;
-    text-align: left;
-    height: 40px;
-    background-color: #f5f5f5;
-}
-
-th {
-    background-color: #AB1A3D;
-    height: auto;
-    color: white;
-}
-
-tr:hover {
-    background-color: #f5f5f5;
+    gap: 5%;
 }
 
 .area_cards {
@@ -42,17 +16,44 @@ tr:hover {
     margin-top: 2%;
 }
 
-.card_alertas {
+.card_alerta {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    width: 50%;
-    height: 100%;
+    width: 60%;
+    height: 20%;
     border-radius: 10px;
-    background-color: #f5f5f5;
+    background: linear-gradient(to right, #AB1A3D, #E87E1C);
     padding: 20px;
+    color: white;
+    justify-content: space-between;
+  }
+
+.card_alerta:hover {
+    transform: scale(1.02);
 }
 
-.card_alertas:hover {
-    transform: scale(1.05);
+.cabecalho {
+    display: flex;
+    height: 80px;
+    width: 100%;
+    background-color: #23104D;
+    justify-content: center;
+    align-items: center;
+}
+
+.titulo_cabecalho {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+}
+
+.title_card {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.data_datetime, .data_componente{
+    display: flex;
+    width: 100%;
+    gap: 40px;
 }

@@ -32,6 +32,10 @@
     cursor: pointer;
   }
 
+  .botao_do_conteudo:hover{
+    background-image: linear-gradient(to right, violet, #E87E1C);
+  }
+
   .titulo {
     display: flex;
     align-items: center;

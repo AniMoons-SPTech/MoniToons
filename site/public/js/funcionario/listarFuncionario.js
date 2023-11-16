@@ -16,7 +16,7 @@ var spanEmpresa = document.getElementById("spanEmpresa");
 
 
 function listarDados(){
-    fetch(`/usuarios//dadosFuncionario/${idUsuario}`, {
+    fetch(`/usuarios/dadosFuncionario/${idUsuario}`, {
         method: 'GET',
         headers: {
             "Content-Type": "application/json"
@@ -32,7 +32,7 @@ function listarDados(){
 }
 
 function exibirDados(vetor){
-    spanNome.innerHTML = vetor[0].nome;
+    spanNome.innerHTML = vetor[0].nomeUsuario;
     spanEmail.innerHTML = vetor[0].email;
     spanCpf.innerHTML = vetor[0].documento;
     spanCargo.innerHTML = vetor[0].cargo;
@@ -41,7 +41,7 @@ function exibirDados(vetor){
 function listar(){
     campoNome.innerHTML  = nomeUser;
     campoCargo.innerHTML = cargoUser;
-    fetch(`/usuarios/listar/${idEmpresa}`, {
+    fetch(`/usuarios/listar/${idUsuario}`, {
         method: 'GET',
         headers: {
             "Content-Type": "application/json"
@@ -63,11 +63,11 @@ function listar(){
         <div class="card-funcionario">
                     <div class="imagem-funcionario">
                         <img src="../assets/Lovepik_com-828906606-Hand drawn office computer character scene design element 03 1.png" alt="">
-                        <img class="botao-atualizar-funcionario" src="../assets/att-func.png" onclick="mostrarPopupAtualizarFunc(),atualizar()">
+                        <img class="botao-atualizar-funcionario" src="../assets/att-func.png" onclick="mostrarPopupAtualizarFunc(),atualizar(${vetor[i].idUsuario})">
                     </div>
                     <div class="info-funcionario">
                         <div class="nome-funcionario">
-                            <h1 id="nome_func">${vetor[i].nome}</h1>
+                            <h1 id="nome_func">${vetor[i].nomeUsuario}</h1>
                         </div>
                         <div class="cargo-funcionario">
                             Cargo: <span id="cargo_func">${vetor[i].cargo}</span>

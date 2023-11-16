@@ -127,6 +127,10 @@
     font-family: 'Montserrat Ace SemiBold', sans-serif;
     cursor: pointer;
 }
+
+.botao_plano:hover{
+    background-image: linear-gradient(to right, violet, #E87E1C);
+}
 @media only screen and (max-width: 1999px){
     .titulo_planos {
         font-size: 1.8em;
