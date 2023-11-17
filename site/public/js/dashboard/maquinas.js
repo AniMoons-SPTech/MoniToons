@@ -1,5 +1,5 @@
 function carregarGrupoMaquinas() {
-    fetch(`/maquinas//carregarGrupoMaquinas/${idResponsavel}`, {
+    fetch(`/maquinas/carregarGrupoMaquinas/${sessionStorage.ID_USUARIO}`, {
         method: 'GET',
         headers: {
             "Content-Type": "application/json"
@@ -14,9 +14,9 @@ function carregarGrupoMaquinas() {
 }
 
 function plotarCardsMaquinas(maquinas) {
-    var cards = document.getElementById(cards);
+    var cards = document.getElementById("cards");
 
-    maquinas.forEach((maquina) => {
+    maquinas.forEach(maquina => {
 
         // ESTRUTURA DA TUPLA
         // ID, NOME, STATUS-CPU, STATUS-RAM, STATUS-DISCO, STATUS-GPU
@@ -43,16 +43,16 @@ function plotarCardsMaquinas(maquinas) {
 
             var componente = document.createElement("p")
             switch (i){
-                case 1:
+                case 0:
                     componente.innerHTML = "CPU"
                     break;
-                case 2:
+                case 1:
                     componente.innerHTML = "RAM"
                     break;
-                case 3:
+                case 2:
                     componente.innerHTML = "DISCO" 
                     break;
-                case 4:
+                case 3:
                     componente.innerHTML = "GPU"
                     break;
             }
@@ -71,19 +71,19 @@ function plotarCardsMaquinas(maquinas) {
             }
             switch (estado){
                 case "CRITICO":
-                    iconeStatus.setAttribute("src", "../assets/")
+                    iconeStatus.setAttribute("src", "../assets/fogo.png")
                     status.innerHTML = maquina.status
                     break;
                 case "INTERMEDIARIO":
-                    iconeStatus.setAttribute("src", "../assets/")
+                    iconeStatus.setAttribute("src", "../assets/avisoLaranja.png")
                     status.innerHTML = maquina.status
                     break;
                 case "MODERADO":
-                    iconeStatus.setAttribute("src", "../assets/")
+                    iconeStatus.setAttribute("src", "../assets/avisoAmarelo.png")
                     status.innerHTML = maquina.status
                     break;
                 default:
-                    iconeStatus.setAttribute("src", "../assets/")
+                    iconeStatus.setAttribute("src", "../assets/check.png")
                     status.innerHTML = "SAUDÁVEL"
             }
 
@@ -96,6 +96,7 @@ function plotarCardsMaquinas(maquinas) {
 
         var botaoVerMais = document.createElement("a");
         botaoVerMais.setAttribute("href", "./dashboard.html?idUsuario=" + idUsuario);
+        botaoVerMais.innerHTML = "Ver mais"
 
         // FAZER COM QUE O ID DO USUÁRIO SEJA PASSADO PELO URL 
 

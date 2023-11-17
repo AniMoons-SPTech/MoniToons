@@ -1,4 +1,4 @@
-var medidaModel = require("../models/medidaModel");
+var metricasModel = require("../models/metricasModel");
 
 // function buscarUltimasMedidas(req, res) {
 
@@ -48,7 +48,7 @@ function carregarAlertasCards(req, res){
     if(idResponsavel == undefined) {
         res.status(400).send("Id do usuário está indefinido!");
     }else{
-        maquinasModel.carregarAlertasCards(idResponsavel).then(function (resultado) {
+        metricasModel.carregarAlertasCards(idResponsavel).then(function (resultado) {
             if(resultado.length > 0){
                 res.status(200).json(resultado);
             }else{
@@ -67,7 +67,7 @@ function carregarMaquinasGestor(req, res){
     if(idResponsavel == undefined) {
         res.status(400).send("Id do usuário está indefinido!");
     }else{
-        maquinasModel.carregarMaquinasGestor(idResponsavel).then(function (resultado) {
+        metricasModel.carregarMaquinasGestor(idResponsavel).then(function (resultado) {
             if(resultado.length > 0){
                 res.status(200).json(resultado);
             }else{

@@ -8,11 +8,12 @@
   <title>Máquinas | MoniToons</title>
   <link rel="stylesheet" href="../css/style_maquinas.css">
   <link rel="stylesheet" href="../assets/fontes/fonts.css">
+  <script src="../js/dashboard/maquinas.js"></script>
   <script src="../js/funcionario/exibirNome" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
 </head>
 
-<body onload="mudaBarraApp() , carregarMetricas()">
+<body onload="mudaBarraApp() , carregarMetricas(), carregarGrupoMaquinas()">
   <nav class="barra-lateral">
     <div class="titulo-barra-lateral">
       <span class="titulo">MoniToons</span>
@@ -103,7 +104,7 @@
         </div>
       </div>
 
-      <!-- <hr width="1200px" style="margin: 4% 0; border: 0.2px solid white ;"> -->
+      <hr width="1200px" style="margin: 4% 0; border: 0.2px solid white ;">
 
 
       <div class="cards" id="cards">
@@ -129,7 +130,7 @@
 
   function carregarMetricas() {
     var idResponsavel = sessionStorage.ID_USUARIO
-    fetch(`/metricas//carregarAlertas/${idResponsavel}`, {
+    fetch(`/metricas/carregarAlertasCards/${idResponsavel}`, {
       method: 'GET',
       headers: {
         "Content-Type": "application/json"
@@ -152,9 +153,11 @@
 
     alertasPorComponente.forEach((alerta) => {
       var tipoComponente = alerta.tipoComponente;
-      var quantidadeAlertas = alerta.qtdAlertas;
-      var porcentagem = ((quantidadeAlertas / quantidadeDeMaquinas) * 100).toFixed(1);
-
+      var quantidadeAlertas = alerta.quantidadeAlertas;
+      var porcentagem = 0;
+      if(quantidadeAlertas !== 0){
+        ((quantidadeAlertas / quantidadeDeMaquinas) * 100).toFixed(1);
+      }
       if (tipoComponente == "CPU") {
         spanMetricaCPU.innerHTML = porcentagem;
         if (porcentagem >= 50 && porcentagem < 70) {
@@ -205,7 +208,7 @@
 
   function pegarQuantidadeMaquinas() {
     var idResponsavel = sessionStorage.ID_USUARIO
-    fetch(`/metricas//carregarMaquinasGestor/${idResponsavel}`, {
+    fetch(`/metricas/carregarMaquinasGestor/${idResponsavel}`, {
       method: 'GET',
       headers: {
         "Content-Type": "application/json"
