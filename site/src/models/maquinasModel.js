@@ -2,7 +2,7 @@ var database = require("../database/config");
 
 
 function carregarGrupoMaquinas(idResponsavel){
-    console.log("ACESSEI O MAQUINAS MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar(): ", idUsuario)
+    console.log("ACESSEI O MAQUINAS MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar(): ", idResponsavel)
     
     var instrucao = `
         SELECT
@@ -47,6 +47,8 @@ function carregarGrupoMaquinas(idResponsavel){
 
 function carregarComponentes(idUsuario){
     console.log("ACESSEI O MAQUINAS MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar(): ", idUsuario)
+
+    //Preciso de um seçect
 
     var instrucao = `
     WITH ComponentesUsuario AS (
@@ -101,7 +103,7 @@ function carregarComponentes(idUsuario){
 }
 
 function dadosGraficos(tipoComponente, idComponente){
-    console.log("ACESSEI O MAQUINAS MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar(): ", idUsuario)
+    console.log("ACESSEI O MAQUINAS MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar(): ", tipoComponente, idComponente)
 
     var instrucaoCpu = ``;// Fazer select retornando dado, valor, dtHora
     var instrucaoRam = ``;// Fazer select retornando dado, valor, dtHora
@@ -123,7 +125,7 @@ function dadosGraficos(tipoComponente, idComponente){
 }
 
 function dadosComponentes(tipoComponente, idComponente){
-    console.log("ACESSEI O MAQUINAS MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar(): ", idUsuario)
+    console.log("ACESSEI O MAQUINAS MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar(): ", tipoComponente, idComponente)
 
     var instrucaoCpu = ``;// Fazer select retornando valor1, valor2, valor3, valor4 pelo idUsuario
     var instrucaoRam = ``;// Fazer select retornando valor1, valor2, valor3, valor4 pelo idUsuario
