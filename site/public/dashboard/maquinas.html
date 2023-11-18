@@ -38,7 +38,7 @@
       <li><a href="./maquinas.html">Geral</a></li>
       <!-- <li><a href=".">Computadores</a></li> -->
       <li><a href="./funcionarios.html">Funcionários</a></li>
-      <li><a href="./muraldealertas.html">Alertas</a></li>
+      <li id="muralDeAlertas"><a href="./muraldealertas.html">Alertas</a></li>
       <li><a href="./aplicativos.html" id="link_app"></a></li>
     </ul>
     <div class="sair-barra-lateral">
@@ -117,7 +117,7 @@
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
 
-  var quantidadeDeMaquinas = 0;
+  var quantidadeDeMaquinas = 0
 
   function mudaBarraApp() {
     var linkApp = document.getElementById("link_app")
@@ -138,28 +138,28 @@
     }).then((response) => {
       if (response.ok) {
         response.json().then((resposta) => {
-          pegarQuantidadeMaquinas();
-          exibirMetrica(resposta);
+          pegarQuantidadeMaquinas()
+          exibirMetrica(resposta)
         })
       }
     })
   }
   function exibirMetrica(alertasPorComponente) {
 
-    var spanMetricaCPU = document.getElementById("span_metrica_cpu");
-    var spanMetricaRAM = document.getElementById("span_metrica_ram");
-    var spanMetricaDisco = document.getElementById("span_metrica_disco");
-    var spanMetricaGPU = document.getElementById("span_metrica_gpu");
+    var spanMetricaCPU = document.getElementById("span_metrica_cpu")
+    var spanMetricaRAM = document.getElementById("span_metrica_ram")
+    var spanMetricaDisco = document.getElementById("span_metrica_disco")
+    var spanMetricaGPU = document.getElementById("span_metrica_gpu")
 
     alertasPorComponente.forEach((alerta) => {
-      var tipoComponente = alerta.tipoComponente;
-      var quantidadeAlertas = alerta.quantidadeAlertas;
-      var porcentagem = 0;
-      if(quantidadeAlertas !== 0){
-        ((quantidadeAlertas / quantidadeDeMaquinas) * 100).toFixed(1);
+      var tipoComponente = alerta.tipoComponente
+      var quantidadeAlertas = alerta.quantidadeAlertas
+      var porcentagem = 0
+      if (quantidadeAlertas !== 0) {
+        ((quantidadeAlertas / quantidadeDeMaquinas) * 100).toFixed(1)
       }
       if (tipoComponente == "CPU") {
-        spanMetricaCPU.innerHTML = porcentagem;
+        spanMetricaCPU.innerHTML = porcentagem
         if (porcentagem >= 50 && porcentagem < 70) {
           spanMetricaCPU.style.color = "yellow"
         } else if (porcentagem >= 70 && porcentagem < 85) {
@@ -170,7 +170,7 @@
           spanMetricaCPU.style.color = "green"
         }
       } else if (tipoComponente == "RAM") {
-        spanMetricaRAM.innerHTML = porcentagem;
+        spanMetricaRAM.innerHTML = porcentagem
         if (porcentagem >= 50 && porcentagem < 70) {
           spanMetricaRAM.style.color = "yellow"
         } else if (porcentagem >= 70 && porcentagem < 85) {
@@ -181,7 +181,7 @@
           spanMetricaRAM.style.color = "green"
         }
       } else if (tipoComponente == "DISCO") {
-        spanMetricaDisco.innerHTML = porcentagem;
+        spanMetricaDisco.innerHTML = porcentagem
         if (porcentagem >= 50 && porcentagem < 70) {
           spanMetricaDisco.style.color = "yellow"
         } else if (porcentagem >= 70 && porcentagem < 85) {
@@ -192,7 +192,7 @@
           spanMetricaDisco.style.color = "green"
         }
       } else if (tipoComponente == "GPU") {
-        spanMetricaGPU.innerHTML = porcentagem;
+        spanMetricaGPU.innerHTML = porcentagem
         if (porcentagem >= 50 && porcentagem < 70) {
           spanMetricaGPU.style.color = "yellow"
         } else if (porcentagem >= 70 && porcentagem < 85) {
@@ -203,7 +203,7 @@
           spanMetricaGPU.style.color = "green"
         }
       }
-    });
+    })
   }
 
   function pegarQuantidadeMaquinas() {
@@ -216,12 +216,25 @@
     }).then((response) => {
       if (response.ok) {
         response.json().then((resposta) => {
-          quantidadeDeMaquinas = resposta.qtdMaquinaPorGestor;
+          quantidadeDeMaquinas = resposta.qtdMaquinaPorGestor
         })
       }
     })
   }
 
+  function mostrarMuralDeAlertas() {
+  var cargoUsuario = sessionStorage.CARGO_USUARIO;
+  var muralDeAlertas = document.getElementById("muralDeAlertas");
+
+  if (cargoUsuario === "COMUM" && muralDeAlertas) {
+    muralDeAlertas.style.display = "none";
+  }
+}
+
+// Chame a função quando o DOM estiver pronto
+document.addEventListener('DOMContentLoaded', function() {
+  mostrarMuralDeAlertas();
+});
 
 </script>
 
