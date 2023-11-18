@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="../css/style_mural_alertas.css">
 </head>
 
-<body onload="mudaBarraApp()">
+<body onload="plotarAlertas()">
   <nav class="barra-lateral">
     <div class="titulo-barra-lateral">
       <span class="titulo">MoniToons</span>
@@ -45,21 +45,21 @@
     </div>
   </nav>
   <div class="espaco-barra-lateral"></div>
-  <div class="content">
+  <div id="content" class="content">
     <div class="cabecalho">
       <div class="titulo_cabecalho">Mural de Alertas</div>
     </div>
-    <div class="card_alerta">
-        <span class="title_card">Alerta de {tipodecomponente}</span>
-        <div class="data_datetime">
-          <span class="data">Data do ocorrido: ${data}</span>
-          <span class="data">Hora do ocorrido: ${hora}</span>
-        </div>
-        <div class="data_componente">
-          <span>Componente: {componente}</span>
-          <span>Tipo de dado: {temperatura}</span>
-        </div>
+    <!-- <div id="card_alerta" class="card_alerta">
+      <span class="title_card">Alerta de {tipodecomponente}</span>
+      <div class="data_datetime">
+        <span class="data">Data do ocorrido: ${data}</span>
+        <span class="data">Hora do ocorrido: ${hora}</span>
       </div>
+      <div class="data_componente">
+        <span>Tipo de dado: {temperatura}</span>
+        <span>Valor: {valor}</span>
+      </div>
+    </div> -->
   </div>
 </body>
 
@@ -67,27 +67,63 @@
 
 <script>
   function mudarCorAlerta() {
-    var corAlertas = document.getElementsByClassName("cor_alerta");
+    var corAlertas = document.getElementsByClassName("cor_alerta")
 
     for (var i = 0; i < corAlertas.length; i++) {
-      var corAlerta = corAlertas[i];
-      var texto = corAlerta.textContent.trim();
+      var corAlerta = corAlertas[i]
+      var texto = corAlerta.textContent.trim()
 
       switch (texto) {
         case "VERMELHO":
-          corAlerta.style.color = "red";
-          break;
+          corAlerta.style.color = "red"
+          break
         case "AMARELO":
-          corAlerta.style.color = "yellow";
-          break;
+          corAlerta.style.color = "yellow"
+          break
         case "VERDE":
-          corAlerta.style.color = "green";
-          break;
+          corAlerta.style.color = "green"
+          break
         default:
-          corAlerta.style.color = "black";
-          break;
+          corAlerta.style.color = "black"
+          break
       }
     }
+  }
+
+  function plotarAlertas() {
+    var idEmpresa = sessionStorage.getItem("FK_EMPRESA")
+    var idUsuario = sessionStorage.getItem("ID_USUARIO")
+    const card_alerta = document.getElementById("card_alerta")
+
+    fetch(`/alertas/carregarAlertas/${idEmpresa}/${idUsuario}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+      .then(function (resposta) {
+        resposta.json().then((alertas) => {
+          alertas.forEach((alerta) => {
+            const { tipoComponente, dataHora, tipo, dadoValor } = alerta
+
+            content.innerHTML += `
+            <div id="card_alerta" class="card_alerta">
+            <span class="title_card">Alerta de ${tipoComponente}</span>
+            <div class="data_datetime">
+              <span class="data">Data do ocorrido: ${dataHora}</span>
+            </div>
+            <div class="data_componente">
+              <span>Tipo de dado: ${tipo}</span>
+              <span>Valor: ${dadoValor}</span>
+            </div>
+          </div>
+          `
+          })
+        })
+      })
+      .catch(function (erro) {
+        console.log(`#ERRO: ${erro}`)
+      })
   }
   mudarCorAlerta();
 </script>
