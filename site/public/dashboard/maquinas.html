@@ -223,18 +223,16 @@
   }
 
   function mostrarMuralDeAlertas() {
-  var cargoUsuario = sessionStorage.CARGO_USUARIO;
-  var muralDeAlertas = document.getElementById("muralDeAlertas");
+    var cargoUsuario = sessionStorage.CARGO_USUARIO
+    var muralDeAlertas = document.getElementById("muralDeAlertas")
 
-  if (cargoUsuario === "COMUM" && muralDeAlertas) {
-    muralDeAlertas.style.display = "none";
+    if (cargoUsuario === "COMUM" && muralDeAlertas) {
+      muralDeAlertas.style.display = "none"
+    }
   }
-}
-
-// Chame a função quando o DOM estiver pronto
-document.addEventListener('DOMContentLoaded', function() {
-  mostrarMuralDeAlertas();
-});
+  document.addEventListener('DOMContentLoaded', function () {
+    mostrarMuralDeAlertas()
+  });
 
 </script>
 
