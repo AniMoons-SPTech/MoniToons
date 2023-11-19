@@ -1,10 +1,10 @@
-function enviarEmail(email) {
+function enviarEmail(email, idUsuario) {
 
   const layoutEmailJS = require("./modeloEmail/modeloEmail.js")
   const nodeMailer = require("nodemailer")
 
   const nome = "Usuário MoniToons"  // Nome do usuário
-  const link = `http://localhost:3333/troca_senha.html?email=${email}`  // Link para recuperação de senha
+  const link = `http://localhost:3333/troca_senha.html?idUsuario=${idUsuario}`  // Link para recuperação de senha
 
   let transporter = nodeMailer.createTransport({
     host: "smtp.gmail.com",
@@ -29,10 +29,9 @@ function enviarEmail(email) {
   transporter.sendMail(mailOptions)
     .then((info) => {
       console.log(info)
+      console.log("Email enviado com sucesso!")
     }).catch((error) => {
       console.log(error)
-    }).finally(() => {
-      console.log("Email enviado com sucesso!")
     })
 }
 

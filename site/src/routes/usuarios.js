@@ -40,4 +40,8 @@ router.post("/recuperarSenha", function(req,res){
     usuarioController.recuperarSenha(req,res);
 })
 
+router.patch("/atualizarSenha/:idUsuario", function(req,res){
+    usuarioController.atualizarSenha(req,res);
+})
+
 module.exports = router;

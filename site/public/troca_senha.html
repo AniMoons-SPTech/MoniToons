@@ -24,17 +24,18 @@
                 <h1>Insira a sua nova senha</h1>
                 <div class="input_diferente">
                     <i class="fa-solid fa-key fa-xl icone"></i>
-                    <input type="password" placeholder="Nova senha" onkeyup="checarSenha()" id="input_nova_senha" class="input_senha">
+                    <input type="password" placeholder="Nova senha" onkeyup="checarSenha()" id="input_nova_senha"
+                        class="input_senha">
                     <i class="fa-solid fa-eye-slash icone" onclick="mostrarSenha()" id="icone_olho"></i>
                 </div>
                 <div class="input_diferente">
                     <i class="fa-solid fa-key fa-xl icone"></i>
-                    <input type="password" placeholder="Confirmar nova senha" onkeyup="checarSenha()" class="input_senha"
-                        id="input_confirmar_senha">
+                    <input type="password" placeholder="Confirmar nova senha" onkeyup="checarSenha()"
+                        class="input_senha" id="input_confirmar_senha">
                     <i class="fa-solid fa-eye-slash icone" onclick="mostrarSenha()" id="icone_olho"></i>
-                </div>  
+                </div>
                 <short id="short_aviso" style="color: red;"></short>
-                <button class="botao_entrar" type="button">ALTERAR</button>
+                <button class="botao_entrar" type="button" onclick="atualizarSenha()">ALTERAR</button>
             </form>
 
         </div>
@@ -44,6 +45,10 @@
 
 </html>
 <script>
+    var novaSenha = input_nova_senha.value
+    var parametroUrl = window.location.search
+    var idUsuario = parametroUrl.replace("?idUsuario=", "")
+    var dadosUsuario = []
 
     function redirecionar() {
         window.location.href = "index.html"
@@ -54,10 +59,41 @@
 
         if (novaSenha != confirmaSenha) {
             short_aviso.innerHTML = "As senhas não correspondem"
+            return false
         } else {
             short_aviso.innerHTML = ""
+            return true
         }
     }
+
+    function atualizarSenha() {
+        var novaSenha = input_nova_senha.value
+
+        if (checarSenha()) {
+            fetch(`/usuarios/atualizarSenha/${idUsuario}`, {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    novaSenha
+                })
+            }).then(function (resposta) {
+                if (resposta.status == 200 || resposta.status == 304) {
+                    alert("Senha atualizada com sucesso!")
+                    resposta.json().then(function (dados) {
+                        console.log(dados)
+                    })
+                    window.location.href = "login.html"
+                } else {
+                    console.log("Erro de servidor")
+                }
+            })
+        } else {
+            console.log("Erro de validação")
+        }
+    }
+
     function enviarEmail() {
         cartao_logar.innerHTML = `
         <form action="" class="formulario_generico">
