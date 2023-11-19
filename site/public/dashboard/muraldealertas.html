@@ -49,70 +49,183 @@
     <div class="cabecalho">
       <div class="titulo_cabecalho">Mural de Alertas</div>
     </div>
+    <div class="area_filtro">
+      <div class="diquinha">
+        <span>DICA DA ANIMOONS😊</span>
+        <span>Cada grau de alerta tem sua cor! Exemplos de nossos alertas:</span>
+        <div class="tipos_alerta">
+          <div id="grau_critico">CRÍTICO</div>
+          <div id="grau_moderado">MODERADO</div>
+          <div id="grau_bom">BOM</div>
+        </div>
+      </div>
+      <div class="filtros">
+        <label for="tipoFiltro">Filtrar por:</label>
+        <select id="tipoFiltro" onchange="alterarVisibilidadeTipoComponente()">
+          <option value="todos">Todos</option>
+          <option value="grau">Grau</option>
+          <option value="componente">Componente</option>
+        </select>
+
+        <label for="tipoComponente" id="labelTipoComponente" style="display: none;">Filtrar por Tipo de
+          Componente:</label>
+        <select id="tipoComponente" onchange="filtrarAlertas()" style="display: none;">
+          <option value="todos">Todos</option>
+          <option value="CPU">CPU</option>
+          <option value="GPU">GPU</option>
+          <option value="Disco">Disco</option>
+          <option value="Memória">Memória</option>
+          <option value="Processador">Processador</option>
+        </select>
+        <label for="tipoGrau" id="labelTipoGrau" style="display: none;">Filtrar por Grau:</label>
+        <select id="tipoGrau" onchange="filtrarPorGrau()" style="display: none;">
+          <option value="todos">Todos</option>
+          <option value="Alto">Alto</option>
+          <option value="Médio">Médio</option>
+          <option value="Baixo">Baixo</option>
+        </select>
+      </div>
+    </div>
+    <div class="area_tabela">
+      <div class="cabecalho_tabela">
+        <div style="padding-left: 20px; padding-right: 20px;">
+          <span>ESTADO</span>
+        </div>
+        <div style="padding-left: 20px; padding-right: 20px;">
+          <span>DATA DO OCORRIDO</span>
+        </div>
+      </div>
+      <div id="conteudo_card" style="padding-left: 20px; padding-right: 20px;"></div>
+    </div>
   </div>
 </body>
 
 </html>
 
 <script>
-  function mudarCorAlerta() {
-    var corAlertas = document.getElementsByClassName("cor_alerta")
+  function plotarAlertas() {
+  var idEmpresa = sessionStorage.getItem("FK_EMPRESA");
+  var idUsuario = sessionStorage.getItem("ID_USUARIO");
+  const conteudo_card = document.getElementById("conteudo_card");
 
-    for (var i = 0; i < corAlertas.length; i++) {
-      var corAlerta = corAlertas[i]
-      var texto = corAlerta.textContent.trim()
+  fetch(`/alertas/carregarAlertas/${idEmpresa}/${idUsuario}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+    .then(function (resposta) {
+      resposta.json().then((alertas) => {
+        // Ordenar os alertas por grau (Alto, Médio, Baixo)
+        alertas.sort((a, b) => {
+          // Pode ser necessário ajustar a ordem conforme necessário
+          const ordemGrau = { "Alto": 1, "Médio": 2, "Baixo": 3 };
+          return ordemGrau[a.grauAlerta] - ordemGrau[b.grauAlerta];
+        });
 
-      switch (texto) {
-        case "VERMELHO":
-          corAlerta.style.color = "red"
-          break
-        case "AMARELO":
-          corAlerta.style.color = "yellow"
-          break
-        case "VERDE":
-          corAlerta.style.color = "green"
-          break
-        default:
-          corAlerta.style.color = "black"
-          break
+        alertas.forEach((alerta) => {
+          const { tipoComponente, dataHoraFormatada, tipo, dadoValor, nomeUsuario, grauAlerta } = alerta;
+
+          var card = document.createElement("div");
+          card.className = "conteudo_card";
+
+          card.innerHTML = `
+            <div style="margin-left: 15px;">
+              <span id="alerta_cor" class="grau_alerta">${grauAlerta}</span>
+            </div>
+            <div class="conteudo_componente">
+              <span id="tipoComponente">Proprietário: ${nomeUsuario}</span>
+              <span class="tipoComponente">Tipo do componente: ${tipoComponente}</span>
+              <span>Tipo de dado: ${tipo}</span>
+              <span>Valor: ${dadoValor}</span>
+            </div>
+            <div style="margin-right: 15px;">
+              <span id="dataCriado">${dataHoraFormatada}</span>
+            </div>
+          `;
+
+          if (grauAlerta === "Alto") {
+            card.querySelector("#alerta_cor").style.backgroundColor = "#EF0303";
+          } else if (grauAlerta === "Médio") {
+            card.querySelector("#alerta_cor").style.backgroundColor = "#FFBF00";
+          } else {
+            card.querySelector("#alerta_cor").style.backgroundColor = "#50DF50";
+          }
+
+          conteudo_card.appendChild(card);
+        });
+      });
+    })
+    .catch(function (erro) {
+      console.log(`#ERRO: ${erro}`);
+    });
+}
+
+  function filtrarAlertas() {
+    var tipoFiltro = document.getElementById("tipoFiltro").value;
+    var tipoComponenteSelecionado = document.getElementById("tipoComponente").value;
+    var tipoGrauSelecionado = document.getElementById("tipoGrau").value;
+
+    var cards = document.getElementsByClassName("conteudo_card");
+
+    for (var i = 0; i < cards.length; i++) {
+      var card = cards[i];
+      var tipoComponenteCard = card.querySelector(".tipoComponente").textContent.replace("Tipo do componente: ", "").trim();
+      var grauAlertaCard = card.querySelector(".grau_alerta").textContent.trim();
+
+      if (
+        (tipoFiltro === "todos" || (tipoFiltro === "componente" && tipoComponenteCard === tipoComponenteSelecionado)) &&
+        (tipoFiltro !== "grau" || grauAlertaCard === tipoGrauSelecionado)
+      ) {
+        card.style.display = "flex";
+      } else {
+        card.style.display = "none";
       }
     }
   }
 
-  function plotarAlertas() {
-    var idEmpresa = sessionStorage.getItem("FK_EMPRESA")
-    var idUsuario = sessionStorage.getItem("ID_USUARIO")
-    const card_alerta = document.getElementById("card_alerta")
+  function alterarVisibilidadeTipoComponente() {
+    var tipoFiltro = document.getElementById("tipoFiltro").value;
+    var labelTipoComponente = document.getElementById("labelTipoComponente");
+    var tipoComponente = document.getElementById("tipoComponente");
 
-    fetch(`/alertas/carregarAlertas/${idEmpresa}/${idUsuario}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
-      .then(function (resposta) {
-        resposta.json().then((alertas) => {
-          alertas.forEach((alerta) => {
-            const { tipoComponente, dataHora, tipo, dadoValor } = alerta
+    var labelTipoGrau = document.getElementById("labelTipoGrau");
+    var tipoGrau = document.getElementById("tipoGrau");
 
-            content.innerHTML += `
-            <div id="card_alerta" class="card_alerta">
-            <span class="title_card">Alerta de ${tipoComponente}</span>
-            <div class="data_datetime">
-              <span class="data">Data do ocorrido: ${dataHora}</span>
-            </div>
-            <div class="data_componente">
-              <span>Tipo de dado: ${tipo}</span>
-              <span>Valor: ${dadoValor}</span>
-            </div>
-          </div>
-          `
-          })
-        })
-      })
-      .catch(function (erro) {
-        console.log(`#ERRO: ${erro}`)
-      })
+    if (tipoFiltro === "componente") {
+      labelTipoComponente.style.display = "flex";
+      tipoComponente.style.display = "flex";
+
+      labelTipoGrau.style.display = "none";
+      tipoGrau.style.display = "none";
+    } else if (tipoFiltro === "grau") {
+      labelTipoComponente.style.display = "none";
+      tipoComponente.style.display = "none";
+
+      labelTipoGrau.style.display = "flex";
+      tipoGrau.style.display = "flex";
+    } else {
+      labelTipoComponente.style.display = "none";
+      tipoComponente.style.display = "none";
+
+      labelTipoGrau.style.display = "none";
+      tipoGrau.style.display = "none";
+    }
   }
-  mudarCorAlerta();
+
+  function filtrarPorGrau() {
+    var tipoGrauSelecionado = document.getElementById("tipoGrau").value;
+    var cards = document.getElementsByClassName("conteudo_card");
+
+    for (var i = 0; i < cards.length; i++) {
+      var card = cards[i];
+      var grauAlertaCard = card.querySelector(".grau_alerta").textContent.trim();
+
+      if (tipoGrauSelecionado === "todos" || grauAlertaCard === tipoGrauSelecionado) {
+        card.style.display = "flex";
+      } else {
+        card.style.display = "none";
+      }
+    }
+  }
 </script>
