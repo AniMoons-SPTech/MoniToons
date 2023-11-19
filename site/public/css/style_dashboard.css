@@ -1,6 +1,6 @@
 :root {
-  --Gradiente-pica: linear-gradient(241deg, #E87E1C 9.88%, #AB1A3D 80.47%);
-  --Gradiente-pica-escuro: linear-gradient(241deg, #c06816 9.88%, #8b1531 80.47%);
+  --Gradiente-tema: linear-gradient(241deg, #E87E1C 9.88%, #AB1A3D 80.47%);
+  --Gradiente-tema-escuro: linear-gradient(241deg, #c06816 9.88%, #8b1531 80.47%);
   --Radial: radial-gradient(82.96% 46.27% at 50% 28.22%, #23104D 1.04%, #1D0D40 37.5%, #170A34 62.57%, #0D0324 96%);
 }
 
@@ -104,7 +104,7 @@ body {
   justify-content: center;
   width: calc(100% - 20px);
   height: 50px;
-  background: var(--Gradiente-pica);
+  background: var(--Gradiente-tema);
   border-radius: 10px;
   padding: 10px;
   font-size: large;
@@ -219,7 +219,7 @@ body {
   font-weight: 600;
   padding: 10px;
   color: #E5E5E5;
-  background: var(--Gradiente-pica);
+  background: var(--Gradiente-tema);
   border-radius: 10px;
   width: 90%;
   height: 30px;
