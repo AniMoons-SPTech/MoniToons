@@ -138,8 +138,8 @@
     }).then((response) => {
       if (response.ok) {
         response.json().then((resposta) => {
-          pegarQuantidadeMaquinas();
-          exibirMetrica(resposta);
+          pegarQuantidadeMaquinas(resposta);
+
         })
       }
     })
@@ -154,9 +154,10 @@
     alertasPorComponente.forEach((alerta) => {
       var tipoComponente = alerta.tipoComponente;
       var quantidadeAlertas = alerta.quantidadeAlertas;
+      console.log(quantidadeAlertas)
       var porcentagem = 0;
-      if(quantidadeAlertas !== 0){
-        ((quantidadeAlertas / quantidadeDeMaquinas) * 100).toFixed(1);
+      if(quantidadeAlertas !== 0 && quantidadeDeMaquinas !== 0){
+        porcentagem = (quantidadeAlertas / quantidadeDeMaquinas) * 100;
       }
       if (tipoComponente == "CPU") {
         spanMetricaCPU.innerHTML = porcentagem;
@@ -206,7 +207,7 @@
     });
   }
 
-  function pegarQuantidadeMaquinas() {
+  function pegarQuantidadeMaquinas(dados) {
     var idResponsavel = sessionStorage.ID_USUARIO
     fetch(`/metricas/carregarMaquinasGestor/${idResponsavel}`, {
       method: 'GET',
@@ -216,7 +217,9 @@
     }).then((response) => {
       if (response.ok) {
         response.json().then((resposta) => {
-          quantidadeDeMaquinas = resposta.qtdMaquinaPorGestor;
+          quantidadeDeMaquinas = resposta[0].quantidadeDeMaquinas;
+          console.log(quantidadeDeMaquinas)
+          exibirMetrica(dados);
         })
       }
     })

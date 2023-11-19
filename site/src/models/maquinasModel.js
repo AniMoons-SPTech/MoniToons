@@ -51,51 +51,29 @@ function carregarComponentes(idUsuario){
     //Preciso de um seçect
 
     var instrucao = `
-    WITH ComponentesUsuario AS (
+    WITH ComponentesComAlerta AS (
         SELECT
             c.idComponente,
             c.tipo AS tipoComponente,
-            c.nome AS nomeComponente
+            COUNT(DISTINCT a.idAlerta) AS quantidadeAlertas
         FROM
             componente c
-        JOIN computadorHasComponente chc ON c.idComponente = chc.fkComponente
-        JOIN computador comp ON chc.fkComputador = comp.idComputador
-        JOIN usuario u ON comp.fkUsuario = u.idUsuario
-        WHERE
-            u.idUsuario = ${idUsuario}
-    )
-    , AlertasComponentes AS (
-        SELECT
-            cu.idComponente,
-            cu.tipoComponente,
-            cu.nomeComponente,
-            a.grauAlerta,
-            a.dataHora
-        FROM
-            ComponentesUsuario cu
-        LEFT JOIN registro r ON cu.idComponente = r.fkCompHasComp
+        LEFT JOIN computadorHasComponente chc ON c.idComponente = chc.fkComponente
+        LEFT JOIN registro r ON chc.idCompHasComp = r.fkCompHasComp
         LEFT JOIN alerta a ON r.idRegistro = a.fkRegistro
+        LEFT JOIN computador comp ON chc.fkComputador = comp.idComputador
+        LEFT JOIN usuario u ON comp.fkUsuario = u.idUsuario
         WHERE
-            (a.dataHora IS NULL OR a.dataHora >= NOW() - INTERVAL 10 MINUTE)
+            u.fkGestor = 1
+            AND (a.dataHora IS NULL OR a.dataHora >= NOW() - INTERVAL 10 MINUTE)
+        GROUP BY
+            c.idComponente, c.tipo
     )
     SELECT
-        cu.idComponente,
-        cu.tipoComponente,
-        cu.nomeComponente,
-        ac.grauAlerta
+        tipoComponente,
+        COALESCE(quantidadeAlertas, 0) AS quantidadeAlertas
     FROM
-        ComponentesUsuario cu
-    LEFT JOIN LATERAL (
-        SELECT
-            grauAlerta
-        FROM
-            AlertasComponentes ac
-        WHERE
-            cu.idComponente = ac.idComponente
-        ORDER BY
-            ac.dataHora DESC
-        LIMIT 1
-    ) ac ON true;
+        ComponentesComAlerta;
     `// Fazer select retornando idComponente, tipoComponente, nomeComponente, grauAlerta pelo idUsuario
 
     console.log("Executando a instrução SQL: \n" + instrucao);

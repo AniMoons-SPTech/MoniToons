@@ -5,6 +5,7 @@ var campoCargo = document.getElementById("cargo_usuario");
 var nomeUser = sessionStorage.NOME_USUARIO;
 var cargoUser = sessionStorage.CARGO_USUARIO;
 var idUsuario = sessionStorage.ID_USUARIO;
+var fkGestor = sessionStorage.FK_GESTOR;
 var spanNome = document.getElementById("spanNome");
 var spanEmail = document.getElementById("spanEmail");
 var spanCpf = document.getElementById("spanCpf");
@@ -41,7 +42,14 @@ function exibirDados(vetor){
 function listar(){
     campoNome.innerHTML  = nomeUser;
     campoCargo.innerHTML = cargoUser;
-    fetch(`/usuarios/listar/${idUsuario}`, {
+
+    if (sessionStorage.CARGO_USUARIO == "ADMINISTRADOR"){
+        var idBusca = idUsuario;
+    } else {
+        var idBusca = fkGestor;
+    }
+
+    fetch(`/usuarios/listar/${idBusca}`, {
         method: 'GET',
         headers: {
             "Content-Type": "application/json"
@@ -57,6 +65,7 @@ function listar(){
     
     function exibirFuncionarios(vetor){
 
+        console.log(vetor)
 
     for(var i = 0; i < vetor.length; i++){
         cards_func.innerHTML += `
@@ -85,6 +94,16 @@ function listar(){
                 </div>
         
         `
+    }
+    if(sessionStorage.CARGO_USUARIO == "COMUM"){
+        var botaoAtualizar = document.querySelectorAll(".botao-atualizar-funcionario");
+        var botaoDeletar = document.querySelectorAll(".excluir-funcionario")
+
+        for(let i = 0; i < botaoAtualizar.length; i++){
+            botaoAtualizar[i].setAttribute("style", "display: none")
+            botaoDeletar[i].setAttribute("style", "display: none")
+        }
+        
     }
         
     }

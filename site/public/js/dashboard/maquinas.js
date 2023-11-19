@@ -61,7 +61,7 @@ function plotarCardsMaquinas(maquinas) {
             var status = document.createElement("p")
             var estado = "";
             if(i == 0){
-                estado = maquina.statusCpu  
+                estado = maquina.statusCpu 
             } else if (i == 1) {
                 estado = maquina.statusRam
             } else if (i == 2) {
@@ -72,19 +72,19 @@ function plotarCardsMaquinas(maquinas) {
             switch (estado){
                 case "CRITICO":
                     iconeStatus.setAttribute("src", "../assets/fogo.png")
-                    status.innerHTML = maquina.status
+                    status.innerHTML = "Crítico"
                     break;
                 case "INTERMEDIARIO":
                     iconeStatus.setAttribute("src", "../assets/avisoLaranja.png")
-                    status.innerHTML = maquina.status
+                    status.innerHTML = "Intermediário"
                     break;
                 case "MODERADO":
                     iconeStatus.setAttribute("src", "../assets/avisoAmarelo.png")
-                    status.innerHTML = maquina.status
+                    status.innerHTML = "Moderado"
                     break;
                 default:
                     iconeStatus.setAttribute("src", "../assets/check.png")
-                    status.innerHTML = "SAUDÁVEL"
+                    status.innerHTML = "Saudável"
             }
 
             colunaStatus.appendChild(componente);

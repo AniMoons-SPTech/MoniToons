@@ -90,12 +90,13 @@
                         sessionStorage.EMAIL_USUARIO = json.email;
                         sessionStorage.PLANO_USUARIO = json.plano;
                         sessionStorage.FK_EMPRESA = json.fkEmpresa;
+                        sessionStorage.FK_GESTOR = json.fkGestor;                    
 
                         setTimeout(function(){
 
-                            if(json.cargo == "ADMNISTRADOR"){
+                            if(json.cargo == "ADMINISTRADOR"){
                                 window.location = "./dashboard/maquinas.html"
-                            }else{
+                            }else if(json.cargo == "COMUM"){
                                 window.location = "./dashboard/dashboard.html"
                             }
 

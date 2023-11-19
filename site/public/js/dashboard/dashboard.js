@@ -50,7 +50,7 @@ function plotarComponentes() {
 
                     var infoComponente = document.createElement("div")
                     infoComponente.setAttribute("id", tipoComponente);
-                    infoComponente.setAttribute("onclick", () => mudarGrafico(`grafico-${tipoComponente}-${idComponente}`))
+                    infoComponente.setAttribute("onclick", () => mudarGraficoPrimeiraVez(`grafico-${tipoComponente}-${idComponente}`))
                     infoComponente.classList.add("info-componente-item")
 
                     var bordaAvisoComeco = document.createElement("div")
@@ -255,6 +255,10 @@ function mudarGraficoPrimeiraVez(componente) {
                         graficoExistente.update();
                     } else {
 
+                        configAtual.data.labels = dadosRecebidos.map(dado => dado.dataHora);
+                        configAtual.data.datasets[0].data = dadosRecebidos.map(dado => dado.valor);
+
+                        graficoExistente.data = configAtual.data;
                         new Chart(document.getElementById(idGrafico), configs[tipoComponente]);
                     
                     }

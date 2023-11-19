@@ -59,12 +59,12 @@ function validar(req, res){
 }
 
 function listar(req, res){
-    var { idUsuario } = req.params;
+    var { idBusca } = req.params;
 
     if(idUsuario == undefined) {
         res.status(400).send("Id da empresa está indefinido!");
-    }else{
-        usuarioModel.listar(idUsuario).then(function (resultado) {
+    } else {
+        usuarioModel.listar(idBusca).then(function (resultado) {
             if(resultado.length > 0){
                 res.status(200).json(resultado);
             }else{

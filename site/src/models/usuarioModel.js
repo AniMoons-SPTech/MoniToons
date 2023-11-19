@@ -19,10 +19,10 @@ function autenticar(email, senha) {
     return database.executar(instrucao);
 }
 
-function listar(idUsuario){
+function listar(idBusca){
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar(): ", idUsuario)
     var instrucao = `
-        SELECT * FROM usuario WHERE fkGestor = ${idUsuario} ORDER BY nomeUsuario ;
+        SELECT * FROM usuario WHERE fkGestor = ${idBusca} ORDER BY nomeUsuario ;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);

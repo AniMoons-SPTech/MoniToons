@@ -36,11 +36,11 @@
       </div>
     </div>
     <ul class="bar-links">
-      <li><a href="./maquinas.html">Geral</a></li>
-      <!-- <li><a href="#">Computadores</a></li> -->
+      <li id="li_secao_geral"><a href="./maquinas.html">Geral</a></li>
       <li><a href="./funcionarios.html">Funcionários</a></li>
       <li><a href="./muraldealertas.html">Alertas</a></li>
-      <li><a href="./aplicativos.html" id="link_app"></a></li>
+      <li id="li_app_abertos"><a href="./aplicativos.html" id="link_app">Aplicativos abertos</a></li>
+      <li id="li_app_proibidos"><a href="./aplicativos.html" id="link_app">Aplicativos proibidos</a></li>
     </ul>
     <div class="sair-barra-lateral">
       <a href="../index.html">SAIR</a>
@@ -61,14 +61,25 @@
   </section>
 </body>
 <script>
+
+
   function mudaBarraApp() {
     var linkApp = document.getElementById("link_app")
+    var liOpcaoGeral = document.getElementById("li_opcao_geral")
+    var liAppAbertos = document.getElementById("li_app_abertos")
+    var liAppProibidos = document.getElementById("li_app_proibidos")
+    
     if (sessionStorage.CARGO_USUARIO == "COMUM") {
-      linkApp.innerHTML = "Aplicativos abertos"
+      liOpcaoGeral.style.display = "none";
+      liAppAbertos.style.display = "block";
+      liAppProibidos.style.display = "none";
     } else if (sessionStorage.CARGO_USUARIO == "ADMINISTRADOR") {
-      linkApp.innerHTML = "Aplicativos proibidos"
+      liOpcaoGeral.style.display = "block";
+      liAppAbertos.style.display = "none";
+      liAppProibidos.style.display = "block";
     }
   }
+  
 
 
 </script>
