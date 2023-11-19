@@ -157,7 +157,7 @@
             <li><a href="maquinas.html">Geral</a></li>
             <!-- <li><a href="#">Computadores</a></li> -->
             <li><a href="./funcionarios.html">Funcionários</a></li>
-            <li><a href="./muraldealertas.html">Alertas</a></li>
+            <li id="muralDeAlertas"><a href="./muraldealertas.html">Alertas</a></li>
             <li><a href="./aplicativos.html" id="link_app"></a></li>
         </ul>
         <div class="sair-barra-lateral">
@@ -222,4 +222,17 @@
         window.sessionStorage.clear()
         window.location.href = "../index.html"
     }
+
+    function mostrarMuralDeAlertas() {
+    var cargoUsuario = sessionStorage.CARGO_USUARIO
+    var muralDeAlertas = document.getElementById("muralDeAlertas")
+
+    if (cargoUsuario === "COMUM" && muralDeAlertas) {
+      muralDeAlertas.style.display = "none"
+    }
+  }
+  document.addEventListener('DOMContentLoaded', function () {
+    mostrarMuralDeAlertas()
+  });
+
 </script>
