@@ -1,0 +1,27 @@
+var componentesModel = require("../models/componentesModel");
+
+function carregarCpu(req, res){
+    var { idUsuario } = req.params;
+
+    if(idUsuario == undefined) {
+        res.status(400).send("Id do responsavel está indefinido!");
+    }else{
+        componentesModel.carregarCpu(idUsuario).then(function (resultado) {
+            if(resultado.length > 0){
+                res.status(200).json(resultado);
+            } else{
+                res.status(204).send("Nenhuma maquina cadastrada!")
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+            res.status(500).json(erro.sqlMessage);
+        });
+    }
+}
+
+module.exports = {
+    carregarCpu,
+    carregarComponentes,
+    dadosGraficos,
+    dadosComponentes
+}

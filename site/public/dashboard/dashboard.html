@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="../assets/fontes/fonts.css">
   <script src="../js/funcionario/exibirNome" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="../js/dashboard/dashboard.js" defer></script>
+  <script src="../js/dashboard/dash.js" defer></script>
 </head>
 
 <body onload="mudaBarraApp(); plotarComponentes()">
@@ -68,7 +68,7 @@
     var liOpcaoGeral = document.getElementById("li_opcao_geral")
     var liAppAbertos = document.getElementById("li_app_abertos")
     var liAppProibidos = document.getElementById("li_app_proibidos")
-    
+
     if (sessionStorage.CARGO_USUARIO == "COMUM") {
       liOpcaoGeral.style.display = "none";
       liAppAbertos.style.display = "block";
@@ -79,9 +79,6 @@
       liAppProibidos.style.display = "block";
     }
   }
-  
-
-
 </script>
 
 </html>
