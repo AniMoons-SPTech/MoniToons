@@ -245,7 +245,7 @@ body {
   display: flex;
   height: 61.6vh;
   width: 100%;
-  background-color: #ffffff;
+  background-color: #180A35;
   align-items: center;
   gap: 10px;
 }
@@ -308,12 +308,14 @@ body {
 
 .grafico {
   width: 70vw;
+  padding-left: 50px;
+  padding-right: 50px;
 }
 
 .componente-selecao {
   display: flex;
   background-color: white;
-  width: 90%;
+  width: 80%;
   height: 15%;
   border-radius: 12px;
   align-items: center;
