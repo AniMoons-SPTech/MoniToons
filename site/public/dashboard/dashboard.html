@@ -6,12 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" href="../assets/moon.png" />
   <title>Dashboard | MoniToons</title>
-  <link rel="stylesheet" href="../css/style_dachboard.css">
+  <link rel="stylesheet" href="../css/style_dashboard.css">
   <link rel="stylesheet" href="../css/style_maquinas.css">
   <link rel="stylesheet" href="../assets/fontes/fonts.css">
   <script src="../js/funcionario/exibirNome" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="../js/dashboard/dash.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body onload="mudaBarraApp(); plotarComponentes()">
@@ -54,8 +54,77 @@
       </div>
       <div class="espaco-titulo-sessao"></div>
       <div class="area-graficos">
-        <div class="card-grafico" id="div_card_grafico"></div>
-        <div class="cards-adicionais" id="div_cards_adicionais"></div>
+        <div class="grafico-de-linhas">
+          <div class="grafico">
+            <canvas id="myChart"></canvas>
+          </div>
+          <div class="selecao-componentes">
+            <div class="title-selecao-componentes">
+              COMPONENTES
+            </div>
+            <div class="componente-selecao">
+              <div class="especificacoes-componente">
+                <span>CPU</span>
+                <span>Intel(R) Xeon(R) CPU E5-2620 v3 @ 2.40GHz</span>
+              </div>
+              <div class="barra-horizontal"></div>
+            </div>
+            <div class="componente-selecao">
+              <div class="especificacoes-componente">
+                <span>GPU</span>
+                <span>NOME DA GPU BLA BLA</span>
+              </div>
+              <div class="barra-horizontal"></div>
+            </div>
+            <div class="componente-selecao">
+              <div class="especificacoes-componente">
+                <span>RAM</span>
+                <span>NOME DA GPU BLA BLA</span>
+              </div>
+              <div class="barra-horizontal"></div>
+            </div>
+            <div class="componente-selecao">
+              <div class="especificacoes-componente">
+                <span>DISCO</span>
+                <span>NOME DA GPU BLA BLA</span>
+              </div>
+              <div class="barra-horizontal"></div>
+            </div>
+          </div>
+        </div>
+        <div class="sessao-informacoes">
+            <div class="card-informativo">
+              <div class="barra-vertical"></div>
+              <div class="valores">
+                <div class="title-card">% DE USO</div>
+                <div class="valor-card">50%</div>
+              </div>
+            </div>
+
+            <div class="card-informativo">
+              <div class="barra-vertical"></div>
+              <div class="valores">
+                <div class="title-card">VELOCIDADE (GHZ)</div>
+                <div class="valor-card">3.9Ghz</div>
+              </div>
+            </div>
+
+            <div class="card-informativo">
+              <div class="barra-vertical"></div>
+              <div class="valores">
+                <div class="title-card">TEMPO DE USO (H)</div>
+                <div class="valor-card">10h</div>
+              </div>
+            </div>
+
+            <div id="estado-componente" class="card-informativo">
+              <div class="barra-vertical"></div>
+              <div class="valores">
+                <div class="title-card">ESTADO</div>
+                <div class="valor-card">Bom</div>
+              </div>
+            </div>
+        </div>
       </div>
     </div>
   </section>
@@ -79,6 +148,28 @@
       liAppProibidos.style.display = "block";
     }
   }
+
+  const dados = {
+  labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio'],
+  datasets: [{
+    label: 'Vendas Mensais',
+    data: [12, 19, 3, 5, 2],
+    borderColor: 'blue',
+    borderWidth: 2,
+    fill: false,
+  }]
+};
+
+// Configuração do gráfico
+const config = {
+  type: 'line',
+  data: dados,
+};
+
+// Criação do gráfico no elemento canvas com id 'myChart'
+const ctx = document.getElementById('myChart').getContext('2d');
+const myChart = new Chart(ctx, config);
+
 </script>
 
 </html>
