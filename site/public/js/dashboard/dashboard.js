@@ -1,374 +1,233 @@
-// PEGANDO ID DA URL
-var queryString = window.location.search.substring(1);
-var params = new URLSearchParams(queryString);
-var idUsuario = params.get("idUsuario")
-var listaDeGraficos = []
+var urlAtual = window.location.href;
+var urlObj = new URL(urlAtual);
+var idUsuario = urlObj.searchParams.get("idUsuario");
+var componentesMaquina = [];
+var dadosCards = [];
+var divComponentes = document.getElementById("listaComponentes")
+var card1 = document.getElementById("title-card1");
+var card2 = document.getElementById("title-card2");
+var card3 = document.getElementById("title-card3");
+var card4 = document.getElementById("title-card4");
+var cardValor1 = document.getElementById("valor-card1");
+var cardValor2 = document.getElementById("valor-card2");
+var cardValor3 = document.getElementById("valor-card3");
+var cardValor4 = document.getElementById("valor-card4");
+const ctx1 = document.getElementById('myChart').getContext('2d')
+let proximaAtualizacao;
+var cpu = []; 
+var ram = []; 
+var disco = []; 
+var gpu = []; 
 
 
-// Configuração dos gráficos de CPU
-function plotarComponentes() {
-    fetch(`/componentes//carregarComponentes/${idUsuario}`, {
+function getComponentes(){
+    fetch(`/componentes/getComponentes/${idUsuario}`,{
+        method:'GET'
+    }).then((response) => {
+        if(response.ok){
+            componentesMaquina = []
+            response.json().then((resposta) => {
+                componentesMaquina = resposta;
+                exibirComponentes(componentesMaquina)
+                
+            }) 
+        }else{
+            throw("Houve um erro")
+        }
+    }).catch((error) => {
+        console.error(error);
+    })
+}
+
+function exibirComponentes(componentesMaquina){
+    var funcao;
+    getDados()
+    for(var i = 0; i < componentesMaquina.length ; i++){
+        if(componentesMaquina[i].tipo == "CPU"){ 
+            funcao = `dadosCpu()`;
+        }else if (componentesMaquina[i].tipo == "GPU"){
+            funcao = `dadosGpu()`;
+        }else if(componentesMaquina[i].tipo == "DISCO"){
+            funcao = `dadosDisco()`;
+            
+        }else if(componentesMaquina[i].tipo == "RAM"){
+            funcao = `dadosRam()`;
+            
+        }
+
+        divComponentes.innerHTML += `
+        <button onclick = "${funcao}" class="componente-selecao">
+        <div class="especificacoes-componente">
+          <span>${componentesMaquina[i].tipo}</span>
+          <span>${componentesMaquina[i].nome}</span>
+        </div>
+        <div class="barra-horizontal"></div>
+      </button> `
+        
+    }
+}
+
+function getDados(){
+    fetch(`/componentes/getDados/${idUsuario}`,{
+        method:'GET'
+    }).then((response) => {
+        if(response.ok){
+            response.json().then((resposta) => {
+                dadosCards = resposta;
+                for(var i = 0; i < dadosCards.length ; i++){
+                    if(dadosCards[i].tipoComp == "CPU"){ 
+                        cpu.push(dadosCards[i]) 
+                    }else if (dadosCards[i].tipoComp == "GPU"){
+                        gpu.push(dadosCards[i])
+                    }else if(dadosCards[i].tipoComp == "DISCO"){
+                        disco.push(dadosCards[i])
+                    }else if(dadosCards[i].tipoComp == "RAM"){
+                        ram.push(dadosCards[i])
+                    } 
+                }
+                dadosCpu()
+                console.log(dadosCards)
+            }) 
+        }else{
+            throw("Houve um erro")
+        }
+    }).catch((error) => {
+        console.error(error);
+    })
+    
+
+}
+
+function dadosCpu(){
+    var nucleos;
+    var velocidade;    
+    card1.innerHTML = "% de Uso"
+    card2.innerHTML = "Velocidade"
+    card3.innerHTML = "N° de núcleos"
+    for(var i = 0; i < cpu.length ; i++){
+        if(cpu[i].tipoEspecificacao == "Núcleos"){
+            nucleos = cpu[i].valor ; 
+        }else if(cpu[i].tipoEspecificacao == "Frequência"){
+            velocidade = cpu[i].valor
+        }
+        cardValor1.innerHTML = cpu[1].dadoValor
+        cardValor2.innerHTML = velocidade
+        cardValor3.innerHTML = nucleos
+    }
+    
+}
+
+function dadosRam(){
+    card1.innerHTML = "% de Uso"
+    card2.innerHTML = "Memória total"
+    card3.innerHTML = "Memória disponível"
+    for(var i = 0; i < ram.length ; i++){
+        cardValor1.innerHTML = 4
+        cardValor2.innerHTML = ram[i].valor
+        cardValor3.innerHTML = 5
+    }
+    console.log(ram)
+}
+
+
+function dadosDisco(){
+    card1.innerHTML = "Espaço disponível"
+    card2.innerHTML = "Velocidade de escrita"
+    card3.innerHTML = "Velocidade de leitura"
+    for(var i = 0; i < disco.length ; i++){
+        cardValor1.innerHTML = 4
+        cardValor2.innerHTML = ram[i].valor
+        cardValor3.innerHTML = 5
+    }
+    console.log(disco)
+}
+
+
+function dadosGpu(){
+    card1.innerHTML = "% de Uso"
+    card2.innerHTML = "Memória disponível"
+    card3.innerHTML = "Temperatura"
+    console.log(gpu)
+}
+
+
+function obterUltimosDadosGrafico(fkCompHasComp) {
+    fetch(`/componentes/dadosGrafico/${fkCompHasComp}`, {
         method: 'GET',
         headers: {
             "Content-Type": "application/json"
         },
-    }).then((response) => {
+    }).then(function (response) {
         if (response.ok) {
-            response.json().then((resposta) => {
-                var divCardGrafico = document.getElementById("div_card_grafico")
 
-                var divInfoComponentesLista = document.createElement("div");
-                divInfoComponentesLista.setAttribute("id", "div_info_componentes_lista");
-                divInfoComponentesLista.classList.add("info-componente");
+            response.json().then(function (resposta) {
+                console.log(resposta);
 
-                var tituloInfoComponente = document.createElement("div");
-                tituloInfoComponente.innerHTML = "Componentes"
-                tituloInfoComponente.classList.add("titulo-info-componente")
-
-                divInfoComponentesLista.appendChild(tituloInfoComponente);
-
-                resposta.forEach(componente => {
-                    var tipoComponente = componente.tipoComponente
-                    var idComponente = componente.idComponente;
-
-                    var graficoComponente = document.createElement("div")
-                    graficoComponente.classList.add("grafico-componente")
-                    graficoComponente.setAttribute("id", `grafico-${tipoComponente}-${idComponente}`)
-
-                    var canvasGrafico = document.createElement("canvas")
-                    canvasGrafico.setAttribute("id", `canvas-grafico-${tipoComponente}-${idComponente}`)
-
-                    listaDeGraficos.push(`canvas-grafico-${tipoComponente}-${idComponente}`)
-                    listaEstadosComponente.push(componente.grauAlerta)
-
-                    graficoComponente.appendChild(canvasGrafico)
-                    divCardGrafico.appendChild(graficoComponente)
-
-                    // nesse select vou precisar do tipo do componente, do id e do nome dele e o seu grauAlerta
-
-                    // ID, TIPO, NOME, grauAlerta
-
-                    var infoComponente = document.createElement("div")
-                    infoComponente.setAttribute("id", tipoComponente);
-                    infoComponente.setAttribute("onclick", () => mudarGraficoPrimeiraVez(`grafico-${tipoComponente}-${idComponente}`))
-                    infoComponente.classList.add("info-componente-item")
-
-                    var bordaAvisoComeco = document.createElement("div")
-                    bordaAvisoComeco.classList.add("borda-aviso")
-
-                    var bordaAvisoFinal = document.createElement("div")
-                    bordaAvisoFinal.classList.add("borda-aviso")
-
-                    switch (componente.grauAlerta) {
-                        case "CRITICO":
-                            bordaAvisoFinal.classList.add("critico")
-                            break;
-                        case "INTERMEDIARIO":
-                            bordaAvisoFinal.classList.add("intermediario")
-                            break;
-                        case "MODERADO":
-                            bordaAvisoFinal.classList.add("moderado")
-                            break;
-                        default:
-                            bordaAvisoFinal.classList.add("saudavel")
-                    }
-
-                    var divAuxiliar = document.createElement("div")
-                    divAuxiliar.classList.add("div-auxiliar")
-
-                    var infoComponenteTipo = document.createElement("div")
-                    infoComponenteTipo.classList.add("info-componente-item-titulo")
-                    infoComponenteTipo.innerHTML = tipoComponente
-
-                    var infoComponenteNome = document.createElement("div")
-                    infoComponenteNome.classList.add("info-componente-item-valor")
-                    infoComponenteNome.innerHTML = componente.nomeComponente
-
-                    divAuxiliar.appendChild(infoComponenteTipo);
-                    divAuxiliar.appendChild(infoComponenteNome);
-                    infoComponente.appendChild(bordaAvisoComeco);
-                    infoComponente.appendChild(divAuxiliar);
-                    infoComponente.appendChild(bordaAvisoFinal);
-                    divInfoComponentesLista.appendChild(infoComponente);
-                });
-
-                divCardGrafico.appendChild(divInfoComponentesLista);
-
-
-            })
-        }
-    })
-}
-
-const configs = {
-    CPU: {
-        data: {
-            labels: [],
-            datasets: [{
-                label: "USO DE CPU",
-                borderColor: '#EF0303',
-                backgroundColor: '#EF0303',
-                radius: 1,
-                data: [],
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    max: 100
-                }
-            },
-            responsive: true,
-            maintainAspectRatio: false,
-            animation: {
-                duration: 0
-            }
-        }
-    },
-    RAM: {
-        data: {
-            labels: [],
-            datasets: [{
-                label: "USO DE RAM",
-                backgroundColor: '#FFBF00',
-                borderColor: '#FFBF00',
-                radius: 1,
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    max: 100
-                }
-            },
-            responsive: true,
-            maintainAspectRatio: false,
-            animation: {
-                duration: 0
-            }
-        }
-    },
-    DISCO: {
-        labels: [],
-        datasets: [{
-            data: [],
-            backgroundColor: [
-                '#E5E5E5',
-                '#8fff8f',
-            ],
-            hoverOffset: 4,
-        }],
-        type: 'pie',
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    max: 100
-                }
-            },
-            responsive: true,
-            maintainAspectRatio: false,
-            animation: {
-                duration: 0
-            }
-        }
-    },
-    GPU: {
-        data: {
-            labels: [],
-            datasets: [{
-                label: "USO DE GPU",
-                backgroundColor: '#F87736',
-                borderColor: '#F87736',
-                radius: 1,
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    max: 100
-                }
-            },
-            responsive: true,
-            maintainAspectRatio: false,
-            animation: {
-                duration: 0
-            }
-        }
-    }
-};
-
-
-function criarGraficos() {
-    for (var i = 0; i < listaDeGraficos.length; i++) {
-        var infoIdGrafico = listaDeGraficos[i].split("-");
-        var tipoComponente = infoIdGrafico[2];
-
-        // Use as configurações dinâmicas para o tipo de componente
-        const configAtual = configs[tipoComponente];
-
-        if (configAtual) {
-            new Chart(document.getElementById(listaDeGraficos[i]), configAtual);
+                setTimeout(() => atualizarGraficoLinha(fkCompHasComp), 4000);
+            })    
+        } else if (response.status == 404) {
+            window.alert("Deu 404!");
         } else {
-            console.error(`Configurações não encontradas para o tipo de componente: ${tipoComponente}`);
+            throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + response.status);
         }
-    }
-    mudarGraficoPrimeiraVez(listaDeGraficos[0]);
+    }).catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+    });
 }
 
 
-function mudarGraficoPrimeiraVez(componente) {
-
-    var listaDadosId = componente.split("-");
-    var tipoComponente = listaDadosId[1];
-    var idComponente = listaDadosId[2];
-
-    mudarCardsInfo(tipoComponente, idComponente);
-
-
-    fetch(`/maquinas//dadosGraficos/${tipoComponente}/${idComponente}`, {
-        method: 'GET',
-        headers: {
-            "Content-Type": "application/json"
-        }
-    }).then((response) => {
+function atualizarGraficoLinha(fkCompHasComp) {
+    fetch(`/dado/graficosLinhaAtualizado/${idSetor}`, { cache: 'no-store' }).then(function (response) {
         if (response.ok) {
-            response.json().then((resposta) => {
-                if (response.ok) {
-                    const dadosRecebidos = resposta;
+            response.json().then(function (novoRegistro) {
 
-                    // Atualizar dados do gráfico
-                    const idGrafico = `canvas-grafico-${tipoComponente}-${idComponente}`;
-                    const graficoExistente = Chart.getChart(idGrafico);
+                console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+                console.log(`Dados atuais do gráfico:`);
+                console.log(dadoUmidade);
 
-                    if (graficoExistente) {
-                        
-                        const configAtual = configs[tipoComponente];
 
-                        configAtual.data.labels = dadosRecebidos.map(dado => dado.dataHora);
-                        configAtual.data.datasets[0].data = dadosRecebidos.map(dado => dado.valor);
-
-                        graficoExistente.data = configAtual.data;
-                        graficoExistente.update();
-                    } else {
-
-                        configAtual.data.labels = dadosRecebidos.map(dado => dado.dataHora);
-                        configAtual.data.datasets[0].data = dadosRecebidos.map(dado => dado.valor);
-
-                        graficoExistente.data = configAtual.data;
-                        new Chart(document.getElementById(idGrafico), configs[tipoComponente]);
+                if (novoRegistro[0].DataColeta == dadoUmidade.data.labels[dadoUmidade.data.labels.length - 1]) {
+                    console.log("---------------------------------------------------------------")
+                    console.log("Como não há dados novos para captura, o gráfico não atualizará.")
+            
+                    console.log("Horário do novo dado capturado:")
+                    console.log(novoRegistro[0].DataColeta)
+                    console.log("Horário do último dado capturado:")
+                    console.log(dadoUmidade.data.labels[dadoUmidade.data.labels.length - 1])
+                    console.log("---------------------------------------------------------------")
+                } else {
+                    // tirando e colocando valores no gráfico
+                    dadoUmidade.data.labels.shift(); // apagar o primeiro
+                    dadoUmidade.data.labels.push(novoRegistro[0].DataColeta); // incluir um novo momento
                     
-                    }
+                    var umidadeAntiga = dadoUmidade.data.datasets[0].data[dadoUmidade.data.datasets[0].data.length - 1];
+                    dadoUmidade.data.datasets[0].data.shift();  // apagar o primeiro de umidade
+                    dadoUmidade.data.datasets[0].data.push(novoRegistro[0].Umidade); // incluir uma nova medida de umidade
+                    
+                    var temperaturaAntiga = dadoTemperatura.data.datasets[0].data[dadoTemperatura.data.datasets[0].data.length - 1];
+                    dadoTemperatura.data.datasets[0].data.shift();  // apagar o primeiro de temperatura
+                    dadoTemperatura.data.datasets[0].data.push(novoRegistro[0].Temperatura); // incluir uma nova medida de temperatura
+
+                    verificarCondicao(novoRegistro[0].Temperatura, temperaturaAntiga, novoRegistro[0].Umidade, umidadeAntiga);
+
+                    graficoUmidade.update();
+                    graficoTemperatura.update();
                 }
-            })
+
+                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                proximaAtualizacao = setTimeout(() => atualizarGraficoLinha(idSetor, graficoUmidade, graficoTemperatura, dadoUmidade, dadoTemperatura), 4000);
+            });
+        } else {
+            console.error('Nenhum dado encontrado ou erro na API');
+            // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+            proximaAtualizacao = setTimeout(() => atualizarGraficoLinha(idSetor, graficoUmidade, graficoTemperatura, dadoUmidade, dadoTemperatura), 2000);
         }
     })
-}
-
-function mudarCardsInfo(tipoComponente, idComponente) {
-
-    // select tem que pegar 3 dados diferentes referentes a aquele tipo de componente
-
-    fetch(`/maquinas//dadosComponentes/${tipoComponente}/${idComponente}`, {
-        method: 'GET',
-        headers: {
-            "Content-Type": "application/json"
-        }
-    }).then((response) => {
-        if (response.ok) {
-            response.json().then((resposta) => {
-
-                var areaCardsAdicionais = document.getElementById("div_cards_adicionais")
-
-                var cardInfo1 = document.createElement("div")
-                var cardInfo2 = document.createElement("div")
-                var cardInfo3 = document.createElement("div")
-                var cardInfo4 = document.createElement("div")
-                cardInfo1.classList.add("card-info-adicional")
-                cardInfo2.classList.add("card-info-adicional")
-                cardInfo3.classList.add("card-info-adicional")
-                cardInfo4.classList.add("card-info-adicional")
-
-                var tituloCardInfo1 = document.createElement("div")
-                var tituloCardInfo2 = document.createElement("div")
-                var tituloCardInfo3 = document.createElement("div")
-                var tituloCardInfo4 = document.createElement("div")
-                tituloCardInfo1.classList.add("titulo-info-adicional")
-                tituloCardInfo2.classList.add("titulo-info-adicional")
-                tituloCardInfo3.classList.add("titulo-info-adicional")
-                tituloCardInfo4.classList.add("titulo-info-adicional")
-
-                var conteudoCardInfo1 = document.createElement("div")
-                var conteudoCardInfo2 = document.createElement("div")
-                var conteudoCardInfo3 = document.createElement("div")
-                var conteudoCardInfo4 = document.createElement("div")
-                conteudoCardInfo1.classList.add("conteudo-info-adicional")
-                conteudoCardInfo2.classList.add("conteudo-info-adicional")
-                conteudoCardInfo3.classList.add("conteudo-info-adicional")
-                conteudoCardInfo4.classList.add("conteudo-info-adicional")
-
-                if (tipoComponente == "CPU") {
-                    tituloCardInfo1.innerHTML = "% de Uso"
-                    tituloCardInfo2.innerHTML = "Velocidade"
-                    tituloCardInfo3.innerHTML = "N° de núcleos"
-                    tituloCardInfo4.innerHTML = "Nível do alerta"
-
-                    conteudoCardInfo1.innerHTML = `${resposta.porcentagemUso}%`;
-                    conteudoCardInfo2.innerHTML = `${resposta.velocidade}Ghz`;
-                    conteudoCardInfo3.innerHTML = `${resposta.numeroNucleos}`;
-                    conteudoCardInfo4.innerHTML = `${resposta.grauAlerta}`;
-
-                } else if (tipoComponente == "RAM") {
-                    tituloCardInfo1.innerHTML = "Memória total"
-                    tituloCardInfo2.innerHTML = "% de Uso"
-                    tituloCardInfo3.innerHTML = "Memória disponível"
-                    tituloCardInfo4.innerHTML = "Nível do alerta"
-
-                    conteudoCardInfo1.innerHTML = `${resposta.memoriaTotal}Gb`;
-                    conteudoCardInfo2.innerHTML = `${resposta.porcentagemUso}%`;
-                    conteudoCardInfo3.innerHTML = `${resposta.memoriaDisponivel}`;
-                    conteudoCardInfo4.innerHTML = `${resposta.grauAlerta}`;
-
-                } else if (tipoComponente == "DISCO") {
-                    tituloCardInfo1.innerHTML = "Espaço disponível"
-                    tituloCardInfo2.innerHTML = "Velocidade de escrita"
-                    tituloCardInfo3.innerHTML = "Velocidade de leitura"
-                    tituloCardInfo4.innerHTML = "Nível do alerta"
-
-                    conteudoCardInfo1.innerHTML = `${resposta.memoriaTotal}Gb`;
-                    conteudoCardInfo2.innerHTML = `${resposta.porcentagemUso}%`;
-                    conteudoCardInfo3.innerHTML = `${resposta.memoriaDisponivel}`;
-                    conteudoCardInfo4.innerHTML = `${resposta.grauAlerta}`;
-
-                } else if (tipoComponente == "GPU") {
-                    tituloCardInfo1.innerHTML = "% de Uso"
-                    tituloCardInfo2.innerHTML = "Memória disponível"
-                    tituloCardInfo3.innerHTML = "Temperatura"
-                    tituloCardInfo4.innerHTML = "Nível do alerta"
-
-                    conteudoCardInfo1.innerHTML = `${resposta.porcentagemUso}%`;
-                    conteudoCardInfo2.innerHTML = `${resposta.memoriaDisponivel}Mb`;
-                    conteudoCardInfo3.innerHTML = `${resposta.temperatura}°C`;
-                    conteudoCardInfo4.innerHTML = `${resposta.grauAlerta}`;
-                }
-                cardInfo1.appendChild(tituloCardInfo1);
-                cardInfo1.appendChild(conteudoCardInfo1);
-                cardInfo2.appendChild(tituloCardInfo2);
-                cardInfo2.appendChild(conteudoCardInfo2);
-                cardInfo3.appendChild(tituloCardInfo3);
-                cardInfo3.appendChild(conteudoCardInfo3);
-                cardInfo4.appendChild(tituloCardInfo4);
-                cardInfo4.appendChild(conteudoCardInfo4);
-
-                areaCardsAdicionais.appendChild(cardInfo1);
-                areaCardsAdicionais.appendChild(cardInfo2);
-                areaCardsAdicionais.appendChild(cardInfo3);
-                areaCardsAdicionais.appendChild(cardInfo4);
-            })
-        }
-    })
+    .catch(function (error) {
+        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+    });
 
 }
+
+
+

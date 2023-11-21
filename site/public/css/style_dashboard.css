@@ -304,13 +304,16 @@ body {
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+  
 }
 
 .grafico {
   width: 70vw;
 }
 
-.componente-selecao {
+.componente-selecao  {
+  font-family: 'Montserrat Ace Regular';
+  font-size: large;
   display: flex;
   background-color: white;
   width: 90%;

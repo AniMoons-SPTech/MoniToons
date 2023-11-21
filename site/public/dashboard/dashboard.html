@@ -9,12 +9,12 @@
   <link rel="stylesheet" href="../css/style_dashboard.css">
   <link rel="stylesheet" href="../css/style_maquinas.css">
   <link rel="stylesheet" href="../assets/fontes/fonts.css">
-  <script src="../js/funcionario/exibirNome" defer></script>
-  <script src="../js/dashboard/dash.js" defer></script>
+  <script src="../js/dashboard/dashboard.js" defer></script>
+  <script src="../js/funcionario/exibirNome.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
-<body onload="mudaBarraApp(); plotarComponentes()">
+<body onload="getComponentes(); mudaBarraApp()">
   <nav class="barra-lateral">
     <div class="titulo-barra-lateral">
       <span class="titulo">MoniToons</span>
@@ -55,73 +55,48 @@
       <div class="espaco-titulo-sessao"></div>
       <div class="area-graficos">
         <div class="grafico-de-linhas">
-          <div class="grafico">
+          <div id="grafico" class="grafico">
             <canvas id="myChart"></canvas>
           </div>
           <div class="selecao-componentes">
             <div class="title-selecao-componentes">
               COMPONENTES
             </div>
-            <div class="componente-selecao">
-              <div class="especificacoes-componente">
-                <span>CPU</span>
-                <span>Intel(R) Xeon(R) CPU E5-2620 v3 @ 2.40GHz</span>
-              </div>
-              <div class="barra-horizontal"></div>
+            <div class="selecao-componentes", id="listaComponentes">
             </div>
-            <div class="componente-selecao">
-              <div class="especificacoes-componente">
-                <span>GPU</span>
-                <span>NOME DA GPU BLA BLA</span>
-              </div>
-              <div class="barra-horizontal"></div>
-            </div>
-            <div class="componente-selecao">
-              <div class="especificacoes-componente">
-                <span>RAM</span>
-                <span>NOME DA GPU BLA BLA</span>
-              </div>
-              <div class="barra-horizontal"></div>
-            </div>
-            <div class="componente-selecao">
-              <div class="especificacoes-componente">
-                <span>DISCO</span>
-                <span>NOME DA GPU BLA BLA</span>
-              </div>
-              <div class="barra-horizontal"></div>
-            </div>
+            
           </div>
         </div>
         <div class="sessao-informacoes">
             <div class="card-informativo">
               <div class="barra-vertical"></div>
               <div class="valores">
-                <div class="title-card">% DE USO</div>
-                <div class="valor-card">50%</div>
+                <div id="title-card1" class="title-card"></div>
+                <div id="valor-card1" class="valor-card"></div>
               </div>
             </div>
 
             <div class="card-informativo">
               <div class="barra-vertical"></div>
               <div class="valores">
-                <div class="title-card">VELOCIDADE (GHZ)</div>
-                <div class="valor-card">3.9Ghz</div>
+                <div id="title-card2" class="title-card"></div>
+                <div id="valor-card2"class="valor-card"></div>
               </div>
             </div>
 
             <div class="card-informativo">
               <div class="barra-vertical"></div>
               <div class="valores">
-                <div class="title-card">TEMPO DE USO (H)</div>
-                <div class="valor-card">10h</div>
+                <div id="title-card3" class="title-card"></div>
+                <div id="valor-card3" class="valor-card"></div>
               </div>
             </div>
 
             <div id="estado-componente" class="card-informativo">
               <div class="barra-vertical"></div>
               <div class="valores">
-                <div class="title-card">ESTADO</div>
-                <div class="valor-card">Bom</div>
+                <div id="title-card4" class="title-card">ESTADO</div>
+                <div id="valor-card4" class="valor-card">Bom</div>
               </div>
             </div>
         </div>
@@ -149,26 +124,7 @@
     }
   }
 
-  const dados = {
-  labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio'],
-  datasets: [{
-    label: 'Vendas Mensais',
-    data: [12, 19, 3, 5, 2],
-    borderColor: 'blue',
-    borderWidth: 2,
-    fill: false,
-  }]
-};
-
-// Configuração do gráfico
-const config = {
-  type: 'line',
-  data: dados,
-};
-
-// Criação do gráfico no elemento canvas com id 'myChart'
-const ctx = document.getElementById('myChart').getContext('2d');
-const myChart = new Chart(ctx, config);
+  
 
 </script>
 

@@ -40,8 +40,6 @@ function exibirDados(vetor){
 }
 
 function listar(){
-    campoNome.innerHTML  = nomeUser;
-    campoCargo.innerHTML = cargoUser;
 
     if (sessionStorage.CARGO_USUARIO == "ADMINISTRADOR"){
         var idBusca = idUsuario;
