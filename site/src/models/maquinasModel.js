@@ -5,41 +5,37 @@ function carregarGrupoMaquinas(idResponsavel){
     console.log("ACESSEI O MAQUINAS MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar(): ", idResponsavel)
     
     var instrucao = `
-        SELECT
-            usuario.idUsuario,
-            usuario.nomeUsuario,
-            (SELECT alerta.grauAlerta
-            FROM registro 
-            LEFT JOIN alerta  ON alerta.fkRegistro = registro.idRegistro AND alerta.tipoComponente = 'CPU'
-            WHERE registro.fkCompHasComp = usuario.idUsuario
-            ORDER BY registro.dataHora DESC
-            LIMIT 1
-        ) AS statusCpu,
-        (SELECT alerta.grauAlerta
-            FROM registro
-            LEFT JOIN alerta ON alerta.fkRegistro = registro.idRegistro AND alerta.tipoComponente = 'RAM'
-            WHERE registro.fkCompHasComp = usuario.idUsuario
-            ORDER BY registro.dataHora DESC
-            LIMIT 1
-        ) AS statusRam,
-            (SELECT alerta.grauAlerta
-            FROM registro 
-            LEFT JOIN alerta ON alerta.fkRegistro = registro.idRegistro AND alerta.tipoComponente = 'DISCO'
-            WHERE registro.fkCompHasComp = usuario.idUsuario
-            ORDER BY registro.dataHora DESC
-            LIMIT 1
-        ) AS statusDisco,
-            (SELECT alerta.grauAlerta
-            FROM registro 
-            LEFT JOIN alerta ON alerta.fkRegistro = registro.idRegistro AND alerta.tipoComponente = 'GPU'
-            WHERE registro.fkCompHasComp = usuario.idUsuario
-            ORDER BY registro.dataHora DESC
-            LIMIT 1
-        ) AS statusGpu
-    FROM
-        usuario
-    WHERE
-        usuario.fkGestor = ${idResponsavel};`;
+    SELECT
+    usuario.idUsuario,
+    usuario.nomeUsuario,
+    (SELECT TOP 1 alerta.grauAlerta
+     FROM registro
+     LEFT JOIN alerta ON alerta.fkRegistro = registro.idRegistro AND alerta.tipoComponente = 'CPU'
+     WHERE registro.fkCompHasComp = usuario.idUsuario
+     ORDER BY registro.dataHora DESC
+    ) AS statusCpu,
+    (SELECT TOP 1 alerta.grauAlerta
+     FROM registro
+     LEFT JOIN alerta ON alerta.fkRegistro = registro.idRegistro AND alerta.tipoComponente = 'RAM'
+     WHERE registro.fkCompHasComp = usuario.idUsuario
+     ORDER BY registro.dataHora DESC
+    ) AS statusRam,
+    (SELECT TOP 1 alerta.grauAlerta
+     FROM registro
+     LEFT JOIN alerta ON alerta.fkRegistro = registro.idRegistro AND alerta.tipoComponente = 'DISCO'
+     WHERE registro.fkCompHasComp = usuario.idUsuario
+     ORDER BY registro.dataHora DESC
+    ) AS statusDisco,
+    (SELECT TOP 1 alerta.grauAlerta
+     FROM registro
+     LEFT JOIN alerta ON alerta.fkRegistro = registro.idRegistro AND alerta.tipoComponente = 'GPU'
+     WHERE registro.fkCompHasComp = usuario.idUsuario
+     ORDER BY registro.dataHora DESC
+    ) AS statusGpu
+FROM
+    usuario
+WHERE
+    usuario.fkGestor = ${idResponsavel};`;
     
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
