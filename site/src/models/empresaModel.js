@@ -19,7 +19,7 @@ function buscarPorCnpj(cnpj) {
 }
 
 function cadastrar(nomeFantasia, telefone, cnpj) {
-  var query = `insert into empresa (nomeEmpresa, cnpj, telefone)values (null,'${nomeFantasia}', '${cnpj}', '${telefone}')`;
+  var query = `insert into empresa (nomeEmpresa, cnpj, telefone)values ('${nomeFantasia}', '${cnpj}', '${telefone}')`;
 
   return database.executar(query);
 }
