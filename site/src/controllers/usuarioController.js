@@ -169,7 +169,6 @@ function atualizarFuncionario(req, res) {
 }
 async function cadastrar(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
-    console.log(req)
     var tipoPessoa = req.body.cadastroServer.tipoPessoa;
     var nome = req.body.cadastroServer.usuario.nomeCompleto;
     var email = req.body.cadastroServer.usuario.email;
