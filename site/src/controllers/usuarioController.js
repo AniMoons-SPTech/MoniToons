@@ -62,7 +62,7 @@ function listar(req, res) {
     var { idUsuario } = req.params;
 
     if (idUsuario == undefined) {
-        res.status(400).send("Id da empresa está indefinido!");
+        res.status(400).send("O Id está indefinido!");
     } else {
         usuarioModel.listar(idUsuario).then(function (resultado) {
             if (resultado.length > 0) {
