@@ -143,6 +143,13 @@ function dadosDisco(){
     card2.innerHTML = "Velocidade de escrita"
     card3.innerHTML = "Velocidade de leitura"
     console.log(disco)
+        for(var i = disco.length -1 ; i >= 0 ; i--){
+            if(disco[0].tipo == "Velocidade de escrita"){
+                escrita = disco[i].dadoFormatado;
+            }else{
+                leitura = disco[i].dadoFormatado;
+            }
+        }
     console.log(ram[0].tipo)
     // for(var i = 0; i < disco.length; i --){
     //     if(disco[i].tipo == "Velocidade de Escrita"){
