@@ -124,7 +124,8 @@ function dadosRam(){
     for(var i = ram.length -1 ; i >= 0 ; i--){
         if(ram[0].tipo == "Memória em Uso"){
             uso = ram[i].dadoFormatado;
-        }else if(ram[0].tipo == "Memória Disponível"){
+        }
+        if(ram[0].tipo == "Memória Disponível"){
             disponivel = ram[i].dadoFormatado;
         }
     }
@@ -144,7 +145,8 @@ function dadosDisco(){
         for(var i = disco.length -1 ; i >= 0 ; i--){
             if(disco[0].tipo == "Velocidade de Escrita"){
                 escrita = disco[i].dadoFormatado;
-            }else if(disco[0].tipo == "Velocidade de Leitura"){
+            }
+            if(disco[0].tipo == "Velocidade de Leitura"){
                 leitura = disco[i].dadoFormatado;
             }
         }
