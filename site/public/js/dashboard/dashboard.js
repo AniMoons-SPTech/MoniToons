@@ -99,20 +99,17 @@ function getDados(){
 }
 
 function dadosCpu(){
-    var nucleos;
     var velocidade;    
     card1.innerHTML = "% de Uso"
     card2.innerHTML = "Velocidade"
     card3.innerHTML = "N° de núcleos"
     for(var i = 0; i < cpu.length ; i++){
-        if(cpu[i].tipoEspecificacao == "Núcleos"){
-            nucleos = cpu[i].valor ; 
-        }else if(cpu[i].tipoEspecificacao == "Frequência"){
-            velocidade = cpu[i].valor
+        if(cpu[i].dadoValor == "Frequência"){
+            velocidade = cpu[i].valor;
         }
-        cardValor1.innerHTML = cpu[1].dadoValor
+        cardValor1.innerHTML = cpu[i].dadoFormatado
         cardValor2.innerHTML = velocidade
-        cardValor3.innerHTML = nucleos
+        cardValor3.innerHTML = cpu[i].nucleos_total
     }
     
 }
