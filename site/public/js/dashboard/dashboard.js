@@ -76,7 +76,7 @@ function getDados(){
                 dadosCards = resposta;
                 for(var i = 0; i < dadosCards.length ; i++){
                     if(dadosCards[i].tipoComp == "CPU"){ 
-                        cpu.push(dadosCards[i]) 
+                        cpu.push(dadosCards[i])
                     }else if (dadosCards[i].tipoComp == "GPU"){
                         gpu.push(dadosCards[i])
                     }else if(dadosCards[i].tipoComp == "DISCO"){
@@ -85,7 +85,7 @@ function getDados(){
                         ram.push(dadosCards[i])
                     } 
                 }
-                dadosCpu()
+                
                 console.log(dadosCards)
             }) 
         }else{
@@ -98,44 +98,55 @@ function getDados(){
 
 }
 
+function cards(){
 function dadosCpu(){
     var velocidade;    
     card1.innerHTML = "% de Uso"
     card2.innerHTML = "Velocidade"
     card3.innerHTML = "N° de núcleos"
-    for(var i = 0; i < cpu.length ; i++){
+
         if(cpu[i].dadoValor == "Frequência"){
-            velocidade = cpu[i].valor;
+            velocidade = cpu[cpu.length - 1].valor;
         }
-        cardValor1.innerHTML = cpu[i].dadoFormatado
+        cardValor1.innerHTML = cpu[cpu.length - 1].dadoFormatado
         cardValor2.innerHTML = velocidade
-        cardValor3.innerHTML = cpu[i].nucleos_total
+        cardValor3.innerHTML = cpu[cpu.length - 1].nucleos_total
     }
-    
-}
+
 
 function dadosRam(){
+    var uso;
+    var disponivel;
     card1.innerHTML = "% de Uso"
-    card2.innerHTML = "Memória total"
-    card3.innerHTML = "Memória disponível"
-    for(var i = 0; i < ram.length ; i++){
-        cardValor1.innerHTML = 4
-        cardValor2.innerHTML = ram[i].valor
-        cardValor3.innerHTML = 5
-    }
+    card2.innerHTML = "Memória disponível"
+    card3.innerHTML = "Memória total"
+        if(ram[ram.length -1].tipo == "Memória em Uso"){
+            uso = ram[ram.length -1].dadoFormatado
+        }else{
+            disponivel = ram[ram.length -1].dadoFormatado
+        }
+        cardValor1.innerHTML = uso
+        cardValor2.innerHTML = disponivel
+        cardValor3.innerHTML = ram[ram.length -1].valor
     console.log(ram)
 }
 
 
 function dadosDisco(){
-    card1.innerHTML = "Espaço disponível"
+    var escrita;
+    var leitura;
+    card1.innerHTML = "Tamanho"
     card2.innerHTML = "Velocidade de escrita"
     card3.innerHTML = "Velocidade de leitura"
-    for(var i = 0; i < disco.length ; i++){
-        cardValor1.innerHTML = 4
-        cardValor2.innerHTML = ram[i].valor
-        cardValor3.innerHTML = 5
-    }
+        if(disco[disco.length - 1].tipo == "Velocidade de Escrita"){
+            escrita = disco[disco.length - 1].dadoFormatado;
+        }else{
+            leitura = disco[disco.length - 1].dadoFormatado
+        }
+
+        cardValor1.innerHTML = disco[disco.length - 1].valor
+        cardValor2.innerHTML = escrita
+        cardValor3.innerHTML = leitura
     console.log(disco)
 }
 
@@ -145,6 +156,11 @@ function dadosGpu(){
     card2.innerHTML = "Memória disponível"
     card3.innerHTML = "Temperatura"
     console.log(gpu)
+}
+    dadosCpu(),
+    dadosRam(),
+    dadosDisco(),
+    dadosGpu()
 }
 
 
