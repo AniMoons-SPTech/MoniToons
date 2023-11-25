@@ -121,13 +121,15 @@ function dadosRam(){
     card2.innerHTML = "Memória disponível"
     card3.innerHTML = "Memória total"
     console.log(ram)
-    for(var i = 0; i < ram.length; i --){
-        if(ram[i].tipo == "Memória em Uso"){
-            uso = ram[i].dadoFormatado
-        }else{
-            disponivel = ram[i].dadoFormatado
-        }
-    }   
+    console.log(ram[0].tipo)
+    // for(var i = 0; i < ram.length; i --){
+    //     if(ram[i].tipo == "Memória em Uso"){
+    //         uso = ram[i].dadoFormatado
+    //     }else{
+    //         disponivel = ram[i].dadoFormatado
+    //     }
+    // }
+
         cardValor1.innerHTML = uso
         cardValor2.innerHTML = disponivel
         cardValor3.innerHTML = ram[0].valor
@@ -141,13 +143,14 @@ function dadosDisco(){
     card2.innerHTML = "Velocidade de escrita"
     card3.innerHTML = "Velocidade de leitura"
     console.log(disco)
-    for(var i = 0; i < disco.length; i --){
-        if(disco[i].tipo == "Velocidade de Escrita"){
-            escrita = disco[i].dadoFormatado;
-        }else{
-            leitura = disco[i].dadoFormatado
-        }
-    }
+    console.log(ram[0].tipo)
+    // for(var i = 0; i < disco.length; i --){
+    //     if(disco[i].tipo == "Velocidade de Escrita"){
+    //         escrita = disco[i].dadoFormatado;
+    //     }else{
+    //         leitura = disco[i].dadoFormatado
+    //     }
+    // }
         cardValor1.innerHTML = disco[0].valor
         cardValor2.innerHTML = escrita
         cardValor3.innerHTML = leitura
