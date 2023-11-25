@@ -103,13 +103,14 @@ function dadosCpu(){
     card1.innerHTML = "% de Uso"
     card2.innerHTML = "Velocidade"
     card3.innerHTML = "N° de núcleos"
-
-        if(cpu[i].dadoValor == "Frequência"){
-            velocidade = cpu[cpu.length - 1].valor;
+        for(var i = 0; i < cpu.length; i++){
+            if(cpu[i].tipoEspecificacao == "Frequência"){
+                velocidade = cpu[i].valor;
+            }
         }
-        cardValor1.innerHTML = cpu[cpu.length - 1].dadoFormatado
+        cardValor1.innerHTML = cpu[0].dadoFormatado
         cardValor2.innerHTML = velocidade
-        cardValor3.innerHTML = cpu[cpu.length - 1].nucleos_total
+        cardValor3.innerHTML = cpu[0].nucleos_total
     }
 
 
@@ -119,14 +120,17 @@ function dadosRam(){
     card1.innerHTML = "% de Uso"
     card2.innerHTML = "Memória disponível"
     card3.innerHTML = "Memória total"
-        if(ram[ram.length -1].tipo == "Memória em Uso"){
-            uso = ram[ram.length -1].dadoFormatado
+
+    for(var i = 0; i < ram.length; i --){
+        if(ram[i].tipo == "Memória em Uso"){
+            uso = ram[i].dadoFormatado
         }else{
-            disponivel = ram[ram.length -1].dadoFormatado
+            disponivel = ram[i].dadoFormatado
         }
+    }   
         cardValor1.innerHTML = uso
         cardValor2.innerHTML = disponivel
-        cardValor3.innerHTML = ram[ram.length -1].valor
+        cardValor3.innerHTML = ram[0].valor
     console.log(ram)
 }
 
@@ -137,13 +141,14 @@ function dadosDisco(){
     card1.innerHTML = "Tamanho"
     card2.innerHTML = "Velocidade de escrita"
     card3.innerHTML = "Velocidade de leitura"
-        if(disco[disco.length - 1].tipo == "Velocidade de Escrita"){
-            escrita = disco[disco.length - 1].dadoFormatado;
+    for(var i = 0; i < disco.length; i --){
+        if(disco[i].tipo == "Velocidade de Escrita"){
+            escrita = disco[i].dadoFormatado;
         }else{
-            leitura = disco[disco.length - 1].dadoFormatado
+            leitura = disco[i].dadoFormatado
         }
-
-        cardValor1.innerHTML = disco[disco.length - 1].valor
+    }
+        cardValor1.innerHTML = disco[0].valor
         cardValor2.innerHTML = escrita
         cardValor3.innerHTML = leitura
     console.log(disco)
