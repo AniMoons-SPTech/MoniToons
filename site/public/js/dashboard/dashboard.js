@@ -98,7 +98,6 @@ function getDados(){
 
 }
 
-function cards(){
 function dadosCpu(){
     var velocidade;    
     card1.innerHTML = "% de Uso"
@@ -157,12 +156,6 @@ function dadosGpu(){
     card3.innerHTML = "Temperatura"
     console.log(gpu)
 }
-    dadosCpu(),
-    dadosRam(),
-    dadosDisco(),
-    dadosGpu()
-}
-
 
 function obterUltimosDadosGrafico(fkCompHasComp) {
     fetch(`/componentes/dadosGrafico/${fkCompHasComp}`, {
