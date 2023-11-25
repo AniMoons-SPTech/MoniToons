@@ -77,7 +77,7 @@ function carregarAlertasCards(idResponsavel){
         LEFT JOIN computador comp ON chc.fkComputador = comp.idComputador
         LEFT JOIN usuario u ON comp.fkUsuario = u.idUsuario
         WHERE
-            u.fkGestor = SeuIDResponsavelAqui   
+            u.fkGestor = ${idResponsavel}   
             AND (a.dataHora IS NULL OR a.dataHora >= DATEADD(MINUTE, -10, GETDATE()))
         GROUP BY
             c.idComponente, c.tipo
