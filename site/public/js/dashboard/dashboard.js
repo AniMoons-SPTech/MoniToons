@@ -14,10 +14,6 @@ var cardValor3 = document.getElementById("valor-card3");
 var cardValor4 = document.getElementById("valor-card4");
 const ctx1 = document.getElementById('myChart').getContext('2d')
 let proximaAtualizacao;
-var cpu = []; 
-var ram = []; 
-var disco = []; 
-var gpu = []; 
 
 
 function getComponentes(){
@@ -85,14 +81,14 @@ function dadosCpu(fkCompHasComp){
     card2.innerHTML = "Velocidade"
     card3.innerHTML = "N° de núcleos"
     console.log(dadosCards)
-        // for(var i = 0; i < dadosCards.length; i++){
-        //     if(dadosCards[i].tipoEspecificacao == "Frequência"){
-        //         velocidade = dadosCards[i].valor;
-        //     }
-        // }
-        // cardValor1.innerHTML = dadosCards[0].dadoFormatado
-        // cardValor2.innerHTML = velocidade
-        // cardValor3.innerHTML = dadosCards[0].nucleos_total
+    for(var i = dadosCards.length-1 ; i > 0 ; i-- ){
+        if(dadosCards[i].tipoEspecificacao == "Frequência"){
+                   velocidade = dadosCards[i].valor;
+        }
+    }
+        cardValor1.innerHTML = dadosCards[0].dadoFormatado
+        cardValor2.innerHTML = velocidade
+        cardValor3.innerHTML = dadosCards[0].nucleos_total
     }
 
 
