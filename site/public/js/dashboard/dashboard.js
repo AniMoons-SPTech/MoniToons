@@ -39,13 +39,13 @@ function exibirComponentes(componentesMaquina) {
         let funcao;
 
         if (componentesMaquina[i].tipo == "CPU") {
-            funcao = () => dadosCpu(componentesMaquina[i].idCompHasComp);
+            funcao = dadosCpu.bind(this, componentesMaquina[i].idCompHasComp);
         } else if (componentesMaquina[i].tipo == "GPU") {
-            funcao = () => dadosGpu(componentesMaquina[i].idCompHasComp);
+            funcao = dadosGpu.bind(this, componentesMaquina[i].idCompHasComp);
         } else if (componentesMaquina[i].tipo == "DISCO") {
-            funcao = () => dadosDisco(componentesMaquina[i].idCompHasComp);
+            funcao = dadosDisco.bind(this, componentesMaquina[i].idCompHasComp);
         } else if (componentesMaquina[i].tipo == "RAM") {
-            funcao = () => dadosRam(componentesMaquina[i].idCompHasComp);
+            funcao = dadosRam.bind(this, componentesMaquina[i].idCompHasComp);
         }
 
         divComponentes.innerHTML += `
