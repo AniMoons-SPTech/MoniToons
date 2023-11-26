@@ -146,22 +146,24 @@ function dadosDisco(fkCompHasComp){
     })
     var escrita;
     var leitura;
+    var tamanho;
+
     card1.innerHTML = "Tamanho"
     card2.innerHTML = "Velocidade de escrita"
     card3.innerHTML = "Velocidade de leitura"
     for (var i = dadosCards.length - 1; i > 0; i--) {
-        if(dadosCards[i].tipo == "Memória em Uso"){
-            uso = dadosCards[i].dadoFormatado;
+        if(dadosCards[i].tipo == "Velocidade de Escrita"){
+            escrita = dadosCards[i].dadoFormatado;
         }
-        if(dadosCards[i].tipo == "Memória Disponível"){
-            disponivel = dadosCards[i].dadoFormatado;
+        if(dadosCards[i].tipo == "Velocidade de Leitura"){
+            leitura = dadosCards[i].dadoFormatado;
         }
-        if(dadosCards[i].tipoEspecificacao == "Memória Total"){
-            total = dadosCards[i].dadoFormatado;
+        if(dadosCards[i].tipoEspecificacao == "Tamanho"){
+            tamanho = dadosCards[i].valor
         }
 
 }
-        cardValor1.innerHTML = dadosCards[0].valor
+        cardValor1.innerHTML = tamanho
         cardValor2.innerHTML = escrita
         cardValor3.innerHTML = leitura
 }
