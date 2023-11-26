@@ -3,7 +3,6 @@ var urlObj = new URL(urlAtual);
 var idUsuario = urlObj.searchParams.get("idUsuario");
 var componentesMaquina = [];
 var dadosCards = [];
-var idComponente;
 var divComponentes = document.getElementById("listaComponentes")
 var card1 = document.getElementById("title-card1");
 var card2 = document.getElementById("title-card2");
@@ -43,15 +42,15 @@ function exibirComponentes(componentesMaquina){
     var funcao;
     for(var i = 0; i < componentesMaquina.length ; i++){
         if(componentesMaquina[i].tipo == "CPU"){ 
-            funcao = `dadosCpu()`;
+            funcao = `dadosCpu(${componentesMaquina[i].idCompHasComp})`;
         }else if (componentesMaquina[i].tipo == "GPU"){
-            funcao = `dadosGpu()`;
+            funcao = `dadosGpu(${componentesMaquina[i].idCompHasComp})`;
         }else if(componentesMaquina[i].tipo == "DISCO"){
-            funcao = `dadosDisco()`;
+            funcao = `dadosDisco(${componentesMaquina[i].idCompHasComp})`;
         }else if(componentesMaquina[i].tipo == "RAM"){
-            funcao = `dadosRam()`;
+            funcao = `dadosRam(${componentesMaquina[i].idCompHasComp})`;
         }
-        idComponente = componentesMaquina[i].idCompHasComp ;
+
         divComponentes.innerHTML += `
         <button onclick = "${funcao}" class="componente-selecao">
         <div class="especificacoes-componente">
@@ -65,12 +64,15 @@ function exibirComponentes(componentesMaquina){
 
 
 function getDados(){
-    fetch(`/componentes/getDados/${idComponente}`,{
+    
+}
+
+function dadosCpu(fkCompHasComp){
+    fetch(`/componentes/getDados/${fkCompHasComp}`,{
         method:'GET'
     }).then((response) => {
         if(response.ok){
             response.json().then((resposta) => {
-                dadosCards = [];
                 dadosCards = resposta;
             }) 
         }else{
@@ -79,10 +81,6 @@ function getDados(){
     }).catch((error) => {
         console.error(error);
     })
-}
-
-function dadosCpu(){
-    getDados(idComponente)
     var velocidade;    
     card1.innerHTML = "% de Uso"
     card2.innerHTML = "Velocidade"
@@ -98,8 +96,20 @@ function dadosCpu(){
     }
 
 
-function dadosRam(){
-    getDados(idComponente)
+function dadosRam(fkCompHasComp){
+    fetch(`/componentes/getDados/${fkCompHasComp}`,{
+        method:'GET'
+    }).then((response) => {
+        if(response.ok){
+            response.json().then((resposta) => {
+                dadosCards = resposta;
+            }) 
+        }else{
+            throw("Houve um erro")
+        }
+    }).catch((error) => {
+        console.error(error);
+    })
     var uso;
     var disponivel;
     card1.innerHTML = "% de Uso"
@@ -119,8 +129,20 @@ function dadosRam(){
 }
 
 
-function dadosDisco(){
-    getDados(idComponente)
+function dadosDisco(fkCompHasComp){
+    fetch(`/componentes/getDados/${fkCompHasComp}`,{
+        method:'GET'
+    }).then((response) => {
+        if(response.ok){
+            response.json().then((resposta) => {
+                dadosCards = resposta;
+            }) 
+        }else{
+            throw("Houve um erro")
+        }
+    }).catch((error) => {
+        console.error(error);
+    })
     var escrita;
     var leitura;
     card1.innerHTML = "Tamanho"
@@ -140,8 +162,20 @@ function dadosDisco(){
 }
 
 
-function dadosGpu(){
-    getDados(idComponente)
+function dadosGpu(fkCompHasComp){
+    fetch(`/componentes/getDados/${fkCompHasComp}`,{
+        method:'GET'
+    }).then((response) => {
+        if(response.ok){
+            response.json().then((resposta) => {
+                dadosCards = resposta;
+            }) 
+        }else{
+            throw("Houve um erro")
+        }
+    }).catch((error) => {
+        console.error(error);
+    })
     card1.innerHTML = "% de Uso"
     card2.innerHTML = "Memória disponível"
     card3.innerHTML = "Temperatura"
