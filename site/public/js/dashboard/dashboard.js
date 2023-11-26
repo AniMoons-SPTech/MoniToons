@@ -29,7 +29,6 @@ function getComponentes(){
             response.json().then((resposta) => {
                 componentesMaquina = resposta;
                 exibirComponentes(componentesMaquina)
-                
             }) 
         }else{
             throw("Houve um erro")
@@ -48,10 +47,8 @@ function exibirComponentes(componentesMaquina){
             funcao = `dadosGpu(${componentesMaquina[i].idCompHasComp})`;
         }else if(componentesMaquina[i].tipo == "DISCO"){
             funcao = `dadosDisco(${componentesMaquina[i].idCompHasComp})`;
-            
         }else if(componentesMaquina[i].tipo == "RAM"){
             funcao = `dadosRam(${componentesMaquina[i].idCompHasComp})`;
-            
         }
 
         divComponentes.innerHTML += `
@@ -62,11 +59,26 @@ function exibirComponentes(componentesMaquina){
         </div>
         <div class="barra-horizontal"></div>
       </button> `
-        
     }
 }
 
 
+function getDados(fkCompHasComp){
+    fetch(`/componentes/getDados/${fkCompHasComp}`,{
+        method:'GET'
+    }).then((response) => {
+        if(response.ok){
+            response.json().then((resposta) => {
+                dadosCards = [];
+                dadosCards = resposta;
+            }) 
+        }else{
+            throw("Houve um erro")
+        }
+    }).catch((error) => {
+        console.error(error);
+    })
+}
 
 function dadosCpu(fkCompHasComp){
     getDados(fkCompHasComp)
@@ -135,24 +147,7 @@ function dadosGpu(fkCompHasComp){
     console.log(gpu)
 }
 
-function getDados(fkCompHasComp){
-    fetch(`/componentes/getDados/${fkCompHasComp}`,{
-        method:'GET'
-    }).then((response) => {
-        if(response.ok){
-            response.json().then((resposta) => {
-                dadosCards = [];
-                dadosCards = resposta;
-            }) 
-        }else{
-            throw("Houve um erro")
-        }
-    }).catch((error) => {
-        console.error(error);
-    })
-    
 
-}
 
 function obterUltimosDadosGrafico(fkCompHasComp) {
     fetch(`/componentes/dadosGrafico/${fkCompHasComp}`, {

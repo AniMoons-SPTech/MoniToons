@@ -11,7 +11,7 @@ function getComponentes(idUsuario){
     return database.executar(instrucao);
 }
 
-function getDados(idComponente){
+function getDados(fkCompHasComp){
     console.log("ACESSEI O COMPONENTES MODEL")
     var instrucao = `SELECT
     r.*,
@@ -28,7 +28,7 @@ function getDados(idComponente){
     especificacoesComponente ec ON chc.fkComponente = ec.fkComponente
     JOIN
     componente comp ON ec.fkComponente = comp.idComponente
-    WHERE chc.idCompHasComp =    ${idComponente}
+    WHERE chc.idCompHasComp = ${fkCompHasComp}
 ORDER BY
    r.dataHora DESC
 OFFSET
