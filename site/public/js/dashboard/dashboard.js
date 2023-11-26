@@ -34,64 +34,122 @@ function getComponentes(){
     })
 }
 
-function exibirComponentes(componentesMaquina){
-    var funcao;
-    for(var i = 0; i < componentesMaquina.length ; i++){
-        if(componentesMaquina[i].tipo == "CPU"){
-            funcao = `dadosCpu(${componentesMaquina[i].idCompHasComp})`;
+function exibirComponentes(componentesMaquina) {
+    for (let i = 0; i < componentesMaquina.length; i++) {
+        let funcao;
+
+        if (componentesMaquina[i].tipo == "CPU") {
+            funcao = () => dadosCpu(componentesMaquina[i].idCompHasComp);
+        } else if (componentesMaquina[i].tipo == "GPU") {
+            funcao = () => dadosGpu(componentesMaquina[i].idCompHasComp);
+        } else if (componentesMaquina[i].tipo == "DISCO") {
+            funcao = () => dadosDisco(componentesMaquina[i].idCompHasComp);
+        } else if (componentesMaquina[i].tipo == "RAM") {
+            funcao = () => dadosRam(componentesMaquina[i].idCompHasComp);
         }
-        if (componentesMaquina[i].tipo == "GPU"){
-            funcao = `dadosGpu(${componentesMaquina[i].idCompHasComp})`;
-        }
-        if(componentesMaquina[i].tipo == "DISCO"){
-            funcao = `dadosDisco(${componentesMaquina[i].idCompHasComp})`;
-        }
-        if(componentesMaquina[i].tipo == "RAM"){
-            funcao = `dadosRam(${componentesMaquina[i].idCompHasComp})`;
-        }
+
         divComponentes.innerHTML += `
-        <button onclick = "${funcao}" class="componente-selecao">
-        <div class="especificacoes-componente">
-          <span>${componentesMaquina[i].tipo}</span>
-          <span>${componentesMaquina[i].nome}</span>
-        </div>
-        <div class="barra-horizontal"></div>
-      </button>`
+            <button onclick="executarFuncao(${funcao})" class="componente-selecao">
+                <div class="especificacoes-componente">
+                    <span>${componentesMaquina[i].tipo}</span>
+                    <span>${componentesMaquina[i].nome}</span>
+                </div>
+                <div class="barra-horizontal"></div>
+            </button>`;
     }
-    dadosCpu(cpu)
+}
+
+function executarFuncao(funcao) {
+    funcao();
+}
+
+function dadosCpu(fkCompHasComp) {
+    fetch(`/componentes/getDados/${fkCompHasComp}`, {
+        method: 'GET'
+    }).then((response) => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            throw "Houve um erro";
+        }
+    }).then((dadosCards) => {
+        var velocidade;
+        card1.innerHTML = "% de Uso";
+        card2.innerHTML = "Velocidade";
+        card3.innerHTML = "N° de núcleos";
+
+        for (var i = dadosCards.length - 1; i > 0; i--) {
+            if (dadosCards[i].tipoEspecificacao == "Frequência") {
+                velocidade = dadosCards[i].valor;
+            }
+        }
+
+        cardValor1.innerHTML = dadosCards[0].dadoFormatado;
+        cardValor2.innerHTML = velocidade;
+        cardValor3.innerHTML = dadosCards[0].nucleos_total;
+    }).catch((error) => {
+        console.error(error);
+    });
 }
 
 
-function dadosCpu(fkCompHasComp){
-    fetch(`/componentes/getDados/${fkCompHasComp}`,{
-        method:'GET'
-    }).then((response) => {
-        dadosCards = []
-        if(response.ok){
-            response.json().then((resposta) => {
-                dadosCards = resposta;
-            }) 
-        }else{
-            throw("Houve um erro")
-        }
-    }).catch((error) => {
-        console.error(error);
-    })
+// function exibirComponentes(componentesMaquina){
+//     var funcao;
+//     for(var i = 0; i < componentesMaquina.length ; i++){
+//         if(componentesMaquina[i].tipo == "CPU"){
+//             funcao = `dadosCpu(${componentesMaquina[i].idCompHasComp})`;
+//         }
+//         if (componentesMaquina[i].tipo == "GPU"){
+//             funcao = `dadosGpu(${componentesMaquina[i].idCompHasComp})`;
+//         }
+//         if(componentesMaquina[i].tipo == "DISCO"){
+//             funcao = `dadosDisco(${componentesMaquina[i].idCompHasComp})`;
+//         }
+//         if(componentesMaquina[i].tipo == "RAM"){
+//             funcao = `dadosRam(${componentesMaquina[i].idCompHasComp})`;
+//         }
+//         divComponentes.innerHTML += `
+//         <button onclick = "" class="componente-selecao">
+//         <div class="especificacoes-componente">
+//           <span>${componentesMaquina[i].tipo}</span>
+//           <span>${componentesMaquina[i].nome}</span>
+//         </div>
+//         <div class="barra-horizontal"></div>
+//       </button>`
+//     }
+// }
 
-    var velocidade;    
-    card1.innerHTML = "% de Uso"
-    card2.innerHTML = "Velocidade"
-    card3.innerHTML = "N° de núcleos"
-    console.log(dadosCards)
-    for(var i = dadosCards.length-1 ; i > 0 ; i-- ){
-        if(dadosCards[i].tipoEspecificacao == "Frequência"){
-                   velocidade = dadosCards[i].valor;
-        }
-    }
-        cardValor1.innerHTML = dadosCards[0].dadoFormatado
-        cardValor2.innerHTML = velocidade
-        cardValor3.innerHTML = dadosCards[0].nucleos_total
-    }
+
+// function dadosCpu(fkCompHasComp){
+//     fetch(`/componentes/getDados/${fkCompHasComp}`,{
+//         method:'GET'
+//     }).then((response) => {
+//         dadosCards = []
+//         if(response.ok){
+//             response.json().then((resposta) => {
+//                 dadosCards = resposta;
+//             }) 
+//         }else{
+//             throw("Houve um erro")
+//         }
+//     }).catch((error) => {
+//         console.error(error);
+//     })
+
+//     var velocidade;    
+//     card1.innerHTML = "% de Uso"
+//     card2.innerHTML = "Velocidade"
+//     card3.innerHTML = "N° de núcleos"
+//     console.log(dadosCards)
+//     for(var i = dadosCards.length-1 ; i > 0 ; i-- ){
+//         if(dadosCards[i].tipoEspecificacao == "Frequência"){
+//                    velocidade = dadosCards[i].valor;
+//         }
+//     }
+//         cardValor1.innerHTML = dadosCards[0].dadoFormatado
+//         cardValor2.innerHTML = velocidade
+//         cardValor3.innerHTML = dadosCards[0].nucleos_total
+//     }
 
 
 function dadosRam(fkCompHasComp){
