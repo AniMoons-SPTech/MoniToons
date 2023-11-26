@@ -61,13 +61,13 @@ function exibirComponentes(componentesMaquina) {
         var funcao;
 
         if (componentesMaquina[i].tipo == "CPU") {
-            funcao = dadosCpu;
+            funcao = 'dadosCpu';
         } else if (componentesMaquina[i].tipo == "GPU") {
-            funcao = dadosGpu;
+            funcao = 'dadosGpu';
         } else if (componentesMaquina[i].tipo == "DISCO") {
-            funcao = dadosDisco;
+            funcao = 'dadosDisco';
         } else if (componentesMaquina[i].tipo == "RAM") {
-            funcao = dadosRam;
+            funcao = 'dadosRam';
         }
 
         divComponentes.innerHTML += `
