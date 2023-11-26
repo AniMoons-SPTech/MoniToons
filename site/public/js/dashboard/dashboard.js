@@ -73,6 +73,7 @@ function dadosCpu(fkCompHasComp){
     }).then((response) => {
         if(response.ok){
             response.json().then((resposta) => {
+                dadosCards = []
                 dadosCards = resposta;
             }) 
         }else{
@@ -81,6 +82,7 @@ function dadosCpu(fkCompHasComp){
     }).catch((error) => {
         console.error(error);
     })
+
     var velocidade;    
     card1.innerHTML = "% de Uso"
     card2.innerHTML = "Velocidade"
