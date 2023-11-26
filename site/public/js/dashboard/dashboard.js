@@ -82,10 +82,7 @@ function exibirComponentes(componentesMaquina) {
 }
 
 function executarFuncao(id, funcao) {
-    dadosCpu(id);
-    dadosRam(id);
-    dadosDisco(id);
-    dadosGpu(id);
+    funcao(id);
 }
 
 
