@@ -24,7 +24,28 @@ function getComponentes(){
             componentesMaquina = []
             response.json().then((resposta) => {
                 componentesMaquina = resposta;
-                exibirComponentes(componentesMaquina)
+                for(var i = 0; i < componentesMaquina.length ; i++){
+                    if(componentesMaquina[i].tipo == "CPU"){
+                        funcao = `dadosCpu(${componentesMaquina[i].idCompHasComp})`;
+                    }
+                    if (componentesMaquina[i].tipo == "GPU"){
+                        funcao = `dadosGpu(${componentesMaquina[i].idCompHasComp})`;
+                    }
+                    if(componentesMaquina[i].tipo == "DISCO"){
+                        funcao = `dadosDisco(${componentesMaquina[i].idCompHasComp})`;
+                    }
+                    if(componentesMaquina[i].tipo == "RAM"){
+                        funcao = `dadosRam(${componentesMaquina[i].idCompHasComp})`;
+                    }
+                    divComponentes.innerHTML += `
+                    <button onclick = "" class="componente-selecao">
+                    <div class="especificacoes-componente">
+                      <span>${componentesMaquina[i].tipo}</span>
+                      <span>${componentesMaquina[i].nome}</span>
+                    </div>
+                    <div class="barra-horizontal"></div>
+                  </button>`
+                }
             }) 
         }else{
             throw("Houve um erro")
@@ -34,52 +55,7 @@ function getComponentes(){
     })
 }
 
-function exibirComponentes(componentesMaquina){
-    var funcao;
-    for(var i = 0; i < componentesMaquina.length ; i++){
-        if(componentesMaquina[i].tipo == "CPU"){
-            divComponentes.innerHTML += `
-        <button onclick = "dadosCpu(${componentesMaquina[i].idCompHasComp})" class="componente-selecao">
-        <div class="especificacoes-componente">
-          <span>${componentesMaquina[i].tipo}</span>
-          <span>${componentesMaquina[i].nome}</span>
-        </div>
-        <div class="barra-horizontal"></div>
-      </button>`
-        }
-        else if (componentesMaquina[i].tipo == "GPU"){
-            divComponentes.innerHTML += `
-        <button onclick = "dadosGpu(${componentesMaquina[i].idCompHasComp})" class="componente-selecao">
-        <div class="especificacoes-componente">
-          <span>${componentesMaquina[i].tipo}</span>
-          <span>${componentesMaquina[i].nome}</span>
-        </div>
-        <div class="barra-horizontal"></div>
-      </button>`
-        }
-        else if(componentesMaquina[i].tipo == "DISCO"){
-            divComponentes.innerHTML += `
-        <button onclick = "dadosDisco(${componentesMaquina[i].idCompHasComp})" class="componente-selecao">
-        <div class="especificacoes-componente">
-          <span>${componentesMaquina[i].tipo}</span>
-          <span>${componentesMaquina[i].nome}</span>
-        </div>
-        <div class="barra-horizontal"></div>
-      </button>`
-        }
-        else if(componentesMaquina[i].tipo == "RAM"){
-            divComponentes.innerHTML += `
-        <button onclick = "dadosRam(${componentesMaquina[i].idCompHasComp})" class="componente-selecao">
-        <div class="especificacoes-componente">
-          <span>${componentesMaquina[i].tipo}</span>
-          <span>${componentesMaquina[i].nome}</span>
-        </div>
-        <div class="barra-horizontal"></div>
-      </button>`
-        }
-        
-    }
-}
+
 
 
 function dadosCpu(fkCompHasComp){
