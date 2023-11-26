@@ -34,71 +34,31 @@ function getComponentes(){
     })
 }
 
-// function exibirComponentes(componentesMaquina){
-//     var funcao;
-//     for(var i = 0; i < componentesMaquina.length ; i++){
-//         if(componentesMaquina[i].tipo == "CPU"){
-//             funcao = `dadosCpu`;
-//         }else if (componentesMaquina[i].tipo == "GPU"){
-//             funcao = `dadosGpu`;
-//         }else if(componentesMaquina[i].tipo == "DISCO"){
-//             funcao = `dadosDisco`;
-//         }else if(componentesMaquina[i].tipo == "RAM"){
-//             funcao = `dadosRam`;
-//         }
-//         divComponentes.innerHTML += `
-//         <button onclick = "${funcao}(${componentesMaquina[i].idCompHasComp})" class="componente-selecao">
-//         <div class="especificacoes-componente">
-//           <span>${componentesMaquina[i].tipo}</span>
-//           <span>${componentesMaquina[i].nome}</span>
-//         </div>
-//         <div class="barra-horizontal"></div>
-//       </button>`
-//     }
-// }
-function exibirComponentes(componentesMaquina) {
-    for (var i = 0; i < componentesMaquina.length; i++) {
-        var funcao;
-
-        if (componentesMaquina[i].tipo == "CPU") {
-            funcao = 'dadosCpu';
-        } else if (componentesMaquina[i].tipo == "GPU") {
-            funcao = 'dadosGpu';
-        } else if (componentesMaquina[i].tipo == "DISCO") {
-            funcao = 'dadosDisco';
-        } else if (componentesMaquina[i].tipo == "RAM") {
-            funcao = 'dadosRam';
+function exibirComponentes(componentesMaquina){
+    var funcao;
+    for(var i = 0; i < componentesMaquina.length ; i++){
+        if(componentesMaquina[i].tipo == "CPU"){
+            funcao = `dadosCpu`;
+            dadosCpu(componentesMaquina[i].idCompHasComp)
+        }else if (componentesMaquina[i].tipo == "GPU"){
+            funcao = `dadosGpu`;
+            dadosGpu(componentesMaquina[i].idCompHasComp)
+        }else if(componentesMaquina[i].tipo == "DISCO"){
+            funcao = `dadosDisco`;
+            dadosDisco(componentesMaquina[i].idCompHasComp)
+        }else if(componentesMaquina[i].tipo == "RAM"){
+            funcao = `dadosRam`;
+            dadosRam(componentesMaquina[i].idCompHasComp)
         }
-
-        var button = document.createElement("button");
-        button.classList.add("componente-selecao");
-
-        var divEspecificacoes = document.createElement("div");
-        divEspecificacoes.classList.add("especificacoes-componente");
-        divEspecificacoes.innerHTML = `
-            <span>${componentesMaquina[i].tipo}</span>
-            <span>${componentesMaquina[i].nome}</span>
-        `;
-
-        var divBarraHorizontal = document.createElement("div");
-        divBarraHorizontal.classList.add("barra-horizontal");
-
-        button.appendChild(divEspecificacoes);
-        button.appendChild(divBarraHorizontal);
-
-        // Usando addEventListener para associar o evento de clique
-        button.addEventListener("click", (function (funcaoAtual) {
-            return function () {
-                executarFuncao(componentesMaquina[i].idCompHasComp, funcaoAtual);
-            };
-        })(funcao));
-
-        divComponentes.appendChild(button);
+        divComponentes.innerHTML += `
+        <button onclick = "${funcao}(${componentesMaquina[i].idCompHasComp})" class="componente-selecao">
+        <div class="especificacoes-componente">
+          <span>${componentesMaquina[i].tipo}</span>
+          <span>${componentesMaquina[i].nome}</span>
+        </div>
+        <div class="barra-horizontal"></div>
+      </button>`
     }
-}
-
-function executarFuncao(id, funcao) {
-    funcao(id);
 }
 
 
