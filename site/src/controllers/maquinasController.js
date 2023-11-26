@@ -65,7 +65,6 @@ function dadosComponentes(req, res){
 
 module.exports = {
     carregarGrupoMaquinas,
-    carregarComponentes,
     dadosGraficos,
     dadosComponentes
 }
