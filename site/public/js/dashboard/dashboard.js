@@ -24,6 +24,7 @@ function getComponentes(){
             componentesMaquina = []
             response.json().then((resposta) => {
                 componentesMaquina = resposta;
+                var funcao;
                 for(var i = 0; i < componentesMaquina.length ; i++){
                     if(componentesMaquina[i].tipo == "CPU"){
                         funcao = `dadosCpu(${componentesMaquina[i].idCompHasComp})`;
