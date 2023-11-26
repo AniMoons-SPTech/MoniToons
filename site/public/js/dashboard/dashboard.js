@@ -177,18 +177,19 @@ function dadosRam(fkCompHasComp){
     card1.innerHTML = "% de Uso"
     card2.innerHTML = "Memória disponível"
     card3.innerHTML = "Memória total"
-    console.log(dadosCards)
-    // for(var i = dadosCards.length -1 ; i >= 0 ; i--){
-    //     if(dadosCards[i].tipo == "Memória em Uso"){
-    //         uso = dadosCards[i].dadoFormatado;
-    //     }
-    //     if(dadosCards[i].tipo == "Memória Disponível"){
-    //         disponivel = dadosCards[i].dadoFormatado;
-    //     }
-    // }
-    //     cardValor1.innerHTML = uso
-    //     cardValor2.innerHTML = disponivel
-    //     cardValor3.innerHTML = dadosCards[0].valor
+    for (var i = dadosCards.length - 1; i > 0; i--) {
+        if (dadosCards[i].tipoEspecificacao == "Frequência") {
+            if(dadosCards[i].tipo == "Memória em Uso"){
+                uso = dadosCards[i].dadoFormatado;
+            }
+            if(dadosCards[i].tipo == "Memória Disponível"){
+                disponivel = dadosCards[i].dadoFormatado;
+            }
+        }
+    }
+        cardValor1.innerHTML = uso
+        cardValor2.innerHTML = disponivel
+        cardValor3.innerHTML = dadosCards[0].valor
 }
 
 
