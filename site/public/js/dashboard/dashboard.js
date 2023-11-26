@@ -43,17 +43,17 @@ function exibirComponentes(componentesMaquina){
     console.log(componentesMaquina)
     for(var i = 0; i < componentesMaquina.length ; i++){
         if(componentesMaquina[i].tipo == "CPU"){ 
-            funcao = `dadosCpu(${componentesMaquina[i].idCompHasComp})`;
+            funcao = `dadosCpu`;
         }else if (componentesMaquina[i].tipo == "GPU"){
-            funcao = `dadosGpu(${componentesMaquina[i].idCompHasComp})`;
+            funcao = `dadosGpu`;
         }else if(componentesMaquina[i].tipo == "DISCO"){
-            funcao = `dadosDisco(${componentesMaquina[i].idCompHasComp})`;
+            funcao = `dadosDisco`;
         }else if(componentesMaquina[i].tipo == "RAM"){
-            funcao = `dadosRam(${componentesMaquina[i].idCompHasComp})`;
+            funcao = `dadosRam`;
         }
 
         divComponentes.innerHTML += `
-        <button onclick = "${funcao}" class="componente-selecao">
+        <button onclick = "${funcao}(${componentesMaquina[i].idCompHasComp})" class="componente-selecao">
         <div class="especificacoes-componente">
           <span>${componentesMaquina[i].tipo}</span>
           <span>${componentesMaquina[i].nome}</span>
