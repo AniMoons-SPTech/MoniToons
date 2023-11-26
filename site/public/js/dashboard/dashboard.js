@@ -3,6 +3,7 @@ var urlObj = new URL(urlAtual);
 var idUsuario = urlObj.searchParams.get("idUsuario");
 var componentesMaquina = [];
 var dadosCards = [];
+var idComponente;
 var divComponentes = document.getElementById("listaComponentes")
 var card1 = document.getElementById("title-card1");
 var card2 = document.getElementById("title-card2");
@@ -40,20 +41,19 @@ function getComponentes(){
 
 function exibirComponentes(componentesMaquina){
     var funcao;
-    
     for(var i = 0; i < componentesMaquina.length ; i++){
         if(componentesMaquina[i].tipo == "CPU"){ 
-            funcao = `dadosCpu`;
+            funcao = `dadosCpu()`;
         }else if (componentesMaquina[i].tipo == "GPU"){
-            funcao = `dadosGpu`;
+            funcao = `dadosGpu()`;
         }else if(componentesMaquina[i].tipo == "DISCO"){
-            funcao = `dadosDisco`;
+            funcao = `dadosDisco()`;
         }else if(componentesMaquina[i].tipo == "RAM"){
-            funcao = `dadosRam`;
+            funcao = `dadosRam()`;
         }
-        console.log(componentesMaquina[i].idCompHasComp)
+        idComponente = componentesMaquina[i].idCompHasComp ;
         divComponentes.innerHTML += `
-        <button onclick = "${funcao}(${componentesMaquina[i].idCompHasComp})" class="componente-selecao">
+        <button onclick = "${funcao}" class="componente-selecao">
         <div class="especificacoes-componente">
           <span>${componentesMaquina[i].tipo}</span>
           <span>${componentesMaquina[i].nome}</span>
@@ -64,8 +64,8 @@ function exibirComponentes(componentesMaquina){
 }
 
 
-function getDados(fkCompHasComp){
-    fetch(`/componentes/getDados/${fkCompHasComp}`,{
+function getDados(){
+    fetch(`/componentes/getDados/${idComponente}`,{
         method:'GET'
     }).then((response) => {
         if(response.ok){
@@ -81,8 +81,8 @@ function getDados(fkCompHasComp){
     })
 }
 
-function dadosCpu(fkCompHasComp){
-    getDados(fkCompHasComp)
+function dadosCpu(){
+    getDados(idComponente)
     var velocidade;    
     card1.innerHTML = "% de Uso"
     card2.innerHTML = "Velocidade"
@@ -98,8 +98,8 @@ function dadosCpu(fkCompHasComp){
     }
 
 
-function dadosRam(fkCompHasComp){
-    getDados(fkCompHasComp)
+function dadosRam(){
+    getDados(idComponente)
     var uso;
     var disponivel;
     card1.innerHTML = "% de Uso"
@@ -119,8 +119,8 @@ function dadosRam(fkCompHasComp){
 }
 
 
-function dadosDisco(fkCompHasComp){
-    getDados(fkCompHasComp)
+function dadosDisco(){
+    getDados(idComponente)
     var escrita;
     var leitura;
     card1.innerHTML = "Tamanho"
@@ -140,8 +140,8 @@ function dadosDisco(fkCompHasComp){
 }
 
 
-function dadosGpu(fkCompHasComp){
-    getDados(fkCompHasComp)
+function dadosGpu(){
+    getDados(idComponente)
     card1.innerHTML = "% de Uso"
     card2.innerHTML = "Memória disponível"
     card3.innerHTML = "Temperatura"
