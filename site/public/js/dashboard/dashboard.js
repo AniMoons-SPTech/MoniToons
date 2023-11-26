@@ -40,7 +40,7 @@ function getComponentes(){
 
 function exibirComponentes(componentesMaquina){
     var funcao;
-    console.log(componentesMaquina)
+    
     for(var i = 0; i < componentesMaquina.length ; i++){
         if(componentesMaquina[i].tipo == "CPU"){ 
             funcao = `dadosCpu`;
@@ -51,7 +51,7 @@ function exibirComponentes(componentesMaquina){
         }else if(componentesMaquina[i].tipo == "RAM"){
             funcao = `dadosRam`;
         }
-
+        console.log(componentesMaquina[i].idCompHasComp)
         divComponentes.innerHTML += `
         <button onclick = "${funcao}(${componentesMaquina[i].idCompHasComp})" class="componente-selecao">
         <div class="especificacoes-componente">
