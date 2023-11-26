@@ -153,7 +153,6 @@ function dadosDisco(){
         cardValor1.innerHTML = disco[0].valor
         cardValor2.innerHTML = escrita
         cardValor3.innerHTML = leitura
-    
 }
 
 

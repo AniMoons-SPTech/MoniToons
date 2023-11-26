@@ -89,7 +89,6 @@ function dadosComponentes(tipoComponente, idComponente){
 
 module.exports = {
     carregarGrupoMaquinas,
-    carregarComponentes,
     dadosGraficos,
     dadosComponentes
 };
