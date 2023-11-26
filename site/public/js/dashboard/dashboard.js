@@ -36,19 +36,17 @@ function getComponentes(){
 
 function exibirComponentes(componentesMaquina){
     var funcao;
+    var cpu;
     for(var i = 0; i < componentesMaquina.length ; i++){
         if(componentesMaquina[i].tipo == "CPU"){
             funcao = `dadosCpu`;
-            dadosCpu(componentesMaquina[i].idCompHasComp)
+            cpu = componentesMaquina[i].idCompHasComp
         }else if (componentesMaquina[i].tipo == "GPU"){
             funcao = `dadosGpu`;
-            dadosGpu(componentesMaquina[i].idCompHasComp)
         }else if(componentesMaquina[i].tipo == "DISCO"){
             funcao = `dadosDisco`;
-            dadosDisco(componentesMaquina[i].idCompHasComp)
         }else if(componentesMaquina[i].tipo == "RAM"){
             funcao = `dadosRam`;
-            dadosRam(componentesMaquina[i].idCompHasComp)
         }
         divComponentes.innerHTML += `
         <button onclick = "${funcao}(${componentesMaquina[i].idCompHasComp})" class="componente-selecao">
@@ -59,6 +57,7 @@ function exibirComponentes(componentesMaquina){
         <div class="barra-horizontal"></div>
       </button>`
     }
+    dadosCpu(cpu)
 }
 
 
