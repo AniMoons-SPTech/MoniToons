@@ -37,15 +37,20 @@ function getComponentes(){
 function exibirComponentes(componentesMaquina) {
     for (let i = 0; i < componentesMaquina.length; i++) {
         let funcao;
+        var id;
 
         if (componentesMaquina[i].tipo == "CPU") {
-            funcao = 'dadosCpu.bind(this, componentesMaquina[i].idCompHasComp)';
+            id = componentesMaquina[i].idCompHasComp;
+            funcao = `dadosCpu.bind(this, ${id})`;
         } else if (componentesMaquina[i].tipo == "GPU") {
-            funcao = 'dadosGpu.bind(this, componentesMaquina[i].idCompHasComp)';
+            id = componentesMaquina[i].idCompHasComp;
+            funcao = `dadosGpu.bind(this, ${id})`;
         } else if (componentesMaquina[i].tipo == "DISCO") {
-            funcao = 'dadosDisco.bind(this, componentesMaquina[i].idCompHasComp)';
+            id = componentesMaquina[i].idCompHasComp;
+            funcao = `dadosDisco.bind(this, ${id})`;
         } else if (componentesMaquina[i].tipo == "RAM") {
-            funcao = 'dadosRam.bind(this, componentesMaquina[i].idCompHasComp)';
+            id = componentesMaquina[i].idCompHasComp;
+            funcao = `dadosGpu.bind(this, ${id})`;
         }
 
         divComponentes.innerHTML += `
