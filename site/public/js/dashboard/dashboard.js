@@ -37,14 +37,18 @@ function getComponentes(){
 function exibirComponentes(componentesMaquina){
     var funcao;
     for(var i = 0; i < componentesMaquina.length ; i++){
-        if(componentesMaquina[i].tipo == "CPU"){ 
-            funcao = `dadosCpu(${componentesMaquina[i].idCompHasComp})`;
+        if(componentesMaquina[i].tipo == "CPU"){
+            var cpu = componentesMaquina[i].idCompHasComp;
+            funcao = `dadosCpu(${cpu})`;
         }else if (componentesMaquina[i].tipo == "GPU"){
-            funcao = `dadosGpu(${componentesMaquina[i].idCompHasComp})`;
+            var gpu = componentesMaquina[i].idCompHasComp;
+            funcao = `dadosGpu(${gpu})`;
         }else if(componentesMaquina[i].tipo == "DISCO"){
-            funcao = `dadosDisco(${componentesMaquina[i].idCompHasComp})`;
+            var disco = componentesMaquina[i].idCompHasComp;
+            funcao = `dadosDisco(${disco})`;
         }else if(componentesMaquina[i].tipo == "RAM"){
-            funcao = `dadosRam(${componentesMaquina[i].idCompHasComp})`;
+            var ram = componentesMaquina[i].idCompHasComp;
+            funcao = `dadosRam(${ram})`;
         }
 
         divComponentes.innerHTML += `
