@@ -40,6 +40,7 @@ function getComponentes(){
 
 function exibirComponentes(componentesMaquina){
     var funcao;
+    console.log(componentesMaquina)
     for(var i = 0; i < componentesMaquina.length ; i++){
         if(componentesMaquina[i].tipo == "CPU"){ 
             funcao = `dadosCpu(${componentesMaquina[i].idCompHasComp})`;
