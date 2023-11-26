@@ -2,7 +2,6 @@ var urlAtual = window.location.href;
 var urlObj = new URL(urlAtual);
 var idUsuario = urlObj.searchParams.get("idUsuario");
 var componentesMaquina = [];
-var dadosCards = [];
 var divComponentes = document.getElementById("listaComponentes")
 var card1 = document.getElementById("title-card1");
 var card2 = document.getElementById("title-card2");
@@ -68,12 +67,12 @@ function getDados(){
 }
 
 function dadosCpu(fkCompHasComp){
+    var dadosCards;
     fetch(`/componentes/getDados/${fkCompHasComp}`,{
         method:'GET'
     }).then((response) => {
         if(response.ok){
             response.json().then((resposta) => {
-                dadosCards = []
                 dadosCards = resposta;
             }) 
         }else{
@@ -100,12 +99,12 @@ function dadosCpu(fkCompHasComp){
 
 
 function dadosRam(fkCompHasComp){
+    var dadosCards;
     fetch(`/componentes/getDados/${fkCompHasComp}`,{
         method:'GET'
     }).then((response) => {
         if(response.ok){
             response.json().then((resposta) => {
-                dadosCards = [];
                 dadosCards = resposta;
             }) 
         }else{
@@ -135,12 +134,12 @@ function dadosRam(fkCompHasComp){
 
 
 function dadosDisco(fkCompHasComp){
+    var dadosCards;
     fetch(`/componentes/getDados/${fkCompHasComp}`,{
         method:'GET'
     }).then((response) => {
         if(response.ok){
             response.json().then((resposta) => {
-                dadosCards = []
                 dadosCards = resposta;
             }) 
         }else{
@@ -170,6 +169,7 @@ function dadosDisco(fkCompHasComp){
 
 
 function dadosGpu(fkCompHasComp){
+    var dadosCards;
     fetch(`/componentes/getDados/${fkCompHasComp}`,{
         method:'GET'
     }).then((response) => {
