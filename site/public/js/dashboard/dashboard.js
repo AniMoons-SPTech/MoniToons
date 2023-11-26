@@ -39,7 +39,7 @@ function getComponentes(){
                         funcao = `dadosRam(${componentesMaquina[i].idCompHasComp})`;
                     }
                     divComponentes.innerHTML += `
-                    <button onclick = "" class="componente-selecao">
+                    <button onclick = "${funcao}" class="componente-selecao">
                     <div class="especificacoes-componente">
                       <span>${componentesMaquina[i].tipo}</span>
                       <span>${componentesMaquina[i].nome}</span>
