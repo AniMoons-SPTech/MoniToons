@@ -70,16 +70,30 @@ function exibirComponentes(componentesMaquina) {
             funcao = 'dadosRam';
         }
 
-        (function (funcaoAtual) {
-            divComponentes.innerHTML += `
-            <button onclick="executarFuncao(${componentesMaquina[i].idCompHasComp}, ${funcaoAtual})" class="componente-selecao">
-            <div class="especificacoes-componente">
-              <span>${componentesMaquina[i].tipo}</span>
-              <span>${componentesMaquina[i].nome}</span>
-            </div>
-            <div class="barra-horizontal"></div>
-          </button>`;
-        })(funcao);
+        var button = document.createElement("button");
+        button.classList.add("componente-selecao");
+
+        var divEspecificacoes = document.createElement("div");
+        divEspecificacoes.classList.add("especificacoes-componente");
+        divEspecificacoes.innerHTML = `
+            <span>${componentesMaquina[i].tipo}</span>
+            <span>${componentesMaquina[i].nome}</span>
+        `;
+
+        var divBarraHorizontal = document.createElement("div");
+        divBarraHorizontal.classList.add("barra-horizontal");
+
+        button.appendChild(divEspecificacoes);
+        button.appendChild(divBarraHorizontal);
+
+        // Usando addEventListener para associar o evento de clique
+        button.addEventListener("click", (function (funcaoAtual) {
+            return function () {
+                executarFuncao(componentesMaquina[i].idCompHasComp, funcaoAtual);
+            };
+        })(funcao));
+
+        divComponentes.appendChild(button);
     }
 }
 
