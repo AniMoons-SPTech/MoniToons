@@ -44,14 +44,14 @@ function exibirComponentes(componentesMaquina){
     getDados()
     for(var i = 0; i < componentesMaquina.length ; i++){
         if(componentesMaquina[i].tipo == "CPU"){ 
-            funcao = `dadosCpu()`;
+            funcao = `dadosCpu(${componentesMaquina[i].idCompHasComp})`;
         }else if (componentesMaquina[i].tipo == "GPU"){
-            funcao = `dadosGpu()`;
+            funcao = `dadosGpu(${componentesMaquina[i].idCompHasComp})`;
         }else if(componentesMaquina[i].tipo == "DISCO"){
-            funcao = `dadosDisco()`;
+            funcao = `dadosDisco(${componentesMaquina[i].idCompHasComp})`;
             
         }else if(componentesMaquina[i].tipo == "RAM"){
-            funcao = `dadosRam()`;
+            funcao = `dadosRam(${componentesMaquina[i].idCompHasComp})`;
             
         }
 
@@ -67,26 +67,83 @@ function exibirComponentes(componentesMaquina){
     }
 }
 
-function getDados(){
-    fetch(`/componentes/getDados/${idUsuario}`,{
+
+
+function dadosCpu(fkCompHasComp){
+    getDados(fkCompHasComp)
+    var velocidade;    
+    card1.innerHTML = "% de Uso"
+    card2.innerHTML = "Velocidade"
+    card3.innerHTML = "N° de núcleos"
+        for(var i = 0; i < dadosCards.length; i++){
+            if(dadosCards[i].tipoEspecificacao == "Frequência"){
+                velocidade = dadosCards[i].valor;
+            }
+        }
+        cardValor1.innerHTML = dadosCards[0].dadoFormatado
+        cardValor2.innerHTML = velocidade
+        cardValor3.innerHTML = dadosCards[0].nucleos_total
+    }
+
+
+function dadosRam(fkCompHasComp){
+    getDados(fkCompHasComp)
+    var uso;
+    var disponivel;
+    card1.innerHTML = "% de Uso"
+    card2.innerHTML = "Memória disponível"
+    card3.innerHTML = "Memória total"
+    for(var i = dadosCards.length -1 ; i >= 0 ; i--){
+        if(dadosCards[i].tipo == "Memória em Uso"){
+            uso = dadosCards[i].dadoFormatado;
+        }
+        if(dadosCards[i].tipo == "Memória Disponível"){
+            disponivel = dadosCards[i].dadoFormatado;
+        }
+    }
+        cardValor1.innerHTML = uso
+        cardValor2.innerHTML = disponivel
+        cardValor3.innerHTML = dadosCards[0].valor
+}
+
+
+function dadosDisco(fkCompHasComp){
+    getDados(fkCompHasComp)
+    var escrita;
+    var leitura;
+    card1.innerHTML = "Tamanho"
+    card2.innerHTML = "Velocidade de escrita"
+    card3.innerHTML = "Velocidade de leitura"
+        for(var i = dadosCards.length -1 ; i >= 0 ; i--){
+            if(dadosCards[i].tipo == "Velocidade de Escrita"){
+                escrita = dadosCards[i].dadoFormatado;
+            }
+            if(dadosCards[i].tipo == "Velocidade de Leitura"){
+                leitura = dadosCards[i].dadoFormatado;
+            }
+        }
+        cardValor1.innerHTML = dadosCards[0].valor
+        cardValor2.innerHTML = escrita
+        cardValor3.innerHTML = leitura
+}
+
+
+function dadosGpu(fkCompHasComp){
+    getDados(fkCompHasComp)
+    card1.innerHTML = "% de Uso"
+    card2.innerHTML = "Memória disponível"
+    card3.innerHTML = "Temperatura"
+    console.log(gpu)
+}
+
+function getDados(fkCompHasComp){
+    fetch(`/componentes/getDados/${fkCompHasComp}`,{
         method:'GET'
     }).then((response) => {
         if(response.ok){
             response.json().then((resposta) => {
+                dadosCards = [];
                 dadosCards = resposta;
-                for(var i = 0; i < dadosCards.length ; i++){
-                    if(dadosCards[i].tipoComp == "CPU"){ 
-                        cpu.push(dadosCards[i])
-                    }else if (dadosCards[i].tipoComp == "GPU"){
-                        gpu.push(dadosCards[i])
-                    }else if(dadosCards[i].tipoComp == "DISCO"){
-                        disco.push(dadosCards[i])
-                    }else if(dadosCards[i].tipoComp == "RAM"){
-                        ram.push(dadosCards[i])
-                    } 
-                }
-                
-                console.log(dadosCards)
             }) 
         }else{
             throw("Houve um erro")
@@ -96,71 +153,6 @@ function getDados(){
     })
     
 
-}
-
-function dadosCpu(){
-    var velocidade;    
-    card1.innerHTML = "% de Uso"
-    card2.innerHTML = "Velocidade"
-    card3.innerHTML = "N° de núcleos"
-        for(var i = 0; i < cpu.length; i++){
-            if(cpu[i].tipoEspecificacao == "Frequência"){
-                velocidade = cpu[i].valor;
-            }
-        }
-        cardValor1.innerHTML = cpu[0].dadoFormatado
-        cardValor2.innerHTML = velocidade
-        cardValor3.innerHTML = cpu[0].nucleos_total
-    }
-
-
-function dadosRam(){
-    var uso;
-    var disponivel;
-    card1.innerHTML = "% de Uso"
-    card2.innerHTML = "Memória disponível"
-    card3.innerHTML = "Memória total"
-    console.log(ram)
-    for(var i = ram.length -1 ; i >= 0 ; i--){
-        if(ram[i].tipo == "Memória em Uso"){
-            uso = ram[i].dadoFormatado;
-        }
-        if(ram[i].tipo == "Memória Disponível"){
-            disponivel = ram[i].dadoFormatado;
-        }
-    }
-        cardValor1.innerHTML = uso
-        cardValor2.innerHTML = disponivel
-        cardValor3.innerHTML = ram[0].valor
-}
-
-
-function dadosDisco(){
-    var escrita;
-    var leitura;
-    card1.innerHTML = "Tamanho"
-    card2.innerHTML = "Velocidade de escrita"
-    card3.innerHTML = "Velocidade de leitura"
-    console.log(disco)
-        for(var i = disco.length -1 ; i >= 0 ; i--){
-            if(disco[i].tipo == "Velocidade de Escrita"){
-                escrita = disco[i].dadoFormatado;
-            }
-            if(disco[i].tipo == "Velocidade de Leitura"){
-                leitura = disco[i].dadoFormatado;
-            }
-        }
-        cardValor1.innerHTML = disco[0].valor
-        cardValor2.innerHTML = escrita
-        cardValor3.innerHTML = leitura
-}
-
-
-function dadosGpu(){
-    card1.innerHTML = "% de Uso"
-    card2.innerHTML = "Memória disponível"
-    card3.innerHTML = "Temperatura"
-    console.log(gpu)
 }
 
 function obterUltimosDadosGrafico(fkCompHasComp) {
