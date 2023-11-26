@@ -55,7 +55,6 @@ function exibirComponentes(componentesMaquina){
         </div>
         <div class="barra-horizontal"></div>
       </button> `
-      getComponentes()
     }
 }
 
