@@ -48,13 +48,14 @@ function exibirComponentes(componentesMaquina){
         }
 
         divComponentes.innerHTML += `
-        <button onclick = "${funcao}(${componentesMaquina[i].idCompHasComp}">
+        <button onclick = "${funcao}(${componentesMaquina[i].idCompHasComp})" class="componente-selecao">
         <div class="especificacoes-componente">
           <span>${componentesMaquina[i].tipo}</span>
           <span>${componentesMaquina[i].nome}</span>
         </div>
         <div class="barra-horizontal"></div>
       </button> `
+      getComponentes()
     }
 }
 
