@@ -47,7 +47,7 @@ function exibirComponentes(componentesMaquina){
         <div class="barra-horizontal"></div>
       </button>`
         }
-        if (componentesMaquina[i].tipo == "GPU"){
+        else if (componentesMaquina[i].tipo == "GPU"){
             divComponentes.innerHTML += `
         <button onclick = "dadosGpu(${componentesMaquina[i].idCompHasComp})" class="componente-selecao">
         <div class="especificacoes-componente">
@@ -57,7 +57,7 @@ function exibirComponentes(componentesMaquina){
         <div class="barra-horizontal"></div>
       </button>`
         }
-        if(componentesMaquina[i].tipo == "DISCO"){
+        else if(componentesMaquina[i].tipo == "DISCO"){
             divComponentes.innerHTML += `
         <button onclick = "dadosDisco(${componentesMaquina[i].idCompHasComp})" class="componente-selecao">
         <div class="especificacoes-componente">
@@ -67,7 +67,7 @@ function exibirComponentes(componentesMaquina){
         <div class="barra-horizontal"></div>
       </button>`
         }
-        if(componentesMaquina[i].tipo == "RAM"){
+        else if(componentesMaquina[i].tipo == "RAM"){
             divComponentes.innerHTML += `
         <button onclick = "dadosRam(${componentesMaquina[i].idCompHasComp})" class="componente-selecao">
         <div class="especificacoes-componente">
