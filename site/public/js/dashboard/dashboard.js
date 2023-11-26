@@ -38,21 +38,17 @@ function exibirComponentes(componentesMaquina){
     var funcao;
     for(var i = 0; i < componentesMaquina.length ; i++){
         if(componentesMaquina[i].tipo == "CPU"){
-            var cpu = componentesMaquina[i].idCompHasComp;
-            funcao = `dadosCpu(${cpu})`;
+            funcao = `dadosCpu`;
         }else if (componentesMaquina[i].tipo == "GPU"){
-            var gpu = componentesMaquina[i].idCompHasComp;
-            funcao = `dadosGpu(${gpu})`;
+            funcao = `dadosGpu`;
         }else if(componentesMaquina[i].tipo == "DISCO"){
-            var disco = componentesMaquina[i].idCompHasComp;
-            funcao = `dadosDisco(${disco})`;
+            funcao = `dadosDisco`;
         }else if(componentesMaquina[i].tipo == "RAM"){
-            var ram = componentesMaquina[i].idCompHasComp;
-            funcao = `dadosRam(${ram})`;
+            funcao = `dadosRam`;
         }
 
         divComponentes.innerHTML += `
-        <button onclick = "${funcao}" class="componente-selecao">
+        <button onclick = "${funcao}(${componentesMaquina[i].idCompHasComp}">
         <div class="especificacoes-componente">
           <span>${componentesMaquina[i].tipo}</span>
           <span>${componentesMaquina[i].nome}</span>
