@@ -70,14 +70,16 @@ function exibirComponentes(componentesMaquina) {
             funcao = 'dadosRam';
         }
 
-        divComponentes.innerHTML += `
-        <button onclick="executarFuncao(${componentesMaquina[i].idCompHasComp}, ${funcao})" class="componente-selecao">
-        <div class="especificacoes-componente">
-          <span>${componentesMaquina[i].tipo}</span>
-          <span>${componentesMaquina[i].nome}</span>
-        </div>
-        <div class="barra-horizontal"></div>
-      </button>`;
+        (function (funcaoAtual) {
+            divComponentes.innerHTML += `
+            <button onclick="executarFuncao(${componentesMaquina[i].idCompHasComp}, ${funcaoAtual})" class="componente-selecao">
+            <div class="especificacoes-componente">
+              <span>${componentesMaquina[i].tipo}</span>
+              <span>${componentesMaquina[i].nome}</span>
+            </div>
+            <div class="barra-horizontal"></div>
+          </button>`;
+        })(funcao);
     }
 }
 
