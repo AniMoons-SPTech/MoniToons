@@ -39,7 +39,6 @@ FETCH FIRST
                     return database.executar(instrucao);
 }
 
-
 module.exports = {
     getComponentes,
     getDados
