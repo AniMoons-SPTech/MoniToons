@@ -34,28 +34,58 @@ function getComponentes(){
     })
 }
 
-function exibirComponentes(componentesMaquina){
-    var funcao;
-    for(var i = 0; i < componentesMaquina.length ; i++){
-        if(componentesMaquina[i].tipo == "CPU"){
-            funcao = `dadosCpu`;
-        }else if (componentesMaquina[i].tipo == "GPU"){
-            funcao = `dadosGpu`;
-        }else if(componentesMaquina[i].tipo == "DISCO"){
-            funcao = `dadosDisco`;
-        }else if(componentesMaquina[i].tipo == "RAM"){
-            funcao = `dadosRam`;
+// function exibirComponentes(componentesMaquina){
+//     var funcao;
+//     for(var i = 0; i < componentesMaquina.length ; i++){
+//         if(componentesMaquina[i].tipo == "CPU"){
+//             funcao = `dadosCpu`;
+//         }else if (componentesMaquina[i].tipo == "GPU"){
+//             funcao = `dadosGpu`;
+//         }else if(componentesMaquina[i].tipo == "DISCO"){
+//             funcao = `dadosDisco`;
+//         }else if(componentesMaquina[i].tipo == "RAM"){
+//             funcao = `dadosRam`;
+//         }
+//         divComponentes.innerHTML += `
+//         <button onclick = "${funcao}(${componentesMaquina[i].idCompHasComp})" class="componente-selecao">
+//         <div class="especificacoes-componente">
+//           <span>${componentesMaquina[i].tipo}</span>
+//           <span>${componentesMaquina[i].nome}</span>
+//         </div>
+//         <div class="barra-horizontal"></div>
+//       </button>`
+//     }
+// }
+function exibirComponentes(componentesMaquina) {
+    for (var i = 0; i < componentesMaquina.length; i++) {
+        var funcao;
+
+        if (componentesMaquina[i].tipo == "CPU") {
+            funcao = dadosCpu;
+        } else if (componentesMaquina[i].tipo == "GPU") {
+            funcao = dadosGpu;
+        } else if (componentesMaquina[i].tipo == "DISCO") {
+            funcao = dadosDisco;
+        } else if (componentesMaquina[i].tipo == "RAM") {
+            funcao = dadosRam;
         }
 
         divComponentes.innerHTML += `
-        <button onclick = "${funcao}(${componentesMaquina[i].idCompHasComp})" class="componente-selecao">
+        <button onclick="executarFuncao(${componentesMaquina[i].idCompHasComp}, ${funcao})" class="componente-selecao">
         <div class="especificacoes-componente">
           <span>${componentesMaquina[i].tipo}</span>
           <span>${componentesMaquina[i].nome}</span>
         </div>
         <div class="barra-horizontal"></div>
-      </button> `
+      </button>`;
     }
+}
+
+function executarFuncao(id, funcao) {
+    dadosCpu(id);
+    dadosRam(id);
+    dadosDisco(id);
+    dadosGpu(id);
 }
 
 
