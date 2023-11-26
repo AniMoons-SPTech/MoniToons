@@ -39,11 +39,14 @@ function exibirComponentes(componentesMaquina){
     for(var i = 0; i < componentesMaquina.length ; i++){
         if(componentesMaquina[i].tipo == "CPU"){
             funcao = `dadosCpu(${componentesMaquina[i].idCompHasComp})`;
-        }else if (componentesMaquina[i].tipo == "GPU"){
+        }
+        if (componentesMaquina[i].tipo == "GPU"){
             funcao = `dadosGpu(${componentesMaquina[i].idCompHasComp})`;
-        }else if(componentesMaquina[i].tipo == "DISCO"){
+        }
+        if(componentesMaquina[i].tipo == "DISCO"){
             funcao = `dadosDisco(${componentesMaquina[i].idCompHasComp})`;
-        }else if(componentesMaquina[i].tipo == "RAM"){
+        }
+        if(componentesMaquina[i].tipo == "RAM"){
             funcao = `dadosRam(${componentesMaquina[i].idCompHasComp})`;
         }
         divComponentes.innerHTML += `
