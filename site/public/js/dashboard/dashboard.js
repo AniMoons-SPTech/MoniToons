@@ -215,7 +215,7 @@ function plotarGrafico(dados){
             options: {
             },
         }
-        myChart.destroy()
+        myChart.destroy();
         myChart = new Chart(ctx,ram)
             
     }
