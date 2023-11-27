@@ -35,11 +35,36 @@ OFFSET
     0 ROWS
 FETCH FIRST
     200 ROWS ONLY;`
-                    console.log("Executando \n" + instrucao)                
-                    return database.executar(instrucao);
+                    
+    console.log("Executando \n" + instrucao)                
+    return database.executar(instrucao);
 }
+
+    function dadosGrafico(fkCompHasComp){
+        console.log("ACESSEI O COMPONENTES MODEL")
+    var instrucao = `SELECT
+    r.*,
+    comp.tipo AS tipoComp
+FROM
+    registro r
+JOIN
+    computadorHasComponente chc ON r.fkCompHasComp = chc.idCompHasComp
+JOIN
+    componente comp ON chc.fkComponente = comp.idComponente
+WHERE chc.idCompHasComp = ${fkCompHasComp}
+ORDER BY
+   r.dataHora DESC
+OFFSET
+    0 ROWS
+FETCH FIRST
+    10 ROWS ONLY;`
+                    
+    console.log("Executando \n" + instrucao)                
+    return database.executar(instrucao);
+    }
 
 module.exports = {
     getComponentes,
-    getDados
+    getDados,
+    dadosGrafico
 }

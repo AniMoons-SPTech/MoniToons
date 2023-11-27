@@ -39,9 +39,9 @@ function getDados(req, res){
 }
 
 function dadosGrafico(req, res){
-    var {fkComphasComp} = req.params;
+    var {fkCompHasComp} = req.params;
 
-    componentesModel.buscarUltimosDados(idSetor).then(function (resultado) {
+    componentesModel.dadosGrafico(fkCompHasComp).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {

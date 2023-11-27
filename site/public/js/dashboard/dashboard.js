@@ -138,9 +138,6 @@ function plotarCards(fkCompHasComp){
     // para, quando carregar o gráfico da primeira vez, já trazer com vários dados.
     // A função *obterDadosGrafico* também invoca a função *plotarGrafico*
 
-    //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
-    //     Para ajustar o "select", ajuste o comando sql em src/models
-
 function obterDadosGrafico(fkCompHasComp) {
     fetch(`/componentes/dadosGrafico/${fkCompHasComp}`, {
         method: 'GET',
@@ -149,11 +146,8 @@ function obterDadosGrafico(fkCompHasComp) {
         },
     }).then(function (response) {
         if (response.ok) {
-
             response.json().then(function (resposta) {
-                console.log(resposta);
-
-                setTimeout(() => atualizarGraficoLinha(fkCompHasComp), 4000);
+                plotarGrafico(resposta)
             })    
         } else if (response.status == 404) {
             window.alert("Deu 404!");
@@ -165,6 +159,9 @@ function obterDadosGrafico(fkCompHasComp) {
     });
 }
 
+function plotarGrafico(dados){
+    console.log(dados)
+}
 
 function atualizarGraficoLinha(fkCompHasComp) {
     fetch(`/dado/graficosLinhaAtualizado/${idSetor}`, { cache: 'no-store' }).then(function (response) {
