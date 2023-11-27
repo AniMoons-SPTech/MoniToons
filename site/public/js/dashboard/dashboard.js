@@ -33,6 +33,8 @@ function getComponentes(){
                 </div>
                 <div class="barra-horizontal"></div>
               </button>`
+              plotarCards(componentesMaquina[i].idCompHasComp)
+              //obterDadosGrafico(componentesMaquina[i].idCompHasComp)
                 }
             }) 
         }else{
@@ -126,7 +128,20 @@ function plotarCards(fkCompHasComp){
 
     
 }
-function obterUltimosDadosGrafico(fkCompHasComp) {
+
+// O gráfico é construído com três funções:
+    // 1. obterDadosGrafico -> Traz dados do Banco de Dados para montar o gráfico da primeira vez
+    // 2. plotarGrafico -> Monta o gráfico com os dados trazidos e exibe em tela
+    // 3. atualizarGrafico -> Atualiza o gráfico, trazendo novamente dados do Banco
+
+    // Esta função *obterDadosGrafico* busca os últimos dados inseridos em tabela de medidas.
+    // para, quando carregar o gráfico da primeira vez, já trazer com vários dados.
+    // A função *obterDadosGrafico* também invoca a função *plotarGrafico*
+
+    //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
+    //     Para ajustar o "select", ajuste o comando sql em src/models
+
+function obterDadosGrafico(fkCompHasComp) {
     fetch(`/componentes/dadosGrafico/${fkCompHasComp}`, {
         method: 'GET',
         headers: {
