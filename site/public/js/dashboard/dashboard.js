@@ -45,7 +45,21 @@ function getComponentes(){
 
 
 function plotarCards(fkCompHasComp){
-    alert(fkCompHasComp)
+    fetch(`/componentes/getDados/${fkCompHasComp}`,{
+        method:'GET'
+    }).then((response) => {
+        dadosCards = []
+        if(response.ok){
+            response.json().then((resposta) => {
+                dadosCards = resposta;
+                console.log(dadosCards)
+            }) 
+        }else{
+            throw("Houve um erro")
+        }
+    }).catch((error) => {
+        console.error(error);
+    })
 }
 function obterUltimosDadosGrafico(fkCompHasComp) {
     fetch(`/componentes/dadosGrafico/${fkCompHasComp}`, {
