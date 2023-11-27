@@ -12,6 +12,8 @@ var cardValor1 = document.getElementById("valor-card1");
 var cardValor2 = document.getElementById("valor-card2");
 var cardValor3 = document.getElementById("valor-card3");
 var cardValor4 = document.getElementById("valor-card4");
+var label = [];
+var dadosGrafico = [];
 
 let proximaAtualizacao;
 
@@ -147,6 +149,8 @@ function obterDadosGrafico(fkCompHasComp) {
     }).then(function (response) {
         if (response.ok) {
             response.json().then(function (resposta) {
+                label = []
+                dadosGrafico = []
                 plotarGrafico(resposta)
             })    
         } else if (response.status == 404) {
@@ -160,11 +164,7 @@ function obterDadosGrafico(fkCompHasComp) {
 }
 
 function plotarGrafico(dados){
-        var label = [];
-        var dadosGrafico = [];
         
-        label = []
-        dadosGrafico = []
         for(var i = 0; i < dados.length; i++) {
             label.push(dados[i].dataHora);
             dadosGrafico.push(dados[i].dadoValor)
