@@ -11,6 +11,7 @@
   <script src="../js/dashboard/maquinas.js"></script>
   <script src="../js/funcionario/exibirNome.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+  <script src="../js/dashboard/barra.js" defer></script>
 </head>
 
 <body onload="mudaBarraApp() , carregarMetricas(), carregarGrupoMaquinas()">
@@ -119,14 +120,6 @@
 
   var quantidadeDeMaquinas = 0
 
-  function mudaBarraApp() {
-    var linkApp = document.getElementById("link_app")
-    if (sessionStorage.CARGO_USUARIO == "COMUM") {
-      linkApp.innerHTML = "Aplicativos abertos"
-    } else if (sessionStorage.CARGO_USUARIO == "ADMINISTRADOR") {
-      linkApp.innerHTML = "Aplicativos proibidos"
-    }
-  }
 
   function carregarMetricas() {
     var idResponsavel = sessionStorage.ID_USUARIO
