@@ -70,10 +70,44 @@ function plotarCards(fkCompHasComp){
             }
                 
             if(dadosCards[0].tipoComp == 'RAM'){
-                    alert('RAM')
+                var uso;
+                var disponivel;
+                card1.innerHTML = "% de Uso"
+                card2.innerHTML = "Memória disponível"
+                card3.innerHTML = "Memória total"
+            
+                for(var i = dadosCards.length -1 ; i >= 0 ; i--){
+                    if(dadosCards[i].tipo == "Memória em Uso"){
+                        uso = dadosCards[i].dadoFormatado;
+                    }
+                    if(dadosCards[i].tipo == "Memória Disponível"){
+                        disponivel = dadosCards[i].dadoFormatado;
+                    }
                 }
-                if(dadosCards[0].tipoComp == 'DISCO'){
-                    alert('DISCO')
+                    cardValor1.innerHTML = uso
+                    cardValor2.innerHTML = disponivel
+                    cardValor3.innerHTML = dadosCards[0].valor
+            
+            }
+            
+            if(dadosCards[0].tipoComp == 'DISCO'){
+                var escrita;
+                var leitura;
+                card1.innerHTML = "Tamanho"
+                card2.innerHTML = "Velocidade de escrita"
+                card3.innerHTML = "Velocidade de leitura"
+                console.log(dadosCards)
+                    for(var i = dadosCards.length -1 ; i >= 0 ; i--){
+                        if(dadosCards[i].tipo == "Velocidade de Escrita"){
+                            escrita = dadosCards[i].dadoFormatado;
+                        }
+                        if(dadosCards[i].tipo == "Velocidade de Leitura"){
+                            leitura = dadosCards[i].dadoFormatado;
+                        }
+                    }
+                    cardValor1.innerHTML = dadosCards[0].valor
+                    cardValor2.innerHTML = escrita
+                    cardValor3.innerHTML = leitura
                 }
                 if(dadosCards[0].tipoComp == 'GPU'){
                     alert('GPU')
