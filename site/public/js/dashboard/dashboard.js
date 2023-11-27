@@ -160,9 +160,11 @@ function obterDadosGrafico(fkCompHasComp) {
 }
 
 function plotarGrafico(dados){
-    var label = [];
-    var dadosGrafico = [];
+        var label = [];
+        var dadosGrafico = [];
         
+        label = []
+        dadosGrafico = []
         for(var i = 0; i < dados.length; i++) {
             label.push(dados[i].dataHora);
             dadosGrafico.push(dados[i].dadoValor)
