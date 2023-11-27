@@ -60,6 +60,19 @@ function plotarCards(fkCompHasComp){
     }).catch((error) => {
         console.error(error);
     })
+
+    if(dadosCards[0].tipoComp == 'CPU'){
+        alert('CPU')
+    }
+    if(dadosCards[0].tipoComp == 'RAM'){
+        alert('RAM')
+    }
+    if(dadosCards[0].tipoComp == 'DISCO'){
+        alert('DISCO')
+    }
+    if(dadosCards[0].tipoComp == 'GPU'){
+        alert('GPU')
+    }
 }
 function obterUltimosDadosGrafico(fkCompHasComp) {
     fetch(`/componentes/dadosGrafico/${fkCompHasComp}`, {
