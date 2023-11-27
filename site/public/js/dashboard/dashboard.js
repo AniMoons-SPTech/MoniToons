@@ -186,7 +186,7 @@ function plotarGrafico(dados){
             },
         }
 
-        
+            window.myChart.destroy()
              window.myChart = new Chart(
                 ctx,
                 cpu
@@ -217,7 +217,7 @@ function plotarGrafico(dados){
             options: {
             },
         }
-
+            window.myChart.destroy()
             window.myChart = new Chart(
                 ctx,
                 ram
