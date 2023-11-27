@@ -16,6 +16,7 @@ var label = [];
 var dadosGrafico = [];
 var ctx = document.getElementById('myChart').getContext('2d');
 let proximaAtualizacao;
+var myChart = new Chart(grapharea, { type: 'bar', data: barData, options: barOptions });
 
 
 function getComponentes(){
@@ -186,11 +187,8 @@ function plotarGrafico(dados){
             },
         }
 
-            window.myChart.destroy()
-             window.myChart = new Chart(
-                ctx,
-                cpu
-            );
+        myChart.destroy()
+        myChart = new Chart(ctx,cpu)
             
     
     }
@@ -209,7 +207,7 @@ function plotarGrafico(dados){
                         label: 'CPU',
                         data: dadosGrafico,
                         backgroundColor: '#fff',
-                        borderColor: '#f8f'
+                        borderColor: '#815'
                     }
                 ],
                 labels: label
@@ -217,11 +215,8 @@ function plotarGrafico(dados){
             options: {
             },
         }
-            window.myChart.destroy()
-            window.myChart = new Chart(
-                ctx,
-                ram
-            );
+        myChart.destroy()
+        myChart = new Chart(ctx,ram)
             
     }
 
