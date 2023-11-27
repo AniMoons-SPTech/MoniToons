@@ -5,7 +5,3 @@ var cargo = sessionStorage.CARGO_USUARIO;
 
 nomeUsuario.innerHTML = nome;
 cargoUsuario.innerHTML = cargo;
-
-if(cargo != 'ADMINISTRADOR' ){
-    window.location = "/dashboard/dashboard.html";
-}
