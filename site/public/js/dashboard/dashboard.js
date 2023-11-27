@@ -72,6 +72,7 @@ function plotarCards(fkCompHasComp){
             if(dadosCards[0].tipoComp == 'RAM'){
                 var uso;
                 var disponivel;
+                var total;
                 card1.innerHTML = "% de Uso"
                 card2.innerHTML = "Memória disponível"
                 card3.innerHTML = "Memória total"
@@ -83,10 +84,13 @@ function plotarCards(fkCompHasComp){
                     if(dadosCards[i].tipo == "Memória Disponível"){
                         disponivel = dadosCards[i].dadoFormatado;
                     }
+                    if(dadosCards[i].tipoEspecificacao == "Memória Total"){
+                        total = dadosCards[i].valor;
+                    }
                 }
                     cardValor1.innerHTML = uso
                     cardValor2.innerHTML = disponivel
-                    cardValor3.innerHTML = dadosCards[0].valor
+                    cardValor3.innerHTML = total
             
             }
             
