@@ -1,6 +1,6 @@
 function mudaBarraApp() {
     var linkApp = document.getElementById("link_app")
-    var liOpcaoGeral = document.getElementById("li_opcao_geral")
+    var liOpcaoGeral = document.getElementById("li_secao_geral")
     var liAppAbertos = document.getElementById("li_app_abertos")
     var liAppProibidos = document.getElementById("li_app_proibidos")
 
