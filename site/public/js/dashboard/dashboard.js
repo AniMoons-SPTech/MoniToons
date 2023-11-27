@@ -53,10 +53,23 @@ function plotarCards(fkCompHasComp){
                 dadosCards = []
                 dadosCards = resposta;
                 console.log(dadosCards)
-                if(dadosCards[0].tipoComp == 'CPU'){
-                    alert('CPU')
+
+            if(dadosCards[0].tipoComp == 'CPU'){
+                    var velocidade;    
+                    card1.innerHTML = "% de Uso"
+                    card2.innerHTML = "Velocidade"
+                    card3.innerHTML = "N° de núcleos"
+                for(var i = dadosCards.length-1 ; i > 0 ; i-- ){
+                    if(dadosCards[i].tipoEspecificacao == "Frequência"){
+                    velocidade = dadosCards[i].valor;
+                    }
                 }
-                if(dadosCards[0].tipoComp == 'RAM'){
+                cardValor1.innerHTML = dadosCards[0].dadoFormatado
+                cardValor2.innerHTML = velocidade
+                cardValor3.innerHTML = dadosCards[0].nucleos_total
+            }
+                
+            if(dadosCards[0].tipoComp == 'RAM'){
                     alert('RAM')
                 }
                 if(dadosCards[0].tipoComp == 'DISCO'){
