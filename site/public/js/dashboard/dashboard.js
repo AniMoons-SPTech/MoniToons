@@ -188,13 +188,13 @@ function plotarGrafico(dados){
 
         if (typeof window.myChart !== 'undefined' && window.myChart !== null) {
             window.myChart.destroy();
-        }else{
+        }
              window.myChart = new Chart(
                 ctx,
                 cpu
             );
             
-        }
+    
     }
     
     if(dados[0].tipoComp == 'RAM'){
@@ -220,15 +220,11 @@ function plotarGrafico(dados){
             },
         }
 
-        if (typeof window.myChart !== 'undefined' && window.myChart !== null) {
-            window.myChart.destroy();
-        }else{
             window.myChart = new Chart(
                 ctx,
                 ram
             );
             
-        }
     }
 
     if(dados[0].tipoComp == 'DISCO'){
