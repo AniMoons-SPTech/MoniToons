@@ -164,7 +164,7 @@ function plotarGrafico(dados){
     var dadosGrafico = [];
         
         for(var i = 0; i < dados.length; i++) {
-            label.push(resposta[i].dataHora);
+            label.push(dados[i].dataHora);
             dadosGrafico.push(dados[i].dadoValor)
         }
 
