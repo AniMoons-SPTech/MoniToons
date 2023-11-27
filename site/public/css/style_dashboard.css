@@ -313,7 +313,7 @@ body {
 
 .componente-selecao  {
   font-family: 'Montserrat Ace Regular';
-  font-size: large;
+  font-size: medium;
   display: flex;
   background-color: white;
   width: 90%;

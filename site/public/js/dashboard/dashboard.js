@@ -24,7 +24,16 @@ function getComponentes(){
             componentesMaquina = []
             response.json().then((resposta) => {
                 componentesMaquina = resposta;
-                console.log(componentesMaquina)
+                for(var i = 0; i < componentesMaquina.length; i++){
+                divComponentes.innerHTML += `
+                <button onclick = "plotarCards(${componentesMaquina[i].idCompHasComp})" class="componente-selecao">
+                <div class="especificacoes-componente">
+                  <span>${componentesMaquina[i].tipo}</span>
+                  <span>${componentesMaquina[i].nome}</span>
+                </div>
+                <div class="barra-horizontal"></div>
+              </button>`
+                }
             }) 
         }else{
             throw("Houve um erro")
@@ -35,11 +44,9 @@ function getComponentes(){
 }
 
 
-
-
-
-
-
+function plotarCards(fkCompHasComp){
+    alert(fkCompHasComp)
+}
 function obterUltimosDadosGrafico(fkCompHasComp) {
     fetch(`/componentes/dadosGrafico/${fkCompHasComp}`, {
         method: 'GET',
