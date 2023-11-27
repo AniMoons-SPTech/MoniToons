@@ -161,7 +161,7 @@ function obterDadosGrafico(fkCompHasComp) {
 }
 
 function plotarGrafico(dados){
-    alert(dados)
+    console.log(dados)
 }
 
 function atualizarGraficoLinha(fkCompHasComp) {
