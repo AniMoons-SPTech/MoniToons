@@ -169,7 +169,6 @@ function plotarGrafico(dados){
             label.push(dados[i].dataHora);
             dadosGrafico.push(dados[i].dadoValor)
         }
-
         var cpu = {
             data: {
                 datasets: [
@@ -190,7 +189,7 @@ function plotarGrafico(dados){
         if (typeof window.myChart !== 'undefined' && window.myChart !== null) {
             window.myChart.destroy();
         }else{
-             new Chart(
+             window.myChart = new Chart(
                 ctx,
                 cpu
             );
@@ -224,7 +223,7 @@ function plotarGrafico(dados){
         if (typeof window.myChart !== 'undefined' && window.myChart !== null) {
             window.myChart.destroy();
         }else{
-             new Chart(
+            window.myChart = new Chart(
                 ctx,
                 ram
             );
