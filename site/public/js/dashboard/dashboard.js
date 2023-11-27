@@ -182,12 +182,6 @@ function plotarGrafico(dados){
                 labels: label
             },
             options: {
-                scales: {
-                    y: {
-                        min: -10,
-                        max: 50,
-                    }
-                }
             },
         }
 
