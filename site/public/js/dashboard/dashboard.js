@@ -48,9 +48,9 @@ function plotarCards(fkCompHasComp){
     fetch(`/componentes/getDados/${fkCompHasComp}`,{
         method:'GET'
     }).then((response) => {
-        dadosCards = []
         if(response.ok){
             response.json().then((resposta) => {
+                dadosCards = []
                 dadosCards = resposta;
                 console.log(dadosCards)
             }) 
