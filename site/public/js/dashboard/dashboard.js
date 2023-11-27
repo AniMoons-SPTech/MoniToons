@@ -186,9 +186,12 @@ function plotarGrafico(dados){
             options: {
             },
         }
-
-        window.myChart.destroy();
-        new Chart(document.getElementById('myChart'), grafico);
+        if (window.myChart) {
+            window.myChart.destroy();
+        }else{
+            new Chart(document.getElementById('myChart'), grafico);
+        }
+        
         
 }
 
