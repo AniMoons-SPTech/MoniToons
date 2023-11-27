@@ -12,7 +12,7 @@ var cardValor1 = document.getElementById("valor-card1");
 var cardValor2 = document.getElementById("valor-card2");
 var cardValor3 = document.getElementById("valor-card3");
 var cardValor4 = document.getElementById("valor-card4");
-const ctx1 = document.getElementById('myChart').getContext('2d')
+
 let proximaAtualizacao;
 
 
@@ -54,7 +54,6 @@ function plotarCards(fkCompHasComp){
             response.json().then((resposta) => {
                 dadosCards = []
                 dadosCards = resposta;
-                console.log(dadosCards)
 
             if(dadosCards[0].tipoComp == 'CPU'){
                     var velocidade;    
@@ -161,7 +160,39 @@ function obterDadosGrafico(fkCompHasComp) {
 }
 
 function plotarGrafico(dados){
-    console.log(dados)
+    var label = [];
+    var dadosGrafico = [];
+        
+        for(var i = 0; i < dados.length; i++) {
+            label.push(resposta[i].dataHora);
+            dadosGrafico.push(dados[i].dadoValor)
+        }
+
+        var grafico = {
+            data: {
+                datasets: [
+                    {
+                        type: 'line',
+                        label: 'CPU',
+                        data: dadosGrafico,
+                        backgroundColor: '#fff',
+                        borderColor: '#f8f'
+                    }
+                ],
+                labels: label
+            },
+            options: {
+                scales: {
+                    y: {
+                        min: -10,
+                        max: 50,
+                    }
+                }
+            },
+        }
+
+        var graficoDesenho = new Chart(document.getElementById('myChart'), grafico);
+        
 }
 
 function atualizarGraficoLinha(fkCompHasComp) {
