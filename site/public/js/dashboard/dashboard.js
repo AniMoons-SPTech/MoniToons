@@ -187,6 +187,7 @@ function plotarGrafico(dados){
             },
         }
 
+        window.myChart.destroy();
         new Chart(document.getElementById('myChart'), grafico);
         
 }
