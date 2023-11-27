@@ -69,6 +69,7 @@ function plotarCards(fkCompHasComp){
                 cardValor1.innerHTML = dadosCards[0].dadoFormatado
                 cardValor2.innerHTML = velocidade
                 cardValor3.innerHTML = dadosCards[0].nucleos_total
+                obterDadosGrafico(fkCompHasComp)
             }
                 
             if(dadosCards[0].tipoComp == 'RAM'){
@@ -93,7 +94,7 @@ function plotarCards(fkCompHasComp){
                     cardValor1.innerHTML = uso
                     cardValor2.innerHTML = disponivel
                     cardValor3.innerHTML = total
-            
+                    obterDadosGrafico(fkCompHasComp)
             }
             
             if(dadosCards[0].tipoComp == 'DISCO'){
@@ -102,7 +103,6 @@ function plotarCards(fkCompHasComp){
                 card1.innerHTML = "Tamanho"
                 card2.innerHTML = "Velocidade de escrita"
                 card3.innerHTML = "Velocidade de leitura"
-                console.log(dadosCards)
                     for(var i = dadosCards.length -1 ; i >= 0 ; i--){
                         if(dadosCards[i].tipo == "Velocidade de Escrita"){
                             escrita = dadosCards[i].dadoFormatado;
@@ -114,7 +114,8 @@ function plotarCards(fkCompHasComp){
                     cardValor1.innerHTML = dadosCards[0].valor
                     cardValor2.innerHTML = escrita
                     cardValor3.innerHTML = leitura
-                }
+                    obterDadosGrafico(fkCompHasComp)
+            }
                 if(dadosCards[0].tipoComp == 'GPU'){
                     alert('GPU')
                 }
@@ -160,7 +161,7 @@ function obterDadosGrafico(fkCompHasComp) {
 }
 
 function plotarGrafico(dados){
-    console.log(dados)
+    alert(dados)
 }
 
 function atualizarGraficoLinha(fkCompHasComp) {
