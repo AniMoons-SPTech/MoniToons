@@ -186,9 +186,7 @@ function plotarGrafico(dados){
             },
         }
 
-        if (typeof window.myChart !== 'undefined' && window.myChart !== null) {
-            window.myChart.destroy();
-        }
+        
              window.myChart = new Chart(
                 ctx,
                 cpu
