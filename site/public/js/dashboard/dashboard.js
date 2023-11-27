@@ -14,7 +14,6 @@ var cardValor3 = document.getElementById("valor-card3");
 var cardValor4 = document.getElementById("valor-card4");
 var label = [];
 var dadosGrafico = [];
-
 let proximaAtualizacao;
 
 
@@ -164,13 +163,13 @@ function obterDadosGrafico(fkCompHasComp) {
 }
 
 function plotarGrafico(dados){
-        
+    if(dados[0].tipoComp == 'CPU'){
         for(var i = 0; i < dados.length; i++) {
             label.push(dados[i].dataHora);
             dadosGrafico.push(dados[i].dadoValor)
         }
 
-        var grafico = {
+        var cpu = {
             data: {
                 datasets: [
                     {
@@ -186,11 +185,67 @@ function plotarGrafico(dados){
             options: {
             },
         }
-        if (window.myChart) {
+
+        if (typeof window.myChart !== 'undefined' && window.myChart !== null) {
             window.myChart.destroy();
         }else{
-            window.myChart = new Chart(document.getElementById('myChart'), grafico);
+             new Chart(
+                document.getElementById(`myChart`),
+                cpu
+            );
+            
         }
+    }
+    
+    if(dados[0].tipoComp == 'RAM'){
+        for(var i = 0; i < dados.length; i++) {
+            label.push(dados[i].dataHora);
+            dadosGrafico.push(dados[i].dadoValor)
+        }
+
+        var ram = {
+            data: {
+                datasets: [
+                    {
+                        type: 'line',
+                        label: 'CPU',
+                        data: dadosGrafico,
+                        backgroundColor: '#fff',
+                        borderColor: '#f8f'
+                    }
+                ],
+                labels: label
+            },
+            options: {
+            },
+        }
+
+        if (typeof window.myChart !== 'undefined' && window.myChart !== null) {
+            window.myChart.destroy();
+        }else{
+             new Chart(
+                document.getElementById(`myChart`),
+                ram
+            );
+            
+        }
+    }
+
+    if(dados[0].tipoComp == 'DISCO'){
+        for(var i = 0; i < dados.length; i++) {
+            label.push(dados[i].dataHora);
+            dadosGrafico.push(dados[i].dadoValor)
+        }
+    }
+    if(dados[0].tipoComp == 'GPU'){
+        for(var i = 0; i < dados.length; i++) {
+            label.push(dados[i].dataHora);
+            dadosGrafico.push(dados[i].dadoValor)
+        }
+    }     
+
+        
+        
         
         
 }
