@@ -189,7 +189,7 @@ function plotarGrafico(dados){
         if (window.myChart) {
             window.myChart.destroy();
         }else{
-            new Chart(document.getElementById('myChart'), grafico);
+            window.myChart = new Chart(document.getElementById('myChart'), grafico);
         }
         
         
