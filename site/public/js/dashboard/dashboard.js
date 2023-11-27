@@ -14,6 +14,7 @@ var cardValor3 = document.getElementById("valor-card3");
 var cardValor4 = document.getElementById("valor-card4");
 var label = [];
 var dadosGrafico = [];
+var ctx = document.getElementById('myChart').getContext('2d');
 let proximaAtualizacao;
 
 
@@ -190,7 +191,7 @@ function plotarGrafico(dados){
             window.myChart.destroy();
         }else{
              new Chart(
-                document.getElementById(`myChart`),
+                ctx,
                 cpu
             );
             
@@ -224,7 +225,7 @@ function plotarGrafico(dados){
             window.myChart.destroy();
         }else{
              new Chart(
-                document.getElementById(`myChart`),
+                ctx,
                 ram
             );
             
