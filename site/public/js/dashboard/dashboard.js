@@ -191,7 +191,7 @@ function plotarGrafico(dados){
             },
         }
 
-        var graficoDesenho = new Chart(document.getElementById('myChart'), grafico);
+        new Chart(document.getElementById('myChart'), grafico);
         
 }
 
