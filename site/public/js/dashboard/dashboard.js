@@ -75,7 +75,8 @@ function dadosCpu(fkCompHasComp){
         console.error(error);
     })
 
-    var velocidade;    
+    var velocidade;
+    var uso;    
     card1.innerHTML = "% de Uso"
     card2.innerHTML = "Velocidade"
     card3.innerHTML = "N° de núcleos"
@@ -84,8 +85,11 @@ function dadosCpu(fkCompHasComp){
         if(dadosCards[i].tipoEspecificacao == "Frequência"){
                    velocidade = dadosCards[i].valor;
         }
+        if(dadosCards[i].tipo == "Uso da CPU"){
+            uso = dadosCards[i].dadoFormatado ;
+        }
     }
-        cardValor1.innerHTML = dadosCards[0].dadoFormatado
+        cardValor1.innerHTML = uso
         cardValor2.innerHTML = velocidade
         cardValor3.innerHTML = dadosCards[0].nucleos_total
     }
