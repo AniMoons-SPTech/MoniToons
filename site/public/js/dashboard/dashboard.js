@@ -134,6 +134,7 @@ function plotarCards(fkCompHasComp){
                     obterDadosGrafico(fkCompHasComp)
             }
                 if(dadosCards[0].tipoComp == 'GPU'){
+                    card1.innerHTML = "Memória de Vídeo Disponível"
                     console.log(dadosCards)
                     obterDadosGrafico(fkCompHasComp)
                 }
@@ -170,7 +171,7 @@ function obterDadosGrafico(fkCompHasComp) {
                 dadosGrafico = [];
 
                 if(resposta[0].tipoComp == 'CPU'){
-                    for(var i = resposta.length -1 ; i > 0; i--) {
+                    for(var i = 7 ; i > 0; i--) {
                         label.push(resposta[i].dataHoraFormatada);
                         dadosGrafico.push(resposta[i].dadoValor)
                     }
@@ -198,12 +199,14 @@ function obterDadosGrafico(fkCompHasComp) {
 
                 if(resposta[0].tipoComp == 'RAM'){
                     for(var i = resposta.length -1 ; i > 0; i--) {
-
-                        if(resposta[i].tipo == 'Memória em Uso'){
-                            dadosGrafico.push(resposta[i].dadoValor)
-                            label.push(resposta[i].dataHoraFormatada);
-                            cardValor1.innerHTML =  resposta[i].dadoFormatado
+                        for(var i = 7; i > 0; i--){
+                            if(resposta[i].tipo == 'Memória em Uso'){
+                                dadosGrafico.push(resposta[i].dadoValor)
+                                label.push(resposta[i].dataHoraFormatada);
+                                cardValor1.innerHTML =  resposta[i].dadoFormatado
+                            }
                         }
+                        
                         if(resposta[i].tipo == 'Memória Disponível'){
                             cardValor2.innerHTML =  resposta[i].dadoFormatado
                         }
@@ -274,10 +277,38 @@ function obterDadosGrafico(fkCompHasComp) {
                     plotarGrafico(ctx3,disco)
                 }
                 if(resposta[0].tipoComp == 'GPU'){
+                    for(var i = 7 ; i > 0; i--) {
+
+                        if(resposta[i].tipo == 'Memória de Vídeo em Uso'){
+                            dadosGrafico.push(resposta[i].dadoValor)
+                            label.push(resposta[i].dataHoraFormatada);
+                            cardValor1.innerHTML =  resposta[i].dadoFormatado
+                        }
+                        if(resposta[i].tipo == 'Memória de Vídeo Disponível'){
+                            cardValor2.innerHTML =  resposta[i].dadoFormatado
+                        }
+                    }
+                    var gpu = {
+                        data: {
+                            datasets: [
+                                {
+                                    type: 'line',
+                                    label: 'GPU',
+                                    data: dadosGrafico,
+                                    backgroundColor: '#fff',
+                                    borderColor: 'rgb(123, 001, 000)'
+                                }
+                            ],
+                            labels: label
+                        }
+                    }
+
                     grafico1.style.display = 'none'
                     grafico2.style.display = 'none'
                     grafico3.style.display = 'none'
                     grafico4.style.display = 'flex'
+
+                    plotarGrafico(ctx4,gpu)
                 }
 
 
@@ -296,14 +327,6 @@ function obterDadosGrafico(fkCompHasComp) {
 function plotarGrafico(ctx,dados){ 
     console.log(label,dadosGrafico)
     new Chart(ctx, dados);
-
-    // if (typeof window.myChart == 'undefined' && window.myChart == empty()) {
-    //     
-    // } else {
-    //     window.myChart.data.labels = label;
-    //     window.myChart.data.datasets[0].data = dadosGrafico;
-    //     window.myChart.update();
-    // }   
 }
 
 function atualizarGraficoLinha(fkCompHasComp) {
