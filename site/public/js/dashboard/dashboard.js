@@ -176,10 +176,11 @@ function obterDadosGrafico(fkCompHasComp) {
                     for(var i = resposta.length -1 ; i > 0; i--) {
                         label.push(resposta[i].dataHoraFormatada);
                         dadosGrafico.push(resposta[i].dadoValor)
+
                         if(resposta[i].tipo == 'Memória em Uso'){
                             cardValor1.innerHTML =  resposta[0].dadoFormatado
                         }
-                        if(resposta[i].tipo == 'Memória em Uso'){
+                        if(resposta[i].tipo == 'Memória Disponível'){
                             cardValor2.innerHTML =  resposta[0].dadoFormatado
                         }
                     }
