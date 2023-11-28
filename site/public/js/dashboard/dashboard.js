@@ -16,7 +16,7 @@ var cardValor3 = document.getElementById("valor-card3");
 
 var cardValor4 = document.getElementById("valor-card4");
 
-const graph = new Chart(ctx1, dados);
+
 var grafico1 = document.getElementById("graficoCPU");
 var ctx1 = document.getElementById('myChart').getContext('2d');
 
