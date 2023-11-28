@@ -1,3 +1,4 @@
+import('https://cdn.jsdelivr.net/npm/chart.js');
 var urlAtual = window.location.href;
 var urlObj = new URL(urlAtual);
 var idUsuario = urlObj.searchParams.get("idUsuario");
@@ -246,7 +247,7 @@ function obterDadosGrafico(fkCompHasComp) {
 
 function plotarGrafico(dados){ 
     console.log(label,dadosGrafico,dadosGrafico1)
-    ctx.destroy();
+    window.myChart.destroy();
     window.myChart = new Chart(ctx, dados);
 
     // if (typeof window.myChart == 'undefined' && window.myChart == empty()) {
