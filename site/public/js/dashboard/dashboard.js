@@ -246,7 +246,7 @@ function obterDadosGrafico(fkCompHasComp) {
 
 function plotarGrafico(dados){ 
     console.log(label,dadosGrafico,dadosGrafico1)
-    window.myChart.destroy();
+    ctx.destroy();
     window.myChart = new Chart(ctx, dados);
 
     // if (typeof window.myChart == 'undefined' && window.myChart == empty()) {
