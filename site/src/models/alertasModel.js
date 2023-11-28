@@ -7,20 +7,20 @@ function carregarAlertas(idEmpresa, idUsuario) {
     SELECT
     alerta.idAlerta,
     componente.tipo as tipoComponente,
-    DATE_FORMAT(registro.dataHora, '%d/%m/%Y %H:%i') as dataHoraFormatada,
+    FORMAT(registro.dataHora, 'dd/MM/yyyy HH:mm') as dataHoraFormatada,
     registro.tipo,
     registro.dadoValor,
     alerta.grauAlerta,
     usuario.nomeUsuario
 FROM
     alerta
-    JOIN registro ON idRegistro = fkRegistro
-    JOIN computadorhascomponente ON idCompHasComp = fkCompHasComp
-    JOIN componente ON idComponente = fkComponente
-    JOIN computador ON idComputador = fkComputador
-    JOIN usuario ON idUsuario = fkUsuario
+    JOIN registro ON alerta.fkRegistro = registro.idRegistro
+    JOIN computadorHasComponente ON registro.fkCompHasComp = computadorHasComponente.idCompHasComp
+    JOIN componente ON computadorHasComponente.fkComponente = componente.idComponente
+    JOIN computador ON computadorHasComponente.fkComputador = computador.idComputador
+    JOIN usuario ON computador.fkUsuario = usuario.idUsuario
 WHERE
-    usuario.fkEmpresa = ${idEmpresa}`
+    usuario.fkEmpresa = ${idEmpresa};`
 
     console.log("Executando a instrução SQL: \n" + instrucao)
     return database.executar(instrucao)
