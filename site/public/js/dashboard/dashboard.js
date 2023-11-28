@@ -16,14 +16,9 @@ var cardValor3 = document.getElementById("valor-card3");
 var cardValor4 = document.getElementById("valor-card4");
 var label = [];
 var dadosGrafico = [];
-var dadosGrafico1 = [];
 var ctx = document.getElementById('myChart').getContext('2d');
 let proximaAtualizacao;
-var tipo;
-var titulo;
-var titulo1;
-var cor;
-var cor1;
+
 
 
 function getComponentes(){
@@ -164,35 +159,51 @@ function obterDadosGrafico(fkCompHasComp) {
                 titulo ="";
                 cor = "";
 
-                // if(resposta[0].tipoComp == 'CPU'){
-                //     for(var i = resposta.length -1 ; i > 0; i--) {
-                //         label.push(resposta[i].dataHoraFormatada);
-                //         dadosGrafico.push(resposta[i].dadoValor)
-                //     }
-                //     tipo = 'line'
-                //     titulo = 'CPU'
-                //     cor = 'rgb(123, 219, 206)'
-                //     cardValor1.innerHTML =  resposta[0].dadoFormatado
-                //     plotarGrafico();
-                // }
+                if(resposta[0].tipoComp == 'CPU'){
+                    for(var i = resposta.length -1 ; i > 0; i--) {
+                        label.push(resposta[i].dataHoraFormatada);
+                        dadosGrafico.push(resposta[i].dadoValor)
+                    }
+                    var cpu = {
+                        data: {
+                            datasets: [
+                                {
+                                    type: 'line',
+                                    label: 'RAM',
+                                    data: dadosGrafico,
+                                    backgroundColor: '#fff',
+                                    borderColor: 'rgb(123, 219, 206)'
+                                }
+                            ],
+                            labels: label
+                        },
+                        options: {
+                        },
+                    }
+                    cardValor1.innerHTML =  resposta[0].dadoFormatado
+                    plotarGrafico(cpu);
+                }
 
-                // if(resposta[0].tipoComp == 'RAM'){
-                //     for(var i = resposta.length -1 ; i > 0; i--) {
-                //         label.push(resposta[i].dataHoraFormatada);
-                //         dadosGrafico.push(resposta[i].dadoValor)
+                if(resposta[0].tipoComp == 'RAM'){
+                    for(var i = resposta.length -1 ; i > 0; i--) {
+                        label.push(resposta[i].dataHoraFormatada);
+                        dadosGrafico.push(resposta[i].dadoValor)
 
-                //         if(resposta[i].tipo == 'Memória em Uso'){
-                //             cardValor1.innerHTML =  resposta[i].dadoFormatado
-                //         }
-                //         if(resposta[i].tipo == 'Memória Disponível'){
-                //             cardValor2.innerHTML =  resposta[i].dadoFormatado
-                //         }
-                //     }
-                //     tipo = 'line'
-                //     titulo = 'RAM'
-                //     cor = 'rgb(123, 001, 000)'
-                //     plotarGrafico();
-                // }
+                        if(resposta[i].tipo == 'Memória em Uso'){
+                            cardValor1.innerHTML =  resposta[i].dadoFormatado
+                        }
+                        if(resposta[i].tipo == 'Memória Disponível'){
+                            cardValor2.innerHTML =  resposta[i].dadoFormatado
+                        }
+                    }
+                        
+
+
+                    tipo = 'line'
+                    titulo = 'RAM'
+                    cor = 'rgb(123, 001, 000)'
+                    plotarGrafico();
+                }
 
                 if(resposta[0].tipoComp == 'DISCO'){
                     for(var i = resposta.length -1 ; i > 0; i--) {
@@ -246,8 +257,7 @@ function obterDadosGrafico(fkCompHasComp) {
 }
 
 function plotarGrafico(dados){ 
-    console.log(label,dadosGrafico,dadosGrafico1)
-    window.myChart.destroy();
+    console.log(label,dadosGrafico)
     window.myChart = new Chart(ctx, dados);
 
     // if (typeof window.myChart == 'undefined' && window.myChart == empty()) {
