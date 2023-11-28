@@ -321,7 +321,6 @@ function obterDadosGrafico(fkCompHasComp) {
                     grafico3.style.display = 'none'
                     grafico4.style.display = 'flex'
 
-                    graph.destroy()
                     plotarGrafico(ctx4,gpu)
                 }
 
