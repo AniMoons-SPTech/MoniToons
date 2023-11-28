@@ -168,7 +168,7 @@ function obterDadosGrafico(fkCompHasComp) {
                     tipo = "'line'"
                     titulo = "'CPU'"
                     cor = "'rgb(123, 219, 206)'"
-                    plotarGrafico();
+                    plotarGrafico(label,dadosGrafico);
                 }
 
 
@@ -185,7 +185,7 @@ function obterDadosGrafico(fkCompHasComp) {
     });
 }
 
-function plotarGrafico(){ 
+function plotarGrafico(label,dadosGrafico){ 
     if (typeof window.myChart !== 'undefined' && window.myChart !== null) {
         window.myChart.data.labels = label;
         window.myChart.data.datasets[0].data = dadosGrafico;
