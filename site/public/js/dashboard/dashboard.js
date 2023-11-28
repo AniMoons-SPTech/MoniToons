@@ -168,7 +168,7 @@ function obterDadosGrafico(fkCompHasComp) {
 }
 
 function plotarGrafico(dados){
-    console.log(window.myChart)
+    window.myChart.destroy()
     if(dados[0].tipoComp == 'CPU'){
         for(var i = 0; i < dados.length; i++) {
             label.push(dados[i].dataHora);
@@ -191,7 +191,7 @@ function plotarGrafico(dados){
             },
         }
          
-    
+        new Chart(ctx, cpu)
     }
     
     if(dados[0].tipoComp == 'RAM'){
@@ -217,7 +217,7 @@ function plotarGrafico(dados){
             },
         }
         
-            
+        new Chart(ctx, ram)   
     }
 
     if(dados[0].tipoComp == 'DISCO'){
@@ -240,7 +240,8 @@ function plotarGrafico(dados){
             },
             options: {
             },
-        }   
+        }  
+        new Chart(ctx, disco) 
     }
     if(dados[0].tipoComp == 'GPU'){
         for(var i = 0; i < dados.length; i++) {
@@ -264,7 +265,7 @@ function plotarGrafico(dados){
             },
         }
         
-        
+        new Chart(ctx, gpu)
     }     
 
         
