@@ -10,6 +10,9 @@ function mudaBarraApp() {
 
     if (sessionStorage.CARGO_USUARIO == "COMUM") {
       dashUsuario.style.display = "block";
+      dashboardLink.addEventListener('click', function() {
+        window.location.href = `./dashboard.html?idUsuario=${sessionStorage.idUsuario}`;
+   });
       liOpcaoGeral.style.display = "none";
       liFuncionario.style.display = "none"
       liAppAbertos.style.display = "block";
@@ -20,8 +23,6 @@ function mudaBarraApp() {
       liAppAbertos.style.display = "none";
       liAppProibidos.style.display = "block";
     }
-    dashboardLink.addEventListener('click', function() {
-         window.location.href = `./dashboard.html?idUsuario=${sessionStorage.idUsuario}`;
-    });
+    
 
   }
