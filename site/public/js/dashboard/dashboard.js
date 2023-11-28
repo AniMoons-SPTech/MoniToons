@@ -87,7 +87,7 @@ function plotarCards(fkCompHasComp){
                 card1.innerHTML = "% de Uso"
                 card2.innerHTML = "Memória disponível"
                 card3.innerHTML = "Memória total"
-            
+                console.log(dadosCards)
                 for(var i = dadosCards.length -1 ; i >= 0 ; i--){
                     if(dadosCards[i].tipo == "Memória em Uso"){
                         uso = dadosCards[i].dadoFormatado;
@@ -111,6 +111,7 @@ function plotarCards(fkCompHasComp){
                 card1.innerHTML = "Tamanho"
                 card2.innerHTML = "Velocidade de escrita"
                 card3.innerHTML = "Velocidade de leitura"
+                console.log(dadosCards)
                     for(var i = dadosCards.length -1 ; i >= 0 ; i--){
                         if(dadosCards[i].tipo == "Velocidade de Escrita"){
                             escrita = dadosCards[i].dadoFormatado;
@@ -125,7 +126,7 @@ function plotarCards(fkCompHasComp){
                     obterDadosGrafico(fkCompHasComp)
             }
                 if(dadosCards[0].tipoComp == 'GPU'){
-                    alert('GPU')
+                    console.log(dadosCards)
                 }
             }) 
         }else{
