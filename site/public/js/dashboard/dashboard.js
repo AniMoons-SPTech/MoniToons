@@ -69,10 +69,10 @@ function plotarCards(fkCompHasComp){
                     velocidade = dadosCards[i].valor;
                     }
                     if(dadosCards[i].tipoEspecificacao == "Núcleos Físicos" ){
-                        nucleo += dadosCards[i].valor
+                        nucleo += Number(dadosCards[i].valor)
                     }
                     if(dadosCards[i].tipoEspecificacao == "Núcleos Lógicos" ){
-                        nucleo += dadosCards[i].valor
+                        nucleo += Number(dadosCards[i].valor)
                     }
                 }
                 cardValor2.innerHTML = velocidade
