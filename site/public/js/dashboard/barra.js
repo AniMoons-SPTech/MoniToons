@@ -4,13 +4,17 @@ function mudaBarraApp() {
     var liAppAbertos = document.getElementById("li_app_abertos")
     var liAppProibidos = document.getElementById("li_app_proibidos")
     var liFuncionario = document.getElementById("li_secao_funcionarios")
+    var dashUsuario = document.getElementById("dashboard")
+    
 
     if (sessionStorage.CARGO_USUARIO == "COMUM") {
+      dashUsuario.style.display = "block";
       liOpcaoGeral.style.display = "none";
       liFuncionario.style.display = "none"
       liAppAbertos.style.display = "block";
       liAppProibidos.style.display = "none";
     } else if (sessionStorage.CARGO_USUARIO == "ADMINISTRADOR") {
+      dashUsuario.style.display = "none";
       liOpcaoGeral.style.display = "block";
       liAppAbertos.style.display = "none";
       liAppProibidos.style.display = "block";
