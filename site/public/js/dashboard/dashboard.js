@@ -113,12 +113,13 @@ function plotarCards(fkCompHasComp){
                             leitura = dadosCards[i].dadoFormatado;
                         }
                     }
-                    
+                    cardValor1.innerHTML = tamanho  
                     cardValor3.innerHTML = leitura
                     obterDadosGrafico(fkCompHasComp)
             }
                 if(dadosCards[0].tipoComp == 'GPU'){
                     console.log(dadosCards)
+                    obterDadosGrafico(fkCompHasComp)
                 }
             }) 
         }else{
