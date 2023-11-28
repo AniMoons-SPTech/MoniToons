@@ -59,6 +59,7 @@ function plotarCards(fkCompHasComp){
                 dadosCards = resposta;
 
             if(dadosCards[0].tipoComp == 'CPU'){
+                    var uso;
                     var velocidade;    
                     card1.innerHTML = "% de Uso"
                     card2.innerHTML = "Velocidade"
