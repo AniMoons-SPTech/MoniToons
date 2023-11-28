@@ -165,9 +165,9 @@ function obterDadosGrafico(fkCompHasComp) {
                         label.push(resposta[i].dataHora);
                         dadosGrafico.push(resposta[i].dadoValor)
                     }
-                    tipo = "'line'"
-                    titulo = "'CPU'"
-                    cor = "'rgb(123, 219, 206)'"
+                    tipo = 'line'
+                    titulo = 'CPU'
+                    cor = 'rgb(123, 219, 206)'
                     plotarGrafico();
                 }
 
