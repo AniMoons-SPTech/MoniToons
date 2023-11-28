@@ -16,7 +16,7 @@ var label = [];
 var dadosGrafico = [];
 var ctx = document.getElementById('myChart').getContext('2d');
 let proximaAtualizacao;
-var myChart = new Chart(grapharea, { type: 'bar', data: barData, options: barOptions });
+var myChart = new Chart(ctx, { type: 'bar', data: barData, options: barOptions });
 
 
 function getComponentes(){
@@ -186,6 +186,8 @@ function plotarGrafico(dados){
             options: {
             },
         }
+        
+        myChart.destroy()
         myChart = new Chart(ctx,cpu)
             
     
