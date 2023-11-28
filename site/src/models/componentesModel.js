@@ -38,7 +38,7 @@ JOIN
 JOIN
     componente comp ON chc.fkComponente = comp.idComponente
 WHERE
-    r.fkCompHasComp = 57
+    r.fkCompHasComp = ${fkCompHasComp}
 ORDER BY
    r.dataHora DESC
 OFFSET
