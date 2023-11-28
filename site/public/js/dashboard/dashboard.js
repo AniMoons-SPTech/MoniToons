@@ -161,7 +161,7 @@ function obterDadosGrafico(fkCompHasComp) {
                 cor = "";
 
                 if(resposta[0].tipoComp == 'CPU'){
-                    for(var i = 0; i < resposta.length; i++) {
+                    for(var i = resposta.length -1 ; i > 0; i--) {
                         label.push(resposta[i].dataHora);
                         dadosGrafico.push(resposta[i].dadoValor)
                     }

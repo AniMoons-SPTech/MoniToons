@@ -27,7 +27,7 @@ function getDados(fkCompHasComp){
     function dadosGrafico(fkCompHasComp){
         console.log("ACESSEI O COMPONENTES MODEL")
     var instrucao = `SELECT
-    r.*,
+    r.*,FORMAT(r.dataHora, 'dd/MM/yyyy HH:mm') as dataHoraFormatada,
     comp.tipo AS tipoComp
 FROM
     registro r
