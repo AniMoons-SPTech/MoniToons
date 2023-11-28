@@ -165,6 +165,9 @@ function obterDadosGrafico(fkCompHasComp) {
 
 function plotarGrafico(dados){
     if(dados[0].tipoComp == 'CPU'){
+        if (window.myChart !== 'undefined' && window.myChart instanceof Chart) {
+            window.myChart.destroy();
+        }
         for(var i = 0; i < dados.length; i++) {
             label.push(dados[i].dataHora);
             dadosGrafico.push(dados[i].dadoValor)
@@ -185,9 +188,7 @@ function plotarGrafico(dados){
             options: {
             },
         }
-        if (window.myChart !== 'undefined' && window.myChart instanceof Chart) {
-            window.myChart.destroy();
-        }
+    
          new Chart(ctx,cpu)
         
         
@@ -196,6 +197,9 @@ function plotarGrafico(dados){
     }
     
     if(dados[0].tipoComp == 'RAM'){
+        if (window.myChart !== 'undefined' && window.myChart instanceof Chart) {
+            window.myChart.destroy();
+        }
         for(var i = 0; i < dados.length; i++) {
             label.push(dados[i].dataHora);
             dadosGrafico.push(dados[i].dadoValor)
@@ -217,14 +221,15 @@ function plotarGrafico(dados){
             options: {
             },
         }
-        if (window.myChart !== 'undefined' && window.myChart instanceof Chart) {
-            window.myChart.destroy();
-        }
+        
         new Chart(ctx,ram)
             
     }
 
     if(dados[0].tipoComp == 'DISCO'){
+        if (window.myChart !== 'undefined' && window.myChart instanceof Chart) {
+            window.myChart.destroy();
+        }
         for(var i = 0; i < dados.length; i++) {
             label.push(dados[i].dataHora);
             dadosGrafico.push(dados[i].dadoValor)
@@ -244,16 +249,13 @@ function plotarGrafico(dados){
             },
             options: {
             },
-        }
-        
+        }   
+        new Chart(ctx,disco)
+    }
+    if(dados[0].tipoComp == 'GPU'){
         if (window.myChart !== 'undefined' && window.myChart instanceof Chart) {
             window.myChart.destroy();
         }
-             new Chart(ctx,disco)
-            
-    
-    }
-    if(dados[0].tipoComp == 'GPU'){
         for(var i = 0; i < dados.length; i++) {
             label.push(dados[i].dataHora);
             dadosGrafico.push(dados[i].dadoValor)
@@ -275,9 +277,6 @@ function plotarGrafico(dados){
             },
         }
         
-        if (window.myChart !== 'undefined' && window.myChart instanceof Chart) {
-            window.myChart.destroy();
-        }
         new Chart(ctx,gpu)
         
     }     
