@@ -342,7 +342,6 @@ function obterDadosGrafico(fkCompHasComp) {
 }
 
 function plotarGrafico(ctx,dados){ 
-    graph.update()
     graph = new Chart(ctx,dados)  
     console.log(label,dadosGrafico)
     
