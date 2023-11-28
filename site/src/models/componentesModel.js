@@ -19,7 +19,7 @@ function getDados(fkCompHasComp){
     JOIN computador c ON chc.fkComputador = c.idComputador
     JOIN especificacoesComponente ec ON chc.fkComponente = ec.fkComponente
     JOIN componente comp ON ec.fkComponente = comp.idComponente
-    WHERE chc.idCompHasComp =${fkCompHasComp}`
+    WHERE chc.fkCompHasComp = ${fkCompHasComp}`
                     
     console.log("Executando \n" + instrucao)                
     return database.executar(instrucao);
