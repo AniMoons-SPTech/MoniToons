@@ -71,19 +71,19 @@ body {
   height: 100%;
 }
 
-#grafico-CPU{
-  display: flex;
-}
-
-#grafico-GPU{
+.grafico-CPU{
   display: none;
 }
 
-#grafico-RAM{
+.grafico-GPU{
   display: none;
 }
 
-#grafico-DISCO{
+.grafico-RAM{
+  display: none;
+}
+
+.grafico-DISCO{
   display: none;
 }
 
