@@ -187,9 +187,9 @@ function plotarGrafico(dados){
         }
         if (typeof window.myChart !== 'undefined' && window.myChart instanceof Chart) {
             window.myChart.destroy();
-        }else{
-            myChart = new Chart(ctx,cpu)
         }
+         new Chart(ctx,cpu)
+        
         
             
     
@@ -219,9 +219,8 @@ function plotarGrafico(dados){
         }
         if (typeof window.myChart !== 'undefined' && window.myChart instanceof Chart) {
             window.myChart.destroy();
-        }else{
-            myChart = new Chart(ctx,ram)
         }
+        new Chart(ctx,ram)
             
     }
 
@@ -249,9 +248,8 @@ function plotarGrafico(dados){
         
         if (typeof window.myChart !== 'undefined' && window.myChart instanceof Chart) {
             window.myChart.destroy();
-        }else{
-            myChart = new Chart(ctx,disco)
         }
+             new Chart(ctx,disco)
             
     
     }
@@ -279,9 +277,9 @@ function plotarGrafico(dados){
         
         if (typeof window.myChart !== 'undefined' && window.myChart instanceof Chart) {
             window.myChart.destroy();
-        }else{
-            myChart = new Chart(ctx,gpu)
         }
+        new Chart(ctx,gpu)
+        
     }     
 
         
