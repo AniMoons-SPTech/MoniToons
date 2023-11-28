@@ -206,8 +206,8 @@ function obterDadosGrafico(fkCompHasComp) {
                         }
                     }
                     tipo = 'bar'
-                    titulo = 'DISCO'
-                    cor = 'rgb(123, 001, 444)', 'rgb(444, 001, 000)',
+                    titulo = ['Velocidade de Escrita', 'Velocidade de Leitura']
+                    cor = ['rgb(123, 001, 444)', 'rgb(444, 001, 000)'],
                     plotarGrafico();
                 }
 
@@ -232,7 +232,7 @@ function plotarGrafico(){
                     labels: label,
                     datasets: [{
                         label: titulo,
-                        data: dadosGrafico,
+                        data: [dadosGrafico,dadosGrafico1],
                         backgroundColor: '#fff',
                         borderColor: cor,
                     }]
