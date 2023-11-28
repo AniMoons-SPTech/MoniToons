@@ -210,8 +210,8 @@ function obterDadosGrafico(fkCompHasComp) {
                     tipo = 'bar'
                     titulo = 'Velocidade de Escrita'
                     titulo1 ='Velocidade de Leitura'
-                    cor = 'rgb(123, 001, 444)'
-                    cor1 ='rgb(444, 001, 000)'
+                    cor = 'rgb(123, 001, 444,1)'
+                    cor1 ='rgb(444, 001, 000,1)'
                     plotarGrafico();
                 }
 
@@ -237,12 +237,12 @@ function plotarGrafico(){
                     datasets: [{
                         label: titulo,
                         data: [dadosGrafico],
-                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        backgroundColor: 'rgba(75, 192, 192, 1)',
                         borderColor: cor,
                     },{
                         label: titulo1,
                         data: [dadosGrafico1],
-                        backgroundColor: 'rgba(999, 192, 999, 0.2)',
+                        backgroundColor: 'rgba(999, 192, 999, 1)',
                         borderColor: cor,
                     }
                     ],
