@@ -20,7 +20,9 @@ var ctx = document.getElementById('myChart').getContext('2d');
 let proximaAtualizacao;
 var tipo;
 var titulo;
+var titulo1;
 var cor;
+var cor1;
 
 
 function getComponentes(){
@@ -206,8 +208,10 @@ function obterDadosGrafico(fkCompHasComp) {
                         }
                     }
                     tipo = 'bar'
-                    titulo = ['Velocidade de Escrita', 'Velocidade de Leitura']
-                    cor = ['rgb(123, 001, 444)', 'rgb(444, 001, 000)'],
+                    titulo = 'Velocidade de Escrita'
+                    titulo1 ='Velocidade de Leitura'
+                    cor = 'rgb(123, 001, 444)'
+                    cor1 ='rgb(444, 001, 000)'
                     plotarGrafico();
                 }
 
@@ -229,13 +233,19 @@ function plotarGrafico(){
     window.myChart = new Chart(ctx, {
                 type: tipo,
                 data: {
-                    labels: label,
+                    labels: [titulo,titulo1],
                     datasets: [{
                         label: titulo,
-                        data: [dadosGrafico,dadosGrafico1],
+                        data: [dadosGrafico],
                         backgroundColor: '#fff',
                         borderColor: cor,
-                    }]
+                    },{
+                        label: titulo1,
+                        data: [dadosGrafico1],
+                        backgroundColor: '#fff',
+                        borderColor: cor,
+                    }
+                    ],
                 }
             });
 
