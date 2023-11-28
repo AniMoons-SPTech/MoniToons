@@ -178,10 +178,10 @@ function obterDadosGrafico(fkCompHasComp) {
                         dadosGrafico.push(resposta[i].dadoValor)
 
                         if(resposta[i].tipo == 'Memória em Uso'){
-                            cardValor1.innerHTML =  resposta[0].dadoFormatado
+                            cardValor1.innerHTML =  resposta[i].dadoFormatado
                         }
                         if(resposta[i].tipo == 'Memória Disponível'){
-                            cardValor2.innerHTML =  resposta[0].dadoFormatado
+                            cardValor2.innerHTML =  resposta[i].dadoFormatado
                         }
                     }
                     tipo = 'line'
