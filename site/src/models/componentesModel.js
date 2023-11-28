@@ -7,7 +7,7 @@ function getComponentes(idUsuario){
                     JOIN computadorhascomponente ON fkComponente = idComponente
                     JOIN computador ON idComputador = fkComputador
                     WHERE fkUsuario = ${idUsuario};
-                    ORDER BY = componente.tipo`
+                    ORDER BY componente.tipo`
     console.log("Executando \n" + instrucao)                
     return database.executar(instrucao);
 }
