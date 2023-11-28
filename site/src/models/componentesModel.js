@@ -14,12 +14,10 @@ function getComponentes(idUsuario){
 
 function getDados(fkCompHasComp){
     console.log("ACESSEI O COMPONENTES MODEL")
-    var instrucao = `SELECT  comp.*, ec.*, comp.tipo AS tipoComp
-    FROM computadorHasComponente chc
-    JOIN computador c ON chc.fkComputador = c.idComputador
-    JOIN especificacoesComponente ec ON chc.fkComponente = ec.fkComponente
-    JOIN componente comp ON ec.fkComponente = comp.idComponente
-    WHERE chc.idCompHasComp =${fkCompHasComp}`
+    var instrucao = `select especificacoescomponente.* , componente.tipo from especificacoescomponente
+                    join componente on componente.idComponente = especificacoescomponente.fkComponente
+                    join computadorhascomponente on componente.idComponente = computadorhascomponente.fkComponente
+                    where idCompHasComp =${fkCompHasComp};`
                     
     console.log("Executando \n" + instrucao)                
     return database.executar(instrucao);
