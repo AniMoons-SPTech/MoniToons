@@ -17,6 +17,7 @@ var label = [];
 var dadosGrafico = [];
 var ctx = document.getElementById('myChart').getContext('2d');
 let proximaAtualizacao;
+var grafico = window.myChart;
 
 
 
@@ -168,7 +169,7 @@ function obterDadosGrafico(fkCompHasComp) {
 }
 
 function plotarGrafico(dados){
-    window.myChart.destroy()
+    grafico.destroy()
     if(dados[0].tipoComp == 'CPU'){
         for(var i = 0; i < dados.length; i++) {
             label.push(dados[i].dataHora);
