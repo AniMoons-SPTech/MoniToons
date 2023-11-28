@@ -85,7 +85,7 @@ function plotarCards(fkCompHasComp){
                 
             if(dadosCards[0].tipoComp == 'RAM'){
                 var total;
-                card1.innerHTML = "% de Uso"
+                card1.innerHTML = "Memória em Uso"
                 card2.innerHTML = "Memória disponível"
                 card3.innerHTML = "Memória total"
                 console.log(dadosCards)
@@ -169,6 +169,24 @@ function obterDadosGrafico(fkCompHasComp) {
                     titulo = 'CPU'
                     cor = 'rgb(123, 219, 206)'
                     cardValor1.innerHTML =  resposta[0].dadoFormatado
+                    plotarGrafico();
+                }
+
+                if(resposta[0].tipoComp == 'RAM'){
+                    for(var i = resposta.length -1 ; i > 0; i--) {
+                        label.push(resposta[i].dataHoraFormatada);
+                        dadosGrafico.push(resposta[i].dadoValor)
+                        if(resposta[i].tipo == 'Memória em Uso'){
+                            cardValor1.innerHTML =  resposta[0].dadoFormatado
+                        }
+                        if(resposta[i].tipo == 'Memória em Uso'){
+                            cardValor2.innerHTML =  resposta[0].dadoFormatado
+                        }
+                    }
+                    tipo = 'line'
+                    titulo = 'RAM'
+                    cor = 'rgb(123, 001, 000)'
+                    
                     plotarGrafico();
                 }
 
