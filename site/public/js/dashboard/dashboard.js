@@ -44,7 +44,8 @@ function getComponentes(){
             response.json().then((resposta) => {
                 componentesMaquina = resposta;
                 for(var i = 0; i < componentesMaquina.length; i++){
-                divComponentes.innerHTML += `
+                    if((componentesMaquina.nome).indexOf('NVIDIA') || componentesMaquina[i].tipo == 'CPU' || componentesMaquina[i].tipo == 'DISCO'|| componentesMaquina[i].tipo == 'RAM'){
+                        divComponentes.innerHTML += `
                 <button onclick = "plotarCards(${componentesMaquina[i].idCompHasComp})" class="componente-selecao">
                 <div class="especificacoes-componente">
                   <span>${componentesMaquina[i].tipo}</span>
@@ -53,6 +54,7 @@ function getComponentes(){
                 <div class="barra-horizontal"></div>
               </button>`
               plotarCards(componentesMaquina[i].idCompHasComp)
+                    }
               //obterDadosGrafico(componentesMaquina[i].idCompHasComp)
                 }
             }) 
