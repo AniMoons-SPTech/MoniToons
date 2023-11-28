@@ -174,16 +174,14 @@ function obterDadosGrafico(fkCompHasComp) {
                             datasets: [
                                 {
                                     type: 'line',
-                                    label: 'RAM',
+                                    label: 'CPU',
                                     data: dadosGrafico,
                                     backgroundColor: '#fff',
                                     borderColor: 'rgb(123, 219, 206)'
                                 }
                             ],
                             labels: label
-                        },
-                        options: {
-                        },
+                        }
                     }
                     cardValor1.innerHTML =  resposta[0].dadoFormatado
                     grafico1.style.display = 'flex'
@@ -196,13 +194,28 @@ function obterDadosGrafico(fkCompHasComp) {
                 if(resposta[0].tipoComp == 'RAM'){
                     for(var i = resposta.length -1 ; i > 0; i--) {
                         label.push(resposta[i].dataHoraFormatada);
-                        dadosGrafico.push(resposta[i].dadoValor)
+                        
 
                         if(resposta[i].tipo == 'Memória em Uso'){
+                            dadosGrafico.push(resposta[i].dadoValor)
                             cardValor1.innerHTML =  resposta[i].dadoFormatado
                         }
                         if(resposta[i].tipo == 'Memória Disponível'){
                             cardValor2.innerHTML =  resposta[i].dadoFormatado
+                        }
+                    }
+                    var ram = {
+                        data: {
+                            datasets: [
+                                {
+                                    type: 'line',
+                                    label: 'RAM',
+                                    data: dadosGrafico,
+                                    backgroundColor: '#fff',
+                                    borderColor: 'rgb(123, 001, 000)'
+                                }
+                            ],
+                            labels: label
                         }
                     }
                         
@@ -211,10 +224,7 @@ function obterDadosGrafico(fkCompHasComp) {
                     grafico3.style.display = 'none'
                     grafico4.style.display = 'none'
 
-                    tipo = 'line'
-                    titulo = 'RAM'
-                    cor = 'rgb(123, 001, 000)'
-                
+                plotarGrafico(ctx2,ram)
                 }
 
                 if(resposta[0].tipoComp == 'DISCO'){
@@ -232,7 +242,7 @@ function obterDadosGrafico(fkCompHasComp) {
                         }
                     }
                     tipo = 'bar';
-                    var dados = {
+                    var disco= {
                         labels: ['Velocidade de Escrita', 'Velocidade de Leitura'],
                         datasets: [
                             {
@@ -255,6 +265,8 @@ function obterDadosGrafico(fkCompHasComp) {
                     grafico2.style.display = 'none'
                     grafico3.style.display = 'flex'
                     grafico4.style.display = 'none'
+
+                    plotarGrafico(ctx3,disco)
                 }
                 if(resposta[0].tipoComp == 'GPU'){
                     grafico1.style.display = 'none'
