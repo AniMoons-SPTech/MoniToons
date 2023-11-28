@@ -44,8 +44,8 @@ function getComponentes(){
             response.json().then((resposta) => {
                 componentesMaquina = resposta;
                 for(var i = 0; i < componentesMaquina.length; i++){
-                    if(!(componentesMaquina[i].nome).indexOf('NVIDIA') || componentesMaquina[i].tipo == 'CPU' || componentesMaquina[i].tipo == 'DISCO'|| componentesMaquina[i].tipo == 'RAM'){
-                        divComponentes.innerHTML += `
+                    
+                divComponentes.innerHTML += `
                 <button onclick = "plotarCards(${componentesMaquina[i].idCompHasComp})" class="componente-selecao">
                 <div class="especificacoes-componente">
                   <span>${componentesMaquina[i].tipo}</span>
@@ -54,7 +54,6 @@ function getComponentes(){
                 <div class="barra-horizontal"></div>
               </button>`
               plotarCards(componentesMaquina[i].idCompHasComp)
-                    }
               //obterDadosGrafico(componentesMaquina[i].idCompHasComp)
                 }
             }) 
@@ -338,8 +337,9 @@ function obterDadosGrafico(fkCompHasComp) {
 }
 
 function plotarGrafico(ctx,dados){ 
+    const graph = new Chart(ctx, dados);
     console.log(label,dadosGrafico)
-    new Chart(ctx, dados);
+    graph.destroy()
 }
 
 function atualizarGraficoLinha(fkCompHasComp) {
