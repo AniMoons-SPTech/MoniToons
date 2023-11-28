@@ -17,9 +17,9 @@ var label = [];
 var dadosGrafico = [];
 var ctx = document.getElementById('myChart').getContext('2d');
 let proximaAtualizacao;
-var grafico = window.myChart;
-
-
+var tipo;
+var titulo;
+var cor;
 
 
 function getComponentes(){
@@ -154,9 +154,26 @@ function obterDadosGrafico(fkCompHasComp) {
     }).then(function (response) {
         if (response.ok) {
             response.json().then(function (resposta) {
-                label = []
-                dadosGrafico = []
-                plotarGrafico(resposta)
+                label = [];
+                dadosGrafico = [];
+                tipo = "";
+                titulo ="";
+                cor = "";
+
+                if(resposta[0].tipoComp == 'CPU'){
+                    for(var i = 0; i < resposta.length; i++) {
+                        label.push(resposta[i].dataHora);
+                        dadosGrafico.push(resposta[i].dadoValor)
+                    }
+                    tipo = "'line'"
+                    titulo = "'CPU'"
+                    cor = "'rgb(123, 219, 206)'"
+                    plotarGrafico();
+                }
+
+
+
+
             })    
         } else if (response.status == 404) {
             window.alert("Deu 404!");
@@ -168,111 +185,25 @@ function obterDadosGrafico(fkCompHasComp) {
     });
 }
 
-function plotarGrafico(dados){
-    grafico.destroy()
-    if(dados[0].tipoComp == 'CPU'){
-        for(var i = 0; i < dados.length; i++) {
-            label.push(dados[i].dataHora);
-            dadosGrafico.push(dados[i].dadoValor)
-        }
-        var cpu = {
+function plotarGrafico(){ 
+    if (typeof window.myChart !== 'undefined' && window.myChart !== null) {
+        window.myChart.data.labels = label;
+        window.myChart.data.datasets[0].data = dadosGrafico;
+        window.myChart.update();
+    } else {
+        window.myChart = new Chart(ctx, {
+            type: tipo,
             data: {
-                datasets: [
-                    {
-                        type: 'line',
-                        label: 'CPU',
-                        data: dadosGrafico,
-                        backgroundColor: '#fff',
-                        borderColor: '#f8f'
-                    }
-                ],
-                labels: label
-            },
-            options: {
-            },
-        }
-         
-        new Chart(ctx, cpu)
-    }
-    
-    if(dados[0].tipoComp == 'RAM'){
-        for(var i = 0; i < dados.length; i++) {
-            label.push(dados[i].dataHora);
-            dadosGrafico.push(dados[i].dadoValor)
-        }
-
-        var ram = {
-            data: {
-                datasets: [
-                    {
-                        type: 'line',
-                        label: 'RAM',
-                        data: dadosGrafico,
-                        backgroundColor: '#fff',
-                        borderColor: '#815'
-                    }
-                ],
-                labels: label
-            },
-            options: {
-            },
-        }
-        
-        new Chart(ctx, ram)   
-    }
-
-    if(dados[0].tipoComp == 'DISCO'){
-        for(var i = 0; i < dados.length; i++) {
-            label.push(dados[i].dataHora);
-            dadosGrafico.push(dados[i].dadoValor)
-        }
-        var disco = {
-            data: {
-                datasets: [
-                    {
-                        type: 'pie',
-                        label: 'DISCO',
-                        data: dadosGrafico,
-                        backgroundColor: '#fff',
-                        borderColor: '#477'
-                    }
-                ],
-                labels: label
-            },
-            options: {
-            },
-        }  
-        new Chart(ctx, disco) 
-    }
-    if(dados[0].tipoComp == 'GPU'){
-        for(var i = 0; i < dados.length; i++) {
-            label.push(dados[i].dataHora);
-            dadosGrafico.push(dados[i].dadoValor)
-        }
-        var gpu = {
-            data: {
-                datasets: [
-                    {
-                        type: 'line',
-                        label: 'GPU',
-                        data: dadosGrafico,
-                        backgroundColor: '#fff',
-                        borderColor: '#456'
-                    }
-                ],
-                labels: label
-            },
-            options: {
-            },
-        }
-        
-        new Chart(ctx, gpu)
-    }     
-
-        
-        
-        
-        
+                labels: label,
+                datasets: [{
+                    label: titulo,
+                    data: dadosGrafico,
+                    backgroundColor: '#fff',
+                    borderColor: cor,
+                }]
+            }
+        });
+    }   
 }
 
 function atualizarGraficoLinha(fkCompHasComp) {
