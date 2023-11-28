@@ -168,7 +168,7 @@ function obterDadosGrafico(fkCompHasComp) {
                     tipo = "'line'"
                     titulo = "'CPU'"
                     cor = "'rgb(123, 219, 206)'"
-                    plotarGrafico(label,dadosGrafico);
+                    plotarGrafico();
                 }
 
 
@@ -185,25 +185,27 @@ function obterDadosGrafico(fkCompHasComp) {
     });
 }
 
-function plotarGrafico(label,dadosGrafico){ 
-    if (typeof window.myChart == 'undefined' && window.myChart == null) {
-        window.myChart = new Chart(ctx, {
-            type: tipo,
-            data: {
-                labels: label,
-                datasets: [{
-                    label: titulo,
-                    data: dadosGrafico,
-                    backgroundColor: '#fff',
-                    borderColor: cor,
-                }]
-            }
-        });
-    } else {
-        window.myChart.data.labels = label;
-        window.myChart.data.datasets[0].data = dadosGrafico;
-        window.myChart.update();
-    }   
+function plotarGrafico(){ 
+    console.log(label,dadosGrafico)
+
+    // if (typeof window.myChart == 'undefined' && window.myChart == empty()) {
+    //     window.myChart = new Chart(ctx, {
+    //         type: tipo,
+    //         data: {
+    //             labels: label,
+    //             datasets: [{
+    //                 label: titulo,
+    //                 data: dadosGrafico,
+    //                 backgroundColor: '#fff',
+    //                 borderColor: cor,
+    //             }]
+    //         }
+    //     });
+    // } else {
+    //     window.myChart.data.labels = label;
+    //     window.myChart.data.datasets[0].data = dadosGrafico;
+    //     window.myChart.update();
+    // }   
 }
 
 function atualizarGraficoLinha(fkCompHasComp) {
