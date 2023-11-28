@@ -162,7 +162,7 @@ function obterDadosGrafico(fkCompHasComp) {
 
                 if(resposta[0].tipoComp == 'CPU'){
                     for(var i = resposta.length -1 ; i > 0; i--) {
-                        label.push(resposta[i].dataHora);
+                        label.push(resposta[i].dataHoraFormatada);
                         dadosGrafico.push(resposta[i].dadoValor)
                     }
                     tipo = 'line'
