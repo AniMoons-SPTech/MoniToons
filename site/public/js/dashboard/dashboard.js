@@ -186,7 +186,7 @@ function plotarGrafico(dados){
             options: {
             },
         }
-        
+
         myChart.destroy()
         myChart = new Chart(ctx,cpu)
             
@@ -225,12 +225,52 @@ function plotarGrafico(dados){
             label.push(dados[i].dataHora);
             dadosGrafico.push(dados[i].dadoValor)
         }
+        var disco = {
+            data: {
+                datasets: [
+                    {
+                        type: 'pie',
+                        label: 'DISCO',
+                        data: dadosGrafico,
+                        backgroundColor: '#fff',
+                        borderColor: '#477'
+                    }
+                ],
+                labels: label
+            },
+            options: {
+            },
+        }
+        
+        myChart.destroy()
+        myChart = new Chart(ctx,disco)
+            
+    
     }
     if(dados[0].tipoComp == 'GPU'){
         for(var i = 0; i < dados.length; i++) {
             label.push(dados[i].dataHora);
             dadosGrafico.push(dados[i].dadoValor)
         }
+        var gpu = {
+            data: {
+                datasets: [
+                    {
+                        type: 'line',
+                        label: 'GPU',
+                        data: dadosGrafico,
+                        backgroundColor: '#fff',
+                        borderColor: '#456'
+                    }
+                ],
+                labels: label
+            },
+            options: {
+            },
+        }
+        
+        myChart.destroy()
+        myChart = new Chart(ctx,gpu)
     }     
 
         
