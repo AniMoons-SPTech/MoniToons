@@ -45,6 +45,10 @@ function getComponentes(){
             response.json().then((resposta) => {
                 componentesMaquina = resposta;
                 for(var i = 0; i < componentesMaquina.length; i++){
+                    var cpu;
+                if(componentesMaquina[i].tipo == 'CPU'){
+                   cpu = componentesMaquina[i].idCompHasComp     
+                } 
                     
                 divComponentes.innerHTML += `
                 <button onclick = "plotarCards(${componentesMaquina[i].idCompHasComp})" class="componente-selecao">
@@ -54,9 +58,9 @@ function getComponentes(){
                 </div>
                 <div class="barra-horizontal"></div>
               </button>`
-              plotarCards(componentesMaquina[i].idCompHasComp)
               //obterDadosGrafico(componentesMaquina[i].idCompHasComp)
                 }
+                plotarCards(cpu)
             }) 
         }else{
             throw("Houve um erro")
@@ -338,6 +342,7 @@ function obterDadosGrafico(fkCompHasComp) {
 }
 
 function plotarGrafico(ctx,dados){ 
+    graph.update()
     graph = new Chart(ctx,dados)  
     console.log(label,dadosGrafico)
     
