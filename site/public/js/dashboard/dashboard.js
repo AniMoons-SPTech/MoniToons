@@ -237,12 +237,12 @@ function plotarGrafico(){
                     datasets: [{
                         label: titulo,
                         data: [dadosGrafico],
-                        backgroundColor: '#fff',
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
                         borderColor: cor,
                     },{
                         label: titulo1,
                         data: [dadosGrafico1],
-                        backgroundColor: '#fff',
+                        backgroundColor: 'rgba(999, 192, 999, 0.2)',
                         borderColor: cor,
                     }
                     ],
