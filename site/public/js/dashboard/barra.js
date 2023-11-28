@@ -21,7 +21,7 @@ function mudaBarraApp() {
       liAppProibidos.style.display = "block";
     }
     dashboardLink.addEventListener('click', function() {
-         window.location.href = `./dashboard/dashboard.html?idUsuario=${sessionStorage.idUsuario}`;
+         window.location.href = `./dashboard.html?idUsuario=${sessionStorage.idUsuario}`;
     });
 
   }
