@@ -17,7 +17,6 @@ var label = [];
 var dadosGrafico = [];
 var ctx = document.getElementById('myChart').getContext('2d');
 let proximaAtualizacao;
-var myChart;
 
 
 
@@ -193,11 +192,11 @@ function plotarGrafico(dados){
             },
         }
          
-        if(myChart == ""){
-            myChart = new Chart(ctx,cpu)
+        if(ctx == ""){
+            new Chart(ctx,cpu)
         }else{
-            myChart.destroy();
-            myChart = new Chart(ctx,cpu)
+            ctx.destroy();
+            new Chart(ctx,cpu)
         }
     
     }
@@ -227,11 +226,11 @@ function plotarGrafico(dados){
             },
         }
         
-        if(myChart == ""){
-            myChart = new Chart(ctx,ram)
+        if(ctx == ""){
+            new Chart(ctx,ram)
         }else{
-            myChart.destroy();
-            myChart = new Chart(ctx,ram)
+            ctx.destroy();
+            new Chart(ctx,ram)
         }
             
     }
@@ -259,11 +258,11 @@ function plotarGrafico(dados){
             options: {
             },
         }   
-        if(myChart == ""){
-            myChart = new Chart(ctx,disco)
+        if(ctx == ""){
+            new Chart(ctx,disco)
         }else{
-            myChart.destroy();
-            myChart = new Chart(ctx,disco)
+            ctx.destroy();
+            new Chart(ctx,disco)
         }
     }
     if(dados[0].tipoComp == 'GPU'){
@@ -290,11 +289,11 @@ function plotarGrafico(dados){
             },
         }
         
-        if(myChart == ""){
-            myChart = new Chart(ctx,gpu)
+        if(ctx == ""){
+            new Chart(ctx,gpu)
         }else{
-            myChart.destroy();
-            myChart = new Chart(ctx,gpu)
+            ctx.destroy();
+            new Chart(ctx,gpu)
         }
         
     }     
