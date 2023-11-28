@@ -22,12 +22,9 @@ var grafico3 = document.getElementById("graficoCPU");
 var ctx3 = document.getElementById('myChart3').getContext('2d');
 var grafico4 = document.getElementById("graficoCPU");
 var ctx4 = document.getElementById('myChart4').getContext('2d');
-
-
 var label = [];
 var dadosGrafico = [];
 var dadosGrafico1 = [];
-var ctx = document.getElementById('myChart').getContext('2d');
 let proximaAtualizacao;
 
 
@@ -166,9 +163,6 @@ function obterDadosGrafico(fkCompHasComp) {
             response.json().then(function (resposta) {
                 label = [];
                 dadosGrafico = [];
-                tipo = "";
-                titulo ="";
-                cor = "";
 
                 if(resposta[0].tipoComp == 'CPU'){
                     for(var i = resposta.length -1 ; i > 0; i--) {
@@ -212,7 +206,10 @@ function obterDadosGrafico(fkCompHasComp) {
                         }
                     }
                         
-
+                    grafico1.style.display = 'none'
+                    grafico2.style.display = 'flex'
+                    grafico3.style.display = 'none'
+                    grafico4.style.display = 'none'
 
                     tipo = 'line'
                     titulo = 'RAM'
@@ -254,8 +251,16 @@ function obterDadosGrafico(fkCompHasComp) {
                             }
                         ]
                     };
-
-
+                    grafico1.style.display = 'none'
+                    grafico2.style.display = 'none'
+                    grafico3.style.display = 'flex'
+                    grafico4.style.display = 'none'
+                }
+                if(resposta[0].tipoComp == 'GPU'){
+                    grafico1.style.display = 'none'
+                    grafico2.style.display = 'none'
+                    grafico3.style.display = 'none'
+                    grafico4.style.display = 'flex'
                 }
 
 
@@ -273,7 +278,7 @@ function obterDadosGrafico(fkCompHasComp) {
 
 function plotarGrafico(ctx,dados){ 
     console.log(label,dadosGrafico)
-    window.myChart = new Chart(ctx, dados);
+    new Chart(ctx, dados);
 
     // if (typeof window.myChart == 'undefined' && window.myChart == empty()) {
     //     
