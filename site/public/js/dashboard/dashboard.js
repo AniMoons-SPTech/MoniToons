@@ -187,20 +187,21 @@ function obterDadosGrafico(fkCompHasComp) {
 
 function plotarGrafico(){ 
     console.log(label,dadosGrafico)
+    window.myChart = new Chart(ctx, {
+                type: tipo,
+                data: {
+                    labels: label,
+                    datasets: [{
+                        label: titulo,
+                        data: dadosGrafico,
+                        backgroundColor: '#fff',
+                        borderColor: cor,
+                    }]
+                }
+            });
 
     // if (typeof window.myChart == 'undefined' && window.myChart == empty()) {
-    //     window.myChart = new Chart(ctx, {
-    //         type: tipo,
-    //         data: {
-    //             labels: label,
-    //             datasets: [{
-    //                 label: titulo,
-    //                 data: dadosGrafico,
-    //                 backgroundColor: '#fff',
-    //                 borderColor: cor,
-    //             }]
-    //         }
-    //     });
+    //     
     // } else {
     //     window.myChart.data.labels = label;
     //     window.myChart.data.datasets[0].data = dadosGrafico;
