@@ -168,9 +168,8 @@ function obterDadosGrafico(fkCompHasComp) {
 }
 
 function plotarGrafico(dados){
+    console.log(window.myChart)
     if(dados[0].tipoComp == 'CPU'){
-        
-        
         for(var i = 0; i < dados.length; i++) {
             label.push(dados[i].dataHora);
             dadosGrafico.push(dados[i].dadoValor)
@@ -192,18 +191,10 @@ function plotarGrafico(dados){
             },
         }
          
-        if(ctx == ""){
-            new Chart(ctx,cpu)
-        }else{
-            ctx.data.datasets.data = cpu ;
-            ctx.update()
-        }
     
     }
     
     if(dados[0].tipoComp == 'RAM'){
-        divGrafico.innerHTML = "";
-        divGrafico.innerHTML = '<canvas id="myChart"></canvas>';
         for(var i = 0; i < dados.length; i++) {
             label.push(dados[i].dataHora);
             dadosGrafico.push(dados[i].dadoValor)
@@ -226,18 +217,10 @@ function plotarGrafico(dados){
             },
         }
         
-        if(ctx == ""){
-            new Chart(ctx,ram)
-        }else{
-            ctx.destroy();
-            new Chart(ctx,ram)
-        }
             
     }
 
     if(dados[0].tipoComp == 'DISCO'){
-        divGrafico.innerHTML = "";
-        divGrafico.innerHTML = '<canvas id="myChart"></canvas>';
         for(var i = 0; i < dados.length; i++) {
             label.push(dados[i].dataHora);
             dadosGrafico.push(dados[i].dadoValor)
@@ -258,16 +241,8 @@ function plotarGrafico(dados){
             options: {
             },
         }   
-        if(ctx == ""){
-            new Chart(ctx,disco)
-        }else{
-            ctx.destroy();
-            new Chart(ctx,disco)
-        }
     }
     if(dados[0].tipoComp == 'GPU'){
-        divGrafico.innerHTML = "";
-        divGrafico.innerHTML = '<canvas id="myChart"></canvas>';
         for(var i = 0; i < dados.length; i++) {
             label.push(dados[i].dataHora);
             dadosGrafico.push(dados[i].dadoValor)
@@ -289,12 +264,6 @@ function plotarGrafico(dados){
             },
         }
         
-        if(ctx == ""){
-            new Chart(ctx,gpu)
-        }else{
-            ctx.destroy();
-            new Chart(ctx,gpu)
-        }
         
     }     
 
