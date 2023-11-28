@@ -207,12 +207,28 @@ function obterDadosGrafico(fkCompHasComp) {
                             cardValor3.innerHTML =  resposta[i].dadoFormatado
                         }
                     }
-                    tipo = 'bar'
-                    titulo = 'Velocidade de Escrita'
-                    titulo1 ='Velocidade de Leitura'
-                    cor = 'rgb(123, 001, 444,1)'
-                    cor1 ='rgb(444, 001, 000,1)'
-                    plotarGrafico();
+                    tipo = 'bar';
+                    var dados = {
+                        labels: ['Velocidade de Escrita', 'Categoria 2'],
+                        datasets: [
+                            {
+                                label: 'Velocidade de Escrita',
+                                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                borderWidth: 1,
+                                data: dadosGrafico
+                            },
+                            {
+                                label: 'Velocidade de Leitura',
+                                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                                borderColor: 'rgba(255, 99, 132, 1)',
+                                borderWidth: 1,
+                                data: dadosGrafico1
+                            }
+                        ]
+                    };
+
+                    plotarGrafico(dados);
                 }
 
 
@@ -228,26 +244,9 @@ function obterDadosGrafico(fkCompHasComp) {
     });
 }
 
-function plotarGrafico(){ 
+function plotarGrafico(dados){ 
     console.log(label,dadosGrafico,dadosGrafico1)
-    window.myChart = new Chart(ctx, {
-                type: tipo,
-                data: {
-                    labels: [titulo,titulo1],
-                    datasets: [{
-                        label: titulo,
-                        data: [dadosGrafico],
-                        backgroundColor: 'rgba(75, 192, 192, 1)',
-                        borderColor: cor,
-                    },{
-                        label: titulo1,
-                        data: [dadosGrafico1],
-                        backgroundColor: 'rgba(999, 192, 999, 1)',
-                        borderColor: cor,
-                    }
-                    ],
-                }
-            });
+    window.myChart = new Chart(ctx, dados);
 
     // if (typeof window.myChart == 'undefined' && window.myChart == empty()) {
     //     
