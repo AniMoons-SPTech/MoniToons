@@ -14,6 +14,16 @@ var cardValor1 = document.getElementById("valor-card1");
 var cardValor2 = document.getElementById("valor-card2");
 var cardValor3 = document.getElementById("valor-card3");
 var cardValor4 = document.getElementById("valor-card4");
+var grafico1 = document.getElementById("graficoCPU");
+var ctx1 = document.getElementById('myChart').getContext('2d');
+var grafico2 = document.getElementById("graficoCPU");
+var ctx2 = document.getElementById('myChart2').getContext('2d');
+var grafico3 = document.getElementById("graficoCPU");
+var ctx3 = document.getElementById('myChart3').getContext('2d');
+var grafico4 = document.getElementById("graficoCPU");
+var ctx4 = document.getElementById('myChart4').getContext('2d');
+
+
 var label = [];
 var dadosGrafico = [];
 var dadosGrafico1 = [];
@@ -182,7 +192,11 @@ function obterDadosGrafico(fkCompHasComp) {
                         },
                     }
                     cardValor1.innerHTML =  resposta[0].dadoFormatado
-                    plotarGrafico(cpu);
+                    grafico1.style.display = 'block'
+                    grafico2.style.display = 'none'
+                    grafico3.style.display = 'none'
+                    grafico4.style.display = 'none'
+                    plotarGrafico(ctx1,cpu);
                 }
 
                 if(resposta[0].tipoComp == 'RAM'){
@@ -257,7 +271,7 @@ function obterDadosGrafico(fkCompHasComp) {
     });
 }
 
-function plotarGrafico(dados){ 
+function plotarGrafico(ctx,dados){ 
     console.log(label,dadosGrafico)
     window.myChart = new Chart(ctx, dados);
 
