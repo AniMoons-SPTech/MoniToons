@@ -16,7 +16,6 @@ var label = [];
 var dadosGrafico = [];
 var ctx = document.getElementById('myChart').getContext('2d');
 let proximaAtualizacao;
-var myChart = new Chart(ctx, { type: 'bar', data: [1,2]});
 
 
 function getComponentes(){
