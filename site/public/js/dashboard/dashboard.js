@@ -4,6 +4,7 @@ var idUsuario = urlObj.searchParams.get("idUsuario");
 var componentesMaquina = [];
 var dadosCards = [];
 var divComponentes = document.getElementById("listaComponentes")
+var divGrafico = document.getElementById("grafico")
 var card1 = document.getElementById("title-card1");
 var card2 = document.getElementById("title-card2");
 var card3 = document.getElementById("title-card3");
@@ -16,6 +17,8 @@ var label = [];
 var dadosGrafico = [];
 var ctx = document.getElementById('myChart').getContext('2d');
 let proximaAtualizacao;
+
+
 
 
 function getComponentes(){
@@ -166,9 +169,9 @@ function obterDadosGrafico(fkCompHasComp) {
 
 function plotarGrafico(dados){
     if(dados[0].tipoComp == 'CPU'){
-        if (window.myChart !== 'undefined' && window.myChart instanceof Chart) {
-            window.myChart.destroy();
-        }
+        divGrafico.innerHTML = "";
+        divGrafico.innerHTML = '<canvas id="myChart"></canvas>';
+        
         for(var i = 0; i < dados.length; i++) {
             label.push(dados[i].dataHora);
             dadosGrafico.push(dados[i].dadoValor)
@@ -198,9 +201,8 @@ function plotarGrafico(dados){
     }
     
     if(dados[0].tipoComp == 'RAM'){
-        if (window.myChart !== 'undefined' && window.myChart instanceof Chart) {
-            window.myChart.destroy();
-        }
+        divGrafico.innerHTML = "";
+        divGrafico.innerHTML = '<canvas id="myChart"></canvas>';
         for(var i = 0; i < dados.length; i++) {
             label.push(dados[i].dataHora);
             dadosGrafico.push(dados[i].dadoValor)
@@ -228,9 +230,8 @@ function plotarGrafico(dados){
     }
 
     if(dados[0].tipoComp == 'DISCO'){
-        if (window.myChart !== 'undefined' && window.myChart instanceof Chart) {
-            window.myChart.destroy();
-        }
+        divGrafico.innerHTML = "";
+        divGrafico.innerHTML = '<canvas id="myChart"></canvas>';
         for(var i = 0; i < dados.length; i++) {
             label.push(dados[i].dataHora);
             dadosGrafico.push(dados[i].dadoValor)
@@ -254,9 +255,8 @@ function plotarGrafico(dados){
         new Chart(ctx,disco)
     }
     if(dados[0].tipoComp == 'GPU'){
-        if (window.myChart !== 'undefined' && window.myChart instanceof Chart) {
-            window.myChart.destroy();
-        }
+        divGrafico.innerHTML = "";
+        divGrafico.innerHTML = '<canvas id="myChart"></canvas>';
         for(var i = 0; i < dados.length; i++) {
             label.push(dados[i].dataHora);
             dadosGrafico.push(dados[i].dadoValor)
