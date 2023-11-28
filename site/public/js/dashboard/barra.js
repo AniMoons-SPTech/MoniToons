@@ -5,7 +5,8 @@ function mudaBarraApp() {
     var liAppProibidos = document.getElementById("li_app_proibidos")
     var liFuncionario = document.getElementById("li_secao_funcionarios")
     var dashUsuario = document.getElementById("dashboard")
-    
+    var dashboardLink = document.getElementById('dashboardLink');
+
 
     if (sessionStorage.CARGO_USUARIO == "COMUM") {
       dashUsuario.style.display = "block";
@@ -19,4 +20,8 @@ function mudaBarraApp() {
       liAppAbertos.style.display = "none";
       liAppProibidos.style.display = "block";
     }
+    dashboardLink.addEventListener('click', function() {
+         window.location.href = `./dashboard/dashboard.html?idUsuario=${sessionStorage.idUsuario}`;
+    });
+
   }
