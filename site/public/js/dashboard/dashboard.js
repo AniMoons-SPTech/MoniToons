@@ -185,7 +185,7 @@ function plotarGrafico(dados){
             options: {
             },
         }
-        if (typeof window.myChart !== 'undefined' && window.myChart instanceof Chart) {
+        if (window.myChart !== 'undefined' && window.myChart instanceof Chart) {
             window.myChart.destroy();
         }
          new Chart(ctx,cpu)
@@ -206,7 +206,7 @@ function plotarGrafico(dados){
                 datasets: [
                     {
                         type: 'line',
-                        label: 'CPU',
+                        label: 'RAM',
                         data: dadosGrafico,
                         backgroundColor: '#fff',
                         borderColor: '#815'
@@ -217,7 +217,7 @@ function plotarGrafico(dados){
             options: {
             },
         }
-        if (typeof window.myChart !== 'undefined' && window.myChart instanceof Chart) {
+        if (window.myChart !== 'undefined' && window.myChart instanceof Chart) {
             window.myChart.destroy();
         }
         new Chart(ctx,ram)
@@ -246,7 +246,7 @@ function plotarGrafico(dados){
             },
         }
         
-        if (typeof window.myChart !== 'undefined' && window.myChart instanceof Chart) {
+        if (window.myChart !== 'undefined' && window.myChart instanceof Chart) {
             window.myChart.destroy();
         }
              new Chart(ctx,disco)
@@ -275,7 +275,7 @@ function plotarGrafico(dados){
             },
         }
         
-        if (typeof window.myChart !== 'undefined' && window.myChart instanceof Chart) {
+        if (window.myChart !== 'undefined' && window.myChart instanceof Chart) {
             window.myChart.destroy();
         }
         new Chart(ctx,gpu)
