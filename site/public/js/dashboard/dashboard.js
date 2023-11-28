@@ -74,7 +74,7 @@ function plotarCards(fkCompHasComp){
                 dadosCards = []
                 dadosCards = resposta;
 
-            if(dadosCards[0].tipoComp == 'CPU'){
+            if(dadosCards[0].tipo == 'CPU'){
                     var velocidade;    
                     var nucleo = 0;
                     card1.innerHTML = "% de Uso"
@@ -92,13 +92,13 @@ function plotarCards(fkCompHasComp){
                         nucleo += Number(dadosCards[i].valor)
                     }
                 }
-                
+
                 cardValor2.innerHTML = velocidade
                 cardValor3.innerHTML = nucleo
                 obterDadosGrafico(fkCompHasComp)
             }
                 
-            if(dadosCards[0].tipoComp == 'RAM'){
+            if(dadosCards[0].tipo == 'RAM'){
                 var total;
                 card1.innerHTML = "Memória em Uso"
                 card2.innerHTML = "Memória disponível"
@@ -113,7 +113,7 @@ function plotarCards(fkCompHasComp){
                     obterDadosGrafico(fkCompHasComp)
             }
             
-            if(dadosCards[0].tipoComp == 'DISCO'){
+            if(dadosCards[0].tipo == 'DISCO'){
                 var escrita;
                 var leitura;
                 var tamanho;
@@ -137,7 +137,7 @@ function plotarCards(fkCompHasComp){
                     obterDadosGrafico(fkCompHasComp)
             }
 
-            if(dadosCards[0].tipoComp == 'GPU'){
+            if(dadosCards[0].tipo == 'GPU'){
                     card1.innerHTML = "Memória de Vídeo Disponível"
 
                     for(var i = dadosCards.length -1 ; i >= 0 ; i--){
