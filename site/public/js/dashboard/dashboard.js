@@ -195,8 +195,8 @@ function plotarGrafico(dados){
         if(ctx == ""){
             new Chart(ctx,cpu)
         }else{
-            ctx.destroy();
-            new Chart(ctx,cpu)
+            ctx.data.datasets.data = cpu ;
+            ctx.update()
         }
     
     }
