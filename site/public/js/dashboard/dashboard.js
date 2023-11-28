@@ -16,7 +16,7 @@ var label = [];
 var dadosGrafico = [];
 var ctx = document.getElementById('myChart').getContext('2d');
 let proximaAtualizacao;
-var myChart = new Chart(ctx, { type: 'bar', data: barData, options: barOptions });
+var myChart = new Chart(ctx, { type: 'bar', data: [1,2]});
 
 
 function getComponentes(){
@@ -186,9 +186,12 @@ function plotarGrafico(dados){
             options: {
             },
         }
-
-        myChart.destroy()
-        myChart = new Chart(ctx,cpu)
+        if (typeof window.myChart !== 'undefined' && window.myChart instanceof Chart) {
+            window.myChart.destroy();
+        }else{
+            myChart = new Chart(ctx,cpu)
+        }
+        
             
     
     }
@@ -215,8 +218,11 @@ function plotarGrafico(dados){
             options: {
             },
         }
-        myChart.destroy();
-        myChart = new Chart(ctx,ram)
+        if (typeof window.myChart !== 'undefined' && window.myChart instanceof Chart) {
+            window.myChart.destroy();
+        }else{
+            myChart = new Chart(ctx,ram)
+        }
             
     }
 
@@ -242,8 +248,11 @@ function plotarGrafico(dados){
             },
         }
         
-        myChart.destroy()
-        myChart = new Chart(ctx,disco)
+        if (typeof window.myChart !== 'undefined' && window.myChart instanceof Chart) {
+            window.myChart.destroy();
+        }else{
+            myChart = new Chart(ctx,disco)
+        }
             
     
     }
@@ -269,8 +278,11 @@ function plotarGrafico(dados){
             },
         }
         
-        myChart.destroy()
-        myChart = new Chart(ctx,gpu)
+        if (typeof window.myChart !== 'undefined' && window.myChart instanceof Chart) {
+            window.myChart.destroy();
+        }else{
+            myChart = new Chart(ctx,gpu)
+        }
     }     
 
         
