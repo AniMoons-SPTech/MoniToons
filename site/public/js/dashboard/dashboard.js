@@ -16,6 +16,7 @@ var cardValor3 = document.getElementById("valor-card3");
 var cardValor4 = document.getElementById("valor-card4");
 var label = [];
 var dadosGrafico = [];
+var dadosGrafico1 = [];
 var ctx = document.getElementById('myChart').getContext('2d');
 let proximaAtualizacao;
 
