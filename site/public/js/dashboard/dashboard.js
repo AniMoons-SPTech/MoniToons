@@ -192,7 +192,7 @@ function obterDadosGrafico(fkCompHasComp) {
                         },
                     }
                     cardValor1.innerHTML =  resposta[0].dadoFormatado
-                    grafico1.style.display = 'block'
+                    grafico1.style.display = 'flex'
                     grafico2.style.display = 'none'
                     grafico3.style.display = 'none'
                     grafico4.style.display = 'none'
@@ -217,7 +217,7 @@ function obterDadosGrafico(fkCompHasComp) {
                     tipo = 'line'
                     titulo = 'RAM'
                     cor = 'rgb(123, 001, 000)'
-                    plotarGrafico();
+                
                 }
 
                 if(resposta[0].tipoComp == 'DISCO'){
@@ -255,7 +255,7 @@ function obterDadosGrafico(fkCompHasComp) {
                         ]
                     };
 
-                    plotarGrafico(dados);
+
                 }
 
 
