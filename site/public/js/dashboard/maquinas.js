@@ -17,10 +17,6 @@ function carregarGrupoMaquinas() {
 
 function plotarCardsMaquinas(maquinas) {
     var cards = document.getElementById("cards");
-    if(maquinas.length = 0 ){
-        cardsArea.style.fontSize = 'large'
-        cardsArea.innerHTML = "SEM MÁQUINAS AINDA!"
-    }
 
     maquinas.forEach(maquina => {
 

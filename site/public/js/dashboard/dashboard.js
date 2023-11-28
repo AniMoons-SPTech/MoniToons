@@ -133,11 +133,18 @@ function plotarCards(fkCompHasComp){
                     cardValor3.innerHTML = leitura
                     obterDadosGrafico(fkCompHasComp)
             }
-                if(dadosCards[0].tipoComp == 'GPU'){
+
+            if(dadosCards[0].tipoComp == 'GPU'){
                     card1.innerHTML = "Memória de Vídeo Disponível"
-                    console.log(dadosCards)
-                    obterDadosGrafico(fkCompHasComp)
-                }
+
+                    for(var i = dadosCards.length -1 ; i >= 0 ; i--){
+                        if(dadosCards[i].tipoEspecificacao == "Memória Total"){
+                            total = dadosCards[i].valor;
+                        }
+                    }
+                        cardValor3.innerHTML = total
+                        obterDadosGrafico(fkCompHasComp)
+            }
             }) 
         }else{
             throw("Houve um erro")
@@ -279,7 +286,7 @@ function obterDadosGrafico(fkCompHasComp) {
                 if(resposta[0].tipoComp == 'GPU'){
                     for(var i = 7 ; i > 0; i--) {
 
-                        if(resposta[i].tipo == 'Memória de Vídeo em Uso'){
+                        if(resposta[i].tipo == 'tetse'){
                             dadosGrafico.push(resposta[i].dadoValor)
                             label.push(resposta[i].dataHoraFormatada);
                             cardValor1.innerHTML =  resposta[i].dadoFormatado
