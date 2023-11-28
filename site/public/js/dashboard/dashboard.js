@@ -247,6 +247,7 @@ function obterDadosGrafico(fkCompHasComp) {
                     }
                     tipo = 'bar';
                     var disco= {
+                        type: 'bar',
                         labels: ['Velocidade de Escrita', 'Velocidade de Leitura'],
                         datasets: [
                             {
