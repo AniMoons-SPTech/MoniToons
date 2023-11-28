@@ -1,3 +1,5 @@
+var cardsArea = document.getElementById("cards")
+
 function carregarGrupoMaquinas() {
     fetch(`/maquinas/carregarGrupoMaquinas/${sessionStorage.ID_USUARIO}`, {
         method: 'GET',
@@ -16,7 +18,7 @@ function carregarGrupoMaquinas() {
 function plotarCardsMaquinas(maquinas) {
     var cards = document.getElementById("cards");
     if(maquinas.length = 0 ){
-        cards.innerHTML = "SEM MÁQUINAS AINDA!"
+        cardsArea.innerHTML = "SEM MÁQUINAS AINDA!"
     }
 
     maquinas.forEach(maquina => {
