@@ -186,11 +186,7 @@ function obterDadosGrafico(fkCompHasComp) {
 }
 
 function plotarGrafico(label,dadosGrafico){ 
-    if (typeof window.myChart !== 'undefined' && window.myChart !== null) {
-        window.myChart.data.labels = label;
-        window.myChart.data.datasets[0].data = dadosGrafico;
-        window.myChart.update();
-    } else {
+    if (typeof window.myChart == 'undefined' && window.myChart == null) {
         window.myChart = new Chart(ctx, {
             type: tipo,
             data: {
@@ -203,6 +199,10 @@ function plotarGrafico(label,dadosGrafico){
                 }]
             }
         });
+    } else {
+        window.myChart.data.labels = label;
+        window.myChart.data.datasets[0].data = dadosGrafico;
+        window.myChart.update();
     }   
 }
 
