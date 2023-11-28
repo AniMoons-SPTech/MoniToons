@@ -14,14 +14,19 @@ var cardValor1 = document.getElementById("valor-card1");
 var cardValor2 = document.getElementById("valor-card2");
 var cardValor3 = document.getElementById("valor-card3");
 var cardValor4 = document.getElementById("valor-card4");
+
 var grafico1 = document.getElementById("graficoCPU");
 var ctx1 = document.getElementById('myChart').getContext('2d');
+
 var grafico2 = document.getElementById("graficoRAM");
 var ctx2 = document.getElementById('myChart2').getContext('2d');
+
 var grafico3 = document.getElementById("graficoDISCO");
 var ctx3 = document.getElementById('myChart3').getContext('2d');
+
 var grafico4 = document.getElementById("graficoGPU");
 var ctx4 = document.getElementById('myChart4').getContext('2d');
+
 var label = [];
 var dadosGrafico = [];
 var dadosGrafico1 = [];
@@ -193,11 +198,10 @@ function obterDadosGrafico(fkCompHasComp) {
 
                 if(resposta[0].tipoComp == 'RAM'){
                     for(var i = resposta.length -1 ; i > 0; i--) {
-                        label.push(resposta[i].dataHoraFormatada);
-                        
 
                         if(resposta[i].tipo == 'Memória em Uso'){
                             dadosGrafico.push(resposta[i].dadoValor)
+                            label.push(resposta[i].dataHoraFormatada);
                             cardValor1.innerHTML =  resposta[i].dadoFormatado
                         }
                         if(resposta[i].tipo == 'Memória Disponível'){
