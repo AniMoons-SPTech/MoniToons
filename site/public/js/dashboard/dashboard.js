@@ -17,6 +17,7 @@ var label = [];
 var dadosGrafico = [];
 var ctx = document.getElementById('myChart').getContext('2d');
 let proximaAtualizacao;
+var myChart;
 
 
 
@@ -169,8 +170,7 @@ function obterDadosGrafico(fkCompHasComp) {
 
 function plotarGrafico(dados){
     if(dados[0].tipoComp == 'CPU'){
-        divGrafico.innerHTML = "";
-        divGrafico.innerHTML = '<canvas id="myChart"></canvas>';
+        
         
         for(var i = 0; i < dados.length; i++) {
             label.push(dados[i].dataHora);
@@ -192,11 +192,13 @@ function plotarGrafico(dados){
             options: {
             },
         }
-    
-         new Chart(ctx,cpu)
-        
-        
-            
+         
+        if(myChart == ""){
+            myChart = new Chart(ctx,cpu)
+        }else{
+            myChart.destroy();
+            myChart = new Chart(ctx,cpu)
+        }
     
     }
     
@@ -225,7 +227,12 @@ function plotarGrafico(dados){
             },
         }
         
-        new Chart(ctx,ram)
+        if(myChart == ""){
+            myChart = new Chart(ctx,ram)
+        }else{
+            myChart.destroy();
+            myChart = new Chart(ctx,ram)
+        }
             
     }
 
@@ -252,7 +259,12 @@ function plotarGrafico(dados){
             options: {
             },
         }   
-        new Chart(ctx,disco)
+        if(myChart == ""){
+            myChart = new Chart(ctx,disco)
+        }else{
+            myChart.destroy();
+            myChart = new Chart(ctx,disco)
+        }
     }
     if(dados[0].tipoComp == 'GPU'){
         divGrafico.innerHTML = "";
@@ -278,7 +290,12 @@ function plotarGrafico(dados){
             },
         }
         
-        new Chart(ctx,gpu)
+        if(myChart == ""){
+            myChart = new Chart(ctx,gpu)
+        }else{
+            myChart.destroy();
+            myChart = new Chart(ctx,gpu)
+        }
         
     }     
 
