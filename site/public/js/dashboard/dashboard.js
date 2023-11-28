@@ -15,6 +15,7 @@ var cardValor3 = document.getElementById("valor-card3");
 var cardValor4 = document.getElementById("valor-card4");
 var label = [];
 var dadosGrafico = [];
+var dadosGrafico1 = [];
 var ctx = document.getElementById('myChart').getContext('2d');
 let proximaAtualizacao;
 var tipo;
@@ -160,37 +161,55 @@ function obterDadosGrafico(fkCompHasComp) {
                 titulo ="";
                 cor = "";
 
-                if(resposta[0].tipoComp == 'CPU'){
-                    for(var i = resposta.length -1 ; i > 0; i--) {
-                        label.push(resposta[i].dataHoraFormatada);
-                        dadosGrafico.push(resposta[i].dadoValor)
-                    }
-                    tipo = 'line'
-                    titulo = 'CPU'
-                    cor = 'rgb(123, 219, 206)'
-                    cardValor1.innerHTML =  resposta[0].dadoFormatado
-                    plotarGrafico();
-                }
+                // if(resposta[0].tipoComp == 'CPU'){
+                //     for(var i = resposta.length -1 ; i > 0; i--) {
+                //         label.push(resposta[i].dataHoraFormatada);
+                //         dadosGrafico.push(resposta[i].dadoValor)
+                //     }
+                //     tipo = 'line'
+                //     titulo = 'CPU'
+                //     cor = 'rgb(123, 219, 206)'
+                //     cardValor1.innerHTML =  resposta[0].dadoFormatado
+                //     plotarGrafico();
+                // }
 
-                if(resposta[0].tipoComp == 'RAM'){
-                    for(var i = resposta.length -1 ; i > 0; i--) {
-                        label.push(resposta[i].dataHoraFormatada);
-                        dadosGrafico.push(resposta[i].dadoValor)
+                // if(resposta[0].tipoComp == 'RAM'){
+                //     for(var i = resposta.length -1 ; i > 0; i--) {
+                //         label.push(resposta[i].dataHoraFormatada);
+                //         dadosGrafico.push(resposta[i].dadoValor)
 
-                        if(resposta[i].tipo == 'Memória em Uso'){
-                            cardValor1.innerHTML =  resposta[i].dadoFormatado
-                        }
-                        if(resposta[i].tipo == 'Memória Disponível'){
+                //         if(resposta[i].tipo == 'Memória em Uso'){
+                //             cardValor1.innerHTML =  resposta[i].dadoFormatado
+                //         }
+                //         if(resposta[i].tipo == 'Memória Disponível'){
+                //             cardValor2.innerHTML =  resposta[i].dadoFormatado
+                //         }
+                //     }
+                //     tipo = 'line'
+                //     titulo = 'RAM'
+                //     cor = 'rgb(123, 001, 000)'
+                //     plotarGrafico();
+                // }
+
+                if(resposta[0].tipoComp == 'DISCO'){
+                    for(var i = resposta.length -1 ; i > 0; i--) {
+                        // label.push(resposta[i].dataHoraFormatada);
+                        
+
+                        if(resposta[i].tipo == 'Velocidade de Escrita'){
+                            dadosGrafico.push(resposta[i].dadoValor)
                             cardValor2.innerHTML =  resposta[i].dadoFormatado
                         }
+                        if(resposta[i].tipo == 'Velocidade de Leitura'){
+                            dadosGrafico1.push(resposta[i].dadoValor)
+                            cardValor3.innerHTML =  resposta[i].dadoFormatado
+                        }
                     }
-                    tipo = 'line'
-                    titulo = 'RAM'
-                    cor = 'rgb(123, 001, 000)'
-                    
+                    tipo = 'bar'
+                    titulo = 'DISCO'
+                    cor = 'rgb(123, 001, 444)', 'rgb(444, 001, 000)',
                     plotarGrafico();
                 }
-
 
 
 
