@@ -6,13 +6,13 @@ function mudaBarraApp() {
     var liFuncionario = document.getElementById("li_secao_funcionarios")
     var dashUsuario = document.getElementById("dashboard")
     var dashboardLink = document.getElementById('dashboardLink');
-    var id = sessionStorage.ID_USUARIO
+    var idUsuario = sessionStorage.ID_USUARIO;
 
 
     if (sessionStorage.CARGO_USUARIO == "COMUM") {
       dashUsuario.style.display = "block";
       dashboardLink.addEventListener('click', function() {
-        window.location.href = `./dashboard.html?idUsuario=${id}`;
+        window.location.href = `./dashboard.html?idUsuario=${idUsuario}`;
    });
       liOpcaoGeral.style.display = "none";
       liFuncionario.style.display = "none"

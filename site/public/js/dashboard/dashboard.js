@@ -13,6 +13,7 @@ var card4 = document.getElementById("title-card4");
 var cardValor1 = document.getElementById("valor-card1");
 var cardValor2 = document.getElementById("valor-card2");
 var cardValor3 = document.getElementById("valor-card3");
+
 var cardValor4 = document.getElementById("valor-card4");
 
 var grafico1 = document.getElementById("graficoCPU");
@@ -82,7 +83,6 @@ function plotarCards(fkCompHasComp){
                     
                 for(var i = dadosCards.length-1 ; i > 0 ; i-- ){
                     if(dadosCards[i].tipoEspecificacao == "Frequência"){
-                        console.log(dadosCards[i].valor);
                         velocidade = dadosCards[i].valor;
                     }
                     if(dadosCards[i].tipoEspecificacao == "Núcleos Físicos" ){
@@ -92,6 +92,7 @@ function plotarCards(fkCompHasComp){
                         nucleo += Number(dadosCards[i].valor)
                     }
                 }
+                
                 cardValor2.innerHTML = velocidade
                 cardValor3.innerHTML = nucleo
                 obterDadosGrafico(fkCompHasComp)
@@ -199,6 +200,7 @@ function obterDadosGrafico(fkCompHasComp) {
                         }
                     }
                     cardValor1.innerHTML =  resposta[0].dadoFormatado
+
                     grafico1.style.display = 'flex'
                     grafico2.style.display = 'none'
                     grafico3.style.display = 'none'
