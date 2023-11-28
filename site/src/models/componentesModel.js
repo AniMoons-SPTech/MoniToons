@@ -18,7 +18,13 @@ function getDados(fkCompHasComp){
     JOIN computador c ON chc.fkComputador = c.idComputador
     JOIN especificacoesComponente ec ON chc.fkComponente = ec.fkComponente
     JOIN componente comp ON ec.fkComponente = comp.idComponente
-    WHERE chc.idCompHasComp = ${fkCompHasComp};`
+    WHERE chc.idCompHasComp =${fkCompHasComp}
+ORDER BY
+   r.dataHora DESC
+OFFSET
+    0 ROWS
+FETCH FIRST
+    200 ROWS ONLY;`
                     
     console.log("Executando \n" + instrucao)                
     return database.executar(instrucao);
@@ -41,7 +47,7 @@ ORDER BY
 OFFSET
     0 ROWS
 FETCH FIRST
-    7 ROWS ONLY;`
+    10 ROWS ONLY;`
                     
     console.log("Executando \n" + instrucao)                
     return database.executar(instrucao);

@@ -59,6 +59,7 @@ function plotarCards(fkCompHasComp){
                 dadosCards = resposta;
 
             if(dadosCards[0].tipoComp == 'CPU'){
+                    var uso;
                     var velocidade;    
                     var nucleo = 0;
                     card1.innerHTML = "% de Uso"
@@ -81,26 +82,16 @@ function plotarCards(fkCompHasComp){
             }
                 
             if(dadosCards[0].tipoComp == 'RAM'){
-                var uso;
-                var disponivel;
                 var total;
                 card1.innerHTML = "% de Uso"
                 card2.innerHTML = "Memória disponível"
                 card3.innerHTML = "Memória total"
                 console.log(dadosCards)
                 for(var i = dadosCards.length -1 ; i >= 0 ; i--){
-                    if(dadosCards[i].tipo == "Memória em Uso"){
-                        uso = dadosCards[i].dadoFormatado;
-                    }
-                    if(dadosCards[i].tipo == "Memória Disponível"){
-                        disponivel = dadosCards[i].dadoFormatado;
-                    }
                     if(dadosCards[i].tipoEspecificacao == "Memória Total"){
                         total = dadosCards[i].valor;
                     }
                 }
-                    cardValor1.innerHTML = uso
-                    cardValor2.innerHTML = disponivel
                     cardValor3.innerHTML = total
                     obterDadosGrafico(fkCompHasComp)
             }
@@ -108,11 +99,15 @@ function plotarCards(fkCompHasComp){
             if(dadosCards[0].tipoComp == 'DISCO'){
                 var escrita;
                 var leitura;
+                var tamanho;
                 card1.innerHTML = "Tamanho"
                 card2.innerHTML = "Velocidade de escrita"
                 card3.innerHTML = "Velocidade de leitura"
                 console.log(dadosCards)
                     for(var i = dadosCards.length -1 ; i >= 0 ; i--){
+                        if(dadosCards[i].tipoEspecificacao == "Tamanho"){
+                            tamanho = dadosCards[i].valor;
+                        }
                         if(dadosCards[i].tipo == "Velocidade de Escrita"){
                             escrita = dadosCards[i].dadoFormatado;
                         }
@@ -120,7 +115,7 @@ function plotarCards(fkCompHasComp){
                             leitura = dadosCards[i].dadoFormatado;
                         }
                     }
-                    cardValor1.innerHTML = dadosCards[0].valor
+                    cardValor1.innerHTML = tamanho
                     cardValor2.innerHTML = escrita
                     cardValor3.innerHTML = leitura
                     obterDadosGrafico(fkCompHasComp)
