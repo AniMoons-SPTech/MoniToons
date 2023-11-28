@@ -229,7 +229,7 @@ function obterDadosGrafico(fkCompHasComp) {
 }
 
 function plotarGrafico(){ 
-    console.log(label,dadosGrafico)
+    console.log(label,dadosGrafico,dadosGrafico1)
     window.myChart = new Chart(ctx, {
                 type: tipo,
                 data: {
