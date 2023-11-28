@@ -59,7 +59,6 @@ function plotarCards(fkCompHasComp){
                 dadosCards = resposta;
 
             if(dadosCards[0].tipoComp == 'CPU'){
-                    var uso;
                     var velocidade;    
                     var nucleo = 0;
                     card1.innerHTML = "% de Uso"
@@ -115,8 +114,7 @@ function plotarCards(fkCompHasComp){
                             leitura = dadosCards[i].dadoFormatado;
                         }
                     }
-                    cardValor1.innerHTML = tamanho
-                    cardValor2.innerHTML = escrita
+                    
                     cardValor3.innerHTML = leitura
                     obterDadosGrafico(fkCompHasComp)
             }
@@ -188,8 +186,6 @@ function plotarGrafico(dados){
             options: {
             },
         }
-
-        myChart.destroy()
         myChart = new Chart(ctx,cpu)
             
     
