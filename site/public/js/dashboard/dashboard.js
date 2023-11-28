@@ -209,7 +209,7 @@ function obterDadosGrafico(fkCompHasComp) {
                     }
                     tipo = 'bar';
                     var dados = {
-                        labels: ['Velocidade de Escrita', 'Categoria 2'],
+                        labels: ['Velocidade de Escrita', 'Velocidade de Leitura'],
                         datasets: [
                             {
                                 label: 'Velocidade de Escrita',
