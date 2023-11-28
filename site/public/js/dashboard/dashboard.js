@@ -16,6 +16,7 @@ var cardValor3 = document.getElementById("valor-card3");
 
 var cardValor4 = document.getElementById("valor-card4");
 
+const graph = new Chart(ctx1, dados);
 var grafico1 = document.getElementById("graficoCPU");
 var ctx1 = document.getElementById('myChart').getContext('2d');
 
@@ -320,6 +321,7 @@ function obterDadosGrafico(fkCompHasComp) {
                     grafico3.style.display = 'none'
                     grafico4.style.display = 'flex'
 
+                    graph.destroy()
                     plotarGrafico(ctx4,gpu)
                 }
 
@@ -337,9 +339,9 @@ function obterDadosGrafico(fkCompHasComp) {
 }
 
 function plotarGrafico(ctx,dados){ 
-    const graph = new Chart(ctx, dados);
+    graph = new Chart(ctx,dados)  
     console.log(label,dadosGrafico)
-    graph.destroy()
+    
 }
 
 function atualizarGraficoLinha(fkCompHasComp) {
