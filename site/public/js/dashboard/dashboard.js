@@ -168,7 +168,7 @@ function obterDadosGrafico(fkCompHasComp) {
                     tipo = 'line'
                     titulo = 'CPU'
                     cor = 'rgb(123, 219, 206)'
-                    cardValor1.innerHTML =  resposta[resposta.length -1].dadoFormatado
+                    cardValor1.innerHTML =  resposta[0].dadoFormatado
                     plotarGrafico();
                 }
 
