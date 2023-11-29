@@ -23,6 +23,7 @@ var grafico4 = document.getElementById("graficoGPU");
 
 var grafico;
 var label = [];
+var labelDado = [];
 var dadosGrafico = [];
 var dadosGrafico1 = [];
 let proximaAtualizacao;
@@ -78,25 +79,27 @@ function plotarCards(fkCompHasComp){
 
             if(dadosCards[0].tipo == 'CPU'){
                     var velocidade;    
-                    var nucleo = 0;
-                    card1.innerHTML = "% de Uso"
-                    card2.innerHTML = "Velocidade"
-                    card3.innerHTML = "N° de núcleos"
+                    var nucleo1 = 0;
+                    var nucleo2 = 0;
+                    card1.innerHTML = "Frequência"
+                    card2.innerHTML = "Núcleos Físicos"
+                    card3.innerHTML = "Núcleos Lógicos"
                     
                 for(var i = 0 ; i < dadosCards.length ; i ++ ){
                     if(dadosCards[i].tipoEspecificacao == "Frequência"){
                         velocidade = dadosCards[i].valor;
                     }
                     if(dadosCards[i].tipoEspecificacao == "Núcleos Físicos" ){
-                        nucleo += Number(dadosCards[i].valor)
+                        nucleo1 = Number(dadosCards[i].valor)
                     }
                     if(dadosCards[i].tipoEspecificacao == "Núcleos Lógicos" ){
-                        nucleo += Number(dadosCards[i].valor)
+                        nucleo2 = Number(dadosCards[i].valor)
                     }
                 }
 
-                cardValor2.innerHTML = velocidade
-                cardValor3.innerHTML = nucleo
+                cardValor1.innerHTML = velocidade
+                cardValor2.innerHTML = nucleo1
+                cardValor3.innerHTML = nucle02
                 obterDadosGrafico(fkCompHasComp)
             }
                 
@@ -166,6 +169,7 @@ function obterDadosGrafico(fkCompHasComp) {
 
                 if(resposta[0].tipoComp == 'CPU'){
                     for(var i = 7 ; i > 0; i--) {
+                        labelDado.push(resposta[i].dataHora)
                         label.push(resposta[i].dataHoraFormatada);
                         dadosGrafico.push(resposta[i].dadoValor)
                     }
@@ -326,7 +330,7 @@ function atualizarGraficoLinha(fkCompHasComp,grafico,dadosGrafico) {
                 console.log(dadosGrafico);
 
 
-                if (novoRegistro[0].dataHoraFormatada == label[label.length - 1]) {
+                if (novoRegistro[0].dataHora == labelDado[label.length - 1]) {
                     console.log("---------------------------------------------------------------")
                     console.log("Como não há dados novos para captura, o gráfico não atualizará.")
             
@@ -336,14 +340,14 @@ function atualizarGraficoLinha(fkCompHasComp,grafico,dadosGrafico) {
                     console.log(label[label.length -1])
                     console.log("---------------------------------------------------------------")
                 } else {
-                    console.log(label[label.length -1])
-                        label.push(novoRegistro[0].dataHoraFormatada)
                         label.shift();
-                        dadosGrafico.push(novoRegistro[0].dadoValor)
+                        label.push(novoRegistro[0].dataHoraFormatada)
                         dadosGrafico.shift();
-                        grafico.update();
+                        dadosGrafico.push(novoRegistro[0].dadoValor)
+                        grafico.update(); 
                                          
-                }  
+                } 
+                
                 proximaAtualizacao = setTimeout(() => atualizarGraficoLinha(fkCompHasComp,grafico,dadosGrafico), 8000);
             });
         } else {
