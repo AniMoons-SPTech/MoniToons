@@ -111,6 +111,7 @@ function plotarCards(fkCompHasComp){
             }
             
             if(dadosCards[0].tipo == 'DISCO'){
+
         
                 card1.innerHTML = "Velocidade de leitura"
                 card2.innerHTML = "Velocidade de escrita"
@@ -166,15 +167,6 @@ function plotarRestoDosCards(tipoComponente, fkCompHasComp){
         })
             
 }
-
-// O gráfico é construído com três funções:
-    // 1. obterDadosGrafico -> Traz dados do Banco de Dados para montar o gráfico da primeira vez
-    // 2. plotarGrafico -> Monta o gráfico com os dados trazidos e exibe em tela
-    // 3. atualizarGrafico -> Atualiza o gráfico, trazendo novamente dados do Banco
-
-    // Esta função *obterDadosGrafico* busca os últimos dados inseridos em tabela de medidas.
-    // para, quando carregar o gráfico da primeira vez, já trazer com vários dados.
-    // A função *obterDadosGrafico* também invoca a função *plotarGrafico*
 
 function obterDadosGraficoCpu(fkCompHasComp) {
     fetch(`/componentes/dadosGraficoCpu/${fkCompHasComp}`, {
@@ -311,6 +303,7 @@ function obterDadosGraficoRam(fkCompHasComp) {
                     grafico2.style.display = 'flex'
                     grafico3.style.display = 'none'
                     grafico4.style.display = 'none'
+                    cardValor1.innerHTML = resposta[0].dadoFormatado
 
                     var ctx2 = new Chart(document.getElementById('myChart1'),ram);
                     setTimeout(() => atualizarGraficoLinhaRam(fkCompHasComp,ctx2), 8000);
@@ -338,6 +331,11 @@ function obterDadosGraficoGpu(fkCompHasComp) {
             response.json().then(function (resposta) {
                 label = [];
                 dadosGrafico = [];
+                for(var i = 0 ; i < resposta.length; ++i ) {
+                    labelDado.push(resposta[i].dataHora)
+                    label.push(resposta[i].dataHoraFormatada);
+                    dadosGrafico.push(resposta[i].dadoValor)
+                }
                         var gpu = {
                             data: {
                                 datasets: [
@@ -357,7 +355,6 @@ function obterDadosGraficoGpu(fkCompHasComp) {
                         grafico2.style.display = 'none'
                         grafico3.style.display = 'none'
                         grafico4.style.display = 'flex'
-                        cardValor1.innerHTML = dadosGrafico[0].dadoFormatado
 
                         var ctx4 = new Chart(document.getElementById('myChart3'),gpu);
                         setTimeout(() => atualizarGraficoLinhaGpu(fkCompHasComp,ctx4), 8000);
