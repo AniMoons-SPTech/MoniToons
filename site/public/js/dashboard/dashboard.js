@@ -375,12 +375,11 @@ function atualizarGraficoLinha(fkCompHasComp,grafico,dadosGrafico) {
                     label.shift(); // apagar o primeiro
                     label.push(novoRegistro[0].dataHoraFormatada); // incluir um novo momento
                     
-                    var dadoAntigo = dadosGrafico.data.datasets[0].data[dadosGrafico.data.datasets[0].data.length - 1];
-                    dadosGrafico.data.datasets[0].data.shift();  // apagar o primeiro de umidade
-                    dadosGrafico.data.datasets[0].data.push(novoRegistro[0].dadoValor); // incluir uma nova medida de umidade
+                    var dadoAntigo = dadosGrafico[0];
+                    dadoAntigo.shift();  
+                    dadosGrafico.push(novoRegistro[0].dadoValor); // incluir uma nova medida de umidade
                     
-                    verificarCondicao(novoRegistro[0].dadoValor, dadoAntigo);
-
+                    // verificarCondicao(novoRegistro[0].dadoValor, dadoAntigo);
                     grafico.update();
                 }
 
