@@ -112,9 +112,8 @@ function plotarCards(fkCompHasComp){
                 card3.innerHTML = "Memória total"
                 console.log(dadosCards)
                 
-                cardValor3.innerHTML = dadosCards[0].
-                // plotarRestoDosCards('RAM', fkCompHasComp)
-                obterDadosGraficoRam(fkCompHasComp)
+        
+                obterDadosGraficoRam(fkCompHasComp);
             }
             
             if(dadosCards[0].tipo == 'DISCO'){
@@ -188,7 +187,7 @@ function obterDadosGraficoCpu(fkCompHasComp) {
                 label = [];
                 dadosGrafico = [];
                 clearTimeout(proximaAtualizacao);
-                
+
                     for(var i = 0 ; i < resposta.length; ++i ) {
                         labelDado.push(resposta[i].dataHora)
                         label.push(resposta[i].dataHoraFormatada);
@@ -245,7 +244,7 @@ function obterDadosGraficoRam(fkCompHasComp) {
                 labelRam = [];
                 dadosGraficoRam = [];
                 clearTimeout(proximaAtualizacao);
-                
+
                     for(var i = 0 ; i < resposta.length; ++i ) {
                         labelDado.push(resposta[i].dataHora)
                         labelRam.push(resposta[i].dataHoraFormatada);
@@ -300,7 +299,7 @@ function obterDadosGraficoGpu(fkCompHasComp) {
                 labelGpu = [];
                 dadosGraficoGpu = [];
                 clearTimeout(proximaAtualizacao);
-                
+
                 for(var i = 0 ; i < resposta.length; ++i ) {
                     labelDado.push(resposta[i].dataHora)
                     labelGpu.push(resposta[i].dataHoraFormatada);
