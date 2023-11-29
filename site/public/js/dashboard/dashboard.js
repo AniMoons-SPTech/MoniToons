@@ -118,39 +118,25 @@ function plotarCards(fkCompHasComp){
             }
             
             if(dadosCards[0].tipo == 'DISCO'){
-                var escrita;
-                var leitura;
-                var tamanho;
-                card1.innerHTML = "Tamanho"
+        
+                card1.innerHTML = "Velocidade de leitura"
                 card2.innerHTML = "Velocidade de escrita"
-                card3.innerHTML = "Velocidade de leitura"
-                console.log(dadosCards)
-                    for(var i = dadosCards.length -1 ; i >= 0 ; i--){
-                        if(dadosCards[i].tipoEspecificacao == "Tamanho"){
-                            tamanho = dadosCards[i].valor;
-                        }
-                        if(dadosCards[i].tipo == "Velocidade de Escrita"){
-                            escrita = dadosCards[i].dadoFormatado;
-                        }
-                        if(dadosCards[i].tipo == "Velocidade de Leitura"){
-                            leitura = dadosCards[i].dadoFormatado;
-                        }
-                    }
-                    cardValor1.innerHTML = tamanho  
-                    cardValor3.innerHTML = leitura
-                    obterDadosGrafico(fkCompHasComp)
+                card3.innerHTML = "Tamanho"
+                    
+                cardValor3.innerHTML = dadosCards[0].valor
+                obterDadosGrafico(fkCompHasComp)
             }
 
             if(dadosCards[0].tipo == 'GPU'){
                     card1.innerHTML = "Memória de Vídeo Disponível"
+                    card2.innerHTML = "Memória de Vídeo Disponível"
+                    card3.innerHTML = "Memória de Vídeo Disponível"
 
-                    for(var i = dadosCards.length -1 ; i >= 0 ; i--){
-                        if(dadosCards[i].tipoEspecificacao == "Memória Total"){
-                            total = dadosCards[i].valor;
-                        }
-                    }
-                        cardValor3.innerHTML = total
-                        obterDadosGrafico(fkCompHasComp)
+                
+                    cardValor1.innerHTML = 'bonk' 
+                    cardValor2.innerHTML = 'bonk'
+                    cardValor3.innerHTML = 'bonk'
+                obterDadosGrafico(fkCompHasComp)
             }
             }) 
         }else{
