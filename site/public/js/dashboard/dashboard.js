@@ -195,38 +195,7 @@ function obterDadosGraficoCpu(fkCompHasComp) {
                     setTimeout(() => atualizarGraficoLinha(fkCompHasComp,ctx1), 8000);
                 
 
-                // else if(resposta[0].tipoComp == 'RAM'){
-                //     for (var i = 0; i < resposta.length && dadosGrafico.length < 7; i++) {
-                //         if(resposta[i].tipo == 'Memória em Uso'){
-                //                 label.push(resposta[i].dataHoraFormatada)
-                //                 dadosGrafico.push(resposta[i].dadoValor)
-                //                 cardValor1.innerHTML = resposta[i].dadoFormatado 
-                //         }
-                        
-                //     }
-                //     var ram = {
-                //         data: {
-                //             datasets: [
-                //                 {
-                //                     type: 'line',
-                //                     label: 'RAM',
-                //                     data: dadosGrafico,
-                //                     backgroundColor: '#fff',
-                //                     borderColor: 'rgb(123, 001, 000)'
-                //                 }
-                //             ],
-                //             labels: label
-                //         }
-                //     }
-                        
-                //     grafico1.style.display = 'none'
-                //     grafico2.style.display = 'flex'
-                //     grafico3.style.display = 'none'
-                //     grafico4.style.display = 'none'
-
-                //     var ctx2 = new Chart(document.getElementById('myChart1'),ram);
-                //     grafico = ctx2
-                // }
+                
 
                 // else if(resposta[0].tipoComp == 'DISCO'){
                 //     for(var i = resposta.length -1 ; i > 0; i--) {
@@ -305,6 +274,59 @@ function obterDadosGraficoCpu(fkCompHasComp) {
                 //     var ctx4 = new Chart(document.getElementById('myChart3'),gpu);
                 //     grafico = ctx4
                 // }
+            })
+                
+        } else if (response.status == 404) {
+            window.alert("Deu 404!");
+        } else {
+            throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + response.status);
+        }
+    }).catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+    });
+}
+
+
+
+function obterDadosGraficoRam(fkCompHasComp) {
+    fetch(`/componentes/dadosGraficoCpu/${fkCompHasComp}`, {
+        method: 'GET',
+        headers: {
+            "Content-Type": "application/json"
+        },
+    }).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (resposta) {
+                label = [];
+                dadosGrafico = [];
+                    for(var i = 0 ; i < resposta.length; ++i ) {
+                        labelDado.push(resposta[i].dataHora)
+                        label.push(resposta[i].dataHoraFormatada);
+                        dadosGrafico.push(resposta[i].dadoValor)
+                    }
+                    var ram = {
+                        data: {
+                            datasets: [
+                                {
+                                    type: 'line',
+                                    label: 'RAM',
+                                    data: dadosGrafico,
+                                    backgroundColor: '#fff',
+                                    borderColor: 'rgb(123, 001, 000)'
+                                }
+                            ],
+                            labels: label
+                        }
+                    }
+                
+                    grafico1.style.display = 'none'
+                    grafico2.style.display = 'flex'
+                    grafico3.style.display = 'none'
+                    grafico4.style.display = 'none'
+
+                    var ctx2 = new Chart(document.getElementById('myChart1'),ram);
+                    setTimeout(() => atualizarGraficoLinha(fkCompHasComp,ctx2), 8000);
+                    
             })
                 
         } else if (response.status == 404) {

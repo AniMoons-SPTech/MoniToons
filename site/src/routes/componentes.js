@@ -16,6 +16,10 @@ router.get("/dadosGraficoCpu/:fkCompHasComp", function (req, res) {
     componentesController.dadosGraficoCpu(req, res);
 })
 
+router.get("/dadosGraficoRam/:fkCompHasComp", function (req, res) {
+    componentesController.dadosGraficoRam(req, res);
+})
+
 router.get("/graficosLinhaAtualizado/:fkCompHasComp", function (req, res) {
     componentesController.graficosLinhaAtualizado(req, res);
 })
