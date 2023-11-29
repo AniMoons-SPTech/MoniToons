@@ -44,7 +44,7 @@ router.get("/graficosPizzaAtualizadoDisco/:fkCompHasComp", function (req, res) {
     componentesController.graficosPizzaAtualizadoDisco(req, res);
 })
 
-router.get("/componentes/plotarRestoDosCards/:fkCompHasComp/:tipoComponente", function (req, res) {
+router.get("/plotarRestoDosCards/:fkCompHasComp/:tipoComponente", function (req, res) {
     componentesController.plotarRestoDosCards(req, res);
 })
 
