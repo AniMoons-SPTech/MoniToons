@@ -337,7 +337,7 @@ function atualizarGraficoLinha(fkCompHasComp,grafico,dadosGrafico) {
                     console.log("Horário do novo dado capturado:")
                     console.log(novoRegistro[0].dataHoraFormatada)
                     console.log("Horário do último dado capturado:")
-                    console.log(label[0])
+                    console.log(labelDado[0])
                     console.log("---------------------------------------------------------------")
                 } else {
                         label.shift();
