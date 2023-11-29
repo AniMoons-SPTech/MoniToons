@@ -195,7 +195,7 @@ function obterDadosGrafico(fkCompHasComp) {
                     grafico2.style.display = 'none'
                     grafico3.style.display = 'none'
                     grafico4.style.display = 'none'
-
+                    cardValor1.innerHTML = dadosGrafico[0].dadoFormatado 
                     var ctx1 = new Chart(document.getElementById('myChart'),cpu);
                     setTimeout(() => atualizarGraficoLinha(fkCompHasComp,ctx1,dadosGrafico), 8000); 
                 }
@@ -206,20 +206,10 @@ function obterDadosGrafico(fkCompHasComp) {
                             for(var j = 0; j <= 7 ; i++){
                                 label.push(resposta[i].dataHoraFormatada)
                                 dadosGrafico.push(resposta[i].dadoValor)
+                                cardValor1.innerHTML = resposta[i].dadoValor
                             }   
                         }
-
-                        // for(var i = 7; i > 0; i--){
-                        //     if(resposta[i].tipo == 'Memória em Uso'){
-                        //         dadosGrafico.push(resposta[i].dadoValor)
-                        //         label.push(resposta[i].dataHoraFormatada);
-                        //         cardValor1.innerHTML =  resposta[i].dadoFormatado
-                        //     }
-                        // }
                         
-                        // if(resposta[i].tipo == 'Memória Disponível'){
-                        //     cardValor2.innerHTML =  resposta[i].dadoFormatado
-                        // }
                     }
                     var ram = {
                         data: {
@@ -241,7 +231,7 @@ function obterDadosGrafico(fkCompHasComp) {
                     grafico3.style.display = 'none'
                     grafico4.style.display = 'none'
 
-                    var ctx2 = new Chart(document.getElementById('myChart'),ram);
+                    var ctx2 = new Chart(document.getElementById('myChart2'),ram);
                     setTimeout(() => atualizarGraficoLinha(fkCompHasComp,ctx2,dadosGrafico), 8000);
                 }
 
