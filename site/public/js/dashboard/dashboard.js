@@ -195,13 +195,12 @@ function obterDadosGrafico(fkCompHasComp) {
                     grafico1.style.display = 'flex'
                     grafico2.style.display = 'none'
                     grafico3.style.display = 'none'
-                    grafico4.style.display = 'none'
-                    cardValor1.innerHTML = dadosGrafico[dadosGrafico.length -1 ].dadoFormatado 
+                    grafico4.style.display = 'none' 
                     var ctx1 = new Chart(document.getElementById('myChart'),cpu);
                     setTimeout(() => atualizarGraficoLinha(fkCompHasComp,ctx1,dadosGrafico), 8000); 
                 }
 
-                if(resposta[0].tipoComp == 'RAM'){
+                else if(resposta[0].tipoComp == 'RAM'){
                     for (var i = 0; i < resposta.length && dadosGrafico.length < 7; i++) {
                         if(resposta[i].tipo == 'Memória em Uso'){
                                 label.push(resposta[i].dataHoraFormatada)
@@ -234,7 +233,7 @@ function obterDadosGrafico(fkCompHasComp) {
                     setTimeout(() => atualizarGraficoLinha(fkCompHasComp,ctx2,dadosGrafico), 8000);
                 }
 
-                if(resposta[0].tipoComp == 'DISCO'){
+                else if(resposta[0].tipoComp == 'DISCO'){
                     for(var i = resposta.length -1 ; i > 0; i--) {
                         // label.push(resposta[i].dataHoraFormatada);
                         
@@ -274,12 +273,13 @@ function obterDadosGrafico(fkCompHasComp) {
                     grafico3.style.display = 'flex'
                     grafico4.style.display = 'none'
 
-                    plotarGrafico(ctx3,disco)
+                    var ctx3 = new Chart(document.getElementById('myChart3'),disco);
+                    setTimeout(() => atualizarGraficoLinha(fkCompHasComp,ctx3,dadosGrafico), 8000);
                 }
-                if(resposta[0].tipoComp == 'GPU'){
+                else if(resposta[0].tipoComp == 'GPU'){
                     for(var i = 7 ; i > 0; i--) {
 
-                        if(resposta[i].tipo == 'tetse'){
+                        if(resposta[i].tipo == 'Uso da GPU'){
                             dadosGrafico.push(resposta[i].dadoValor)
                             label.push(resposta[i].dataHoraFormatada);
                             cardValor1.innerHTML =  resposta[i].dadoFormatado
@@ -308,7 +308,8 @@ function obterDadosGrafico(fkCompHasComp) {
                     grafico3.style.display = 'none'
                     grafico4.style.display = 'flex'
 
-                    plotarGrafico(ctx4,gpu)
+                    var ctx4 = new Chart(document.getElementById('myChart4'),gpu);
+                    setTimeout(() => atualizarGraficoLinha(fkCompHasComp,ctx4,dadosGrafico), 8000);
                 }
 
 
@@ -324,11 +325,6 @@ function obterDadosGrafico(fkCompHasComp) {
     });
 }
 
-function plotarGrafico(ctx,dados){ 
-    graph = new Chart(ctx,dados)  
-    console.log(label,dadosGrafico)
-    
-}
 
 function atualizarGraficoLinha(fkCompHasComp,grafico,dadosGrafico) {
     fetch(`/componentes/graficosLinhaAtualizado/${fkCompHasComp}`,{ cache: 'no-store' }).then(function (response) {
@@ -357,7 +353,7 @@ function atualizarGraficoLinha(fkCompHasComp,grafico,dadosGrafico) {
                         dadosGrafico.shift();
                         cardValor1.innerHTML = novoRegistro[0].dadoFormatado      
                         }            
-                    if(novoRegistro[0].tipo == 'RAM'){
+                    else if(novoRegistro[0].tipo == 'RAM'){
                         for(var i= 0 ; i < novoRegistro.length; i++){
                             if(novoRegistro[i].tipo == 'Memória em Uso'){     
                                 label.push(novoRegistro[i].dataHoraFormatada)
@@ -365,7 +361,7 @@ function atualizarGraficoLinha(fkCompHasComp,grafico,dadosGrafico) {
                                 label.shift();
                                 dadosGrafico.shift();
                                 cardValor1.innerHTML = novoRegistro[i].dadoFormatado      
-                            }else{
+                            }if(novoRegistro[i].tipo == 'Memória Disponível'){
                                 cardValor2.innerHTML = novoRegistro[i].dadoFormatado
                             }            
                     }
