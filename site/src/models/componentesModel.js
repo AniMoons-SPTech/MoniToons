@@ -67,7 +67,7 @@ ORDER BY
 OFFSET
     0 ROWS
 FETCH FIRST
-    1 ROWS ONLY;`
+    4 ROWS ONLY;`
                     
     console.log("Executando \n" + instrucao)                
     return database.executar(instrucao);

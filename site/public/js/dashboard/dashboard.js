@@ -349,13 +349,25 @@ function atualizarGraficoLinha(fkCompHasComp,grafico,dadosGrafico) {
                     console.log(label[label.length -1])
                     console.log("---------------------------------------------------------------")
                 } else {
-                    // tirando e colocando valores no gráfico
-                    label.shift(); // apagar o primeiro
-                    label.push(novoRegistro[0].dataHoraFormatada); // incluir um novo momento
-                    
-                    dadosGrafico.shift();  
-                    dadosGrafico.push(novoRegistro[0].dadoValor); // incluir uma nova medida de umidade
-                    
+                    if(novoRegistro[0].tipo == 'CPU'){
+                        label.push(novoRegistro[i].dataHoraFormatada)
+                        dadosGrafico.push(novoRegistro[i].dadoValor)
+                        label.shift();
+                        dadosGrafico.shift();
+                        cardValor1.innerHTML = novoRegistro[i].dadoFormatado      
+                        }            
+                    if(novoRegistro[0].tipo == 'RAM'){
+                        for(var i= 0 ; i < novoRegistro.length; i++){
+                            if(novoRegistro[i].tipo == 'Memória em Uso'){     
+                                label.push(novoRegistro[i].dataHoraFormatada)
+                                dadosGrafico.push(novoRegistro[i].dadoValor)
+                                label.shift();
+                                dadosGrafico.shift();
+                                cardValor1.innerHTML = novoRegistro[i].dadoFormatado      
+                        }            
+                    }
+                    }
+
                     // verificarCondicao(novoRegistro[0].dadoValor, dadoAntigo);
                     grafico.update();
                 }
