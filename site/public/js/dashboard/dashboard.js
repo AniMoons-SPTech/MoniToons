@@ -330,9 +330,7 @@ function atualizarGraficoLinha(fkCompHasComp) {
                 console.log(`Dados atuais do gráfico:`);
                 console.log(dadosGrafico);
 
-                console.log(labelDado[0])
-                console.log(labelDado[labelDado.length -1])
-                console.log(novoRegistro[0].dataHora)
+                
                 if (novoRegistro[0].dataHora == labelDado[labelDado.length -1]) {
                     console.log("---------------------------------------------------------------")
                     console.log("Como não há dados novos para captura, o gráfico não atualizará.")
@@ -340,7 +338,7 @@ function atualizarGraficoLinha(fkCompHasComp) {
                     console.log("Horário do novo dado capturado:")
                     console.log(novoRegistro[0].dataHora)
                     console.log("Horário do último dado capturado:")
-                    console.log(labelDado[0])
+                    console.log(labelDado[labelDado.length -1])
                     console.log("---------------------------------------------------------------")
                 } else {
                         label.shift();
