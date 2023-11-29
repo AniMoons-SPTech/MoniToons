@@ -113,7 +113,7 @@ function plotarCards(fkCompHasComp){
                 console.log(dadosCards)
                 
                 cardValor3.innerHTML = dadosCards[0].
-                plotarRestoDosCards('RAM', fkCompHasComp)
+                // plotarRestoDosCards('RAM', fkCompHasComp)
                 obterDadosGraficoRam(fkCompHasComp)
             }
             
@@ -126,7 +126,7 @@ function plotarCards(fkCompHasComp){
 
                     
                 cardValor3.innerHTML = dadosCards[0].valor
-                plotarRestoDosCards('DISCO', fkCompHasComp)
+                // plotarRestoDosCards('DISCO', fkCompHasComp)
                 obterDadosGrafico(fkCompHasComp)
             }
 
@@ -138,7 +138,7 @@ function plotarCards(fkCompHasComp){
                     // card3.innerHTML = dadosCards[x].valor
                     // Não sei como está vindo os dados então não mexi nisso - JP
                     // AQUI INCLUIR NO SELECT DE DADOS DE ESPECIFICAÇÃO O FABRICANTE DA PLACA 
-                    plotarRestoDosCards('GPU', fkCompHasComp)
+                    // plotarRestoDosCards('GPU', fkCompHasComp)
                     obterDadosGraficoGpu(fkCompHasComp)
             }
             }) 
@@ -187,9 +187,8 @@ function obterDadosGraficoCpu(fkCompHasComp) {
                 labelDado = []
                 label = [];
                 dadosGrafico = [];
-                if (proximaAtualizacao != undefined) {
-                    clearTimeout(proximaAtualizacao);
-                }
+                clearTimeout(proximaAtualizacao);
+                
                     for(var i = 0 ; i < resposta.length; ++i ) {
                         labelDado.push(resposta[i].dataHora)
                         label.push(resposta[i].dataHoraFormatada);
@@ -245,9 +244,8 @@ function obterDadosGraficoRam(fkCompHasComp) {
                 labelDado = []
                 labelRam = [];
                 dadosGraficoRam = [];
-                if (proximaAtualizacao != undefined) {
-                    clearTimeout(proximaAtualizacao);
-                }
+                clearTimeout(proximaAtualizacao);
+                
                     for(var i = 0 ; i < resposta.length; ++i ) {
                         labelDado.push(resposta[i].dataHora)
                         labelRam.push(resposta[i].dataHoraFormatada);
@@ -301,9 +299,8 @@ function obterDadosGraficoGpu(fkCompHasComp) {
                 labelDado = []
                 labelGpu = [];
                 dadosGraficoGpu = [];
-                if (proximaAtualizacao != undefined) {
-                    clearTimeout(proximaAtualizacao);
-                }
+                clearTimeout(proximaAtualizacao);
+                
                 for(var i = 0 ; i < resposta.length; ++i ) {
                     labelDado.push(resposta[i].dataHora)
                     labelGpu.push(resposta[i].dataHoraFormatada);
@@ -348,11 +345,8 @@ function atualizarGraficoLinha(fkCompHasComp,grafico) {
     fetch(`/componentes/graficosLinhaAtualizado/${fkCompHasComp}`,{ cache: 'no-store' }).then(function (response) {
         if (response.ok) {
             response.json().then(function (novoRegistro) {
-                if (proximaAtualizacao != undefined) {
-                    clearTimeout(proximaAtualizacao);
-                }   
-
-                console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+                clearTimeout(proximaAtualizacao);
+                          console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
                 console.log(`Dados atuais do gráfico:`);
                 console.log(dadosGrafico);
 
@@ -395,11 +389,8 @@ function atualizarGraficoLinhaRam(fkCompHasComp,grafico) {
     fetch(`/componentes/graficosLinhaAtualizadoRam/${fkCompHasComp}`,{ cache: 'no-store' }).then(function (response) {
         if (response.ok) {
             response.json().then(function (novoRegistro) {
-                if (proximaAtualizacao != undefined) {
-                    clearTimeout(proximaAtualizacao);
-                }
-
-                console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+                clearTimeout(proximaAtualizacao);
+                          console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
                 console.log(`Dados atuais do gráfico:`);
                 console.log(dadosGraficoRam);
                 console.log(novoRegistro);
@@ -443,11 +434,8 @@ function atualizarGraficoLinhaGpu(fkCompHasComp,grafico) {
     fetch(`/componentes/graficosLinhaAtualizadoGpu/${fkCompHasComp}`,{ cache: 'no-store' }).then(function (response) {
         if (response.ok) {
             response.json().then(function (novoRegistro) {
-                if (proximaAtualizacao != undefined) {
-                    clearTimeout(proximaAtualizacao);
-                }
-
-                console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+                clearTimeout(proximaAtualizacao);
+                          console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
                 console.log(`Dados atuais do gráfico:`);
                 console.log(dadosGrafico);
                 console.log(novoRegistro);
