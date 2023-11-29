@@ -350,11 +350,11 @@ function atualizarGraficoLinha(fkCompHasComp,grafico,dadosGrafico) {
                     console.log("---------------------------------------------------------------")
                 } else {
                     if(novoRegistro[0].tipo == 'CPU'){
-                        label.push(novoRegistro[i].dataHoraFormatada)
-                        dadosGrafico.push(novoRegistro[i].dadoValor)
+                        label.push(novoRegistro[0].dataHoraFormatada)
+                        dadosGrafico.push(novoRegistro[0].dadoValor)
                         label.shift();
                         dadosGrafico.shift();
-                        cardValor1.innerHTML = novoRegistro[i].dadoFormatado      
+                        cardValor1.innerHTML = novoRegistro[0].dadoFormatado      
                         }            
                     if(novoRegistro[0].tipo == 'RAM'){
                         for(var i= 0 ; i < novoRegistro.length; i++){
@@ -364,7 +364,9 @@ function atualizarGraficoLinha(fkCompHasComp,grafico,dadosGrafico) {
                                 label.shift();
                                 dadosGrafico.shift();
                                 cardValor1.innerHTML = novoRegistro[i].dadoFormatado      
-                        }            
+                            }else{
+                                cardValor2.innerHTML = novoRegistro[i].dadoFormatado
+                            }            
                     }
                     }
 
