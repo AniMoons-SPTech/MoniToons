@@ -439,6 +439,7 @@ function atualizarGraficoLinhaRam(fkCompHasComp,grafico) {
                         label.push(novoRegistro[0].dataHoraFormatada)
                         labelDado.push(novoRegistro[0].dataHora)
                         dadosGrafico.push(novoRegistro[0].dadoValor)
+                        cardValor1.innerHTML = novoRegistro[0].dadoFormatado
                         grafico.update(); 
                                          
                 } 
