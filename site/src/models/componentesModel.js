@@ -123,6 +123,31 @@ FETCH FIRST
     return database.executar(instrucao);
     }
 
+    function graficosLinhaAtualizadoGpu(fkCompHasComp){
+        console.log("ACESSEI O COMPONENTES MODEL")
+    var instrucao = `SELECT
+        r.*,
+        comp.tipo AS tipoComp,
+        FORMAT(r.dataHora, 'dd/MM/yyyy HH:mm') AS dataHoraFormatada
+FROM
+    registro r
+JOIN
+    computadorHasComponente chc ON r.fkCompHasComp = chc.idCompHasComp
+JOIN
+    componente comp ON chc.fkComponente = comp.idComponente
+WHERE
+    r.fkCompHasComp = ${fkCompHasComp} AND r.tipo = 'Uso da GPU'
+ORDER BY
+   r.dataHora DESC
+OFFSET
+    0 ROWS
+FETCH FIRST
+    1 ROWS ONLY;`
+                    
+    console.log("Executando \n" + instrucao)                
+    return database.executar(instrucao);
+    }
+
 
 
 module.exports = {
@@ -131,5 +156,7 @@ module.exports = {
     dadosGraficoCpu,
     dadosGraficoRam,
     graficosLinhaAtualizado,
-    graficosLinhaAtualizadoRam
+    graficosLinhaAtualizadoRam,
+    graficosLinhaAtualizadoGpu
+    
 }

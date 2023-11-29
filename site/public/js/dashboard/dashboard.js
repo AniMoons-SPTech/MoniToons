@@ -132,7 +132,7 @@ function plotarCards(fkCompHasComp){
                     cardValor1.innerHTML = 'bonk' 
                     cardValor2.innerHTML = 'bonk'
                     cardValor3.innerHTML = 'bonk'
-                obterDadosGrafico(fkCompHasComp)
+                    obterDadosGraficoGpu(fkCompHasComp)
             }
             }) 
         }else{
@@ -239,41 +239,7 @@ function obterDadosGraficoCpu(fkCompHasComp) {
                 //     var ctx3 = new Chart(document.getElementById('myChart2'),disco);
                 //     grafico = ctx3
                 // }
-                // else if(resposta[0].tipoComp == 'GPU'){
-                //     for(var i = 7 ; i > 0; i--) {
 
-                //         if(resposta[i].tipo == 'Uso da GPU'){
-                //             dadosGrafico.push(resposta[i].dadoValor)
-                //             label.push(resposta[i].dataHoraFormatada);
-                //             cardValor1.innerHTML =  resposta[i].dadoFormatado
-                //         }
-                //         if(resposta[i].tipo == 'Memória de Vídeo Disponível'){
-                //             cardValor2.innerHTML =  resposta[i].dadoFormatado
-                //         }
-                //     }
-                //     var gpu = {
-                //         data: {
-                //             datasets: [
-                //                 {
-                //                     type: 'line',
-                //                     label: 'GPU',
-                //                     data: dadosGrafico,
-                //                     backgroundColor: '#fff',
-                //                     borderColor: 'rgb(123, 001, 000)'
-                //                 }
-                //             ],
-                //             labels: label
-                //         }
-                //     }
-
-                //     grafico1.style.display = 'none'
-                //     grafico2.style.display = 'none'
-                //     grafico3.style.display = 'none'
-                //     grafico4.style.display = 'flex'
-
-                //     var ctx4 = new Chart(document.getElementById('myChart3'),gpu);
-                //     grafico = ctx4
-                // }
             })
                 
         } else if (response.status == 404) {
@@ -327,6 +293,62 @@ function obterDadosGraficoRam(fkCompHasComp) {
                     var ctx2 = new Chart(document.getElementById('myChart1'),ram);
                     setTimeout(() => atualizarGraficoLinhaRam(fkCompHasComp,ctx2), 8000);
                     
+            })
+                
+        } else if (response.status == 404) {
+            window.alert("Deu 404!");
+        } else {
+            throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + response.status);
+        }
+    }).catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+    });
+}
+
+function obterDadosGraficoGpu(fkCompHasComp) {
+    fetch(`/componentes/dadosGraficoRam/${fkCompHasComp}`, {
+        method: 'GET',
+        headers: {
+            "Content-Type": "application/json"
+        },
+    }).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (resposta) {
+                label = [];
+                dadosGrafico = [];
+                for(var i = 7 ; i > 0; i--) {
+
+                            if(resposta[i].tipo == 'Uso da GPU'){
+                                dadosGrafico.push(resposta[i].dadoValor)
+                                label.push(resposta[i].dataHoraFormatada);
+                                cardValor1.innerHTML =  resposta[i].dadoFormatado
+                            }
+                            if(resposta[i].tipo == 'Memória de Vídeo Disponível'){
+                                cardValor2.innerHTML =  resposta[i].dadoFormatado
+                            }
+                        }
+                        var gpu = {
+                            data: {
+                                datasets: [
+                                    {
+                                        type: 'line',
+                                        label: 'GPU',
+                                        data: dadosGrafico,
+                                        backgroundColor: '#fff',
+                                        borderColor: 'rgb(123, 081, 000)'
+                                    }
+                                ],
+                                labels: label
+                            }
+                        }
+    
+                        grafico1.style.display = 'none'
+                        grafico2.style.display = 'none'
+                        grafico3.style.display = 'none'
+                        grafico4.style.display = 'flex'
+    
+                        var ctx4 = new Chart(document.getElementById('myChart3'),gpu);
+                        setTimeout(() => atualizarGraficoLinhaRam(fkCompHasComp,ctx4), 8000);
             })
                 
         } else if (response.status == 404) {
@@ -433,6 +455,54 @@ function atualizarGraficoLinhaRam(fkCompHasComp,grafico) {
     });
 
 }
+
+function atualizarGraficoLinhaGpu(fkCompHasComp,grafico) {
+    fetch(`/componentes/graficosLinhaAtualizadoGpu/${fkCompHasComp}`,{ cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (novoRegistro) {
+                if (proximaAtualizacao != undefined) {
+                    clearTimeout(proximaAtualizacao);
+                }
+
+                console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+                console.log(`Dados atuais do gráfico:`);
+                console.log(dadosGrafico);
+                console.log(novoRegistro);
+
+                
+                if (novoRegistro[0].dataHora == labelDado[labelDado.length -1]) {
+                    console.log("---------------------------------------------------------------")
+                    console.log("Como não há dados novos para captura, o gráfico não atualizará.")
+            
+                    console.log("Horário do novo dado capturado:")
+                    console.log(novoRegistro[0].dataHora)
+                    console.log("Horário do último dado capturado:")
+                    console.log(labelDado[labelDado.length -1])
+                    console.log("---------------------------------------------------------------")
+                } else {
+                        label.shift();
+                        labelDado.shift();
+                        dadosGrafico.shift();
+                        label.push(novoRegistro[0].dataHoraFormatada)
+                        labelDado.push(novoRegistro[0].dataHora)
+                        dadosGrafico.push(novoRegistro[0].dadoValor)
+                        grafico.update(); 
+                                         
+                } 
+                
+                proximaAtualizacao = setTimeout(() => atualizarGraficoLinhaGpu(fkCompHasComp,grafico,dadosGrafico), 8000);
+            });
+        } else {
+            console.error('Nenhum dado encontrado ou erro na API');
+            proximaAtualizacao = setTimeout(() => atualizarGraficoLinhaGpu(fkCompHasComp,grafico,dadosGrafico), 8000);
+        }
+    })
+    .catch(function (error) {
+        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+    });
+
+}
+
 
 function verificarCondicao() {
      cardValor4.innerHTML('s')
