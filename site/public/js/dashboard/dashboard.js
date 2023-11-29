@@ -32,6 +32,7 @@ var dadosGraficoRam = [];
 var dadosGraficoGpu = [];
 var dadosGraficoDisco = [];
 var dadosGrafico1 = [];
+var dadosDisco = []
 let proximaAtualizacao;
 
 
