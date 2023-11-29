@@ -203,11 +203,10 @@ function obterDadosGrafico(fkCompHasComp) {
                 if(resposta[0].tipoComp == 'RAM'){
                     for(var i = resposta.length -1 ; i > 0; i--) {
                         if(resposta[i].tipo == 'Memória em Uso'){
-                            console.log(resposta)
-                            for(var j = 0; j <= 7 ; i++){
-                                label.push(resposta[i].dataHoraFormatada)
-                                dadosGrafico.push(resposta[i].dadoValor)
-                                cardValor1.innerHTML = resposta[i].dadoValor
+                            for(var j = 0; j <= 7 ; j++){
+                                label.push(resposta[j].dataHoraFormatada)
+                                dadosGrafico.push(resposta[j].dadoValor)
+                                cardValor1.innerHTML = resposta[j].dadoValor
                             }   
                         }
                         
