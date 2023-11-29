@@ -63,7 +63,6 @@ function getComponentes(){
               </button>`
               //obterDadosGrafico(componentesMaquina[i].idCompHasComp)
                 }
-                chamarDados()
                 plotarCards(cpu)
             }) 
         }else{
