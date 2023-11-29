@@ -186,8 +186,6 @@ function obterDadosGraficoCpu(fkCompHasComp) {
                 labelDado = []
                 label = [];
                 dadosGrafico = [];
-                clearTimeout(proximaAtualizacao);
-
                     for(var i = 0 ; i < resposta.length; ++i ) {
                         labelDado.push(resposta[i].dataHora)
                         label.push(resposta[i].dataHoraFormatada);
