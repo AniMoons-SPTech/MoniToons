@@ -205,8 +205,7 @@ function obterDadosGrafico(fkCompHasComp) {
                         if(resposta[i].tipo == 'Memória em Uso'){
                                 label.push(resposta[i].dataHoraFormatada)
                                 dadosGrafico.push(resposta[i].dadoValor)
-                                cardValor1.innerHTML = resposta[i].dadoFormatado
-                            }   
+                                cardValor1.innerHTML = resposta[i].dadoFormatado 
                         }
                         
                     }
