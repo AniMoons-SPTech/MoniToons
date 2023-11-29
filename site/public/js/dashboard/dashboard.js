@@ -418,7 +418,6 @@ function atualizarGraficoLinhaRam(fkCompHasComp,grafico) {
             });
         } else {
             console.error('Nenhum dado encontrado ou erro na API');
-            // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
             proximaAtualizacao = setTimeout(() => atualizarGraficoLinhaRam(fkCompHasComp,grafico,dadosGrafico), 8000);
         }
     })
