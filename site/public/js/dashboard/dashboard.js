@@ -127,7 +127,7 @@ function plotarCards(fkCompHasComp){
                     
                 cardValor3.innerHTML = dadosCards[0].valor
                 plotarRestoDosCards('DISCO', fkCompHasComp)
-                obterDadosGrafico(fkCompHasComp)
+                obterDadosGraficoDisco(fkCompHasComp)
             }
 
             if(dadosCards[0].tipo == 'GPU'){
