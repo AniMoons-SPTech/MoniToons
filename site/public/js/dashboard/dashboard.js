@@ -196,7 +196,7 @@ function obterDadosGrafico(fkCompHasComp) {
                     grafico2.style.display = 'none'
                     grafico3.style.display = 'none'
                     grafico4.style.display = 'none'
-                    cardValor1.innerHTML = dadosGrafico[0].dadoFormatado 
+                    cardValor1.innerHTML = dadosGrafico[dadosGrafico.length -1 ].dadoFormatado 
                     var ctx1 = new Chart(document.getElementById('myChart'),cpu);
                     setTimeout(() => atualizarGraficoLinha(fkCompHasComp,ctx1,dadosGrafico), 8000); 
                 }
