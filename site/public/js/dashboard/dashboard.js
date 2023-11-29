@@ -18,10 +18,8 @@ var cardValor4 = document.getElementById("valor-card4");
 
 
 var grafico1 = document.getElementById("graficoCPU");
-var ctx1 = document.getElementById('myChart').getContext('2d');
 
 var grafico2 = document.getElementById("graficoRAM");
-var ctx2 = document.getElementById('myChart2').getContext('2d');
 
 var grafico3 = document.getElementById("graficoDISCO");
 var ctx3 = document.getElementById('myChart3').getContext('2d');
@@ -29,10 +27,15 @@ var ctx3 = document.getElementById('myChart3').getContext('2d');
 var grafico4 = document.getElementById("graficoGPU");
 var ctx4 = document.getElementById('myChart4').getContext('2d');
 
+
+
 var label = [];
 var dadosGrafico = [];
 var dadosGrafico1 = [];
 let proximaAtualizacao;
+
+
+
 
 
 
@@ -60,6 +63,7 @@ function getComponentes(){
               </button>`
               //obterDadosGrafico(componentesMaquina[i].idCompHasComp)
                 }
+                chamarDados()
                 plotarCards(cpu)
             }) 
         }else{
@@ -211,7 +215,9 @@ function obterDadosGrafico(fkCompHasComp) {
                     grafico2.style.display = 'none'
                     grafico3.style.display = 'none'
                     grafico4.style.display = 'none'
-                    plotarGrafico(ctx1,cpu);
+
+                    var ctx1 = new Chart(document.getElementById('myChart',cpu));
+                    setTimeout(() => atualizarGraficoLinha(fkCompHasComp,ctx1,dadosGrafico), 4000); 
                 }
 
                 if(resposta[0].tipoComp == 'RAM'){
@@ -347,51 +353,46 @@ function plotarGrafico(ctx,dados){
     
 }
 
-function atualizarGraficoLinha(fkCompHasComp) {
-    fetch(`/dado/graficosLinhaAtualizado/${idSetor}`, { cache: 'no-store' }).then(function (response) {
+function atualizarGraficoLinha(fkCompHasComp,grafico,dadosGrafico) {
+    fetch(`/compononentes/graficosLinhaAtualizado/${fkCompHasComp}`, { cache: 'no-store' }).then(function (response) {
         if (response.ok) {
             response.json().then(function (novoRegistro) {
 
                 console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
                 console.log(`Dados atuais do gráfico:`);
-                console.log(dadoUmidade);
+                console.log(dadosGrafico);
 
 
-                if (novoRegistro[0].DataColeta == dadoUmidade.data.labels[dadoUmidade.data.labels.length - 1]) {
+                if (novoRegistro[0].dataHoraFormatada == dadosGrafico.data.labels[dadosGrafico.data.labels.length - 1]) {
                     console.log("---------------------------------------------------------------")
                     console.log("Como não há dados novos para captura, o gráfico não atualizará.")
             
                     console.log("Horário do novo dado capturado:")
-                    console.log(novoRegistro[0].DataColeta)
+                    console.log(novoRegistro[0].dataHoraFormatada)
                     console.log("Horário do último dado capturado:")
-                    console.log(dadoUmidade.data.labels[dadoUmidade.data.labels.length - 1])
+                    console.log(dadosGrafico.data.labels[dadosGrafico.data.labels.length - 1])
                     console.log("---------------------------------------------------------------")
                 } else {
                     // tirando e colocando valores no gráfico
-                    dadoUmidade.data.labels.shift(); // apagar o primeiro
-                    dadoUmidade.data.labels.push(novoRegistro[0].DataColeta); // incluir um novo momento
+                    dadosGrafico.data.labels.shift(); // apagar o primeiro
+                    dadosGrafico.data.labels.push(novoRegistro[0].dataHoraFormatada); // incluir um novo momento
                     
-                    var umidadeAntiga = dadoUmidade.data.datasets[0].data[dadoUmidade.data.datasets[0].data.length - 1];
-                    dadoUmidade.data.datasets[0].data.shift();  // apagar o primeiro de umidade
-                    dadoUmidade.data.datasets[0].data.push(novoRegistro[0].Umidade); // incluir uma nova medida de umidade
+                    var dadoAntigo = dadosGrafico.data.datasets[0].data[dadosGrafico.data.datasets[0].data.length - 1];
+                    dadosGrafico.data.datasets[0].data.shift();  // apagar o primeiro de umidade
+                    dadosGrafico.data.datasets[0].data.push(novoRegistro[0].dadoValor); // incluir uma nova medida de umidade
                     
-                    var temperaturaAntiga = dadoTemperatura.data.datasets[0].data[dadoTemperatura.data.datasets[0].data.length - 1];
-                    dadoTemperatura.data.datasets[0].data.shift();  // apagar o primeiro de temperatura
-                    dadoTemperatura.data.datasets[0].data.push(novoRegistro[0].Temperatura); // incluir uma nova medida de temperatura
+                    verificarCondicao(novoRegistro[0].dadoValor, dadoAntigo);
 
-                    verificarCondicao(novoRegistro[0].Temperatura, temperaturaAntiga, novoRegistro[0].Umidade, umidadeAntiga);
-
-                    graficoUmidade.update();
-                    graficoTemperatura.update();
+                    grafico.update();
                 }
 
                 // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                proximaAtualizacao = setTimeout(() => atualizarGraficoLinha(idSetor, graficoUmidade, graficoTemperatura, dadoUmidade, dadoTemperatura), 4000);
+                proximaAtualizacao = setTimeout(() => atualizarGraficoLinha(fkCompHasComp,grafico,dadosGrafico), 4000);
             });
         } else {
             console.error('Nenhum dado encontrado ou erro na API');
             // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-            proximaAtualizacao = setTimeout(() => atualizarGraficoLinha(idSetor, graficoUmidade, graficoTemperatura, dadoUmidade, dadoTemperatura), 2000);
+            proximaAtualizacao = setTimeout(() => atualizarGraficoLinha(fkCompHasComp,grafico,dadosGrafico), 2000);
         }
     })
     .catch(function (error) {
@@ -400,5 +401,8 @@ function atualizarGraficoLinha(fkCompHasComp) {
 
 }
 
+function verificarCondicao() {
 
+     cardValor4.innerHTML('s')
+    }
 
