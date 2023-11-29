@@ -195,6 +195,7 @@ function obterDadosGrafico(fkCompHasComp) {
                     grafico4.style.display = 'none' 
                     var ctx1 = new Chart(document.getElementById('myChart'),cpu);
                     grafico = ctx1
+                    setTimeout(() => atualizarGraficoLinha(fkCompHasComp,grafico,dadosGrafico), 8000);
                 }
 
                 // else if(resposta[0].tipoComp == 'RAM'){
@@ -308,7 +309,7 @@ function obterDadosGrafico(fkCompHasComp) {
                 //     grafico = ctx4
                 // }
             })
-            setTimeout(() => atualizarGraficoLinha(fkCompHasComp,grafico,dadosGrafico), 8000);    
+                
         } else if (response.status == 404) {
             window.alert("Deu 404!");
         } else {
