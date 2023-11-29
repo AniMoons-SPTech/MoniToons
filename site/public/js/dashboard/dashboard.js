@@ -150,7 +150,7 @@ function plotarCards(fkCompHasComp){
 }
 
 function plotarRestoDosCards(tipoComponente, fkCompHasComp){
-    fetch(`/componentes/plotarRestoDosCards/${fkCompHasComp}/${idUsuario}/${tipoComponente}`,{
+    fetch(`/componentes/plotarRestoDosCards/${fkCompHasComp}/${tipoComponente}`,{
         method:'GET'
     }).then((response) => {
         if(response.ok){
