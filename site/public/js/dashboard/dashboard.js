@@ -18,14 +18,9 @@ var cardValor4 = document.getElementById("valor-card4");
 
 
 var grafico1 = document.getElementById("graficoCPU");
-
 var grafico2 = document.getElementById("graficoRAM");
-
 var grafico3 = document.getElementById("graficoDISCO");
-var ctx3 = document.getElementById('myChart3').getContext('2d');
-
 var grafico4 = document.getElementById("graficoGPU");
-var ctx4 = document.getElementById('myChart4').getContext('2d');
 
 
 
@@ -229,7 +224,7 @@ function obterDadosGrafico(fkCompHasComp) {
                     grafico3.style.display = 'none'
                     grafico4.style.display = 'none'
 
-                    var ctx2 = new Chart(document.getElementById('myChart2'),ram);
+                    var ctx2 = new Chart(document.getElementById('myChart1'),ram);
                     setTimeout(() => atualizarGraficoLinha(fkCompHasComp,ctx2,dadosGrafico), 8000);
                 }
 
@@ -273,7 +268,7 @@ function obterDadosGrafico(fkCompHasComp) {
                     grafico3.style.display = 'flex'
                     grafico4.style.display = 'none'
 
-                    var ctx3 = new Chart(document.getElementById('myChart3'),disco);
+                    var ctx3 = new Chart(document.getElementById('myChart2'),disco);
                     setTimeout(() => atualizarGraficoLinha(fkCompHasComp,ctx3,dadosGrafico), 8000);
                 }
                 else if(resposta[0].tipoComp == 'GPU'){
@@ -308,7 +303,7 @@ function obterDadosGrafico(fkCompHasComp) {
                     grafico3.style.display = 'none'
                     grafico4.style.display = 'flex'
 
-                    var ctx4 = new Chart(document.getElementById('myChart4'),gpu);
+                    var ctx4 = new Chart(document.getElementById('myChart3'),gpu);
                     setTimeout(() => atualizarGraficoLinha(fkCompHasComp,ctx4,dadosGrafico), 8000);
                 }
 
@@ -351,9 +346,10 @@ function atualizarGraficoLinha(fkCompHasComp,grafico,dadosGrafico) {
                         dadosGrafico.push(novoRegistro[0].dadoValor)
                         label.shift();
                         dadosGrafico.shift();
-                        cardValor1.innerHTML = novoRegistro[0].dadoFormatado      
+                        cardValor1.innerHTML = novoRegistro[0].dadoFormatado
+                        grafico.update();      
                         }            
-                    else if(novoRegistro[0].tipo == 'RAM'){
+                    if(novoRegistro[0].tipo == 'RAM'){
                         for(var i= 0 ; i < novoRegistro.length; i++){
                             if(novoRegistro[i].tipo == 'Memória em Uso'){     
                                 label.push(novoRegistro[i].dataHoraFormatada)
@@ -363,15 +359,41 @@ function atualizarGraficoLinha(fkCompHasComp,grafico,dadosGrafico) {
                                 cardValor1.innerHTML = novoRegistro[i].dadoFormatado      
                             }if(novoRegistro[i].tipo == 'Memória Disponível'){
                                 cardValor2.innerHTML = novoRegistro[i].dadoFormatado
-                            }            
+                            }}
+                    grafico.update();
                     }
+                    if(novoRegistro[0].tipo == 'DISCO'){
+                        for(var i= 0 ; i < 4; i++){
+                            if(novoRegistro[i].tipo == 'Espaço em Uso'){     
+                                label.push(novoRegistro[i].dataHoraFormatada)
+                                label.shift();
+                                dadosGrafico.push(novoRegistro[i].dadoValor)
+                                dadosGrafico.shift();
+                                cardValor1.innerHTML = novoRegistro[i].dadoFormatado      
+                            }
+                            if(novoRegistro[i].tipo == 'Memória Disponível'){
+                                cardValor2.innerHTML = novoRegistro[i].dadoFormatado
+                            }}
+                    grafico.update();
+                    }
+                    if(novoRegistro[0].tipo == 'GPU'){
+                        for(var i= 0 ; i < novoRegistro.length; i++){
+                            if(novoRegistro[i].tipo == 'Memória em Uso'){     
+                                label.push(novoRegistro[i].dataHoraFormatada)
+                                dadosGrafico.push(novoRegistro[i].dadoValor)
+                                label.shift();
+                                dadosGrafico.shift();
+                                cardValor1.innerHTML = novoRegistro[i].dadoFormatado      
+                            }if(novoRegistro[i].tipo == 'Memória Disponível'){
+                                cardValor2.innerHTML = novoRegistro[i].dadoFormatado
+                            }}
+                    grafico.update();
                     }
 
                     // verificarCondicao(novoRegistro[0].dadoValor, dadoAntigo);
-                    grafico.update();
+                    
                 }
-
-                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                proximaAtualizacao = 0;
                 proximaAtualizacao = setTimeout(() => atualizarGraficoLinha(fkCompHasComp,grafico,dadosGrafico), 8000);
             });
         } else {
