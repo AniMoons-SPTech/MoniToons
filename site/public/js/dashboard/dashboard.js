@@ -61,7 +61,6 @@ function getComponentes(){
                 </div>
                 <div class="barra-horizontal"></div>
               </button>`
-              //obterDadosGrafico(componentesMaquina[i].idCompHasComp)
                 }
                 plotarCards(cpu)
             }) 
@@ -215,8 +214,8 @@ function obterDadosGrafico(fkCompHasComp) {
                     grafico3.style.display = 'none'
                     grafico4.style.display = 'none'
 
-                    var ctx1 = new Chart(document.getElementById('myChart',cpu));
-                    setTimeout(() => atualizarGraficoLinha(fkCompHasComp,ctx1,dadosGrafico), 4000); 
+                    var ctx1 = new Chart(document.getElementById('myChart'),cpu);
+                    setTimeout(() => atualizarGraficoLinha(fkCompHasComp,ctx1,dadosGrafico), 15); 
                 }
 
                 if(resposta[0].tipoComp == 'RAM'){
