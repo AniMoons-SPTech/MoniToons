@@ -203,6 +203,7 @@ function obterDadosGrafico(fkCompHasComp) {
                 if(resposta[0].tipoComp == 'RAM'){
                     for(var i = resposta.length -1 ; i > 0; i--) {
                         if(resposta[i].tipo == 'Memória em Uso'){
+                            console.log(resposta)
                             for(var j = 0; j <= 7 ; i++){
                                 label.push(resposta[i].dataHoraFormatada)
                                 dadosGrafico.push(resposta[i].dadoValor)
