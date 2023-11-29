@@ -114,6 +114,7 @@ function plotarCards(fkCompHasComp){
             }
             
             if(dadosCards[0].tipo == 'DISCO'){
+
         
                 card1.innerHTML = "Velocidade de leitura"
                 card2.innerHTML = "Velocidade de escrita"
@@ -144,15 +145,6 @@ function plotarCards(fkCompHasComp){
 
     
 }
-
-// O gráfico é construído com três funções:
-    // 1. obterDadosGrafico -> Traz dados do Banco de Dados para montar o gráfico da primeira vez
-    // 2. plotarGrafico -> Monta o gráfico com os dados trazidos e exibe em tela
-    // 3. atualizarGrafico -> Atualiza o gráfico, trazendo novamente dados do Banco
-
-    // Esta função *obterDadosGrafico* busca os últimos dados inseridos em tabela de medidas.
-    // para, quando carregar o gráfico da primeira vez, já trazer com vários dados.
-    // A função *obterDadosGrafico* também invoca a função *plotarGrafico*
 
 function obterDadosGraficoCpu(fkCompHasComp) {
     fetch(`/componentes/dadosGraficoCpu/${fkCompHasComp}`, {
@@ -343,7 +335,7 @@ function obterDadosGraficoGpu(fkCompHasComp) {
                         grafico4.style.display = 'flex'
 
                         var ctx4 = new Chart(document.getElementById('myChart3'),gpu);
-                        setTimeout(() => atualizarGraficoLinhaRam(fkCompHasComp,ctx4), 8000);
+                        setTimeout(() => atualizarGraficoLinhaGpu(fkCompHasComp,ctx4), 8000);
             })
                 
         } else if (response.status == 404) {
