@@ -168,7 +168,7 @@ function obterDadosGrafico(fkCompHasComp) {
                 dadosGrafico = [];
 
                 if(resposta[0].tipoComp == 'CPU'){
-                    for(var i = 0 ; i < 7 ; i++ ) {
+                    for(var i = 7 ; i > 0 ; i -- ) {
                         labelDado.push(resposta[i].dataHora)
                         label.push(resposta[i].dataHoraFormatada);
                         dadosGrafico.push(resposta[i].dadoValor)
@@ -272,41 +272,41 @@ function obterDadosGrafico(fkCompHasComp) {
                 //     var ctx3 = new Chart(document.getElementById('myChart2'),disco);
                 //     grafico = ctx3
                 // }
-                else if(resposta[0].tipoComp == 'GPU'){
-                    for(var i = 7 ; i > 0; i--) {
+                // else if(resposta[0].tipoComp == 'GPU'){
+                //     for(var i = 7 ; i > 0; i--) {
 
-                        if(resposta[i].tipo == 'Uso da GPU'){
-                            dadosGrafico.push(resposta[i].dadoValor)
-                            label.push(resposta[i].dataHoraFormatada);
-                            cardValor1.innerHTML =  resposta[i].dadoFormatado
-                        }
-                        if(resposta[i].tipo == 'Memória de Vídeo Disponível'){
-                            cardValor2.innerHTML =  resposta[i].dadoFormatado
-                        }
-                    }
-                    var gpu = {
-                        data: {
-                            datasets: [
-                                {
-                                    type: 'line',
-                                    label: 'GPU',
-                                    data: dadosGrafico,
-                                    backgroundColor: '#fff',
-                                    borderColor: 'rgb(123, 001, 000)'
-                                }
-                            ],
-                            labels: label
-                        }
-                    }
+                //         if(resposta[i].tipo == 'Uso da GPU'){
+                //             dadosGrafico.push(resposta[i].dadoValor)
+                //             label.push(resposta[i].dataHoraFormatada);
+                //             cardValor1.innerHTML =  resposta[i].dadoFormatado
+                //         }
+                //         if(resposta[i].tipo == 'Memória de Vídeo Disponível'){
+                //             cardValor2.innerHTML =  resposta[i].dadoFormatado
+                //         }
+                //     }
+                //     var gpu = {
+                //         data: {
+                //             datasets: [
+                //                 {
+                //                     type: 'line',
+                //                     label: 'GPU',
+                //                     data: dadosGrafico,
+                //                     backgroundColor: '#fff',
+                //                     borderColor: 'rgb(123, 001, 000)'
+                //                 }
+                //             ],
+                //             labels: label
+                //         }
+                //     }
 
-                    grafico1.style.display = 'none'
-                    grafico2.style.display = 'none'
-                    grafico3.style.display = 'none'
-                    grafico4.style.display = 'flex'
+                //     grafico1.style.display = 'none'
+                //     grafico2.style.display = 'none'
+                //     grafico3.style.display = 'none'
+                //     grafico4.style.display = 'flex'
 
-                    var ctx4 = new Chart(document.getElementById('myChart3'),gpu);
-                    grafico = ctx4
-                }
+                //     var ctx4 = new Chart(document.getElementById('myChart3'),gpu);
+                //     grafico = ctx4
+                // }
             })
             setTimeout(() => atualizarGraficoLinha(fkCompHasComp,grafico,dadosGrafico), 8000);    
         } else if (response.status == 404) {
@@ -341,7 +341,9 @@ function atualizarGraficoLinha(fkCompHasComp,grafico,dadosGrafico) {
                     console.log("---------------------------------------------------------------")
                 } else {
                         label.shift();
+                        labelDado.shift();
                         label.push(novoRegistro[0].dataHoraFormatada)
+                        labelDado.push(novoRegistro[0].dataHora)
                         dadosGrafico.shift();
                         dadosGrafico.push(novoRegistro[0].dadoValor)
                         grafico.update(); 
