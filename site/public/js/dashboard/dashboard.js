@@ -230,48 +230,48 @@ function obterDadosGrafico(fkCompHasComp) {
                     grafico = ctx2
                 }
 
-                else if(resposta[0].tipoComp == 'DISCO'){
-                    for(var i = resposta.length -1 ; i > 0; i--) {
+                // else if(resposta[0].tipoComp == 'DISCO'){
+                //     for(var i = resposta.length -1 ; i > 0; i--) {
 
-                        if(resposta[i].tipo == 'Velocidade de Escrita'){
-                            label.push(resposta[i].dataHoraFormatada);
-                            dadosGrafico.push(resposta[i].dadoValor)
-                            cardValor2.innerHTML =  resposta[i].dadoFormatado
-                        }
-                        if(resposta[i].tipo == 'Velocidade de Leitura'){
-                            label.push(resposta[i].dataHoraFormatada);
-                            dadosGrafico1.push(resposta[i].dadoValor)
-                            cardValor3.innerHTML =  resposta[i].dadoFormatado
-                        }
-                    }
-                    var disco = {
-                        type: 'bar',
-                        labels: label,
-                        datasets: [
-                            {
-                                label: 'Velocidade de Escrita',
-                                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                                borderColor: 'rgba(75, 192, 192, 1)',
-                                borderWidth: 1,
-                                data: dadosGrafico
-                            },
-                            {
-                                label: 'Velocidade de Leitura',
-                                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                                borderColor: 'rgba(255, 99, 132, 1)',
-                                borderWidth: 1,
-                                data: dadosGrafico1
-                            }
-                        ]
-                    };
-                    grafico1.style.display = 'none'
-                    grafico2.style.display = 'none'
-                    grafico3.style.display = 'flex'
-                    grafico4.style.display = 'none'
+                //         if(resposta[i].tipo == 'Velocidade de Escrita'){
+                //             label.push(resposta[i].dataHoraFormatada);
+                //             dadosGrafico.push(resposta[i].dadoValor)
+                //             cardValor2.innerHTML =  resposta[i].dadoFormatado
+                //         }
+                //         if(resposta[i].tipo == 'Velocidade de Leitura'){
+                //             label.push(resposta[i].dataHoraFormatada);
+                //             dadosGrafico1.push(resposta[i].dadoValor)
+                //             cardValor3.innerHTML =  resposta[i].dadoFormatado
+                //         }
+                //     }
+                //     var disco = {
+                //         type: 'bar',
+                //         labels: label,
+                //         datasets: [
+                //             {
+                //                 label: 'Velocidade de Escrita',
+                //                 backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                //                 borderColor: 'rgba(75, 192, 192, 1)',
+                //                 borderWidth: 1,
+                //                 data: dadosGrafico
+                //             },
+                //             {
+                //                 label: 'Velocidade de Leitura',
+                //                 backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                //                 borderColor: 'rgba(255, 99, 132, 1)',
+                //                 borderWidth: 1,
+                //                 data: dadosGrafico1
+                //             }
+                //         ]
+                //     };
+                //     grafico1.style.display = 'none'
+                //     grafico2.style.display = 'none'
+                //     grafico3.style.display = 'flex'
+                //     grafico4.style.display = 'none'
 
-                    var ctx3 = new Chart(document.getElementById('myChart2'),disco);
-                    grafico = ctx3
-                }
+                //     var ctx3 = new Chart(document.getElementById('myChart2'),disco);
+                //     grafico = ctx3
+                // }
                 else if(resposta[0].tipoComp == 'GPU'){
                     for(var i = 7 ; i > 0; i--) {
 
