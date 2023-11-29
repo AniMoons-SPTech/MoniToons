@@ -352,7 +352,7 @@ function plotarGrafico(ctx,dados){
 }
 
 function atualizarGraficoLinha(fkCompHasComp,grafico,dadosGrafico) {
-    fetch(`/compononentes/graficosLinhaAtualizado/${fkCompHasComp}`, { cache: 'no-store' }).then(function (response) {
+    fetch(`/compononentes/graficosLinhaAtualizado/${fkCompHasComp}`).then(function (response) {
         if (response.ok) {
             response.json().then(function (novoRegistro) {
 
@@ -400,7 +400,6 @@ function atualizarGraficoLinha(fkCompHasComp,grafico,dadosGrafico) {
 }
 
 function verificarCondicao() {
-
      cardValor4.innerHTML('s')
     }
 
