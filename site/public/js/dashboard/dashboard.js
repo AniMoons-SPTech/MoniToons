@@ -99,7 +99,7 @@ function plotarCards(fkCompHasComp){
 
                 cardValor1.innerHTML = velocidade
                 cardValor2.innerHTML = nucleo1
-                cardValor3.innerHTML = nucle02
+                cardValor3.innerHTML = nucleo2
                 obterDadosGrafico(fkCompHasComp)
             }
                 
