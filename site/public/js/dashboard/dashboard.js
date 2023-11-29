@@ -228,22 +228,21 @@ function obterDadosGrafico(fkCompHasComp) {
 
                 else if(resposta[0].tipoComp == 'DISCO'){
                     for(var i = resposta.length -1 ; i > 0; i--) {
-                        // label.push(resposta[i].dataHoraFormatada);
-                        
 
                         if(resposta[i].tipo == 'Velocidade de Escrita'){
+                            label.push(resposta[i].dataHoraFormatada);
                             dadosGrafico.push(resposta[i].dadoValor)
                             cardValor2.innerHTML =  resposta[i].dadoFormatado
                         }
                         if(resposta[i].tipo == 'Velocidade de Leitura'){
+                            label.push(resposta[i].dataHoraFormatada);
                             dadosGrafico1.push(resposta[i].dadoValor)
                             cardValor3.innerHTML =  resposta[i].dadoFormatado
                         }
                     }
-                    tipo = 'bar';
-                    var disco= {
+                    var disco = {
                         type: 'bar',
-                        labels: ['Velocidade de Escrita', 'Velocidade de Leitura'],
+                        labels: label,
                         datasets: [
                             {
                                 label: 'Velocidade de Escrita',
