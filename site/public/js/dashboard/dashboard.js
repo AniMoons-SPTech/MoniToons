@@ -375,8 +375,7 @@ function atualizarGraficoLinha(fkCompHasComp,grafico,dadosGrafico) {
                     label.shift(); // apagar o primeiro
                     label.push(novoRegistro[0].dataHoraFormatada); // incluir um novo momento
                     
-                    var dadoAntigo = dadosGrafico[0];
-                    dadoAntigo.shift();  
+                    dadosGrafico.shift();  
                     dadosGrafico.push(novoRegistro[0].dadoValor); // incluir uma nova medida de umidade
                     
                     // verificarCondicao(novoRegistro[0].dadoValor, dadoAntigo);
