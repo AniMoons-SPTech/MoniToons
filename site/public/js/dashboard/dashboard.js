@@ -201,12 +201,11 @@ function obterDadosGrafico(fkCompHasComp) {
                 }
 
                 if(resposta[0].tipoComp == 'RAM'){
-                    for(var i = resposta.length -1 ; i > 0; i--) {
+                    for (var i = 0; i < resposta.length && dadosGrafico.length < 7; i++) {
                         if(resposta[i].tipo == 'Memória em Uso'){
-                            for(var j = 0; j <= 7 ; j++){
-                                label.push(resposta[j].dataHoraFormatada)
-                                dadosGrafico.push(resposta[j].dadoValor)
-                                cardValor1.innerHTML = resposta[j].dadoValor
+                                label.push(resposta[i].dataHoraFormatada)
+                                dadosGrafico.push(resposta[i].dadoValor)
+                                cardValor1.innerHTML = resposta[i].dadoFormatado
                             }   
                         }
                         
