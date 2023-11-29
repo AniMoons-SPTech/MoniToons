@@ -62,7 +62,7 @@ function getComponentes(){
                 <div class="barra-horizontal"></div>
               </button>`
                 }
-                plotarCards(cpu)
+                plotarCards(componentesMaquina[i].idCompHasComp)
             }) 
         }else{
             throw("Houve um erro")
