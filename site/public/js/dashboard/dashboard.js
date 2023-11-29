@@ -336,63 +336,19 @@ function atualizarGraficoLinha(fkCompHasComp,grafico,dadosGrafico) {
                     console.log(label[label.length -1])
                     console.log("---------------------------------------------------------------")
                 } else {
-                    if(novoRegistro[0].tipo == 'CPU'){
                         label.push(novoRegistro[0].dataHoraFormatada)
                         dadosGrafico.push(novoRegistro[0].dadoValor)
                         label.shift();
                         dadosGrafico.shift();
                         cardValor1.innerHTML = novoRegistro[0].dadoFormatado
-                        grafico.update();      
-                        }            
-                    if(novoRegistro[0].tipo == 'RAM'){
-                        for(var i= 0 ; i < novoRegistro.length; i++){
-                            if(novoRegistro[i].tipo == 'Memória em Uso'){     
-                                label.push(novoRegistro[i].dataHoraFormatada)
-                                dadosGrafico.push(novoRegistro[i].dadoValor)
-                                label.shift();
-                                dadosGrafico.shift();
-                                cardValor1.innerHTML = novoRegistro[i].dadoFormatado      
-                            }if(novoRegistro[i].tipo == 'Memória Disponível'){
-                                cardValor2.innerHTML = novoRegistro[i].dadoFormatado
-                            }}
-                    grafico.update();
-                    }
-                    if(novoRegistro[0].tipo == 'DISCO'){
-                        for(var i= 0 ; i < 4; i++){
-                            if(novoRegistro[i].tipo == 'Espaço em Uso'){     
-                                label.push(novoRegistro[i].dataHoraFormatada)
-                                label.shift();
-                                dadosGrafico.push(novoRegistro[i].dadoValor)
-                                dadosGrafico.shift();
-                                cardValor1.innerHTML = novoRegistro[i].dadoFormatado      
-                            }
-                            if(novoRegistro[i].tipo == 'Memória Disponível'){
-                                cardValor2.innerHTML = novoRegistro[i].dadoFormatado
-                            }}
-                    grafico.update();
-                    }
-                    if(novoRegistro[0].tipo == 'GPU'){
-                        for(var i= 0 ; i < novoRegistro.length; i++){
-                            if(novoRegistro[i].tipo == 'Memória em Uso'){     
-                                label.push(novoRegistro[i].dataHoraFormatada)
-                                dadosGrafico.push(novoRegistro[i].dadoValor)
-                                label.shift();
-                                dadosGrafico.shift();
-                                cardValor1.innerHTML = novoRegistro[i].dadoFormatado      
-                            }if(novoRegistro[i].tipo == 'Memória Disponível'){
-                                cardValor2.innerHTML = novoRegistro[i].dadoFormatado
-                            }}
-                    grafico.update();
-                    }
-                    
-                }
-                
-                proximaAtualizacao = setTimeout(() => obterDadosGrafico(fkCompHasComp), 8000);
+                        grafico.update();                 
+                }  
+                proximaAtualizacao = setTimeout(() => atualizarGraficoLinha(fkCompHasComp,grafico,dadosGrafico), 8000);
             });
         } else {
             console.error('Nenhum dado encontrado ou erro na API');
             // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-            proximaAtualizacao = setTimeout(() => obterDadosGrafico(fkCompHasComp), 8000);
+            proximaAtualizacao = setTimeout(() => atualizarGraficoLinha(fkCompHasComp,grafico,dadosGrafico), 8000);
         }
     })
     .catch(function (error) {
