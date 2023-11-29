@@ -352,7 +352,7 @@ function plotarGrafico(ctx,dados){
 }
 
 function atualizarGraficoLinha(fkCompHasComp,grafico,dadosGrafico) {
-    fetch(`/compononentes/graficosLinhaAtualizado/${fkCompHasComp}`,{ cache: 'no-store' }).then(function (response) {
+    fetch(`/componentes/graficosLinhaAtualizado/${fkCompHasComp}`,{ cache: 'no-store' }).then(function (response) {
         if (response.ok) {
             response.json().then(function (novoRegistro) {
 
