@@ -215,7 +215,7 @@ function obterDadosGrafico(fkCompHasComp) {
                     grafico4.style.display = 'none'
 
                     var ctx1 = new Chart(document.getElementById('myChart'),cpu);
-                    setTimeout(() => atualizarGraficoLinha(fkCompHasComp,ctx1,dadosGrafico), 15); 
+                    setTimeout(() => atualizarGraficoLinha(fkCompHasComp,ctx1,dadosGrafico), 15000); 
                 }
 
                 if(resposta[0].tipoComp == 'RAM'){
@@ -385,12 +385,12 @@ function atualizarGraficoLinha(fkCompHasComp,grafico,dadosGrafico) {
                 }
 
                 // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                proximaAtualizacao = setTimeout(() => atualizarGraficoLinha(fkCompHasComp,grafico,dadosGrafico), 4000);
+                proximaAtualizacao = setTimeout(() => atualizarGraficoLinha(fkCompHasComp,grafico,dadosGrafico), 15000);
             });
         } else {
             console.error('Nenhum dado encontrado ou erro na API');
             // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-            proximaAtualizacao = setTimeout(() => atualizarGraficoLinha(fkCompHasComp,grafico,dadosGrafico), 2000);
+            proximaAtualizacao = setTimeout(() => atualizarGraficoLinha(fkCompHasComp,grafico,dadosGrafico), 15000);
         }
     })
     .catch(function (error) {
