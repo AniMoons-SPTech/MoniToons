@@ -335,7 +335,7 @@ function atualizarGraficoLinha(fkCompHasComp,grafico,dadosGrafico) {
                     console.log("Como não há dados novos para captura, o gráfico não atualizará.")
             
                     console.log("Horário do novo dado capturado:")
-                    console.log(novoRegistro[0].dataHoraFormatada)
+                    console.log(novoRegistro[0].dataHora)
                     console.log("Horário do último dado capturado:")
                     console.log(labelDado[0])
                     console.log("---------------------------------------------------------------")
