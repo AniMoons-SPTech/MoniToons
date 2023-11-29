@@ -38,10 +38,10 @@ function getDados(req, res){
         );
 }
 
-function dadosGrafico(req, res){
+function dadosGraficoCpu(req, res){
     var {fkCompHasComp} = req.params;
 
-    componentesModel.dadosGrafico(fkCompHasComp).then(function (resultado) {
+    componentesModel.dadosGraficoCpu(fkCompHasComp).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -74,6 +74,6 @@ function graficosLinhaAtualizado(req, res){
 module.exports = {
     getComponentes,
     getDados,
-    dadosGrafico,
+    dadosGraficoCpu,
     graficosLinhaAtualizado
 }

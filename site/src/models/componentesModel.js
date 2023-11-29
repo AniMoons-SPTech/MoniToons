@@ -23,26 +23,26 @@ function getDados(fkCompHasComp){
     return database.executar(instrucao);
 }
 
-    function dadosGrafico(fkCompHasComp){
+    function dadosGraficoCpu(fkCompHasComp){
         console.log("ACESSEI O COMPONENTES MODEL")
     var instrucao = `SELECT
-        r.*,
-        comp.tipo AS tipoComp,
-        FORMAT(r.dataHora, 'dd/MM/yyyy HH:mm') AS dataHoraFormatada
-FROM
+    r.*,
+    comp.tipo AS tipoComp,
+    FORMAT(r.dataHora, 'dd/MM/yyyy HH:mm') AS dataHoraFormatada
+    FROM
     registro r
-JOIN
+    JOIN
     computadorHasComponente chc ON r.fkCompHasComp = chc.idCompHasComp
-JOIN
+    JOIN
     componente comp ON chc.fkComponente = comp.idComponente
-WHERE
+    WHERE
     r.fkCompHasComp = ${fkCompHasComp}
-ORDER BY
-   r.dataHora DESC
-OFFSET
+    ORDER BY
+    r.dataHora DESC
+    OFFSET
     0 ROWS
-FETCH FIRST
-    100 ROWS ONLY;`
+    FETCH FIRST
+    7 ROWS ONLY;`
                     
     console.log("Executando \n" + instrucao)                
     return database.executar(instrucao);
@@ -76,6 +76,6 @@ FETCH FIRST
 module.exports = {
     getComponentes,
     getDados,
-    dadosGrafico,
+    dadosGraficoCpu,
     graficosLinhaAtualizado
 }

@@ -21,7 +21,6 @@ var grafico2 = document.getElementById("graficoRAM");
 var grafico3 = document.getElementById("graficoDISCO");
 var grafico4 = document.getElementById("graficoGPU");
 
-var grafico;
 var label = [];
 var labelDado = [];
 var dadosGrafico = [];
@@ -55,8 +54,8 @@ function getComponentes(){
                 </div>
                 <div class="barra-horizontal"></div>
               </button>`
-              plotarCards(componentesMaquina[i].idCompHasComp)
                 }
+                plotarCards(cpu)
                 
             }) 
         }else{
@@ -100,7 +99,7 @@ function plotarCards(fkCompHasComp){
                 cardValor1.innerHTML = velocidade
                 cardValor2.innerHTML = nucleo1
                 cardValor3.innerHTML = nucleo2
-                obterDadosGrafico(fkCompHasComp)
+                obterDadosGraficoCpu(fkCompHasComp)
             }
                 
             if(dadosCards[0].tipo == 'RAM'){
@@ -155,8 +154,8 @@ function plotarCards(fkCompHasComp){
     // para, quando carregar o gráfico da primeira vez, já trazer com vários dados.
     // A função *obterDadosGrafico* também invoca a função *plotarGrafico*
 
-function obterDadosGrafico(fkCompHasComp) {
-    fetch(`/componentes/dadosGrafico/${fkCompHasComp}`, {
+function obterDadosGraficoCpu(fkCompHasComp) {
+    fetch(`/componentes/dadosGraficoCpu/${fkCompHasComp}`, {
         method: 'GET',
         headers: {
             "Content-Type": "application/json"
@@ -166,9 +165,7 @@ function obterDadosGrafico(fkCompHasComp) {
             response.json().then(function (resposta) {
                 label = [];
                 dadosGrafico = [];
-
-                if(resposta[0].tipoComp == 'CPU'){
-                    for(var i = 7 ; i > 0 ; i -- ) {
+                    for(var i = 0 ; i < resposta.length; ++i ) {
                         labelDado.push(resposta[i].dataHora)
                         label.push(resposta[i].dataHoraFormatada);
                         dadosGrafico.push(resposta[i].dadoValor)
@@ -194,9 +191,9 @@ function obterDadosGrafico(fkCompHasComp) {
                     grafico3.style.display = 'none'
                     grafico4.style.display = 'none' 
                     var ctx1 = new Chart(document.getElementById('myChart'),cpu);
-                    grafico = ctx1
-                    setTimeout(() => atualizarGraficoLinha(fkCompHasComp), 8000);
-                }
+                    
+                    setTimeout(() => atualizarGraficoLinha(fkCompHasComp,ctx1), 8000);
+                
 
                 // else if(resposta[0].tipoComp == 'RAM'){
                 //     for (var i = 0; i < resposta.length && dadosGrafico.length < 7; i++) {
@@ -321,7 +318,7 @@ function obterDadosGrafico(fkCompHasComp) {
 }
 
 
-function atualizarGraficoLinha(fkCompHasComp) {
+function atualizarGraficoLinha(fkCompHasComp,grafico) {
     fetch(`/componentes/graficosLinhaAtualizado/${fkCompHasComp}`,{ cache: 'no-store' }).then(function (response) {
         if (response.ok) {
             response.json().then(function (novoRegistro) {
@@ -343,9 +340,9 @@ function atualizarGraficoLinha(fkCompHasComp) {
                 } else {
                         label.shift();
                         labelDado.shift();
+                        dadosGrafico.shift();
                         label.push(novoRegistro[0].dataHoraFormatada)
                         labelDado.push(novoRegistro[0].dataHora)
-                        dadosGrafico.shift();
                         dadosGrafico.push(novoRegistro[0].dadoValor)
                         grafico.update(); 
                                          
