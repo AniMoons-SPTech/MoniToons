@@ -110,7 +110,7 @@ function plotarCards(fkCompHasComp){
                 console.log(dadosCards)
 
                 cardValor3.innerHTML = dadosCards[0].valor
-                obterDadosGrafico(fkCompHasComp)
+                obterDadosGraficoRam(fkCompHasComp)
             }
             
             if(dadosCards[0].tipo == 'DISCO'){
