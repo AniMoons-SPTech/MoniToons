@@ -89,7 +89,7 @@ function plotarCards(fkCompHasComp){
                     card2.innerHTML = "Velocidade"
                     card3.innerHTML = "N° de núcleos"
                     
-                for(var i = dadosCards.length-1 ; i > 0 ; i-- ){
+                for(var i = 0 ; i < dadosCards.length ; i ++ ){
                     if(dadosCards[i].tipoEspecificacao == "Frequência"){
                         velocidade = dadosCards[i].valor;
                     }
