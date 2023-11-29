@@ -6,6 +6,7 @@ var componentesMaquina = [];
 var dadosCards = [];
 var divComponentes = document.getElementById("listaComponentes")
 var divGrafico = document.getElementById("grafico")
+
 var card1 = document.getElementById("title-card1");
 var card2 = document.getElementById("title-card2");
 var card3 = document.getElementById("title-card3");
@@ -13,17 +14,14 @@ var card4 = document.getElementById("title-card4");
 var cardValor1 = document.getElementById("valor-card1");
 var cardValor2 = document.getElementById("valor-card2");
 var cardValor3 = document.getElementById("valor-card3");
-
 var cardValor4 = document.getElementById("valor-card4");
-
 
 var grafico1 = document.getElementById("graficoCPU");
 var grafico2 = document.getElementById("graficoRAM");
 var grafico3 = document.getElementById("graficoDISCO");
 var grafico4 = document.getElementById("graficoGPU");
 
-
-
+var grafico;
 var label = [];
 var dadosGrafico = [];
 var dadosGrafico1 = [];
@@ -192,7 +190,7 @@ function obterDadosGrafico(fkCompHasComp) {
                     grafico3.style.display = 'none'
                     grafico4.style.display = 'none' 
                     var ctx1 = new Chart(document.getElementById('myChart'),cpu);
-                    setTimeout(() => atualizarGraficoLinha(fkCompHasComp,ctx1,dadosGrafico), 8000); 
+                    grafico = ctx1
                 }
 
                 else if(resposta[0].tipoComp == 'RAM'){
@@ -225,7 +223,7 @@ function obterDadosGrafico(fkCompHasComp) {
                     grafico4.style.display = 'none'
 
                     var ctx2 = new Chart(document.getElementById('myChart1'),ram);
-                    setTimeout(() => atualizarGraficoLinha(fkCompHasComp,ctx2,dadosGrafico), 8000);
+                    grafico = ctx2
                 }
 
                 else if(resposta[0].tipoComp == 'DISCO'){
@@ -269,7 +267,7 @@ function obterDadosGrafico(fkCompHasComp) {
                     grafico4.style.display = 'none'
 
                     var ctx3 = new Chart(document.getElementById('myChart2'),disco);
-                    setTimeout(() => atualizarGraficoLinha(fkCompHasComp,ctx3,dadosGrafico), 8000);
+                    grafico = ctx3
                 }
                 else if(resposta[0].tipoComp == 'GPU'){
                     for(var i = 7 ; i > 0; i--) {
@@ -304,12 +302,10 @@ function obterDadosGrafico(fkCompHasComp) {
                     grafico4.style.display = 'flex'
 
                     var ctx4 = new Chart(document.getElementById('myChart3'),gpu);
-                    setTimeout(() => atualizarGraficoLinha(fkCompHasComp,ctx4,dadosGrafico), 8000);
+                    grafico = ctx4
                 }
-
-
-
-            })    
+            })
+            setTimeout(() => atualizarGraficoLinha(fkCompHasComp,grafico,dadosGrafico), 8000);    
         } else if (response.status == 404) {
             window.alert("Deu 404!");
         } else {
