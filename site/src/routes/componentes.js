@@ -36,5 +36,8 @@ router.get("/graficosLinhaAtualizadoRam/:fkCompHasComp", function (req, res) {
 router.get("/graficosLinhaAtualizadoGpu/:fkCompHasComp", function (req, res) {
     componentesController.graficosLinhaAtualizadoGpu(req, res);
 })
+router.get("/componentes/plotarRestoDosCards/:fkCompHasComp/:idUsuario", function (req, res) {
+    componentesController.plotarRestoDosCards(req, res);
+})
 
 module.exports = router;

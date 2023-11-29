@@ -172,6 +172,51 @@ FETCH FIRST
     return database.executar(instrucao);
     }
 
+    function plotarRestoDosCards(fkCompHasComp, idUsuario, tipoComponente){
+        console.log("ACESSEI O COMPONENTES MODEL")
+        if(tipoComponente = 'RAM'){
+            var instrucao = `SELECT 
+            (
+                SELECT dadoFormatado 
+                FROM registro 
+                WHERE fkCompHasComp = ${fkCompHasComp} AND tipo = 'Memória em Uso'
+                ORDER BY dataHora DESC
+                LIMIT 1
+            ) AS 'memUso', 
+            (
+                SELECT dadoFormatado 
+                FROM registro 
+                WHERE fkCompHasComp = ${fkCompHasComp} AND tipo = 'Memória Disponível'
+                ORDER BY dataHora DESC
+                LIMIT 1
+            ) AS 'memDisp' 
+        FROM registro
+        LIMIT 1;`
+        } else if (tipoComponente = 'DISCO'){
+            var instrucao = `SELECT 
+            (
+                SELECT dadoFormatado 
+                FROM registro 
+                WHERE fkCompHasComp = ${fkCompHasComp} AND tipo = 'Velocidade de Leitura'
+                ORDER BY dataHora DESC
+                LIMIT 1
+            ) AS 'vel_leit', 
+            (
+                SELECT dadoFormatado 
+                FROM registro 
+                WHERE fkCompHasComp = ${fkCompHasComp} AND tipo = 'Velocidade de Escrita'
+                ORDER BY dataHora DESC
+                LIMIT 1
+            ) AS 'vel_escr' 
+        FROM registro
+        LIMIT 1;`
+        } else if (tipoComponente = 'GPU'){
+            var instrucao = ``
+        }      
+    console.log("Executando \n" + instrucao)                
+    return database.executar(instrucao);
+    }
+
 
 
 module.exports = {
@@ -182,6 +227,6 @@ module.exports = {
     dadosGraficoGpu,
     graficosLinhaAtualizado,
     graficosLinhaAtualizadoRam,
-    graficosLinhaAtualizadoGpu
-    
+    graficosLinhaAtualizadoGpu,
+    plotarRestoDosCards
 }

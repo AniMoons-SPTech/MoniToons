@@ -29,9 +29,6 @@ let proximaAtualizacao;
 
 
 
-
-
-
 function getComponentes(){
     fetch(`/componentes/getComponentes/${idUsuario}`,{
         method:'GET'
@@ -65,7 +62,6 @@ function getComponentes(){
         console.error(error);
     })
 }
-
 
 function plotarCards(fkCompHasComp){
     fetch(`/componentes/getDados/${fkCompHasComp}`,{
@@ -108,8 +104,9 @@ function plotarCards(fkCompHasComp){
                 card2.innerHTML = "Memória disponível"
                 card3.innerHTML = "Memória total"
                 console.log(dadosCards)
-
-                cardValor3.innerHTML = dadosCards[0].valor
+                
+                cardValor3.innerHTML = dadosCards[0].
+                plotarRestoDosCards('RAM', fkCompHasComp)
                 obterDadosGraficoRam(fkCompHasComp)
             }
             
@@ -118,20 +115,22 @@ function plotarCards(fkCompHasComp){
                 card1.innerHTML = "Velocidade de leitura"
                 card2.innerHTML = "Velocidade de escrita"
                 card3.innerHTML = "Tamanho"
+
                     
                 cardValor3.innerHTML = dadosCards[0].valor
+                plotarRestoDosCards('DISCO', fkCompHasComp)
                 obterDadosGrafico(fkCompHasComp)
             }
 
             if(dadosCards[0].tipo == 'GPU'){
-                    card1.innerHTML = "Memória de Vídeo Disponível"
+                    card1.innerHTML = "Porcentagem de Uso"
                     card2.innerHTML = "Memória de Vídeo Disponível"
-                    card3.innerHTML = "Memória de Vídeo Disponível"
+                    card3.innerHTML = "Fabricante"
 
-                
-                    cardValor1.innerHTML = 'bonk' 
-                    cardValor2.innerHTML = 'bonk'
-                    cardValor3.innerHTML = 'bonk'
+                    // card3.innerHTML = dadosCards[x].valor
+                    // Não sei como está vindo os dados então não mexi nisso - JP
+                    // AQUI INCLUIR NO SELECT DE DADOS DE ESPECIFICAÇÃO O FABRICANTE DA PLACA 
+                    plotarRestoDosCards('GPU', fkCompHasComp)
                     obterDadosGraficoGpu(fkCompHasComp)
             }
             }) 
@@ -141,8 +140,31 @@ function plotarCards(fkCompHasComp){
     }).catch((error) => {
         console.error(error);
     })
+}
 
-    
+function plotarRestoDosCards(tipoComponente, fkCompHasComp){
+    fetch(`/componentes/plotarRestoDosCards/${fkCompHasComp}/${idUsuario}/${tipoComponente}`,{
+        method:'GET'
+    }).then((response) => {
+        if(response.ok){
+            response.json().then((resposta) => {
+                var dadosCards = []
+                dadosCards = resposta
+                if(tipoComponente = 'DISCO'){
+                    cardValor1.innerHTML = dadosCards[0].vel_leit;
+                    cardValor2.innerHTML = dadosCards[0].vel_escr;
+                } else if (tipoComponente = 'GPU'){
+
+                } else if (tipoComponente = 'RAM'){
+
+                }
+            
+            
+            })}
+        }).catch((error) => {
+            console.error(error);
+        })
+            
 }
 
 // O gráfico é construído com três funções:
@@ -338,7 +360,7 @@ function obterDadosGraficoGpu(fkCompHasComp) {
                         cardValor1.innerHTML = dadosGrafico[0].dadoFormatado
 
                         var ctx4 = new Chart(document.getElementById('myChart3'),gpu);
-                        setTimeout(() => atualizarGraficoLinhaRam(fkCompHasComp,ctx4), 8000);
+                        setTimeout(() => atualizarGraficoLinhaGpu(fkCompHasComp,ctx4), 8000);
             })
                 
         } else if (response.status == 404) {
