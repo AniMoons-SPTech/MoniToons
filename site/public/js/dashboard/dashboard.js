@@ -289,6 +289,7 @@ function obterDadosGraficoRam(fkCompHasComp) {
                     grafico2.style.display = 'flex'
                     grafico3.style.display = 'none'
                     grafico4.style.display = 'none'
+                    cardValor1.innerHTML = resposta[0].dadoFormatado
 
                     var ctx2 = new Chart(document.getElementById('myChart1'),ram);
                     setTimeout(() => atualizarGraficoLinhaRam(fkCompHasComp,ctx2), 8000);
@@ -316,6 +317,11 @@ function obterDadosGraficoGpu(fkCompHasComp) {
             response.json().then(function (resposta) {
                 label = [];
                 dadosGrafico = [];
+                for(var i = 0 ; i < resposta.length; ++i ) {
+                    labelDado.push(resposta[i].dataHora)
+                    label.push(resposta[i].dataHoraFormatada);
+                    dadosGrafico.push(resposta[i].dadoValor)
+                }
                         var gpu = {
                             data: {
                                 datasets: [
@@ -335,7 +341,6 @@ function obterDadosGraficoGpu(fkCompHasComp) {
                         grafico2.style.display = 'none'
                         grafico3.style.display = 'none'
                         grafico4.style.display = 'flex'
-                        cardValor1.innerHTML = dadosGrafico[0].dadoFormatado
 
                         var ctx4 = new Chart(document.getElementById('myChart3'),gpu);
                         setTimeout(() => atualizarGraficoLinhaRam(fkCompHasComp,ctx4), 8000);
