@@ -384,17 +384,15 @@ function atualizarGraficoLinha(fkCompHasComp,grafico,dadosGrafico) {
                             }}
                     grafico.update();
                     }
-
-                    // verificarCondicao(novoRegistro[0].dadoValor, dadoAntigo);
                     
                 }
-                proximaAtualizacao = 0;
-                proximaAtualizacao = setTimeout(() => atualizarGraficoLinha(fkCompHasComp,grafico,dadosGrafico), 8000);
+                
+                proximaAtualizacao = setTimeout(() => obterDadosGrafico(fkCompHasComp), 8000);
             });
         } else {
             console.error('Nenhum dado encontrado ou erro na API');
             // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-            proximaAtualizacao = setTimeout(() => atualizarGraficoLinha(fkCompHasComp,grafico,dadosGrafico), 8000);
+            proximaAtualizacao = setTimeout(() => obterDadosGrafico(fkCompHasComp), 8000);
         }
     })
     .catch(function (error) {
