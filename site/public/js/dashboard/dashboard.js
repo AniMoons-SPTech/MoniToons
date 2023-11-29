@@ -344,6 +344,9 @@ function atualizarGraficoLinha(fkCompHasComp,grafico) {
     fetch(`/componentes/graficosLinhaAtualizado/${fkCompHasComp}`,{ cache: 'no-store' }).then(function (response) {
         if (response.ok) {
             response.json().then(function (novoRegistro) {
+                if (proximaAtualizacao != undefined) {
+                    clearTimeout(proximaAtualizacao);
+                }   
 
                 console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
                 console.log(`Dados atuais do gráfico:`);
@@ -388,10 +391,14 @@ function atualizarGraficoLinhaRam(fkCompHasComp,grafico) {
     fetch(`/componentes/graficosLinhaAtualizadoRam/${fkCompHasComp}`,{ cache: 'no-store' }).then(function (response) {
         if (response.ok) {
             response.json().then(function (novoRegistro) {
+                if (proximaAtualizacao != undefined) {
+                    clearTimeout(proximaAtualizacao);
+                }
 
                 console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
                 console.log(`Dados atuais do gráfico:`);
                 console.log(dadosGrafico);
+                console.log(novoRegistro);
 
                 
                 if (novoRegistro[0].dataHora == labelDado[labelDado.length -1]) {
