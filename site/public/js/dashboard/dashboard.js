@@ -325,7 +325,7 @@ function obterDadosGraficoRam(fkCompHasComp) {
                     grafico4.style.display = 'none'
 
                     var ctx2 = new Chart(document.getElementById('myChart1'),ram);
-                    setTimeout(() => atualizarGraficoLinha(fkCompHasComp,ctx2), 8000);
+                    setTimeout(() => atualizarGraficoLinhaRam(fkCompHasComp,ctx2), 8000);
                     
             })
                 
@@ -376,6 +376,50 @@ function atualizarGraficoLinha(fkCompHasComp,grafico) {
             console.error('Nenhum dado encontrado ou erro na API');
             // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
             proximaAtualizacao = setTimeout(() => atualizarGraficoLinha(fkCompHasComp,grafico,dadosGrafico), 8000);
+        }
+    })
+    .catch(function (error) {
+        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+    });
+
+}
+
+function atualizarGraficoLinhaRam(fkCompHasComp,grafico) {
+    fetch(`/componentes/graficosLinhaAtualizadoRam/${fkCompHasComp}`,{ cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (novoRegistro) {
+
+                console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+                console.log(`Dados atuais do gráfico:`);
+                console.log(dadosGrafico);
+
+                
+                if (novoRegistro[0].dataHora == labelDado[labelDado.length -1]) {
+                    console.log("---------------------------------------------------------------")
+                    console.log("Como não há dados novos para captura, o gráfico não atualizará.")
+            
+                    console.log("Horário do novo dado capturado:")
+                    console.log(novoRegistro[0].dataHora)
+                    console.log("Horário do último dado capturado:")
+                    console.log(labelDado[labelDado.length -1])
+                    console.log("---------------------------------------------------------------")
+                } else {
+                        label.shift();
+                        labelDado.shift();
+                        dadosGrafico.shift();
+                        label.push(novoRegistro[0].dataHoraFormatada)
+                        labelDado.push(novoRegistro[0].dataHora)
+                        dadosGrafico.push(novoRegistro[0].dadoValor)
+                        grafico.update(); 
+                                         
+                } 
+                
+                proximaAtualizacao = setTimeout(() => atualizarGraficoLinhaRam(fkCompHasComp,grafico,dadosGrafico), 8000);
+            });
+        } else {
+            console.error('Nenhum dado encontrado ou erro na API');
+            // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+            proximaAtualizacao = setTimeout(() => atualizarGraficoLinhaRam(fkCompHasComp,grafico,dadosGrafico), 8000);
         }
     })
     .catch(function (error) {
