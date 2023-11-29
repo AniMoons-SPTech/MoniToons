@@ -23,6 +23,9 @@ router.get("/dadosGraficoRam/:fkCompHasComp", function (req, res) {
 router.get("/dadosGraficoGpu/:fkCompHasComp", function (req, res) {
     componentesController.dadosGraficoGpu(req, res);
 })
+router.get("/dadosGraficoDisco/:fkCompHasComp", function (req, res) {
+    componentesController.dadosGraficoDisco(req, res);
+})
 
 router.get("/graficosLinhaAtualizado/:fkCompHasComp", function (req, res) {
     componentesController.graficosLinhaAtualizado(req, res);
@@ -36,7 +39,12 @@ router.get("/graficosLinhaAtualizadoRam/:fkCompHasComp", function (req, res) {
 router.get("/graficosLinhaAtualizadoGpu/:fkCompHasComp", function (req, res) {
     componentesController.graficosLinhaAtualizadoGpu(req, res);
 })
-router.get("/componentes/plotarRestoDosCards/:fkCompHasComp/:idUsuario", function (req, res) {
+
+router.get("/graficosPizzaAtualizadoDisco/:fkCompHasComp", function (req, res) {
+    componentesController.graficosPizzaAtualizadoDisco(req, res);
+})
+
+router.get("/componentes/plotarRestoDosCards/:fkCompHasComp/:tipoComponente", function (req, res) {
     componentesController.plotarRestoDosCards(req, res);
 })
 

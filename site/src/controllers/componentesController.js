@@ -86,6 +86,21 @@ function dadosGraficoGpu(req, res){
     });
 }
 
+function dadosGraficoDisco(req, res){
+    var {fkCompHasComp} = req.params;
+
+    componentesModel.dadosGraficoDisco(fkCompHasComp).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
 
 function graficosLinhaAtualizado(req, res){
     var {fkCompHasComp} = req.params;
@@ -135,10 +150,26 @@ function graficosLinhaAtualizadoGpu(req, res){
     });
 }
 
-function plotarRestoDosCards(req, res){
-    var {fkCompHasComp, idUsuario, tipoComponente} = req.params;
+function graficosPizzaAtualizadoDisco(req, res){
+    var {fkCompHasComp} = req.params;
 
-    componentesModel.plotarRestoDosCards(fkCompHasComp, idUsuario, tipoComponente).then(function (resultado) {
+    componentesModel.graficosPizzaAtualizadoDisco(fkCompHasComp).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function plotarRestoDosCards(req, res){
+    var {fkCompHasComp, tipoComponente} = req.params;
+
+    componentesModel.plotarRestoDosCards(fkCompHasComp, tipoComponente).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -160,8 +191,10 @@ module.exports = {
     dadosGraficoCpu,
     dadosGraficoRam,
     dadosGraficoGpu,
+    dadosGraficoDisco,
     graficosLinhaAtualizado,
     graficosLinhaAtualizadoRam,
     graficosLinhaAtualizadoGpu,
+    graficosPizzaAtualizadoDisco,
     plotarRestoDosCards
 }
