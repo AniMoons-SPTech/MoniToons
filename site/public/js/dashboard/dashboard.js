@@ -372,8 +372,8 @@ function atualizarGraficoLinha(fkCompHasComp,grafico,dadosGrafico) {
                     console.log("---------------------------------------------------------------")
                 } else {
                     // tirando e colocando valores no gráfico
-                    dadosGrafico.data.labels.shift(); // apagar o primeiro
-                    dadosGrafico.data.labels.push(novoRegistro[0].dataHoraFormatada); // incluir um novo momento
+                    label.shift(); // apagar o primeiro
+                    label.push(novoRegistro[0].dataHoraFormatada); // incluir um novo momento
                     
                     var dadoAntigo = dadosGrafico.data.datasets[0].data[dadosGrafico.data.datasets[0].data.length - 1];
                     dadosGrafico.data.datasets[0].data.shift();  // apagar o primeiro de umidade
