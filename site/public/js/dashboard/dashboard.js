@@ -112,7 +112,7 @@ function plotarCards(fkCompHasComp){
                 card3.innerHTML = "Memória total"
                 console.log(dadosCards)
                 
-        
+                plotarRestoDosCards('RAM', fkCompHasComp)
                 obterDadosGraficoRam(fkCompHasComp);
             }
             
@@ -125,7 +125,7 @@ function plotarCards(fkCompHasComp){
 
                     
                 cardValor3.innerHTML = dadosCards[0].valor
-                // plotarRestoDosCards('DISCO', fkCompHasComp)
+                plotarRestoDosCards('DISCO', fkCompHasComp)
                 obterDadosGrafico(fkCompHasComp)
             }
 
@@ -137,7 +137,7 @@ function plotarCards(fkCompHasComp){
                     // card3.innerHTML = dadosCards[x].valor
                     // Não sei como está vindo os dados então não mexi nisso - JP
                     // AQUI INCLUIR NO SELECT DE DADOS DE ESPECIFICAÇÃO O FABRICANTE DA PLACA 
-                    // plotarRestoDosCards('GPU', fkCompHasComp)
+                    plotarRestoDosCards('GPU', fkCompHasComp)
                     obterDadosGraficoGpu(fkCompHasComp)
             }
             }) 
