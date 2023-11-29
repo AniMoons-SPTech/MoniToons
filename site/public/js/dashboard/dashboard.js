@@ -168,7 +168,7 @@ function obterDadosGrafico(fkCompHasComp) {
                 dadosGrafico = [];
 
                 if(resposta[0].tipoComp == 'CPU'){
-                    for(var i = 7 ; i > 0; i--) {
+                    for(var i = 0 ; i < 7 ; i++ ) {
                         labelDado.push(resposta[i].dataHora)
                         label.push(resposta[i].dataHoraFormatada);
                         dadosGrafico.push(resposta[i].dadoValor)
@@ -330,14 +330,14 @@ function atualizarGraficoLinha(fkCompHasComp,grafico,dadosGrafico) {
                 console.log(dadosGrafico);
 
 
-                if (novoRegistro[0].dataHora == labelDado[label.length - 1]) {
+                if (novoRegistro[0].dataHora == labelDado[0]) {
                     console.log("---------------------------------------------------------------")
                     console.log("Como não há dados novos para captura, o gráfico não atualizará.")
             
                     console.log("Horário do novo dado capturado:")
                     console.log(novoRegistro[0].dataHoraFormatada)
                     console.log("Horário do último dado capturado:")
-                    console.log(label[label.length -1])
+                    console.log(label[0])
                     console.log("---------------------------------------------------------------")
                 } else {
                         label.shift();
