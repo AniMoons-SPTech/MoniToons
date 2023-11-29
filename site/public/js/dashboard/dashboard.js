@@ -107,18 +107,14 @@ function plotarCards(fkCompHasComp){
             }
                 
             if(dadosCards[0].tipo == 'RAM'){
-                var total;
+
                 card1.innerHTML = "Memória em Uso"
                 card2.innerHTML = "Memória disponível"
                 card3.innerHTML = "Memória total"
                 console.log(dadosCards)
-                for(var i = dadosCards.length -1 ; i >= 0 ; i--){
-                    if(dadosCards[i].tipoEspecificacao == "Memória Total"){
-                        total = dadosCards[i].valor;
-                    }
-                }
-                    cardValor3.innerHTML = total
-                    obterDadosGrafico(fkCompHasComp)
+
+                cardValor3.innerHTML = dadosCards[0].valor
+                obterDadosGrafico(fkCompHasComp)
             }
             
             if(dadosCards[0].tipo == 'DISCO'){
@@ -207,7 +203,7 @@ function obterDadosGrafico(fkCompHasComp) {
                             labels: label
                         }
                     }
-                    cardValor1.innerHTML =  resposta[0].dadoFormatado
+                    
 
                     grafico1.style.display = 'flex'
                     grafico2.style.display = 'none'
@@ -215,22 +211,29 @@ function obterDadosGrafico(fkCompHasComp) {
                     grafico4.style.display = 'none'
 
                     var ctx1 = new Chart(document.getElementById('myChart'),cpu);
-                    setTimeout(() => atualizarGraficoLinha(fkCompHasComp,ctx1,dadosGrafico), 15000); 
+                    setTimeout(() => atualizarGraficoLinha(fkCompHasComp,ctx1,dadosGrafico), 8000); 
                 }
 
                 if(resposta[0].tipoComp == 'RAM'){
                     for(var i = resposta.length -1 ; i > 0; i--) {
-                        for(var i = 7; i > 0; i--){
-                            if(resposta[i].tipo == 'Memória em Uso'){
+                        if(resposta[i].tipo == 'Memória em Uso'){
+                            for(var j = 0; j <= 7 ; i++){
+                                label.push(resposta[i].dataHoraFormatada)
                                 dadosGrafico.push(resposta[i].dadoValor)
-                                label.push(resposta[i].dataHoraFormatada);
-                                cardValor1.innerHTML =  resposta[i].dadoFormatado
-                            }
+                            }   
                         }
+
+                        // for(var i = 7; i > 0; i--){
+                        //     if(resposta[i].tipo == 'Memória em Uso'){
+                        //         dadosGrafico.push(resposta[i].dadoValor)
+                        //         label.push(resposta[i].dataHoraFormatada);
+                        //         cardValor1.innerHTML =  resposta[i].dadoFormatado
+                        //     }
+                        // }
                         
-                        if(resposta[i].tipo == 'Memória Disponível'){
-                            cardValor2.innerHTML =  resposta[i].dadoFormatado
-                        }
+                        // if(resposta[i].tipo == 'Memória Disponível'){
+                        //     cardValor2.innerHTML =  resposta[i].dadoFormatado
+                        // }
                     }
                     var ram = {
                         data: {
@@ -252,7 +255,8 @@ function obterDadosGrafico(fkCompHasComp) {
                     grafico3.style.display = 'none'
                     grafico4.style.display = 'none'
 
-                plotarGrafico(ctx2,ram)
+                    var ctx2 = new Chart(document.getElementById('myChart'),ram);
+                    setTimeout(() => atualizarGraficoLinha(fkCompHasComp,ctx2,dadosGrafico), 8000);
                 }
 
                 if(resposta[0].tipoComp == 'DISCO'){
@@ -383,12 +387,12 @@ function atualizarGraficoLinha(fkCompHasComp,grafico,dadosGrafico) {
                 }
 
                 // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                proximaAtualizacao = setTimeout(() => atualizarGraficoLinha(fkCompHasComp,grafico,dadosGrafico), 15000);
+                proximaAtualizacao = setTimeout(() => atualizarGraficoLinha(fkCompHasComp,grafico,dadosGrafico), 8000);
             });
         } else {
             console.error('Nenhum dado encontrado ou erro na API');
             // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-            proximaAtualizacao = setTimeout(() => atualizarGraficoLinha(fkCompHasComp,grafico,dadosGrafico), 15000);
+            proximaAtualizacao = setTimeout(() => atualizarGraficoLinha(fkCompHasComp,grafico,dadosGrafico), 8000);
         }
     })
     .catch(function (error) {
