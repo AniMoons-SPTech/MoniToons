@@ -306,7 +306,7 @@ function obterDadosGraficoRam(fkCompHasComp) {
 }
 
 function obterDadosGraficoGpu(fkCompHasComp) {
-    fetch(`/componentes/dadosGraficoRam/${fkCompHasComp}`, {
+    fetch(`/componentes/dadosGraficoGpu/${fkCompHasComp}`, {
         method: 'GET',
         headers: {
             "Content-Type": "application/json"
@@ -316,17 +316,6 @@ function obterDadosGraficoGpu(fkCompHasComp) {
             response.json().then(function (resposta) {
                 label = [];
                 dadosGrafico = [];
-                for(var i = 7 ; i > 0; i--) {
-
-                            if(resposta[i].tipo == 'Uso da GPU'){
-                                dadosGrafico.push(resposta[i].dadoValor)
-                                label.push(resposta[i].dataHoraFormatada);
-                                cardValor1.innerHTML =  resposta[i].dadoFormatado
-                            }
-                            if(resposta[i].tipo == 'Memória de Vídeo Disponível'){
-                                cardValor2.innerHTML =  resposta[i].dadoFormatado
-                            }
-                        }
                         var gpu = {
                             data: {
                                 datasets: [
@@ -346,7 +335,8 @@ function obterDadosGraficoGpu(fkCompHasComp) {
                         grafico2.style.display = 'none'
                         grafico3.style.display = 'none'
                         grafico4.style.display = 'flex'
-    
+                        cardValor1.innerHTML = dadosGrafico[0].dadoFormatado
+
                         var ctx4 = new Chart(document.getElementById('myChart3'),gpu);
                         setTimeout(() => atualizarGraficoLinhaRam(fkCompHasComp,ctx4), 8000);
             })
