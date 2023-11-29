@@ -61,8 +61,9 @@ function getComponentes(){
                 </div>
                 <div class="barra-horizontal"></div>
               </button>`
+              plotarCards(componentesMaquina[i].idCompHasComp)
                 }
-                plotarCards(componentesMaquina[i].idCompHasComp)
+                
             }) 
         }else{
             throw("Houve um erro")
