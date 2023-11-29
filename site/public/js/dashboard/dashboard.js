@@ -336,12 +336,13 @@ function atualizarGraficoLinha(fkCompHasComp,grafico,dadosGrafico) {
                     console.log(label[label.length -1])
                     console.log("---------------------------------------------------------------")
                 } else {
+                    console.log(label[label.length -1])
                         label.push(novoRegistro[0].dataHoraFormatada)
-                        dadosGrafico.push(novoRegistro[0].dadoValor)
                         label.shift();
+                        dadosGrafico.push(novoRegistro[0].dadoValor)
                         dadosGrafico.shift();
-                        cardValor1.innerHTML = novoRegistro[0].dadoFormatado
-                        grafico.update();                 
+                        grafico.update();
+                                         
                 }  
                 proximaAtualizacao = setTimeout(() => atualizarGraficoLinha(fkCompHasComp,grafico,dadosGrafico), 8000);
             });
