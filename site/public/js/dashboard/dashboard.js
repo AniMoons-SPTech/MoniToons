@@ -195,7 +195,7 @@ function obterDadosGrafico(fkCompHasComp) {
                     grafico4.style.display = 'none' 
                     var ctx1 = new Chart(document.getElementById('myChart'),cpu);
                     grafico = ctx1
-                    setTimeout(() => atualizarGraficoLinha(fkCompHasComp,grafico,dadosGrafico), 8000);
+                    setTimeout(() => atualizarGraficoLinha(fkCompHasComp), 8000);
                 }
 
                 // else if(resposta[0].tipoComp == 'RAM'){
@@ -321,7 +321,7 @@ function obterDadosGrafico(fkCompHasComp) {
 }
 
 
-function atualizarGraficoLinha(fkCompHasComp,grafico,dadosGrafico) {
+function atualizarGraficoLinha(fkCompHasComp) {
     fetch(`/componentes/graficosLinhaAtualizado/${fkCompHasComp}`,{ cache: 'no-store' }).then(function (response) {
         if (response.ok) {
             response.json().then(function (novoRegistro) {
