@@ -289,7 +289,7 @@ function obterDadosGraficoCpu(fkCompHasComp) {
 
 
 function obterDadosGraficoRam(fkCompHasComp) {
-    fetch(`/componentes/dadosGraficoCpu/${fkCompHasComp}`, {
+    fetch(`/componentes/dadosGraficoRam/${fkCompHasComp}`, {
         method: 'GET',
         headers: {
             "Content-Type": "application/json"

@@ -48,7 +48,7 @@ function getDados(fkCompHasComp){
     return database.executar(instrucao);
     }
 
-    function dadosGraficoCpu(fkCompHasComp){
+    function dadosGraficoRam(fkCompHasComp){
         console.log("ACESSEI O COMPONENTES MODEL")
     var instrucao = `SELECT
     r.*,
