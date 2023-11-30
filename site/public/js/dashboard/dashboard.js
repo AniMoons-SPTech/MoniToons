@@ -23,20 +23,15 @@ var grafico4 = document.getElementById("graficoGPU");
 
 var label = [];
 var labelRam = [];
-var labelDisco = [];
 var labelGpu = [];
 
 var labelDado = [];
 var dadosGrafico = [];
 var dadosGraficoRam = [];
 var dadosGraficoGpu = [];
-var dadosGraficoDisco = [];
-var dadosGrafico1 = [];
 var dadosDisco = []
 var espacoDisponivel;
 var espacoEmUso;
-
-
 
 let proximaAtualizacao;
 
@@ -84,6 +79,7 @@ function plotarCards(fkCompHasComp) {
             response.json().then(async (resposta) => {
                 dadosCards = []
                 dadosCards = resposta;
+                proximaAtualizacao = 0
 
                 if (dadosCards[0].tipo == 'CPU') {
                     var velocidade;
