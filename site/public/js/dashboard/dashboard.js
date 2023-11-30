@@ -207,17 +207,7 @@ function obterDadosGraficoCpu(fkCompHasComp) {
                             }
                         ],
                         labels: label
-                    },
-                    options: {
-                        legend: {
-                          position: "right",
-                          labels: {
-                            fontColor: "black",
-                          },
-                        },
-                        responsive: true,
-                        maintainAspectRatio: false,
-                      },
+                    }
                 }
 
 
@@ -375,7 +365,17 @@ function obterDadosGraficoDisco(fkCompHasComp) {
                                 hoverOffset: 4
                             }
                         ]
-                    }
+                    },
+                    options: {
+                        legend: {
+                          position: "right",
+                          labels: {
+                            fontColor: "black",
+                          },
+                        },
+                        responsive: true,
+                        maintainAspectRatio: false,
+                      },
                 }
             
                 grafico1.style.display = 'none'
