@@ -101,7 +101,7 @@ function dadosGraficoDisco(fkCompHasComp) {
     console.log("ACESSEI O COMPONENTES MODEL")
     var instrucao = `SELECT TOP 1 
     (
-        SELECT TOP 1 dadoFormatado 
+        SELECT TOP 1 dadoValor 
         FROM registro 
         WHERE fkCompHasComp = ${fkCompHasComp} AND tipo = 'Espaço Disponível'
         ORDER BY dataHora DESC
