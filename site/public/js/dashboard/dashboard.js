@@ -328,7 +328,7 @@ function obterDadosGraficoGpu(fkCompHasComp) {
                 grafico4.style.display = 'flex'
 
                 var ctx4 = new Chart(document.getElementById('myChart3'), gpu);
-                setTimeout(() => atualizarGraficoLinhaGpu(fkCompHasComp, ctx4), 8000);
+                setTimeout(() => atualizarGraficoLinhaGpu(fkCompHasComp, ctx3), 8000);
             })
 
         } else if (response.status == 404) {
@@ -377,7 +377,7 @@ function obterDadosGraficoDisco(fkCompHasComp) {
                 grafico3.style.display = 'none'
                 grafico4.style.display = 'flex'
 
-                var ctx4 = new Chart(document.getElementById('myChart3'), gpu);
+                var ctx4 = new Chart(document.getElementById('myChart4'), gpu);
                 setTimeout(() => atualizarGraficoPizzaDisco(fkCompHasComp, ctx4), 8000);
             })
 
