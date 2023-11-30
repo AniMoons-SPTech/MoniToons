@@ -484,11 +484,11 @@ function atualizarGraficoLinhaRam(fkCompHasComp, grafico) {
                     grafico.update();
 
                 }
-                prsetTimeout(() => atualizarGraficoLinhaRam(fkCompHasComp, grafico), 8000);
+                proximaAtualizacao = setTimeout(() => atualizarGraficoLinhaRam(fkCompHasComp, grafico), 8000);
             });
         } else {
             console.error('Nenhum dado encontrado ou erro na API');
-             setTimeout(() => atualizarGraficoLinhaRam(fkCompHasComp, grafico), 8000);
+            proximaAtualizacao = setTimeout(() => atualizarGraficoLinhaRam(fkCompHasComp, grafico), 8000);
         }
     })
         .catch(function (error) {
@@ -528,11 +528,11 @@ function atualizarGraficoLinhaGpu(fkCompHasComp, grafico) {
 
                 }
 
-                 setTimeout(() => atualizarGraficoLinhaGpu(fkCompHasComp, grafico), 8000);
+                proximaAtualizacao = setTimeout(() => atualizarGraficoLinhaGpu(fkCompHasComp, grafico), 8000);
             });
         } else {
             console.error('Nenhum dado encontrado ou erro na API');
-             setTimeout(() => atualizarGraficoLinhaGpu(fkCompHasComp, grafico), 8000);
+            proximaAtualizacao = setTimeout(() => atualizarGraficoLinhaGpu(fkCompHasComp, grafico), 8000);
         }
     })
         .catch(function (error) {
@@ -557,12 +557,12 @@ function atualizarGraficoPizzaDisco(fkCompHasComp, grafico) {
                     grafico.update();
                 
 
-                 setTimeout(() => atualizarGraficoPizzaDisco(fkCompHasComp, grafico), 8000);
+                    proximaAtualizacao = setTimeout(() => atualizarGraficoPizzaDisco(fkCompHasComp, grafico), 8000);
             });
         } else {
             console.error('Nenhum dado encontrado ou erro na API');
             // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-             setTimeout(() => atualizarGraficoPizzaDisco(fkCompHasComp, grafico), 8000);
+            proximaAtualizacao = setTimeout(() => atualizarGraficoPizzaDisco(fkCompHasComp, grafico), 8000);
         }
     })
         .catch(function (error) {
