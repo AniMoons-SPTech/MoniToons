@@ -82,8 +82,9 @@
         <label for="tipoGrau" id="labelTipoGrau" style="display: none;">Filtrar por Grau:</label>
         <select id="tipoGrau" onchange="filtrarPorGrau()" style="display: none;">
           <option value="todos">Todos</option>
-          <option value="Alto">CRITICO</option>
-          <option value="Médio">INTERMEDIARIO</option>
+          <option value="Critico">CRITICO</option>
+          <option value="Intermediario">INTERMEDIARIO</option>
+          <option value="Moderado">MODERADO</option>
         </select>
       </div>
     </div>
@@ -117,10 +118,10 @@
   })
     .then(function (resposta) {
       resposta.json().then((alertas) => {
-        // Ordenar os alertas por grau (Alto, Médio, Baixo)
+        // Ordenar os alertas por grau (CRITICO, INTERMEDIARIO, MODERADO)
         alertas.sort((a, b) => {
           // Pode ser necessário ajustar a ordem conforme necessário
-          const ordemGrau = { "Alto": 1, "Médio": 2, "Baixo": 3 };
+          const ordemGrau = { "CRITICO": 1, "INTERMEDIARIO": 2, "MODERADO": 3 };
           return ordemGrau[a.grauAlerta] - ordemGrau[b.grauAlerta];
         });
 
