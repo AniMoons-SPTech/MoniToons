@@ -79,7 +79,7 @@ function plotarCards(fkCompHasComp) {
             response.json().then(async (resposta) => {
                 dadosCards = []
                 dadosCards = resposta;
-                proximaAtualizacao = 0
+                clearTimeout(proximaAtualizacao);
 
                 if (dadosCards[0].tipo == 'CPU') {
                     var velocidade;
@@ -230,7 +230,7 @@ function obterDadosGraficoCpu(fkCompHasComp) {
                 grafico4.style.display = 'none'
                 var ctx1 = new Chart(document.getElementById('myChart'), cpu);
 
-               proximaAtualizacao = setTimeout(() => atualizarGraficoLinha(fkCompHasComp, ctx1), 8000);
+               setTimeout(() => atualizarGraficoLinha(fkCompHasComp, ctx1), 8000);
 
             })
 
@@ -286,7 +286,7 @@ function obterDadosGraficoRam(fkCompHasComp) {
                 cardValor1.innerHTML = resposta[0].dadoFormatado
 
                 var ctx2 = new Chart(document.getElementById('myChart1'), ram);
-                proximaAtualizacao = setTimeout(() => atualizarGraficoLinhaRam(fkCompHasComp, ctx2), 8000);
+                setTimeout(() => atualizarGraficoLinhaRam(fkCompHasComp, ctx2), 8000);
 
             })
 
@@ -312,7 +312,6 @@ function obterDadosGraficoGpu(fkCompHasComp) {
                 labelDado = []
                 labelGpu = [];
                 dadosGraficoGpu = [];
-                clearTimeout(proximaAtualizacao);
 
                 for (var i = 0; i < resposta.length; ++i) {
                     labelDado.push(resposta[i].dataHora)
@@ -340,7 +339,7 @@ function obterDadosGraficoGpu(fkCompHasComp) {
                 grafico4.style.display = 'flex'
 
                 var ctx3 = new Chart(document.getElementById('myChart2'), gpu);
-                proximaAtualizacao = setTimeout(() => atualizarGraficoLinhaGpu(fkCompHasComp, ctx3), 8000);
+               setTimeout(() => atualizarGraficoLinhaGpu(fkCompHasComp, ctx3), 8000);
             })
 
         } else if (response.status == 404) {
@@ -363,16 +362,15 @@ function obterDadosGraficoDisco(fkCompHasComp) {
         if (response.ok) {
             response.json().then(function (resposta) {
                 dadosDisco = resposta;
-                espacoDisponivel = dadosDisco[0].espacoDisponivel;
-                console.log(espacoDisponivel);
+
                 espacoEmUso = dadosDisco[0].espacoEmUso;
+                espacoDisponivel = dadosDisco[0].espacoDisponivel;
+                
+
                 var disco = {
                     type: 'pie',
                     data: {
-                        labels: [
-                            'Espaço em Uso',
-                            'Espaço Disponível',
-                          ],
+                        labels: ['Espaço em Uso','Espaço Disponível'],
                         datasets: [
                             {
                                 data: [espacoEmUso,espacoDisponivel],
@@ -390,7 +388,7 @@ function obterDadosGraficoDisco(fkCompHasComp) {
                 grafico4.style.display = 'none'
 
                 var ctx4 = new Chart(document.getElementById('myChart3'), disco);
-                proximaAtualizacao = setTimeout(() => atualizarGraficoPizzaDisco(fkCompHasComp, ctx4), 8000);
+                setTimeout(() => atualizarGraficoPizzaDisco(fkCompHasComp, ctx4), 8000);
             })
 
         } else if (response.status == 404) {
@@ -408,7 +406,7 @@ function atualizarGraficoLinha(fkCompHasComp, grafico) {
     fetch(`/componentes/graficosLinhaAtualizado/${fkCompHasComp}`, { cache: 'no-store' }).then(function (response) {
         if (response.ok) {
             response.json().then(function (novoRegistro) {
-                clearTimeout(proximaAtualizacao);
+                
                 console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
                 console.log(`Dados atuais do gráfico:`);
                 console.log(dadosGrafico);
@@ -457,7 +455,6 @@ function atualizarGraficoLinhaRam(fkCompHasComp, grafico) {
                 console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
                 console.log(`Dados atuais do gráfico:`);
                 console.log(dadosGraficoRam);
-                console.log(novoRegistro);
 
 
                 if (novoRegistro[0].dataHora == labelDado[labelDado.length - 1]) {
@@ -503,7 +500,6 @@ function atualizarGraficoLinhaGpu(fkCompHasComp, grafico) {
                 console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
                 console.log(`Dados atuais do gráfico:`);
                 console.log(dadosGrafico);
-                console.log(novoRegistro);
 
 
                 if (novoRegistro[0].dataHora == labelDado[labelDado.length - 1]) {
@@ -544,9 +540,6 @@ function atualizarGraficoPizzaDisco(fkCompHasComp, grafico) {
     fetch(`/componentes/graficosPizzaAtualizadoDisco/${fkCompHasComp}`, { cache: 'no-store' }).then(function (response) {
         if (response.ok) {
             response.json().then(function (novoRegistro) {
-                if (proximaAtualizacao != undefined) {
-                    clearTimeout(proximaAtualizacao);
-                }
 
                 console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
                 console.log(`Dados atuais do gráfico:`);
