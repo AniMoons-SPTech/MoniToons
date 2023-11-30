@@ -377,11 +377,10 @@ function obterDadosGraficoDisco(fkCompHasComp) {
                         labels: [
                             'Espaço em Uso',
                             'Espaço Disponível',
-                            
                           ],
                         datasets: [
                             {
-                                data: [espacoDisponivel, espacoEmUso],
+                                data: [espacoEmUso,espacoDisponivel],
                                 backgroundColor: ['rgba(255, 99, 132, 0.8)', 'rgba(54, 162, 235, 0.8)'],
                                 borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)'],
                                 hoverOffset: 4
