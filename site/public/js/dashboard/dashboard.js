@@ -207,7 +207,17 @@ function obterDadosGraficoCpu(fkCompHasComp) {
                             }
                         ],
                         labels: label
-                    }
+                    },
+                    options: {
+                        legend: {
+                          position: "right",
+                          labels: {
+                            fontColor: "black",
+                          },
+                        },
+                        responsive: true,
+                        maintainAspectRatio: false,
+                      },
                 }
 
 
