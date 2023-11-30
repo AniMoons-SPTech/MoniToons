@@ -426,13 +426,12 @@ function atualizarGraficoLinha(fkCompHasComp, grafico) {
                     console.log(labelDado[labelDado.length - 1])
                     console.log("---------------------------------------------------------------")
                 } else {
-                    labelRam.shift();
+                    label.shift();
                     labelDado.shift();
                     dadosGrafico.shift();
-                    labelRam.push(novoRegistro[0].dataHoraFormatada)
+                    label.push(novoRegistro[0].dataHoraFormatada)
                     labelDado.push(novoRegistro[0].dataHora)
                     dadosGrafico.push(novoRegistro[0].dadoValor)
-                    cardValor1.innerHTML = novoRegistro[0].dadoFormatado
                     grafico.update();
 
                 }
@@ -457,7 +456,7 @@ function atualizarGraficoLinhaRam(fkCompHasComp, grafico) {
                 clearTimeout(proximaAtualizacao);
                 console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
                 console.log(`Dados atuais do gráfico:`);
-                console.log(dadosGraficoRam);
+                console.log(dadosGrafico);
                 console.log(novoRegistro);
 
 
@@ -494,6 +493,7 @@ function atualizarGraficoLinhaRam(fkCompHasComp, grafico) {
         });
 
 }
+
 
 function atualizarGraficoLinhaGpu(fkCompHasComp, grafico) {
     fetch(`/componentes/graficosLinhaAtualizadoGpu/${fkCompHasComp}`, { cache: 'no-store' }).then(function (response) {
