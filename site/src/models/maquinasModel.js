@@ -14,7 +14,7 @@ function carregarGrupoMaquinas(idResponsavel){
     join computadorHasComponente chc ON chc.idCompHasComp = registro.fkCompHasComp
     join computador c ON c.idComputador = chc.fkComputador
     join usuario ON usuario.idUsuario = c.fkUsuario
-     WHERE idUser = usuario.idUsuario and (alerta.dataHora IS NULL OR alerta.dataHora >= DATEADD(SECONDS, -20, GETDATE())
+     WHERE idUser = usuario.idUsuario and (alerta.dataHora IS NULL OR alerta.dataHora >= DATEADD(SECONDS, -10, GETDATE())
     ORDER BY registro.dataHora DESC
     LIMIT 1
 ) AS statusCpu,
@@ -24,7 +24,7 @@ function carregarGrupoMaquinas(idResponsavel){
     join computadorHasComponente chc ON chc.idCompHasComp = registro.fkCompHasComp
     join computador c ON c.idComputador = chc.fkComputador
     join usuario ON usuario.idUsuario = c.fkUsuario
-     WHERE idUser = usuario.idUsuario and (alerta.dataHora IS NULL OR alerta.dataHora >= DATEADD(SECONDS, -20, GETDATE())
+     WHERE idUser = usuario.idUsuario and (alerta.dataHora IS NULL OR alerta.dataHora >= DATEADD(SECONDS, -, GETDATE())
     ORDER BY registro.dataHora DESC
     LIMIT 1
 ) AS statusRam,
@@ -34,7 +34,7 @@ function carregarGrupoMaquinas(idResponsavel){
     join computadorHasComponente chc ON chc.idCompHasComp = registro.fkCompHasComp
     join computador c ON c.idComputador = chc.fkComputador
     join usuario ON usuario.idUsuario = c.fkUsuario
-     WHERE idUser = usuario.idUsuario and (alerta.dataHora IS NULL OR alerta.dataHora >= DATEADD(SECONDS, -20, GETDATE())
+     WHERE idUser = usuario.idUsuario and (alerta.dataHora IS NULL OR alerta.dataHora >= DATEADD(SECONDS, -10, GETDATE())
     ORDER BY registro.dataHora DESC
     LIMIT 1
 ) AS statusDisco,
@@ -44,7 +44,7 @@ function carregarGrupoMaquinas(idResponsavel){
     join computadorHasComponente chc ON chc.idCompHasComp = registro.fkCompHasComp
     join computador c ON c.idComputador = chc.fkComputador
     join usuario ON usuario.idUsuario = c.fkUsuario
-    WHERE idUser = usuario.idUsuario and (alerta.dataHora IS NULL OR alerta.dataHora >= DATEADD(SECONDS, -20, GETDATE())
+    WHERE idUser = usuario.idUsuario and (alerta.dataHora IS NULL OR alerta.dataHora >= DATEADD(SECONDS, -10, GETDATE())
     ORDER BY registro.dataHora DESC
     LIMIT 1
 ) AS statusGpu
