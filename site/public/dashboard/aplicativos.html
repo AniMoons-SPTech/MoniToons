@@ -77,16 +77,12 @@
       </div>
       <form action="aplicativos.html" class="formulario-atualizacao">
         <div class="campos-linha" id="campos-linha-1">
-          <div class="campo campo-50">
-            <label for="nome">Nome do Aplicativo</label>
+          <div class="campo campo-70">
+            <label for="nome">Nome do Processo</label>
             <input type="text" name="nome" id="nomeAdicionar">
           </div>
-          <div class="campo campo-70">
-            <label for="diretorio">Diretório</label>
-            <input type="text" name="diretorio" id="diretorioAdicionar">
-          </div>
         </div>
-        <button class="botao-atualizar" onclick="adicionarAplicativo()">Adicionar aplicativo proibido</button>
+        <button class="botao-atualizar" onclick="adicionarAplicativoProibido()">Adicionar aplicativo proibido</button>
       </form>
     </div>
   </div>
@@ -99,16 +95,13 @@
       </div>
       <form action="aplicativos.html" class="formulario-atualizacao">
         <div class="campos-linha" id="campos-linha-1">
-          <div class="campo campo-50">
-            <label for="nome">Nome do Aplicativo</label>
+          <span style="display: none;" id="idProcesso"></span>
+          <div class="campo campo-70">
+            <label for="nome">Nome do Processo</label>
             <input type="text" name="nome" id="nomeAtualizar">
           </div>
-          <div class="campo campo-70">
-            <label for="diretorio">Diretório</label>
-            <input type="text" name="diretorio" id="diretorioAtualizar">
-          </div>
         </div>
-        <button class="botao-atualizar" onclick="atualizarAplicativo()">Atualizar aplicativo proibido</button>
+        <button class="botao-atualizar" onclick="atualizarAplicativoProibido()">Atualizar aplicativo proibido</button>
       </form>
     </div>
   </div>
@@ -200,7 +193,7 @@
       cabecalhoTabela.appendChild(colunaExcluirApp)
       cabecalhoTabela.appendChild(colunaMudaApp)
 
-      fetch(`/aplicativos/carregarAplicativosProibidos/${idSessao}`, {
+      fetch(`/processos/carregarAplicativosProibidos/${idSessao}`, {
         method: 'GET',
         headers: {
           "Content-Type": "application/json"
@@ -256,13 +249,16 @@
       popup.style.display = "flex"
     }
   }
-  function mostrarPopupAtualizarApp() {
+  function mostrarPopupAtualizarApp(idProcesso) {
     var popup = document.getElementById("popup-atualizar-aplicativo")
+    var spanIdProcesso = document.getElementById("idProcesso")
+    spanIdProcesso.innerHTML = idProcesso
     if (popup.style.display == "flex") {
       popup.style.display = "none"
     } else {
       popup.style.display = "flex"
     }
+    at
   }
 
   function mostrarMuralDeAlertas() {

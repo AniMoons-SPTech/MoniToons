@@ -13,7 +13,7 @@ var usuarioRouter = require("./src/routes/usuarios");
 var metricasRouter = require("./src/routes/metricas");
 var empresasRouter = require("./src/routes/empresas");
 var maquinasRouter = require("./src/routes/maquinas");
-var aplicativosRouter = require("./src/routes/aplicativos");
+var processosRouter = require("./src/routes/processos");
 var alertasRouter = require("./src/routes/alertas");
 var componentesRouter = require("./src/routes/componentes")
 
@@ -28,7 +28,7 @@ app.use("/usuarios", usuarioRouter);
 app.use("/metricas", metricasRouter);
 app.use("/empresas", empresasRouter);
 app.use("/maquinas", maquinasRouter);
-app.use("/aplicativos", aplicativosRouter);
+app.use("/processos", processosRouter);
 app.use("/alertas", alertasRouter);
 app.use("/componentes", componentesRouter);
 
