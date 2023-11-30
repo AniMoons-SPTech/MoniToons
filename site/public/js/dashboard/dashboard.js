@@ -524,7 +524,7 @@ function atualizarGraficoLinhaGpu(fkCompHasComp, grafico) {
 }
 
 function atualizarGraficoPizzaDisco(fkCompHasComp, grafico) {
-    fetch(`/componentes/dadosGraficoDiscoAtualizado/${fkCompHasComp}`, { cache: 'no-store' }).then(function (response) {
+    fetch(`/componentes/graficosPizzaAtualizadoDisco/${fkCompHasComp}`, { cache: 'no-store' }).then(function (response) {
         if (response.ok) {
             response.json().then(function (novoRegistro) {
                 if (proximaAtualizacao != undefined) {
