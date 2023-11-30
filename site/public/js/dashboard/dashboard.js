@@ -50,8 +50,10 @@ function getComponentes() {
                 componentesMaquina = resposta;
                 for (var i = 0; i < componentesMaquina.length; i++) {
                     var cpu;
+                    var cpu2;
                     if (componentesMaquina[i].tipo == 'CPU') {
                         cpu = componentesMaquina[i].idCompHasComp
+                        cpu2 = componentesMaquina[i].idComponente
                     }
 
                     divComponentes.innerHTML += `
@@ -61,11 +63,10 @@ function getComponentes() {
                   <span>${componentesMaquina[i].nome}</span>
                 </div>
                 <div class="barra-horizontal"></div>
-              </button>`
-            console.log(componentesMaquina[i].idComponente)    
+              </button>`   
             }
 
-                plotarCards(cpu)
+                plotarCards(cpu,cpu2)
 
             })
         } else {
