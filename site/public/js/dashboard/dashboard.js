@@ -202,7 +202,7 @@ function obterDadosGraficoCpu(fkCompHasComp) {
                 labelDado = []
                 label = [];
                 dadosGrafico = [];
-                for (var i = 0; i < resposta.length; ++i) {
+                for (var i = resposta.length -1; i > 0; --i ) {
                     labelDado.push(resposta[i].dataHora)
                     label.push(resposta[i].dataHoraFormatada);
                     dadosGrafico.push(resposta[i].dadoValor)
