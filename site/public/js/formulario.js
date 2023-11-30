@@ -51,6 +51,8 @@ function formularioPagamento(){
     } else if (paginaFormulario == 2){
         formulario.innerHTML = `
         <h1 class='texto_compra'>Pronto! Agora é só baixar o arquivo abaixo e efetuar o login com a conta que você registrou</h1>
+        <a href="/assets/install_assistent_linux.sh" download>Clique aqui para baixar o script de instalação</a>
+        <a href="/assets/Monitoons-com-slack.jar" download>Clique aqui para baixar o aplicativo</a>
         `
     }
     
