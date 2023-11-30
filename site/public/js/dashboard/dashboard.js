@@ -260,6 +260,7 @@ function obterDadosGraficoRam(fkCompHasComp) {
                 labelDadoRam = []
                 labelRam = [];
                 dadosGraficoRam = [];
+                console.log(resposta)
 
                 for (var i = resposta.length -1; i >= 0; --i) {
                     labelDadoRam.push(resposta[i].dataHora)
@@ -459,14 +460,14 @@ function atualizarGraficoLinhaRam(fkCompHasComp, grafico) {
                 console.log(dadosGraficoRam);
 
 
-                if (novoRegistro[0].dataHora == labelDado[labelDado.length -1]) {
+                if (novoRegistro[0].dataHora == labelDadoRam[labelDadoRam.length -1]) {
                     console.log("---------------------------------------------------------------")
                     console.log("Como não há dados novos para captura, o gráfico não atualizará.")
 
                     console.log("Horário do novo dado capturado:")
                     console.log(novoRegistro[0].dataHora)
                     console.log("Horário do último dado capturado:")
-                    console.log(labelDado[labelDado.length - 1])
+                    console.log(labelDado[labelDadoRam.length - 1])
                     console.log("---------------------------------------------------------------")
                 } else {
                     labelDadoRam.shift();
@@ -503,14 +504,14 @@ function atualizarGraficoLinhaGpu(fkCompHasComp, grafico) {
                 console.log(dadosGrafico);
 
 
-                if (novoRegistro[0].dataHora == labelDado[labelDado.length -1]) {
+                if (novoRegistro[0].dataHora == labelDadoGpu[labelDadoGpu.length -1]) {
                     console.log("---------------------------------------------------------------")
                     console.log("Como não há dados novos para captura, o gráfico não atualizará.")
 
                     console.log("Horário do novo dado capturado:")
                     console.log(novoRegistro[0].dataHora)
                     console.log("Horário do último dado capturado:")
-                    console.log(labelDado[0])
+                    console.log(labelDadoGpu[0])
                     console.log("---------------------------------------------------------------")
                 } else {
                     labelGpu.shift();
