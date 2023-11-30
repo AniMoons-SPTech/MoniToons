@@ -33,6 +33,11 @@ var dadosGraficoGpu = [];
 var dadosGraficoDisco = [];
 var dadosGrafico1 = [];
 var dadosDisco = []
+var espacoDisponivel;
+var espacoEmUso;
+
+
+
 let proximaAtualizacao;
 
 
@@ -367,8 +372,13 @@ function obterDadosGraficoDisco(fkCompHasComp) {
                 console.log(espacoDisponivel);
                 espacoEmUso = dadosDisco[0].espacoEmUso;
                 var disco = {
-                    type: 'doughnut',
+                    type: 'pie',
                     data: {
+                        labels: [
+                            'Espaço em Uso',
+                            'Espaço Disponível',
+                            
+                          ],
                         datasets: [
                             {
                                 data: [espacoDisponivel, espacoEmUso],
@@ -546,7 +556,7 @@ function atualizarGraficoPizzaDisco(fkCompHasComp, grafico) {
                 console.log(`Dados atuais do gráfico:`);
                 console.log(dadosDisco);
 
-                if (novoRegistro[0].dataHora == label[label.length - 1]) {
+                if (novoRegistro[0].dataHora == labelDado[labelDado.length - 1]) {
                     console.log("---------------------------------------------------------------")
                     console.log("Como não há dados novos para captura, o gráfico não atualizará.")
 
@@ -560,7 +570,7 @@ function atualizarGraficoPizzaDisco(fkCompHasComp, grafico) {
                     espacoEmUso = novoRegistro[0].espacoEmUso;
 
                     // Atualizar dados do gráfico de rosquinha
-                    grafico.data.datasets[0].data = [espacoDisponivel, espacoEmUso];
+                    grafico.data.datasets[0].data = [espacoDisponivel,espacoEmUso];
                     grafico.update();
                 }
 
