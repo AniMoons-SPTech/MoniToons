@@ -569,7 +569,7 @@ function atualizarGraficoPizzaDisco(fkCompHasComp, grafico) {
                     espacoEmUso = novoRegistro[0].espacoEmUso;
 
                     // Atualizar dados do gráfico de rosquinha
-                    grafico.data.datasets[0].data = [espacoDisponivel,espacoEmUso];
+                    grafico.data.datasets[0].data = [espacoEmUso,espacoDisponivel];
                     grafico.update();
                 }
 
