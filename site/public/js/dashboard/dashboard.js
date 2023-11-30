@@ -374,8 +374,8 @@ function obterDadosGraficoDisco(fkCompHasComp) {
 
                 grafico1.style.display = 'none'
                 grafico2.style.display = 'none'
-                grafico3.style.display = 'none'
-                grafico4.style.display = 'flex'
+                grafico3.style.display = 'flex'
+                grafico4.style.display = 'none'
 
                 var ctx4 = new Chart(document.getElementById('myChart3'), disco);
                 setTimeout(() => atualizarGraficoPizzaDisco(fkCompHasComp, ctx4), 8000);
