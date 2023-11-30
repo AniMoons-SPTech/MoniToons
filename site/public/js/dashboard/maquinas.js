@@ -111,6 +111,6 @@ function plotarCardsMaquinas(maquinas) {
     });
 }
 
-function abrirDashboard(idUsuario){
-    window.location.href = "./dashboard.html?idUsuario=" + idUsuario
+function abrirDashboard(idUser){
+    window.location.href = "./dashboard.html?idUsuario=" + idUser
 }
