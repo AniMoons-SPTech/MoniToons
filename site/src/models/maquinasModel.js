@@ -6,31 +6,47 @@ function carregarGrupoMaquinas(idResponsavel){
     
     var instrucao = `
     SELECT
-    usuario.idUsuario,
+    usuario.idUsuario AS idUser,
     usuario.nomeUsuario,
-    (SELECT TOP 1 alerta.grauAlerta
-     FROM registro
-     LEFT JOIN alerta ON alerta.fkRegistro = registro.idRegistro AND alerta.tipoComponente = 'CPU'
-     WHERE registro.fkCompHasComp = usuario.idUsuario
-     ORDER BY registro.dataHora DESC
+    (
+        SELECT TOP 1 alerta.grauAlerta
+        FROM registro
+        RIGHT JOIN alerta ON alerta.fkRegistro = registro.idRegistro AND alerta.tipoComponente = 'CPU'
+        JOIN computadorHasComponente chc ON chc.idCompHasComp = registro.fkCompHasComp
+        JOIN computador c ON c.idComputador = chc.fkComputador
+        JOIN usuario ON usuario.idUsuario = c.fkUsuario
+        WHERE idUser = usuario.idUsuario AND (alerta.dataHora IS NULL OR alerta.dataHora >= DATEADD(SECOND, -120, GETDATE()))
+        ORDER BY registro.dataHora DESC
     ) AS statusCpu,
-    (SELECT TOP 1 alerta.grauAlerta
-     FROM registro
-     LEFT JOIN alerta ON alerta.fkRegistro = registro.idRegistro AND alerta.tipoComponente = 'RAM'
-     WHERE registro.fkCompHasComp = usuario.idUsuario
-     ORDER BY registro.dataHora DESC
+    (
+        SELECT TOP 1 alerta.grauAlerta
+        FROM registro
+        RIGHT JOIN alerta ON alerta.fkRegistro = registro.idRegistro AND alerta.tipoComponente = 'RAM'
+        JOIN computadorHasComponente chc ON chc.idCompHasComp = registro.fkCompHasComp
+        JOIN computador c ON c.idComputador = chc.fkComputador
+        JOIN usuario ON usuario.idUsuario = c.fkUsuario
+        WHERE idUser = usuario.idUsuario AND (alerta.dataHora IS NULL OR alerta.dataHora >= DATEADD(SECOND, -120, GETDATE()))
+        ORDER BY registro.dataHora DESC
     ) AS statusRam,
-    (SELECT TOP 1 alerta.grauAlerta
-     FROM registro
-     LEFT JOIN alerta ON alerta.fkRegistro = registro.idRegistro AND alerta.tipoComponente = 'DISCO'
-     WHERE registro.fkCompHasComp = usuario.idUsuario
-     ORDER BY registro.dataHora DESC
+    (
+        SELECT TOP 1 alerta.grauAlerta
+        FROM registro
+        RIGHT JOIN alerta ON alerta.fkRegistro = registro.idRegistro AND alerta.tipoComponente = 'DISCO'
+        JOIN computadorHasComponente chc ON chc.idCompHasComp = registro.fkCompHasComp
+        JOIN computador c ON c.idComputador = chc.fkComputador
+        JOIN usuario ON usuario.idUsuario = c.fkUsuario
+        WHERE idUser = usuario.idUsuario AND (alerta.dataHora IS NULL OR alerta.dataHora >= DATEADD(SECOND, -120, GETDATE()))
+        ORDER BY registro.dataHora DESC
     ) AS statusDisco,
-    (SELECT TOP 1 alerta.grauAlerta
-     FROM registro
-     LEFT JOIN alerta ON alerta.fkRegistro = registro.idRegistro AND alerta.tipoComponente = 'GPU'
-     WHERE registro.fkCompHasComp = usuario.idUsuario
-     ORDER BY registro.dataHora DESC
+    (
+        SELECT TOP 1 alerta.grauAlerta
+        FROM registro
+        RIGHT JOIN alerta ON alerta.fkRegistro = registro.idRegistro AND alerta.tipoComponente = 'GPU'
+        JOIN computadorHasComponente chc ON chc.idCompHasComp = registro.fkCompHasComp
+        JOIN computador c ON c.idComputador = chc.fkComputador
+        JOIN usuario ON usuario.idUsuario = c.fkUsuario
+        WHERE idUser = usuario.idUsuario AND (alerta.dataHora IS NULL OR alerta.dataHora >= DATEADD(SECOND, -120, GETDATE()))
+        ORDER BY registro.dataHora DESC
     ) AS statusGpu
 FROM
     usuario

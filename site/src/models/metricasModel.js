@@ -65,28 +65,24 @@ function carregarAlertasCards(idResponsavel){
     console.log("ACESSEI O MEDIDAS MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar(): ", idResponsavel)
 
     var instrucao = `WITH ComponentesComAlerta AS (
-        SELECT
-            c.idComponente,
-            c.tipo AS tipoComponente,
-            COUNT(DISTINCT a.idAlerta) AS quantidadeAlertas
-        FROM
-            componente c
-        LEFT JOIN computadorHasComponente chc ON c.idComponente = chc.fkComponente
-        LEFT JOIN registro r ON chc.idCompHasComp = r.fkCompHasComp
-        LEFT JOIN alerta a ON r.idRegistro = a.fkRegistro
-        LEFT JOIN computador comp ON chc.fkComputador = comp.idComputador
-        LEFT JOIN usuario u ON comp.fkUsuario = u.idUsuario
-        WHERE
-            u.fkGestor = ${idResponsavel}   
-            AND (a.dataHora IS NULL OR a.dataHora >= DATEADD(MINUTE, -10, GETDATE()))
-        GROUP BY
-            c.idComponente, c.tipo
-    )
-    SELECT
-        tipoComponente,
-        COALESCE(quantidadeAlertas, 0) AS quantidadeAlertas
-    FROM
-        ComponentesComAlerta;`;
+        WITH ComponentesComAlerta AS (
+            SELECT
+                c.idComponente,
+                c.tipo AS tipoComponente,
+                COUNT(DISTINCT a.idAlerta) AS quantidadeAlertas
+            FROM
+                componente c
+            LEFT JOIN computadorHasComponente chc ON c.idComponente = chc.fkComponente
+            LEFT JOIN registro r ON chc.idCompHasComp = r.fkCompHasComp
+            LEFT JOIN alerta a ON r.idRegistro = a.fkRegistro
+            LEFT JOIN computador comp ON chc.fkComputador = comp.idComputador
+            LEFT JOIN usuario u ON comp.fkUsuario = u.idUsuario
+            WHERE
+                u.fkGestor = ${idResponsavel}
+                AND a.dataHora IS NULL OR a.dataHora >= DATEADD(SECOND, -120, GETDATE())
+            GROUP BY
+                c.idComponente, c.tipo
+        );`;
 
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
