@@ -63,7 +63,7 @@ componente comp ON chc.fkComponente = comp.idComponente
 WHERE
 r.fkCompHasComp = ${fkCompHasComp} AND r.tipo = 'Memória em Uso'
 ORDER BY
-r.dataHora
+r.dataHora DESC
 OFFSET
 0 ROWS
 FETCH FIRST
@@ -87,7 +87,7 @@ componente comp ON chc.fkComponente = comp.idComponente
 WHERE
 r.fkCompHasComp = ${fkCompHasComp} AND r.tipo = 'Uso da GPU'
 ORDER BY
-r.dataHora
+r.dataHora DESC
 OFFSET
 0 ROWS
 FETCH FIRST
