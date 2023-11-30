@@ -327,7 +327,7 @@ function obterDadosGraficoGpu(fkCompHasComp) {
                 grafico3.style.display = 'none'
                 grafico4.style.display = 'flex'
 
-                var ctx4 = new Chart(document.getElementById('myChart3'), gpu);
+                var ctx3 = new Chart(document.getElementById('myChart2'), gpu);
                 setTimeout(() => atualizarGraficoLinhaGpu(fkCompHasComp, ctx3), 8000);
             })
 
@@ -355,7 +355,7 @@ function obterDadosGraficoDisco(fkCompHasComp) {
                 dadosDisco = resposta;
                 espacoDisponivel = dadosDisco[0].espacoDisponivel;
                 espacoEmUso = dadosDisco[0].espacoEmUso;
-                var gpu = {
+                var disco = {
                     data: {
                         datasets: [
                             {
@@ -377,7 +377,7 @@ function obterDadosGraficoDisco(fkCompHasComp) {
                 grafico3.style.display = 'none'
                 grafico4.style.display = 'flex'
 
-                var ctx4 = new Chart(document.getElementById('myChart4'), gpu);
+                var ctx4 = new Chart(document.getElementById('myChart3'), disco);
                 setTimeout(() => atualizarGraficoPizzaDisco(fkCompHasComp, ctx4), 8000);
             })
 
