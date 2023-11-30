@@ -371,11 +371,13 @@ function obterDadosGraficoDisco(fkCompHasComp) {
                 espacoDisponivel = dadosDisco[0].espacoDisponivel;
                 console.log(espacoDisponivel);
                 espacoEmUso = dadosDisco[0].espacoEmUso;
+                labelDisco = ['Espaço Disponível', 'Espaço em Uso']
                 var disco = {
                     type: 'pie',
                     data: {
                         datasets: [
                             {
+                                labels:labelDisco,
                                 data: [espacoDisponivel, espacoEmUso],
                                 backgroundColor: ['rgba(255, 99, 132, 0.8)', 'rgba(54, 162, 235, 0.8)'],
                                 borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)'],
