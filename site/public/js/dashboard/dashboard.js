@@ -258,7 +258,7 @@ function obterDadosGraficoRam(fkCompHasComp) {
                 labelRam = [];
                 dadosGraficoRam = [];
 
-                for (var i = 0; i < resposta.length; ++i) {
+                for (var i = resposta.length -1; i > 0; --i) {
                     labelDado.push(resposta[i].dataHora)
                     labelRam.push(resposta[i].dataHoraFormatada);
                     dadosGraficoRam.push(resposta[i].dadoValor)
@@ -312,7 +312,7 @@ function obterDadosGraficoGpu(fkCompHasComp) {
                 labelGpu = [];
                 dadosGraficoGpu = [];
 
-                for (var i = 0; i < resposta.length; ++i) {
+                for (var i = resposta.length -1; i > 0; --i) {
                     labelDado.push(resposta[i].dataHora)
                     labelGpu.push(resposta[i].dataHoraFormatada);
                     dadosGraficoGpu.push(resposta[i].dadoValor)
@@ -411,7 +411,7 @@ function atualizarGraficoLinha(fkCompHasComp, grafico) {
                 console.log(novoRegistro);
 
 
-                if (novoRegistro[0].dataHora == labelDado[0]) {
+                if (novoRegistro[0].dataHora == labelDado[labelDado.length -1]) {
                     console.log("---------------------------------------------------------------")
                     console.log("Como não há dados novos para captura, o gráfico não atualizará.")
 
@@ -456,7 +456,7 @@ function atualizarGraficoLinhaRam(fkCompHasComp, grafico) {
                 console.log(dadosGraficoRam);
 
 
-                if (novoRegistro[0].dataHora == labelDado[0]) {
+                if (novoRegistro[0].dataHora == labelDado[labelDado.length -1]) {
                     console.log("---------------------------------------------------------------")
                     console.log("Como não há dados novos para captura, o gráfico não atualizará.")
 
@@ -500,7 +500,7 @@ function atualizarGraficoLinhaGpu(fkCompHasComp, grafico) {
                 console.log(dadosGrafico);
 
 
-                if (novoRegistro[0].dataHora == labelDado[0]) {
+                if (novoRegistro[0].dataHora == labelDado[labelDado.length -1]) {
                     console.log("---------------------------------------------------------------")
                     console.log("Como não há dados novos para captura, o gráfico não atualizará.")
 
