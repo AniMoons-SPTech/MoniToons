@@ -247,6 +247,7 @@ body {
   width: 100%;
   background-color: #ffffff;
   align-items: center;
+  justify-content: flex-end;
   gap: 10px;
 }
 
