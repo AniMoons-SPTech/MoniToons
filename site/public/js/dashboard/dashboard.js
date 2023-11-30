@@ -235,7 +235,7 @@ function obterDadosGraficoCpu(fkCompHasComp) {
                 grafico4.style.display = 'none'
                 var ctx1 = new Chart(document.getElementById('myChart'), cpu);
 
-               setTimeout(() => atualizarGraficoLinha(fkCompHasComp, ctx1), 8000);
+               atualizarGraficoLinha(fkCompHasComp, ctx1);
 
             })
 
@@ -292,7 +292,7 @@ function obterDadosGraficoRam(fkCompHasComp) {
                 cardValor1.innerHTML = resposta[0].dadoFormatado
 
                 var ctx2 = new Chart(document.getElementById('myChart1'), ram);
-                setTimeout(() => atualizarGraficoLinhaRam(fkCompHasComp, ctx2), 8000);
+                atualizarGraficoLinhaRam(fkCompHasComp, ctx2)
 
             })
 
@@ -440,11 +440,11 @@ function atualizarGraficoLinha(fkCompHasComp, grafico) {
 
                 }
 
-                 atualizarGraficoLinha(fkCompHasComp, grafico)
+                proximaAtualizacao = setTimeout(() => atualizarGraficoLinha(fkCompHasComp, grafico), 8000);
             });
         } else {
             console.error('Nenhum dado encontrado ou erro na API');
-             setTimeout(() => atualizarGraficoLinha(fkCompHasComp, grafico), 8000);
+            proximaAtualizacao = setTimeout(() => atualizarGraficoLinha(fkCompHasComp, grafico), 8000);
         }
     })
         .catch(function (error) {
@@ -484,7 +484,7 @@ function atualizarGraficoLinhaRam(fkCompHasComp, grafico) {
                     grafico.update();
 
                 }
-                 atualizarGraficoLinhaRam(fkCompHasComp, grafico)
+                prsetTimeout(() => atualizarGraficoLinhaRam(fkCompHasComp, grafico), 8000);
             });
         } else {
             console.error('Nenhum dado encontrado ou erro na API');
