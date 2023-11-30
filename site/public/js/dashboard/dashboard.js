@@ -421,8 +421,9 @@ function atualizarGraficoLinha(fkCompHasComp, grafico) {
                     console.log(labelDado[labelDado.length - 1])
                     console.log("---------------------------------------------------------------")
                 } else {
-                    label.shift();
+                    
                     labelDado.shift();
+                    label.shift();
                     dadosGrafico.shift();
                     label.push(novoRegistro[0].dataHoraFormatada)
                     labelDado.push(novoRegistro[0].dataHora)
@@ -432,11 +433,11 @@ function atualizarGraficoLinha(fkCompHasComp, grafico) {
 
                 }
 
-                proximaAtualizacao = setTimeout(() => atualizarGraficoLinha(fkCompHasComp, grafico), 8000);
+                 setTimeout(() => atualizarGraficoLinha(fkCompHasComp, grafico), 8000);
             });
         } else {
             console.error('Nenhum dado encontrado ou erro na API');
-            proximaAtualizacao = setTimeout(() => atualizarGraficoLinha(fkCompHasComp, grafico), 8000);
+             setTimeout(() => atualizarGraficoLinha(fkCompHasComp, grafico), 8000);
         }
     })
         .catch(function (error) {
@@ -465,23 +466,22 @@ function atualizarGraficoLinhaRam(fkCompHasComp, grafico) {
                     console.log(labelDado[labelDado.length - 1])
                     console.log("---------------------------------------------------------------")
                 } else {
-                    labelRam.shift();
                     labelDado.shift();
+                    labelRam.shift();
                     dadosGraficoRam.shift();
-                    labelRam.push(novoRegistro[0].dataHoraFormatada)
                     labelDado.push(novoRegistro[0].dataHora)
+                    labelRam.push(novoRegistro[0].dataHoraFormatada)
                     dadosGraficoRam.push(novoRegistro[0].dadoValor)
                     verificarCondicao(novoRegistro)
                     cardValor1.innerHTML = novoRegistro[0].dadoFormatado
                     grafico.update();
 
                 }
-
-                proximaAtualizacao = setTimeout(() => atualizarGraficoLinhaRam(fkCompHasComp, grafico), 8000);
+                 setTimeout(() => atualizarGraficoLinhaRam(fkCompHasComp, grafico), 8000);
             });
         } else {
             console.error('Nenhum dado encontrado ou erro na API');
-            proximaAtualizacao = setTimeout(() => atualizarGraficoLinhaRam(fkCompHasComp, grafico), 8000);
+             setTimeout(() => atualizarGraficoLinhaRam(fkCompHasComp, grafico), 8000);
         }
     })
         .catch(function (error) {
@@ -521,11 +521,11 @@ function atualizarGraficoLinhaGpu(fkCompHasComp, grafico) {
 
                 }
 
-                proximaAtualizacao = setTimeout(() => atualizarGraficoLinhaGpu(fkCompHasComp, grafico), 8000);
+                 setTimeout(() => atualizarGraficoLinhaGpu(fkCompHasComp, grafico), 8000);
             });
         } else {
             console.error('Nenhum dado encontrado ou erro na API');
-            proximaAtualizacao = setTimeout(() => atualizarGraficoLinhaGpu(fkCompHasComp, grafico), 8000);
+             setTimeout(() => atualizarGraficoLinhaGpu(fkCompHasComp, grafico), 8000);
         }
     })
         .catch(function (error) {
@@ -550,12 +550,12 @@ function atualizarGraficoPizzaDisco(fkCompHasComp, grafico) {
                     grafico.update();
                 
 
-                proximaAtualizacao = setTimeout(() => atualizarGraficoPizzaDisco(fkCompHasComp, grafico), 8000);
+                 setTimeout(() => atualizarGraficoPizzaDisco(fkCompHasComp, grafico), 8000);
             });
         } else {
             console.error('Nenhum dado encontrado ou erro na API');
             // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-            proximaAtualizacao = setTimeout(() => atualizarGraficoPizzaDisco(fkCompHasComp, grafico), 8000);
+             setTimeout(() => atualizarGraficoPizzaDisco(fkCompHasComp, grafico), 8000);
         }
     })
         .catch(function (error) {
