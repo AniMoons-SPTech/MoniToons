@@ -112,13 +112,14 @@ function plotarCards(fkCompHasComp) {
                     card2.innerHTML = "Memória disponível"
                     card3.innerHTML = "Memória total"
                     console.log(dadosCards)
+                    var memoriaTotal = ""
 
                     for (var i = 0; i < dadosCards.length; i++) {
                         if (dadosCards[i].tipoEspecificacao == "Memória Total") {
-                            velocidade = dadosCards[i].valor;
+                            memoriaTotal = dadosCards[i].valor;
                         }
                     }
-
+                    cardValor3.innerHTML = memoriaTotal
                     await plotarRestoDosCards('RAM', fkCompHasComp)
                     obterDadosGraficoRam(fkCompHasComp);
                 }
@@ -141,15 +142,14 @@ function plotarCards(fkCompHasComp) {
                     card2.innerHTML = "Memória de Vídeo Disponível"
                     card3.innerHTML = "Fabricante"
 
+                    var fabricante = "";
                     for (var i = 0; i < dadosCards.length; i++) {
                         if (dadosCards[i].tipoEspecificacao == "Fabricante") {
-                            velocidade = dadosCards[i].valor;
+                            fabricante = dadosCards[i].valor;
                         }
                     }
 
-                    // card3.innerHTML = dadosCards[x].valor
-                    // Não sei como está vindo os dados então não mexi nisso - JP
-                    // AQUI INCLUIR NO SELECT DE DADOS DE ESPECIFICAÇÃO O FABRICANTE DA PLACA 
+                    cardValor3.innerHTML = fabricante
                     await plotarRestoDosCards('GPU', fkCompHasComp)
                     obterDadosGraficoGpu(fkCompHasComp)
                 }
@@ -379,7 +379,7 @@ function obterDadosGraficoDisco(fkCompHasComp) {
                         ]
                     }
                 }
-            
+
                 grafico1.style.display = 'none'
                 grafico2.style.display = 'none'
                 grafico3.style.display = 'flex'
@@ -549,7 +549,7 @@ function atualizarGraficoPizzaDisco(fkCompHasComp, grafico) {
                 if (novoRegistro[0].dataHora == label[label.length - 1]) {
                     console.log("---------------------------------------------------------------")
                     console.log("Como não há dados novos para captura, o gráfico não atualizará.")
-            
+
                     console.log("Horário do novo dado capturado:")
                     console.log(novoRegistro[0].dataHora)
                     console.log("Horário do último dado capturado:")
@@ -572,9 +572,9 @@ function atualizarGraficoPizzaDisco(fkCompHasComp, grafico) {
             proximaAtualizacao = setTimeout(() => atualizarGraficoPizzaDisco(fkCompHasComp, grafico), 8000);
         }
     })
-    .catch(function (error) {
-        console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
-    });
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
+        });
 
 }
 
