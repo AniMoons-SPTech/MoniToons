@@ -230,7 +230,7 @@ function obterDadosGraficoCpu(fkCompHasComp) {
                 grafico4.style.display = 'none'
                 var ctx1 = new Chart(document.getElementById('myChart'), cpu);
 
-                setTimeout(() => atualizarGraficoLinha(fkCompHasComp, ctx1), 8000);
+               proximaAtualizacao = setTimeout(() => atualizarGraficoLinha(fkCompHasComp, ctx1), 8000);
 
             })
 
@@ -287,7 +287,7 @@ function obterDadosGraficoRam(fkCompHasComp) {
                 cardValor1.innerHTML = resposta[0].dadoFormatado
 
                 var ctx2 = new Chart(document.getElementById('myChart1'), ram);
-                setTimeout(() => atualizarGraficoLinhaRam(fkCompHasComp, ctx2), 8000);
+                proximaAtualizacao = setTimeout(() => atualizarGraficoLinhaRam(fkCompHasComp, ctx2), 8000);
 
             })
 
@@ -341,7 +341,7 @@ function obterDadosGraficoGpu(fkCompHasComp) {
                 grafico4.style.display = 'flex'
 
                 var ctx3 = new Chart(document.getElementById('myChart2'), gpu);
-                setTimeout(() => atualizarGraficoLinhaGpu(fkCompHasComp, ctx3), 8000);
+                proximaAtualizacao = setTimeout(() => atualizarGraficoLinhaGpu(fkCompHasComp, ctx3), 8000);
             })
 
         } else if (response.status == 404) {
@@ -391,7 +391,7 @@ function obterDadosGraficoDisco(fkCompHasComp) {
                 grafico4.style.display = 'none'
 
                 var ctx4 = new Chart(document.getElementById('myChart3'), disco);
-                setTimeout(() => atualizarGraficoPizzaDisco(fkCompHasComp, ctx4), 8000);
+                proximaAtualizacao = setTimeout(() => atualizarGraficoPizzaDisco(fkCompHasComp, ctx4), 8000);
             })
 
         } else if (response.status == 404) {
