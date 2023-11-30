@@ -350,7 +350,6 @@ function obterDadosGraficoDisco(fkCompHasComp) {
     }).then(function (response) {
         if (response.ok) {
             response.json().then(function (resposta) {
-                label = [];
                 dadosDisco = [];
                 dadosDisco = resposta;
                 espacoDisponivel = dadosDisco[0].espacoDisponivel;
@@ -358,10 +357,6 @@ function obterDadosGraficoDisco(fkCompHasComp) {
                 var disco = {
                     type: 'doughnut',
                     data: {
-                        labels: [
-                            'Red',
-                            'Blue'
-                          ],
                         datasets: [
                             {
                                 data: [espacoDisponivel, espacoEmUso],
@@ -379,7 +374,7 @@ function obterDadosGraficoDisco(fkCompHasComp) {
                 grafico4.style.display = 'none'
 
                 var ctx4 = new Chart(document.getElementById('myChart3'), disco);
-                setTimeout(() => atualizarGraficoPizzaDisco(fkCompHasComp, ctx4), 8000);
+                // setTimeout(() => atualizarGraficoPizzaDisco(fkCompHasComp, ctx4), 8000);
             })
 
         } else if (response.status == 404) {
