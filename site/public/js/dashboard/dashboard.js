@@ -356,7 +356,7 @@ function obterDadosGraficoDisco(fkCompHasComp) {
                 espacoDisponivel = dadosDisco[0].espacoDisponivel;
                 espacoEmUso = dadosDisco[0].espacoEmUso;
                 var disco = {
-                    dtype: 'doughnut',
+                    type: 'doughnut',
                     data: {
                         datasets: [
                             {
