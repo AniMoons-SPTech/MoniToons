@@ -431,6 +431,7 @@ function atualizarGraficoLinha(fkCompHasComp, grafico) {
                     label.push(novoRegistro[0].dataHoraFormatada)
                     labelDado.push(novoRegistro[0].dataHora)
                     dadosGrafico.push(novoRegistro[0].dadoValor)
+                    verificarCondicao(novoRegistro)
                     grafico.update();
 
                 }
@@ -452,10 +453,10 @@ function atualizarGraficoLinhaRam(fkCompHasComp, grafico) {
     fetch(`/componentes/graficosLinhaAtualizadoRam/${fkCompHasComp}`, { cache: 'no-store' }).then(function (response) {
         if (response.ok) {
             response.json().then(function (novoRegistro) {
-                clearTimeout(proximaAtualizacao);
+            
                 console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
                 console.log(`Dados atuais do gráfico:`);
-                console.log(dadosGrafico);
+                console.log(dadosGraficoRam);
                 console.log(novoRegistro);
 
 
@@ -475,6 +476,7 @@ function atualizarGraficoLinhaRam(fkCompHasComp, grafico) {
                     labelRam.push(novoRegistro[0].dataHoraFormatada)
                     labelDado.push(novoRegistro[0].dataHora)
                     dadosGraficoRam.push(novoRegistro[0].dadoValor)
+                    verificarCondicao(novoRegistro)
                     cardValor1.innerHTML = novoRegistro[0].dadoFormatado
                     grafico.update();
 
@@ -498,7 +500,6 @@ function atualizarGraficoLinhaGpu(fkCompHasComp, grafico) {
     fetch(`/componentes/graficosLinhaAtualizadoGpu/${fkCompHasComp}`, { cache: 'no-store' }).then(function (response) {
         if (response.ok) {
             response.json().then(function (novoRegistro) {
-                clearTimeout(proximaAtualizacao);
                 console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
                 console.log(`Dados atuais do gráfico:`);
                 console.log(dadosGrafico);
@@ -520,6 +521,7 @@ function atualizarGraficoLinhaGpu(fkCompHasComp, grafico) {
                     dadosGraficoGpu.shift();
                     labelGpu.push(novoRegistro[0].dataHoraFormatada)
                     labelDado.push(novoRegistro[0].dataHora)
+                    verificarCondicao(novoRegistro)
                     dadosGraficoGpu.push(novoRegistro[0].dadoValor)
                     grafico.update();
 
@@ -560,10 +562,9 @@ function atualizarGraficoPizzaDisco(fkCompHasComp, grafico) {
                     console.log(label[label.length - 1])
                     console.log("---------------------------------------------------------------")
                 } else {
+                    verificarCondicao(novoRegistro)
                     espacoDisponivel = novoRegistro[0].espacoDisponivel;
                     espacoEmUso = novoRegistro[0].espacoEmUso;
-
-                    // Atualizar dados do gráfico de rosquinha
                     grafico.data.datasets[0].data = [espacoEmUso,espacoDisponivel];
                     grafico.update();
                 }
@@ -583,7 +584,57 @@ function atualizarGraficoPizzaDisco(fkCompHasComp, grafico) {
 }
 
 
-function verificarCondicao() {
-    cardValor4.innerHTML('s')
+function verificarCondicao(registro){
+    cardValor4.innerHTML = "";
+    if(registro[0].tipoComp == 'CPU'){
+        if(registro[0].dadoValor > 90){
+            cardValor4.style.backgroundColor = "#EF0303"
+            cardValor4.innerHTML = "CRÍTICO";
+        }else if(registro[0].dadoValor > 80){
+            cardValor4.style.backgroundColor = "#F87736"
+            cardValor4.innerHTML = "INTERMEDIÁRIO";
+        }else if(registro[0].dadoValor > 70){
+            cardValor4.style.backgroundColor = "#FFBF00"
+            cardValor4.innerHTML = "INTERMEDIÁRIO";
+        }
+    }
+    if(registro[0].tipoComp == 'RAM'){
+        if(registro[0].dadoValor > 90){
+            cardValor4.style.backgroundColor = "#EF0303"
+            cardValor4.innerHTML = "CRÍTICO";
+        }else if(registro[0].dadoValor > 80){
+            cardValor4.style.backgroundColor = "#F87736"
+            cardValor4.innerHTML = "INTERMEDIÁRIO";
+        }else if(registro[0].dadoValor > 70){
+            cardValor4.style.backgroundColor = "#FFBF00"
+            cardValor4.innerHTML = "INTERMEDIÁRIO";
+        }
+    }
+
+    if(registro[0].tipoComp == 'GPU'){
+        if(registro[0].dadoValor > 90){
+            cardValor4.style.backgroundColor = "#EF0303"
+            cardValor4.innerHTML = "CRÍTICO";
+        }else if(registro[0].dadoValor > 80){
+            cardValor4.style.backgroundColor = "#F87736"
+            cardValor4.innerHTML = "INTERMEDIÁRIO";
+        }else if(registro[0].dadoValor > 70){
+            cardValor4.style.backgroundColor = "#FFBF00"
+            cardValor4.innerHTML = "INTERMEDIÁRIO";
+        }
+    }
+
+    else{
+        if(registro[0].espacoDisponivel < 10){
+            cardValor4.style.backgroundColor = "#EF0303"
+            cardValor4.innerHTML = "CRÍTICO";
+        }else if(registro[0].espacoDisponivel < 20){
+            cardValor4.style.backgroundColor = "#F87736"
+            cardValor4.innerHTML = "INTERMEDIÁRIO";
+        }else if(registro[0].espacoDisponivel > 70){
+            cardValor4.style.backgroundColor = "#FFBF00"
+            cardValor4.innerHTML = "INTERMEDIÁRIO";
+        }
+    }
 }
 
