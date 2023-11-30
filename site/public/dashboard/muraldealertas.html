@@ -226,8 +226,10 @@
       var grauAlertaCard = card.querySelector(".grau_alerta").textContent.trim();
 
       if (tipoGrauSelecionado === "todos" || grauAlertaCard === tipoGrauSelecionado) {
+        console.log("entrou filtrar por grau if")
         card.style.display = "flex";
       } else {
+        console.log("entrou filtrar por grau else")
         card.style.display = "none";
       }
     }
