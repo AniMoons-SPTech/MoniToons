@@ -113,6 +113,12 @@ function plotarCards(fkCompHasComp) {
                     card3.innerHTML = "Memória total"
                     console.log(dadosCards)
 
+                    for (var i = 0; i < dadosCards.length; i++) {
+                        if (dadosCards[i].tipoEspecificacao == "Memória Total") {
+                            velocidade = dadosCards[i].valor;
+                        }
+                    }
+
                     await plotarRestoDosCards('RAM', fkCompHasComp)
                     obterDadosGraficoRam(fkCompHasComp);
                 }
@@ -134,6 +140,12 @@ function plotarCards(fkCompHasComp) {
                     card1.innerHTML = "Porcentagem de Uso"
                     card2.innerHTML = "Memória de Vídeo Disponível"
                     card3.innerHTML = "Fabricante"
+
+                    for (var i = 0; i < dadosCards.length; i++) {
+                        if (dadosCards[i].tipoEspecificacao == "Fabricante") {
+                            velocidade = dadosCards[i].valor;
+                        }
+                    }
 
                     // card3.innerHTML = dadosCards[x].valor
                     // Não sei como está vindo os dados então não mexi nisso - JP
@@ -365,17 +377,7 @@ function obterDadosGraficoDisco(fkCompHasComp) {
                                 hoverOffset: 4
                             }
                         ]
-                    },
-                    options: {
-                        legend: {
-                          position: "right",
-                          labels: {
-                            fontColor: "black",
-                          },
-                        },
-                        responsive: true,
-                        maintainAspectRatio: false,
-                      },
+                    }
                 }
             
                 grafico1.style.display = 'none'
