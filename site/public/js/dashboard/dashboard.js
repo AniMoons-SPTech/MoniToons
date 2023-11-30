@@ -345,7 +345,7 @@ function obterDadosGraficoGpu(fkCompHasComp) {
                 grafico4.style.display = 'flex'
 
                 var ctx3 = new Chart(document.getElementById('myChart2'), gpu);
-               setTimeout(() => atualizarGraficoLinhaGpu(fkCompHasComp, ctx3), 8000);
+               atualizarGraficoLinhaGpu(fkCompHasComp, ctx3);
             })
 
         } else if (response.status == 404) {
@@ -393,7 +393,7 @@ function obterDadosGraficoDisco(fkCompHasComp) {
                 grafico4.style.display = 'none'
 
                 var ctx4 = new Chart(document.getElementById('myChart3'), disco);
-                setTimeout(() => atualizarGraficoPizzaDisco(fkCompHasComp, ctx4), 8000);
+                atualizarGraficoPizzaDisco(fkCompHasComp, ctx4);
             })
 
         } else if (response.status == 404) {
@@ -440,7 +440,7 @@ function atualizarGraficoLinha(fkCompHasComp, grafico) {
 
                 }
 
-                 setTimeout(() => atualizarGraficoLinha(fkCompHasComp, grafico), 8000);
+                 atualizarGraficoLinha(fkCompHasComp, grafico)
             });
         } else {
             console.error('Nenhum dado encontrado ou erro na API');
@@ -484,7 +484,7 @@ function atualizarGraficoLinhaRam(fkCompHasComp, grafico) {
                     grafico.update();
 
                 }
-                 setTimeout(() => atualizarGraficoLinhaRam(fkCompHasComp, grafico), 8000);
+                 atualizarGraficoLinhaRam(fkCompHasComp, grafico)
             });
         } else {
             console.error('Nenhum dado encontrado ou erro na API');
