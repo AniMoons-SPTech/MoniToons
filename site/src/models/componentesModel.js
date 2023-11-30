@@ -216,8 +216,10 @@ FROM registro;`
 
 function plotarRestoDosCards(fkCompHasComp, tipoComponente) {
     console.log("ACESSEI O COMPONENTES MODEL")
+    var instrucao = ""; 
     if (tipoComponente == 'RAM') {
-        var instrucao = `SELECT TOP 1
+        console.log("ENTREI NO IF DA RAM")
+        instrucao = `SELECT TOP 1
             (
                 SELECT TOP 1 dadoFormatado 
                 FROM registro 
@@ -232,7 +234,8 @@ function plotarRestoDosCards(fkCompHasComp, tipoComponente) {
             ) AS 'memDisp' 
         FROM registro`
     } else if (tipoComponente == 'DISCO') {
-        var instrucao = `SELECT TOP 1 
+        console.log("ENTREI NO IF DO DISCO")
+        instrucao = `SELECT TOP 1 
             (
                 SELECT TOP 1 dadoFormatado 
                 FROM registro 
@@ -247,7 +250,8 @@ function plotarRestoDosCards(fkCompHasComp, tipoComponente) {
             ) AS 'vel_escr' 
         FROM registro;`
     } else if (tipoComponente == 'GPU') {
-        var instrucao = `SELECT TOP 1 
+        console.log("ENTREI NO IF DA GPU")
+        instrucao = `SELECT TOP 1 
             (
                 SELECT TOP 1 dadoFormatado 
                 FROM registro 
