@@ -126,8 +126,8 @@ function plotarCards(fkCompHasComp) {
 
 
                     cardValor3.innerHTML = dadosCards[0].valor
-                    await plotarRestoDosCards('DISCO', 84)
-                    obterDadosGraficoDisco(84)
+                    await plotarRestoDosCards('DISCO', fkCompHasComp)
+                    obterDadosGraficoDisco(fkCompHasComp)
                 }
 
                 if (dadosCards[0].tipo == 'GPU') {
@@ -362,6 +362,7 @@ function obterDadosGraficoDisco(fkCompHasComp) {
             response.json().then(function (resposta) {
                 dadosDisco = resposta;
                 espacoDisponivel = dadosDisco[0].espacoDisponivel;
+                console.log(espacoDisponivel);
                 espacoEmUso = dadosDisco[0].espacoEmUso;
                 var disco = {
                     type: 'doughnut',
