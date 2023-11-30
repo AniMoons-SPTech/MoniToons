@@ -33,7 +33,7 @@ var dadosDisco = []
 var espacoDisponivel;
 var espacoEmUso;
 
-let proximaAtualizacao;
+var proximaAtualizacao;
 
 
 
