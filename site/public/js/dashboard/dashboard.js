@@ -33,6 +33,11 @@ var dadosGraficoGpu = [];
 var dadosGraficoDisco = [];
 var dadosGrafico1 = [];
 var dadosDisco = []
+var espacoDisponivel;
+var espacoEmUso;
+
+
+
 let proximaAtualizacao;
 
 
@@ -556,12 +561,11 @@ function atualizarGraficoPizzaDisco(fkCompHasComp, grafico) {
                     console.log(label[label.length - 1])
                     console.log("---------------------------------------------------------------")
                 } else {
-                    var espacoDisponivel = novoRegistro[0].espacoDisponivel;
-                    var espacoEmUso = novoRegistro[0].espacoEmUso;
+                    espacoDisponivel = novoRegistro[0].espacoDisponivel;
+                    espacoEmUso = novoRegistro[0].espacoEmUso;
 
                     // Atualizar dados do gráfico de rosquinha
-                    grafico.data.datasets[0].data = espacoDisponivel;
-                    grafico.data.datasets[1].data = espacoEmUso;
+                    grafico.data.datasets[0].data = [espacoDisponivel,espacoEmUso];
                     grafico.update();
                 }
 
