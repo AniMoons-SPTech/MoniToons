@@ -64,9 +64,8 @@ var database = require("../database/config");
 function carregarAlertasCards(idResponsavel){
     console.log("ACESSEI O MEDIDAS MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar(): ", idResponsavel)
 
-    var instrucao = `WITH ComponentesComAlerta AS (
-        WITH ComponentesComAlerta AS (
-            SELECT
+    var instrucao = `
+                SELECT
                 c.idComponente,
                 c.tipo AS tipoComponente,
                 COUNT(DISTINCT a.idAlerta) AS quantidadeAlertas
@@ -82,7 +81,7 @@ function carregarAlertasCards(idResponsavel){
                 AND a.dataHora IS NULL OR a.dataHora >= DATEADD(SECOND, -120, GETDATE())
             GROUP BY
                 c.idComponente, c.tipo
-        );`;
+        ;`;
 
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);

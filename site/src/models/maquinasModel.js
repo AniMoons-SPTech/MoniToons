@@ -6,8 +6,8 @@ function carregarGrupoMaquinas(idResponsavel){
     
     var instrucao = `
     SELECT
-    usuario.idUsuario AS idUser,
-    usuario.nomeUsuario,
+    u2.idUsuario as idUser,
+    u2.nomeUsuario,
     (
         SELECT TOP 1 alerta.grauAlerta
         FROM registro
@@ -15,7 +15,7 @@ function carregarGrupoMaquinas(idResponsavel){
         JOIN computadorHasComponente chc ON chc.idCompHasComp = registro.fkCompHasComp
         JOIN computador c ON c.idComputador = chc.fkComputador
         JOIN usuario ON usuario.idUsuario = c.fkUsuario
-        WHERE idUser = usuario.idUsuario AND (alerta.dataHora IS NULL OR alerta.dataHora >= DATEADD(SECOND, -120, GETDATE()))
+        WHERE u2.idUsuario= usuario.idUsuario AND (alerta.dataHora IS NULL OR alerta.dataHora >= DATEADD(SECOND, -20, GETDATE()))
         ORDER BY registro.dataHora DESC
     ) AS statusCpu,
     (
@@ -25,7 +25,7 @@ function carregarGrupoMaquinas(idResponsavel){
         JOIN computadorHasComponente chc ON chc.idCompHasComp = registro.fkCompHasComp
         JOIN computador c ON c.idComputador = chc.fkComputador
         JOIN usuario ON usuario.idUsuario = c.fkUsuario
-        WHERE idUser = usuario.idUsuario AND (alerta.dataHora IS NULL OR alerta.dataHora >= DATEADD(SECOND, -120, GETDATE()))
+        WHERE u2.idUsuario = usuario.idUsuario AND (alerta.dataHora IS NULL OR alerta.dataHora >= DATEADD(SECOND, -20, GETDATE()))
         ORDER BY registro.dataHora DESC
     ) AS statusRam,
     (
@@ -35,7 +35,7 @@ function carregarGrupoMaquinas(idResponsavel){
         JOIN computadorHasComponente chc ON chc.idCompHasComp = registro.fkCompHasComp
         JOIN computador c ON c.idComputador = chc.fkComputador
         JOIN usuario ON usuario.idUsuario = c.fkUsuario
-        WHERE idUser = usuario.idUsuario AND (alerta.dataHora IS NULL OR alerta.dataHora >= DATEADD(SECOND, -220, GETDATE()))
+        WHERE u2.idUsuario = usuario.idUsuario AND (alerta.dataHora IS NULL OR alerta.dataHora >= DATEADD(SECOND, -20, GETDATE()))
         ORDER BY registro.dataHora DESC
     ) AS statusDisco,
     (
@@ -45,13 +45,13 @@ function carregarGrupoMaquinas(idResponsavel){
         JOIN computadorHasComponente chc ON chc.idCompHasComp = registro.fkCompHasComp
         JOIN computador c ON c.idComputador = chc.fkComputador
         JOIN usuario ON usuario.idUsuario = c.fkUsuario
-        WHERE idUser = usuario.idUsuario AND (alerta.dataHora IS NULL OR alerta.dataHora >= DATEADD(SECOND, -20, GETDATE()))
+        WHERE u2.idUsuario = usuario.idUsuario AND (alerta.dataHora IS NULL OR alerta.dataHora >= DATEADD(SECOND, -20, GETDATE()))
         ORDER BY registro.dataHora DESC
     ) AS statusGpu
 FROM
-    usuario
+    usuario u2
 WHERE
-    usuario.fkGestor = ${idResponsavel};`;
+    u2.fkGestor = ${idResponsavel};`;
     
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
