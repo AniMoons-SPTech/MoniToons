@@ -11,7 +11,7 @@ var spanEmail = document.getElementById("spanEmail");
 var spanCpf = document.getElementById("spanCpf");
 var spanCargo = document.getElementById("spanCargo");
 var spanEmpresa = document.getElementById("spanEmpresa");
-
+var idBusca;
 
 
 
@@ -40,13 +40,11 @@ function exibirDados(vetor){
 }
 
 function listar(){
-    campoNome.innerHTML  = nomeUser;
-    campoCargo.innerHTML = cargoUser;
 
     if (sessionStorage.CARGO_USUARIO == "ADMINISTRADOR"){
-        var idBusca = idUsuario;
+        idBusca = idUsuario;
     } else {
-        var idBusca = fkGestor;
+        idBusca = fkGestor;
     }
 
     fetch(`/usuarios/listar/${idBusca}`, {

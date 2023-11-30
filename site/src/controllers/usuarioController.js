@@ -62,7 +62,7 @@ function listar(req, res) {
     var { idUsuario } = req.params;
 
     if (idUsuario == undefined) {
-        res.status(400).send("Id da empresa está indefinido!");
+        res.status(400).send("O Id está indefinido!");
     } else {
         usuarioModel.listar(idUsuario).then(function (resultado) {
             if (resultado.length > 0) {
@@ -169,7 +169,6 @@ function atualizarFuncionario(req, res) {
 }
 async function cadastrar(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
-    console.log(req)
     var tipoPessoa = req.body.cadastroServer.tipoPessoa;
     var nome = req.body.cadastroServer.usuario.nomeCompleto;
     var email = req.body.cadastroServer.usuario.email;

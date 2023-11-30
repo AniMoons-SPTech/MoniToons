@@ -9,10 +9,12 @@
     <link rel="stylesheet" href="../css/style_maquinas.css">
     <link rel="stylesheet" href="../css/style_funcionarios.css">
     <link rel="stylesheet" href="../assets/fontes/fonts.css">
+    <script src="../js/funcionario/exibirNome.js" defer></script>
     <script src="../js/funcionario/listarFuncionario.js" defer></script>
     <script src="../js/funcionario/atualizarFuncionario.js" defer></script>
     <script src="../js/funcionario/cadastrofuncionario.js" defer></script>
     <script src="../js/funcionario/excluirFuncionario.js" defer></script>
+    <script src="../js/dashboard/barra.js"></script>
 
 
 
@@ -180,15 +182,6 @@
 
 </html>
 <script type="text/javascript">
-    function mudaBarraApp() {
-        var linkApp = document.getElementById("link_app")
-        if (sessionStorage.CARGO_USUARIO == "COMUM") {
-            linkApp.innerHTML = "Aplicativos abertos"
-        } else if (sessionStorage.CARGO_USUARIO == "ADMINISTRADOR") {
-            linkApp.innerHTML = "Aplicativos proibidos"
-        }
-        var botaoAdicionar = document.getElementById("botao_adicionar");
-    }
 
     function mostrarPopupAtualizarFunc() {
         var popup = document.getElementById("popup-atualizar-funcionario")

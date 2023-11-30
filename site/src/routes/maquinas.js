@@ -9,9 +9,6 @@ router.get("/carregarGrupoMaquinas/:idResponsavel", function (req, res) {
     maquinasController.carregarGrupoMaquinas(req,res);
 })
 
-router.get("/carregarComponentes/:idUsuario", function (req , res) {
-    maquinasController.carregarComponentes(req,res);
-})
 
 router.get("/dadosGraficos/:tipoComponente/:idComponente", function (req , res) {
     maquinasController.dadosGraficos(req,res);

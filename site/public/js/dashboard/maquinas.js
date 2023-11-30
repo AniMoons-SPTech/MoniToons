@@ -1,3 +1,5 @@
+var cardsArea = document.getElementById("cards")
+
 function carregarGrupoMaquinas() {
     fetch(`/maquinas/carregarGrupoMaquinas/${sessionStorage.ID_USUARIO}`, {
         method: 'GET',

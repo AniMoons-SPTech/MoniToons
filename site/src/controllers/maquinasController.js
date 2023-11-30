@@ -20,24 +20,6 @@ function carregarGrupoMaquinas(req, res){
     }
 }
 
-function carregarComponentes(req, res){
-    var { idUsuario } = req.params;
-
-    if(idUsuario == undefined) {
-        res.status(400).send("Id do usuário está indefinido!");
-    }else{
-        maquinasModel.carregarComponentes(idUsuario).then(function (resultado) {
-            if(resultado.length > 0){
-                res.status(200).json(resultado);
-            }else{
-                res.status(204).send("Nenhum componente cadastrado nesse usuário!")
-            }
-        }).catch(function (erro) {
-            console.log(erro);
-            res.status(500).json(erro.sqlMessage);
-        });
-    }
-}
 
 function dadosGraficos(req, res){
     var { tipoComponente, idComponente } = req.params;
@@ -83,7 +65,6 @@ function dadosComponentes(req, res){
 
 module.exports = {
     carregarGrupoMaquinas,
-    carregarComponentes,
     dadosGraficos,
     dadosComponentes
 }

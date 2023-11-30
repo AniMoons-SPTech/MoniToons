@@ -10,9 +10,11 @@
   <link rel="stylesheet" href="../css/style_maquinas.css">
   <link rel="stylesheet" href="../assets/fontes/fonts.css">
   <link rel="stylesheet" href="../css/style_mural_alertas.css">
+  <script src="../js/funcionario/exibirNome.js" defer></script>
+  <script src="../js/dashboard/barra.js" defer></script>
 </head>
 
-<body onload="plotarAlertas()">
+<body onload="plotarAlertas();mudaBarraApp()">
   <nav class="barra-lateral">
     <div class="titulo-barra-lateral">
       <span class="titulo">MoniToons</span>
@@ -34,11 +36,12 @@
       </div>
     </div>
     <ul class="bar-links">
-      <li><a href="./maquinas.html">Geral</a></li>
+      <li id="li_secao_geral"><a href="./maquinas.html">Geral</a></li>
+      <li id="dashboard"><a href="#" id="dashboardLink">Dashboard</a></li>
       <!-- <li><a href="#">Computadores</a></li> -->
-      <li><a href="./funcionarios.html">Funcionários</a></li>
+      <li id = "li_secao_funcionarios"><a href="./funcionarios.html">Funcionários</a></li>
       <li><a href="./muraldealertas.html">Alertas</a></li>
-      <li><a href="./aplicativos.html" id="link_app">Aplicativos proibidos</a></li>
+      <li id="li_app_proibidos" ><a href="./aplicativos.html" id="link_app">Aplicativos proibidos</a></li>
     </ul>
     <div class="sair-barra-lateral">
       <a href="../index.html">SAIR</a>

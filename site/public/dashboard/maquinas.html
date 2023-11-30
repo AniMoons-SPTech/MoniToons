@@ -9,11 +9,12 @@
   <link rel="stylesheet" href="../css/style_maquinas.css">
   <link rel="stylesheet" href="../assets/fontes/fonts.css">
   <script src="../js/dashboard/maquinas.js"></script>
-  <script src="../js/funcionario/exibirNome" defer></script>
+  <script src="../js/funcionario/exibirNome.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+  <script src="../js/dashboard/barra.js" defer></script>
 </head>
 
-<body onload="mudaBarraApp() , carregarMetricas(), carregarGrupoMaquinas()">
+<body onload=" carregarMetricas(), carregarGrupoMaquinas()">
   <nav class="barra-lateral">
     <div class="titulo-barra-lateral">
       <span class="titulo">MoniToons</span>
@@ -36,10 +37,9 @@
     </div>
     <ul class="bar-links">
       <li><a href="./maquinas.html">Geral</a></li>
-      <!-- <li><a href=".">Computadores</a></li> -->
       <li><a href="./funcionarios.html">Funcionários</a></li>
       <li id="muralDeAlertas"><a href="./muraldealertas.html">Alertas</a></li>
-      <li><a href="./aplicativos.html" id="link_app"></a></li>
+      <li><a href="./aplicativos.html" id="link_app">Aplicativos Proibidos</a></li>
     </ul>
     <div class="sair-barra-lateral">
       <a href="../index.html">SAIR</a>
@@ -119,14 +119,6 @@
 
   var quantidadeDeMaquinas = 0
 
-  function mudaBarraApp() {
-    var linkApp = document.getElementById("link_app")
-    if (sessionStorage.CARGO_USUARIO == "COMUM") {
-      linkApp.innerHTML = "Aplicativos abertos"
-    } else if (sessionStorage.CARGO_USUARIO == "ADMINISTRADOR") {
-      linkApp.innerHTML = "Aplicativos proibidos"
-    }
-  }
 
   function carregarMetricas() {
     var idResponsavel = sessionStorage.ID_USUARIO

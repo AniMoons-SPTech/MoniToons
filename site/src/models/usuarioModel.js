@@ -20,7 +20,7 @@ function autenticar(email, senha) {
 }
 
 function listar(idBusca){
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar(): ", idUsuario)
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar(): ", idBusca)
     var instrucao = `
         SELECT * FROM usuario WHERE fkGestor = ${idBusca} ORDER BY nomeUsuario ;
     `;
@@ -43,7 +43,9 @@ function excluirFuncionario(idUsuario){
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function excluir():", idUsuario);
 
     var instrucao = `
-        DELETE from usuario WHERE idUsuario = ${idUsuario};
+    DECLARE @UsuarioID INT;
+    SET @UsuarioID = ${idUsuario};
+    EXEC ExcluirUsuarioEComputador @UsuarioID;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
