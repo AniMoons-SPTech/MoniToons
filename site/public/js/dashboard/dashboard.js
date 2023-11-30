@@ -1,4 +1,3 @@
-import('https://cdn.jsdelivr.net/npm/chart.js');
 var urlAtual = window.location.href;
 var urlObj = new URL(urlAtual);
 var idUsuario = urlObj.searchParams.get("idUsuario");
@@ -11,6 +10,7 @@ var card1 = document.getElementById("title-card1");
 var card2 = document.getElementById("title-card2");
 var card3 = document.getElementById("title-card3");
 var card4 = document.getElementById("title-card4");
+var card = document.getElementById("card")
 var cardValor1 = document.getElementById("valor-card1");
 var cardValor2 = document.getElementById("valor-card2");
 var cardValor3 = document.getElementById("valor-card3");
@@ -79,7 +79,6 @@ function plotarCards(fkCompHasComp) {
             response.json().then(async (resposta) => {
                 dadosCards = []
                 dadosCards = resposta;
-                clearTimeout(proximaAtualizacao);
 
                 if (dadosCards[0].tipo == 'CPU') {
                     var velocidade;
@@ -578,54 +577,53 @@ function atualizarGraficoPizzaDisco(fkCompHasComp, grafico) {
 
 
 function verificarCondicao(registro){
-    cardValor4.innerHTML = "";
     if(registro[0].tipoComp == 'CPU'){
         if(registro[0].dadoValor > 90){
-            cardValor4.style.backgroundColor = "#EF0303"
+            card.style.backgroundColor = "#EF0303"
             cardValor4.innerHTML = "CRÍTICO";
         }else if(registro[0].dadoValor > 80){
-            cardValor4.style.backgroundColor = "#F87736"
+            card.style.backgroundColor = "#F87736"
             cardValor4.innerHTML = "INTERMEDIÁRIO";
         }else if(registro[0].dadoValor > 70){
-            cardValor4.style.backgroundColor = "#FFBF00"
+            card.style.backgroundColor = "#FFBF00"
             cardValor4.innerHTML = "INTERMEDIÁRIO";
         }
     }
     if(registro[0].tipoComp == 'RAM'){
         if(registro[0].dadoValor > 90){
-            cardValor4.style.backgroundColor = "#EF0303"
+            card.style.backgroundColor = "#EF0303"
             cardValor4.innerHTML = "CRÍTICO";
         }else if(registro[0].dadoValor > 80){
-            cardValor4.style.backgroundColor = "#F87736"
+            card.style.backgroundColor = "#F87736"
             cardValor4.innerHTML = "INTERMEDIÁRIO";
         }else if(registro[0].dadoValor > 70){
-            cardValor4.style.backgroundColor = "#FFBF00"
+            card.style.backgroundColor = "#FFBF00"
             cardValor4.innerHTML = "INTERMEDIÁRIO";
         }
     }
 
     if(registro[0].tipoComp == 'GPU'){
         if(registro[0].dadoValor > 90){
-            cardValor4.style.backgroundColor = "#EF0303"
+            card.style.backgroundColor = "#EF0303"
             cardValor4.innerHTML = "CRÍTICO";
         }else if(registro[0].dadoValor > 80){
-            cardValor4.style.backgroundColor = "#F87736"
+            card.style.backgroundColor = "#F87736"
             cardValor4.innerHTML = "INTERMEDIÁRIO";
         }else if(registro[0].dadoValor > 70){
-            cardValor4.style.backgroundColor = "#FFBF00"
+            card.style.backgroundColor = "#FFBF00"
             cardValor4.innerHTML = "INTERMEDIÁRIO";
         }
     }
 
     else{
         if(registro[0].espacoDisponivel < 10){
-            cardValor4.style.backgroundColor = "#EF0303"
+            card.style.backgroundColor = "#EF0303"
             cardValor4.innerHTML = "CRÍTICO";
         }else if(registro[0].espacoDisponivel < 20){
-            cardValor4.style.backgroundColor = "#F87736"
+            card.style.backgroundColor = "#F87736"
             cardValor4.innerHTML = "INTERMEDIÁRIO";
         }else if(registro[0].espacoDisponivel > 70){
-            cardValor4.style.backgroundColor = "#FFBF00"
+            card.style.backgroundColor = "#FFBF00"
             cardValor4.innerHTML = "INTERMEDIÁRIO";
         }
     }
