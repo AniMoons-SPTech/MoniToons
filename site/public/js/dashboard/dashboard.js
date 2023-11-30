@@ -361,7 +361,6 @@ function obterDadosGraficoDisco(fkCompHasComp) {
         if (response.ok) {
             response.json().then(function (resposta) {
                 dadosDisco = resposta;
-
                 espacoEmUso = dadosDisco[0].espacoEmUso;
                 espacoDisponivel = dadosDisco[0].espacoDisponivel;
                 
