@@ -21,8 +21,9 @@ function getComponentes(req, res){
 
 function getDados(req, res){
     var {fkCompHasComp} = req.params;
+    var {idComp} = req.params;
 
-    componentesModel.getDados(fkCompHasComp)
+    componentesModel.getDados(fkCompHasComp,idComp)
         .then(function (resultado) {
             if(resultado.length > 0){
                 res.status(200).json(resultado)

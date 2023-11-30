@@ -8,7 +8,7 @@ router.get("/getComponentes/:idUsuario", function (req, res) {
     componentesController.getComponentes(req,res);
 })
 
-router.get("/getDados/:fkCompHasComp", function (req, res) {
+router.get("/getDados/:fkCompHasComp/:idComp", function (req, res) {
     componentesController.getDados(req, res);
 })
 

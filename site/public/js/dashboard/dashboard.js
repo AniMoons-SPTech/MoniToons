@@ -55,7 +55,7 @@ function getComponentes() {
                     }
 
                     divComponentes.innerHTML += `
-                <button onclick = "plotarCards(${componentesMaquina[i].idCompHasComp})" class="componente-selecao">
+                <button onclick = "plotarCards(${componentesMaquina[i].idCompHasComp},${componentesMaquina[i].idComponente})" class="componente-selecao">
                 <div class="especificacoes-componente">
                   <span>${componentesMaquina[i].tipo}</span>
                   <span>${componentesMaquina[i].nome}</span>
@@ -74,8 +74,8 @@ function getComponentes() {
     })
 }
 
-function plotarCards(fkCompHasComp) {
-    fetch(`/componentes/getDados/${fkCompHasComp}`, {
+function plotarCards(fkCompHasComp,idComp) {
+    fetch(`/componentes/getDados/${fkCompHasComp}/${idComp}`, {
         method: 'GET'
     }).then((response) => {
         if (response.ok) {

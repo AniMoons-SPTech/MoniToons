@@ -12,12 +12,12 @@ function getComponentes(idUsuario) {
     return database.executar(instrucao);
 }
 
-function getDados(fkCompHasComp) {
+function getDados(fkCompHasComp,idComp) {
     console.log("ACESSEI O COMPONENTES MODEL")
-    var instrucao = `select especificacoescomponente.* , componente.tipo from especificacoescomponente
-                    join componente on componente.idComponente = especificacoescomponente.fkComponente
-                    join computadorhascomponente on componente.idComponente = computadorhascomponente.fkComponente
-                    where idCompHasComp =${fkCompHasComp};`
+    var instrucao = `select ec.* , componente.tipo from especificacoescomponente ec
+    join componente on componente.idComponente = ec.fkComponente
+    join computadorhascomponente on componente.idComponente = computadorhascomponente.fkComponente
+where computadorhascomponente.idCompHasComp =  ${fkCompHasComp}  AND ec.fkComponente = ${idComp};`
 
     console.log("Executando \n" + instrucao)
     return database.executar(instrucao);
