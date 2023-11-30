@@ -258,7 +258,6 @@ function obterDadosGraficoRam(fkCompHasComp) {
                 labelDado = []
                 labelRam = [];
                 dadosGraficoRam = [];
-                clearTimeout(proximaAtualizacao);
 
                 for (var i = 0; i < resposta.length; ++i) {
                     labelDado.push(resposta[i].dataHora)
