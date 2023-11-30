@@ -158,13 +158,13 @@ async function plotarRestoDosCards(tipoComponente, fkCompHasComp) {
             response.json().then((resposta) => {
                 var dadosCards = []
                 dadosCards = resposta
-                if (tipoComponente = 'DISCO') {
+                if (tipoComponente == 'DISCO') {
                     cardValor1.innerHTML = dadosCards[0].vel_leit;
                     cardValor2.innerHTML = dadosCards[0].vel_escr;
-                } else if (tipoComponente = 'GPU') {
+                } else if (tipoComponente == 'GPU') {
                     cardValor1.innerHTML = dadosCards[0].gpuUso;
                     cardValor2.innerHTML = dadosCards[0].memGpuUso;
-                } else if (tipoComponente = 'RAM') {
+                } else if (tipoComponente == 'RAM') {
                     cardValor1.innerHTML = dadosCards[0].memUso;
                     cardValor2.innerHTML = dadosCards[0].memDisp;
                 }
