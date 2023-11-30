@@ -13,7 +13,7 @@
   <script src="https://kit.fontawesome.com/c52875e8e8.js" crossorigin="anonymous"></script>
   <script src="../js/funcionario/exibirNome.js" defer></script>
   <script src="../js/dashboard/barra.js"></script>
-
+  <script src="../js/processos/processos.js"></script>
 </head>
 
 <body onload="plotarTabela()">
@@ -116,10 +116,13 @@
     var corpoTabela = document.getElementById("corpo_tabela")
     var botaoAdicionar = document.querySelector(".botao-adicionar")
 
+    var colunaPID = document.createElement("th")
     var colunaNomeApp = document.createElement("th")
-
+    
+    colunaPID.innerHTML = "PID"
     colunaNomeApp.innerHTML = "Aplicativo"
 
+    cabecalhoTabela.appendChild(colunaPID)
     cabecalhoTabela.appendChild(colunaNomeApp)
 
     var idSessao = sessionStorage.ID_USUARIO;
@@ -152,9 +155,14 @@
 
               var linha = document.createElement("tr")
               linha.classList.add("linha");
+            
+              var tdPID = document.createElement("td");
+              tdPID.classList.add("td_func");
+              tdPID.classList.add("td_nome_app");
+
+              tdPID.innerHTML = tupla.pid
 
               var tdNomeApp = document.createElement("td");
-              tdNomeApp.classList.add("td_nome_app");
               tdNomeApp.classList.add("td_func");
 
               tdNomeApp.innerHTML = tupla.nomeAplicativo
@@ -162,13 +170,14 @@
               var tdCpuApp = document.createElement("td");
               tdCpuApp.classList.add("td_func");
 
-              tdCpuApp.innerHTML = tupla.usoCpuApp
+              tdCpuApp.innerHTML = tupla.usoCpu
 
               var tdMemApp = document.createElement("td");
               tdMemApp.classList.add("td_func");
 
-              tdMemApp.innerHTML = tupla.usoMemApp
+              tdMemApp.innerHTML = tupla.usoDisco
 
+              linha.appendChild(tdPID);
               linha.appendChild(tdNomeApp);
               linha.appendChild(tdCpuApp);
               linha.appendChild(tdMemApp);
@@ -216,7 +225,7 @@
               tdBotaoExcluir.classList.add("td_admin");
               var botaoExcluir = document.createElement("button")
               botaoExcluir.classList.add("botao_excluir")
-              botaoExcluir.setAttribute("onclick", `excluirApp(${tupla.idAplicativoProibido})`)
+              botaoExcluir.setAttribute("onclick", `excluirApp(${tupla.idAplicativosProibidos})`)
               botaoExcluir.innerHTML = `<i class="fa-solid fa-trash">`
 
 
@@ -224,7 +233,7 @@
               tdBotaoAtualizar.classList.add("td_amin");
               var botaoAtualizar = document.createElement("button")
               botaoAtualizar.classList.add("botao_modificar")
-              botaoAtualizar.setAttribute("onclick", `mostrarPopupAtualizarApp(${tupla.idAplicativoProibido})`)
+              botaoAtualizar.setAttribute("onclick", `mostrarPopupAtualizarApp(${tupla.idAplicativosProibidos})`)
               botaoAtualizar.innerHTML = `<i class="fa-solid fa-gear">`
 
               tdBotaoExcluir.appendChild(botaoExcluir);

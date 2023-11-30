@@ -40,11 +40,12 @@ function carregarAplicativosProibidos(req, res){
 
 function adicionarAplicativoProibido(req,res){
     var { idResponsavel } = req.params;
+    var { nomeAplicativo } = req.body;
 
     if(idResponsavel == undefined) {
         res.status(400).send("Id do usuário está indefinido!");
     }else{
-        processosModel.adicionarAplicativoProibido(idResponsavel).then(function (resultado) {
+        processosModel.adicionarAplicativoProibido(idResponsavel, nomeAplicativo).then(function (resultado) {
             if(resultado.length > 0){
                 res.status(200).json(resultado);
             }else{
@@ -59,11 +60,12 @@ function adicionarAplicativoProibido(req,res){
 
 function atualizarAplicativoProibido(req,res){
     var { idProcesso } = req.params;
+    var { nomeAplicativo } = req.body;
 
     if(idProcesso == undefined) {
         res.status(400).send("Id do usuário está indefinido!");
     }else{
-        processosModel.atualizarAplicativoProibido(idProcesso).then(function (resultado) {
+        processosModel.atualizarAplicativoProibido(idProcesso, nomeAplicativo).then(function (resultado) {
             if(resultado.length > 0){
                 res.status(200).json(resultado);
             }else{

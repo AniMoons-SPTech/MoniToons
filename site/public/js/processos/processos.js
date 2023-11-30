@@ -8,7 +8,7 @@ function adicionarAplicativoProibido(){
                 "Content-Type" : "application/json"
             },
             body: JSON.stringify({
-                nome: nomeForm
+                nomeAplicativo: nomeForm
             }) 
         }).then(function (resposta) {
     
@@ -28,14 +28,16 @@ function atualizarAplicativo() {
     var popup = document.getElementById("popup-atualizar-aplicativo")
     var spanIdProcesso = document.getElementById("idProcesso")
     var idProcesso = spanIdProcesso.innerHTML;
+    var nomeForm = nomeAtualizar.value;
+
+
     fetch(`/processos/atualizarAplicativoProibido/${idProcesso}`, {
         method: "POST",
             headers: {
                 "Content-Type" : "application/json"
             },
             body: JSON.stringify({
-                novoNome: nomeForm,
-                idProcesso: idProcesso
+                nomeAplicativo: nomeForm,
             }) 
         }).then(function (resposta) {
     
