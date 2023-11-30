@@ -97,7 +97,7 @@ function plotarCardsMaquinas(maquinas) {
         }
 
         var botaoVerMais = document.createElement("a");
-        botaoVerMais.setAttribute("href", "./dashboard.html?idUsuario=" + idUsuario);
+        botaoVerMais.setAttribute("href", "./dashboard.html?idUsuario=" + idUser);
         botaoVerMais.innerHTML = "Ver mais"
 
         // FAZER COM QUE O ID DO USUÁRIO SEJA PASSADO PELO URL 
