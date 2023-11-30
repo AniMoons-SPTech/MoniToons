@@ -350,7 +350,6 @@ function obterDadosGraficoDisco(fkCompHasComp) {
     }).then(function (response) {
         if (response.ok) {
             response.json().then(function (resposta) {
-                dadosDisco = [];
                 dadosDisco = resposta;
                 espacoDisponivel = dadosDisco[0].espacoDisponivel;
                 espacoEmUso = dadosDisco[0].espacoEmUso;
@@ -374,7 +373,7 @@ function obterDadosGraficoDisco(fkCompHasComp) {
                 grafico4.style.display = 'none'
 
                 var ctx4 = new Chart(document.getElementById('myChart3'), disco);
-                // setTimeout(() => atualizarGraficoPizzaDisco(fkCompHasComp, ctx4), 8000);
+                setTimeout(() => atualizarGraficoPizzaDisco(fkCompHasComp, ctx4), 8000);
             })
 
         } else if (response.status == 404) {
