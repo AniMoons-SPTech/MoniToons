@@ -107,7 +107,7 @@ function dadosGraficoDisco(fkCompHasComp) {
         ORDER BY dataHora DESC
     ) AS 'espacoDisponivel', 
     (
-        SELECT TOP 1 dadoFormatado 
+        SELECT TOP 1 dadoValor 
         FROM registro 
         WHERE fkCompHasComp = ${fkCompHasComp} AND tipo = 'Espaço em Uso'
         ORDER BY dataHora DESC
