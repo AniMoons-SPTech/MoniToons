@@ -358,6 +358,10 @@ function obterDadosGraficoDisco(fkCompHasComp) {
                 var disco = {
                     type: 'doughnut',
                     data: {
+                        labels: [
+                            'Red',
+                            'Blue'
+                          ],
                         datasets: [
                             {
                                 data: [espacoDisponivel, espacoEmUso],
