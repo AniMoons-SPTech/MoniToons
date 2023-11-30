@@ -1,5 +1,5 @@
 function adicionarAplicativoProibido(){
-    var fkGestor = sessionStorage.FK_GESTOR
+    var fkGestor = sessionStorage.ID_USUARIO
     var nomeForm = nomeAdicionar.value;
 
     fetch(`/processos/adicionarAplicativoProibido/${fkGestor}`, {
