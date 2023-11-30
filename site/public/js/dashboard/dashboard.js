@@ -396,7 +396,8 @@ function atualizarGraficoLinha(fkCompHasComp, grafico) {
                 clearTimeout(proximaAtualizacao);
                 console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
                 console.log(`Dados atuais do gráfico:`);
-                console.log(dadosDisco);
+                console.log(dadosGrafico);
+                console.log(novoRegistro);
 
 
                 if (novoRegistro[0].dataHora == labelDado[labelDado.length - 1]) {
@@ -409,19 +410,21 @@ function atualizarGraficoLinha(fkCompHasComp, grafico) {
                     console.log(labelDado[labelDado.length - 1])
                     console.log("---------------------------------------------------------------")
                 } else {
-                    espacoDisponivel = novoRegistro[0].espacoDisponivel;
-                    espacoEmUso = novoRegistro[0].espacoEmUso;
-
-                    // Atualizar dados do gráfico de rosquinha
-                    grafico.data.datasets[0].data = [espacoDisponivel, espacoEmUso];
+                    labelRam.shift();
+                    labelDado.shift();
+                    dadosGrafico.shift();
+                    labelRam.push(novoRegistro[0].dataHoraFormatada)
+                    labelDado.push(novoRegistro[0].dataHora)
+                    dadosGrafico.push(novoRegistro[0].dadoValor)
+                    cardValor1.innerHTML = novoRegistro[0].dadoFormatado
                     grafico.update();
+
                 }
 
                 proximaAtualizacao = setTimeout(() => atualizarGraficoLinha(fkCompHasComp, grafico), 8000);
             });
         } else {
             console.error('Nenhum dado encontrado ou erro na API');
-            // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
             proximaAtualizacao = setTimeout(() => atualizarGraficoLinha(fkCompHasComp, grafico), 8000);
         }
     })
@@ -521,7 +524,7 @@ function atualizarGraficoLinhaGpu(fkCompHasComp, grafico) {
 }
 
 function atualizarGraficoPizzaDisco(fkCompHasComp, grafico) {
-    fetch(`/componentes/graficosPizzaAtualizadoDisco/${fkCompHasComp}`, { cache: 'no-store' }).then(function (response) {
+    fetch(`/componentes/dadosGraficoDiscoAtualizado/${fkCompHasComp}`, { cache: 'no-store' }).then(function (response) {
         if (response.ok) {
             response.json().then(function (novoRegistro) {
                 if (proximaAtualizacao != undefined) {
@@ -530,35 +533,37 @@ function atualizarGraficoPizzaDisco(fkCompHasComp, grafico) {
 
                 console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
                 console.log(`Dados atuais do gráfico:`);
-                console.log(dadosGrafico);
-                console.log(novoRegistro);
+                console.log(dadosDisco);
 
-
-                if (novoRegistro[0].dataHora == labelDado[labelDado.length - 1]) {
+                if (novoRegistro[0].dataHora == label[label.length - 1]) {
                     console.log("---------------------------------------------------------------")
                     console.log("Como não há dados novos para captura, o gráfico não atualizará.")
-
+            
                     console.log("Horário do novo dado capturado:")
                     console.log(novoRegistro[0].dataHora)
                     console.log("Horário do último dado capturado:")
-                    console.log(labelDado[labelDado.length - 1])
+                    console.log(label[label.length - 1])
                     console.log("---------------------------------------------------------------")
                 } else {
-                    dadosGrafico.shift();
-                    dadosGrafico.push(novoRegistro[0].dadoValor)
+                    espacoDisponivel = novoRegistro[0].espacoDisponivel;
+                    espacoEmUso = novoRegistro[0].espacoEmUso;
+
+                    // Atualizar dados do gráfico de rosquinha
+                    grafico.data.datasets[0].data = [espacoDisponivel, espacoEmUso];
                     grafico.update();
                 }
 
-                proximaAtualizacao = setTimeout(() => atualizarGraficoLinhaGpu(fkCompHasComp, grafico, dadosGrafico), 8000);
+                proximaAtualizacao = setTimeout(() => atualizarGraficoPizzaDisco(fkCompHasComp, grafico), 8000);
             });
         } else {
             console.error('Nenhum dado encontrado ou erro na API');
-            proximaAtualizacao = setTimeout(() => atualizarGraficoLinhaGpu(fkCompHasComp, grafico, dadosGrafico), 8000);
+            // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+            proximaAtualizacao = setTimeout(() => atualizarGraficoPizzaDisco(fkCompHasComp, grafico), 8000);
         }
     })
-        .catch(function (error) {
-            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-        });
+    .catch(function (error) {
+        console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
+    });
 
 }
 
