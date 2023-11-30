@@ -35,7 +35,7 @@ function carregarGrupoMaquinas(idResponsavel){
         JOIN computadorHasComponente chc ON chc.idCompHasComp = registro.fkCompHasComp
         JOIN computador c ON c.idComputador = chc.fkComputador
         JOIN usuario ON usuario.idUsuario = c.fkUsuario
-        WHERE idUser = usuario.idUsuario AND (alerta.dataHora IS NULL OR alerta.dataHora >= DATEADD(SECOND, -120, GETDATE()))
+        WHERE idUser = usuario.idUsuario AND (alerta.dataHora IS NULL OR alerta.dataHora >= DATEADD(SECOND, -220, GETDATE()))
         ORDER BY registro.dataHora DESC
     ) AS statusDisco,
     (
@@ -45,7 +45,7 @@ function carregarGrupoMaquinas(idResponsavel){
         JOIN computadorHasComponente chc ON chc.idCompHasComp = registro.fkCompHasComp
         JOIN computador c ON c.idComputador = chc.fkComputador
         JOIN usuario ON usuario.idUsuario = c.fkUsuario
-        WHERE idUser = usuario.idUsuario AND (alerta.dataHora IS NULL OR alerta.dataHora >= DATEADD(SECOND, -120, GETDATE()))
+        WHERE idUser = usuario.idUsuario AND (alerta.dataHora IS NULL OR alerta.dataHora >= DATEADD(SECOND, -20, GETDATE()))
         ORDER BY registro.dataHora DESC
     ) AS statusGpu
 FROM
