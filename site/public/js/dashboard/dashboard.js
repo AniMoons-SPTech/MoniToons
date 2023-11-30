@@ -26,6 +26,9 @@ var labelRam = [];
 var labelGpu = [];
 
 var labelDado = [];
+var labelDadoRam = [];
+var labelDadoGpu = [];
+
 var dadosGrafico = [];
 var dadosGraficoRam = [];
 var dadosGraficoGpu = [];
@@ -202,7 +205,7 @@ function obterDadosGraficoCpu(fkCompHasComp) {
                 labelDado = []
                 label = [];
                 dadosGrafico = [];
-                for (var i = resposta.length -1; i > 0; --i ) {
+                for (var i = resposta.length -1; i >= 0; --i ) {
                     labelDado.push(resposta[i].dataHora)
                     label.push(resposta[i].dataHoraFormatada);
                     dadosGrafico.push(resposta[i].dadoValor)
@@ -254,12 +257,12 @@ function obterDadosGraficoRam(fkCompHasComp) {
     }).then(function (response) {
         if (response.ok) {
             response.json().then(function (resposta) {
-                labelDado = []
+                labelDadoRam = []
                 labelRam = [];
                 dadosGraficoRam = [];
 
-                for (var i = resposta.length -1; i > 0; --i) {
-                    labelDado.push(resposta[i].dataHora)
+                for (var i = resposta.length -1; i >= 0; --i) {
+                    labelDadoRam.push(resposta[i].dataHora)
                     labelRam.push(resposta[i].dataHoraFormatada);
                     dadosGraficoRam.push(resposta[i].dadoValor)
                 }
@@ -308,12 +311,12 @@ function obterDadosGraficoGpu(fkCompHasComp) {
     }).then(function (response) {
         if (response.ok) {
             response.json().then(function (resposta) {
-                labelDado = []
+                labelDadoGpu = []
                 labelGpu = [];
                 dadosGraficoGpu = [];
 
-                for (var i = resposta.length -1; i > 0; --i) {
-                    labelDado.push(resposta[i].dataHora)
+                for (var i = resposta.length -1; i >= 0; --i) {
+                    labelDadoGpu.push(resposta[i].dataHora)
                     labelGpu.push(resposta[i].dataHoraFormatada);
                     dadosGraficoGpu.push(resposta[i].dadoValor)
                 }
@@ -466,10 +469,10 @@ function atualizarGraficoLinhaRam(fkCompHasComp, grafico) {
                     console.log(labelDado[labelDado.length - 1])
                     console.log("---------------------------------------------------------------")
                 } else {
-                    labelDado.shift();
+                    labelDadoRam.shift();
                     labelRam.shift();
                     dadosGraficoRam.shift();
-                    labelDado.push(novoRegistro[0].dataHora)
+                    labelDadoRam.push(novoRegistro[0].dataHora)
                     labelRam.push(novoRegistro[0].dataHoraFormatada)
                     dadosGraficoRam.push(novoRegistro[0].dadoValor)
                     verificarCondicao(novoRegistro)
@@ -511,10 +514,10 @@ function atualizarGraficoLinhaGpu(fkCompHasComp, grafico) {
                     console.log("---------------------------------------------------------------")
                 } else {
                     labelGpu.shift();
-                    labelDado.shift();
+                    labelDadoGpu.shift();
                     dadosGraficoGpu.shift();
                     labelGpu.push(novoRegistro[0].dataHoraFormatada)
-                    labelDado.push(novoRegistro[0].dataHora)
+                    labelDadoGpu.push(novoRegistro[0].dataHora)
                     verificarCondicao(novoRegistro)
                     dadosGraficoGpu.push(novoRegistro[0].dadoValor)
                     grafico.update();
