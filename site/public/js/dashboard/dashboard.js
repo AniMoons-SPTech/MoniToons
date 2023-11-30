@@ -356,22 +356,19 @@ function obterDadosGraficoDisco(fkCompHasComp) {
                 espacoDisponivel = dadosDisco[0].espacoDisponivel;
                 espacoEmUso = dadosDisco[0].espacoEmUso;
                 var disco = {
+                    dtype: 'doughnut',
                     data: {
                         datasets: [
                             {
-                                type: 'doughnut',
-                                label: ['Espaço Disponível', 'Espaço em uso'],
                                 data: [espacoDisponivel, espacoEmUso],
-                                backgroundColor: '#fff',
-                                borderColor: ['rgb(255, 99, 132)',
-                                    'rgb(54, 162, 235)'],
+                                backgroundColor: ['rgba(255, 99, 132, 0.8)', 'rgba(54, 162, 235, 0.8)'],
+                                borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)'],
                                 hoverOffset: 4
                             }
-                        ],
-                        labels: label
+                        ]
                     }
                 }
-
+            
                 grafico1.style.display = 'none'
                 grafico2.style.display = 'none'
                 grafico3.style.display = 'flex'
