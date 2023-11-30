@@ -216,7 +216,7 @@ FROM registro;`
 
 function plotarRestoDosCards(fkCompHasComp, tipoComponente) {
     console.log("ACESSEI O COMPONENTES MODEL")
-    if (tipoComponente = 'RAM') {
+    if (tipoComponente == 'RAM') {
         var instrucao = `SELECT TOP 1
             (
                 SELECT TOP 1 dadoFormatado 
@@ -231,7 +231,7 @@ function plotarRestoDosCards(fkCompHasComp, tipoComponente) {
                 ORDER BY dataHora DESC
             ) AS 'memDisp' 
         FROM registro`
-    } else if (tipoComponente = 'DISCO') {
+    } else if (tipoComponente == 'DISCO') {
         var instrucao = `SELECT TOP 1 
             (
                 SELECT TOP 1 dadoFormatado 
@@ -246,7 +246,7 @@ function plotarRestoDosCards(fkCompHasComp, tipoComponente) {
                 ORDER BY dataHora DESC
             ) AS 'vel_escr' 
         FROM registro;`
-    } else if (tipoComponente = 'GPU') {
+    } else if (tipoComponente == 'GPU') {
         var instrucao = `SELECT TOP 1 
             (
                 SELECT TOP 1 dadoFormatado 
@@ -262,6 +262,7 @@ function plotarRestoDosCards(fkCompHasComp, tipoComponente) {
             ) AS 'memGpuUso' 
         FROM registro;`
     }
+
     console.log("Executando \n" + instrucao)
     return database.executar(instrucao);
 }
