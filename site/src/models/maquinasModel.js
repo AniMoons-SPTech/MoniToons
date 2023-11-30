@@ -6,36 +6,52 @@ function carregarGrupoMaquinas(idResponsavel){
     
     var instrucao = `
     SELECT
-    usuario.idUsuario,
+    usuario.idUsuario as idUser,
     usuario.nomeUsuario,
-    (SELECT TOP 1 alerta.grauAlerta
-     FROM registro
-     LEFT JOIN alerta ON alerta.fkRegistro = registro.idRegistro AND alerta.tipoComponente = 'CPU'
-     WHERE registro.fkCompHasComp = usuario.idUsuario
-     ORDER BY registro.dataHora DESC
-    ) AS statusCpu,
-    (SELECT TOP 1 alerta.grauAlerta
-     FROM registro
-     LEFT JOIN alerta ON alerta.fkRegistro = registro.idRegistro AND alerta.tipoComponente = 'RAM'
-     WHERE registro.fkCompHasComp = usuario.idUsuario
-     ORDER BY registro.dataHora DESC
-    ) AS statusRam,
-    (SELECT TOP 1 alerta.grauAlerta
-     FROM registro
-     LEFT JOIN alerta ON alerta.fkRegistro = registro.idRegistro AND alerta.tipoComponente = 'DISCO'
-     WHERE registro.fkCompHasComp = usuario.idUsuario
-     ORDER BY registro.dataHora DESC
-    ) AS statusDisco,
-    (SELECT TOP 1 alerta.grauAlerta
-     FROM registro
-     LEFT JOIN alerta ON alerta.fkRegistro = registro.idRegistro AND alerta.tipoComponente = 'GPU'
-     WHERE registro.fkCompHasComp = usuario.idUsuario
-     ORDER BY registro.dataHora DESC
-    ) AS statusGpu
+    (SELECT alerta.grauAlerta
+    FROM registro
+    right JOIN alerta  ON alerta.fkRegistro = registro.idRegistro AND alerta.tipoComponente = 'CPU'
+    join computadorHasComponente chc ON chc.idCompHasComp = registro.fkCompHasComp
+    join computador c ON c.idComputador = chc.fkComputador
+    join usuario ON usuario.idUsuario = c.fkUsuario
+     WHERE idUser = usuario.idUsuario and (alerta.dataHora IS NULL OR alerta.dataHora >= DATEADD(SECONDS, -20, GETDATE())
+    ORDER BY registro.dataHora DESC
+    LIMIT 1
+) AS statusCpu,
+(SELECT alerta.grauAlerta
+    FROM registro
+    right JOIN alerta ON alerta.fkRegistro = registro.idRegistro AND alerta.tipoComponente = 'RAM'
+    join computadorHasComponente chc ON chc.idCompHasComp = registro.fkCompHasComp
+    join computador c ON c.idComputador = chc.fkComputador
+    join usuario ON usuario.idUsuario = c.fkUsuario
+     WHERE idUser = usuario.idUsuario and (alerta.dataHora IS NULL OR alerta.dataHora >= DATEADD(SECONDS, -20, GETDATE())
+    ORDER BY registro.dataHora DESC
+    LIMIT 1
+) AS statusRam,
+    (SELECT alerta.grauAlerta
+    FROM registro
+    right JOIN alerta ON alerta.fkRegistro = registro.idRegistro AND alerta.tipoComponente = 'DISCO'
+    join computadorHasComponente chc ON chc.idCompHasComp = registro.fkCompHasComp
+    join computador c ON c.idComputador = chc.fkComputador
+    join usuario ON usuario.idUsuario = c.fkUsuario
+     WHERE idUser = usuario.idUsuario and (alerta.dataHora IS NULL OR alerta.dataHora >= DATEADD(SECONDS, -20, GETDATE())
+    ORDER BY registro.dataHora DESC
+    LIMIT 1
+) AS statusDisco,
+    (SELECT alerta.grauAlerta
+    FROM registro
+    right JOIN alerta ON alerta.fkRegistro = registro.idRegistro AND alerta.tipoComponente = 'GPU'
+    join computadorHasComponente chc ON chc.idCompHasComp = registro.fkCompHasComp
+    join computador c ON c.idComputador = chc.fkComputador
+    join usuario ON usuario.idUsuario = c.fkUsuario
+    WHERE idUser = usuario.idUsuario and (alerta.dataHora IS NULL OR alerta.dataHora >= DATEADD(SECONDS, -20, GETDATE())
+    ORDER BY registro.dataHora DESC
+    LIMIT 1
+) AS statusGpu
 FROM
-    usuario
+usuario
 WHERE
-    usuario.fkGestor = ${idResponsavel};`;
+usuario.fkGestor = ${idResponsavel};`;
     
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
