@@ -62,7 +62,9 @@ function getComponentes() {
                 </div>
                 <div class="barra-horizontal"></div>
               </button>`
-                }
+            console.log(componentesMaquina[i].idComponente)    
+            }
+
                 plotarCards(cpu)
 
             })
