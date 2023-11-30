@@ -23,11 +23,11 @@ function plotarCardsMaquinas(maquinas) {
         // ESTRUTURA DA TUPLA
         // ID, NOME, STATUS-CPU, STATUS-RAM, STATUS-DISCO, STATUS-GPU
 
-        var idUsuario = maquina.idUsuario;
+        var idUser = maquina.idUser;
 
         var card = document.createElement("div")
         card.classList.add("card")
-        card.setAttribute("onclick", `abrirDashboard(${idUsuario})`)
+        card.setAttribute("onclick", `abrirDashboard(${idUser})`)
 
         var conteudo = document.createElement("div")
         conteudo.classList.add("conteudo")
