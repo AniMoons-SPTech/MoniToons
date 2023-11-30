@@ -375,8 +375,9 @@ function obterDadosGraficoDisco(fkCompHasComp) {
                     type: 'pie',
                     data: {
                         labels: [
-                            'Espaço Disponível',
                             'Espaço em Uso',
+                            'Espaço Disponível',
+                            
                           ],
                         datasets: [
                             {
