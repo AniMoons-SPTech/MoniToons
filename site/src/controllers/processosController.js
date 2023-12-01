@@ -41,7 +41,7 @@ function carregarAplicativosProibidos(req, res){
 function adicionarAplicativoProibido(req,res){
     var nomeAplicativo  = req.body.nomeAplicativo;
     var idResponsavel = req.body.idResponsavel;
-    
+
     console.log(req.body)
     console.log(nomeAplicativo, idResponsavel)
     if(idResponsavel == undefined) {
@@ -49,16 +49,21 @@ function adicionarAplicativoProibido(req,res){
     } else if(nomeAplicativo == undefined){
         res.status(400).send("nomeAplicativo está indefinido!");
     } else {
-        processosModel.adicionarAplicativoProibido(idResponsavel, nomeAplicativo).then(function (resultado) {
-            if(resultado.length > 0){
-                res.status(200).json(resultado);
-            }else{
-                res.status(204).send("Nenhum alerta encontrado!")
-            }
-        }).catch(function (erro) {
-            console.log(erro);
-            res.status(500).json(erro.sqlMessage);
-        });
+        processosModel.adicionarAplicativoProibido(idResponsavel, nomeAplicativo)
+           .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro! Erro:",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
     }
 }
 
@@ -69,16 +74,21 @@ function atualizarAplicativoProibido(req,res){
     if(idProcesso == undefined) {
         res.status(400).send("Id do usuário está indefinido!");
     }else{
-        processosModel.atualizarAplicativoProibido(idProcesso, nomeAplicativo).then(function (resultado) {
-            if(resultado.length > 0){
-                res.status(200).json(resultado);
-            }else{
-                res.status(204).send("Nenhum alerta encontrado!")
-            }
-        }).catch(function (erro) {
-            console.log(erro);
-            res.status(500).json(erro.sqlMessage);
-        });
+        processosModel.atualizarAplicativoProibido(idProcesso, nomeAplicativo)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro! Erro:",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
     }
 }
 
@@ -86,17 +96,17 @@ function excluirAppProibido(req, res) {
     var { idProcesso } = req.params;
 
     processosModel.excluirAppProibido(idProcesso)
-        .then(
-            function (resultado) {
-                res.json(resultado);
-            }
-        ).catch(
-            function (erro) {
-                console.log(erro),
-                    console.log("Houve um erro ao excluir", erro.sqlMessage);
-                res.status(500).json(erro.sqlMessage);
-            }
-        )
+    .then(
+        function (resultado) {
+            res.json(resultado);
+        }
+    ).catch(
+        function (erro) {
+            console.log(erro),
+                console.log("Houve um erro ao excluir", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        }
+    )
 }
 
 module.exports = {
