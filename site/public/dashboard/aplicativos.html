@@ -216,14 +216,13 @@
               linha.classList.add("linha");
 
               var tdID = document.createElement("td");
-              tdID.classList.add("td_nome_admin");
               tdID.classList.add("td_admin");
 
               tdID.innerHTML = tupla.idAplicativosProibidos
 
               var tdNomeApp = document.createElement("td");
               tdNomeApp.classList.add("td_admin");
-
+              tdNomeApp.classList.add("td_nome_admin");
               tdNomeApp.innerHTML = tupla.nomeAplicativoProibido;
 
               var tdBotaoExcluir = document.createElement("td");
