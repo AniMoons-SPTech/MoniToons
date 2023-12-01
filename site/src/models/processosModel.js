@@ -33,7 +33,7 @@ function adicionarAplicativoProibido(idResponsavel, nomeAplicativo){
 }
 
 function atualizarAplicativoProibido(idProcesso, nomeAplicativo){
-    console.log("ACESSEI O PROCESSOS MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar(): ", idResponsavel)
+    console.log("ACESSEI O PROCESSOS MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar(): ", idProcesso)
 
     var instrucao = `UPDATE appsProibidos SET nomeAplicativoProibido = '${nomeAplicativo}' WHERE idAplicativosProibidos = ${idProcesso}`;
 
@@ -42,7 +42,7 @@ function atualizarAplicativoProibido(idProcesso, nomeAplicativo){
 }
 
 function  excluirAppProibido(idProcesso){
-    console.log("ACESSEI O PROCESSOS MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar(): ", idResponsavel)
+    console.log("ACESSEI O PROCESSOS MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar(): ", idProcesso)
 
     var instrucao = `DELETE FROM appsProibidos WHERE idAplicativosProibidos = ${idProcesso}`;
 

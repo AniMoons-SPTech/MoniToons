@@ -25,7 +25,7 @@ function adicionarAplicativoProibido(){
         });
 }
 
-function atualizarAplicativo() {
+function atualizarAplicativoProibido() {
     var popup = document.getElementById("popup-atualizar-aplicativo")
     var spanIdProcesso = document.getElementById("idProcesso")
     var idProcesso = spanIdProcesso.innerHTML;
