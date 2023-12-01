@@ -114,7 +114,8 @@ function plotarCardsMaquinas(maquinas) {
         card.appendChild(conteudo);
         cards.appendChild(card); 
     });
-    setInterval(plotarStatusDeTemposEmTempos(), 15000)
+    var intervaloPlotar = plotarStatusDeTemposEmTempos()
+    setInterval(intervaloPlotar, 15000)
 }
 
 

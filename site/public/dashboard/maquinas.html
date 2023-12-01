@@ -135,7 +135,8 @@
         })
       }
     })
-    setInterval(carregarMetricas(), 15000)
+    var carregarMetricas = carregarMetricas();
+    setInterval(carregarMetricas, 15000)
   }
   function exibirMetrica(alertasPorComponente) {
 
