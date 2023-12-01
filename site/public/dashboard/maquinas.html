@@ -135,8 +135,6 @@
         })
       }
     })
-    var carregarMetricas = carregarMetricas();
-    setInterval(carregarMetricas, 15000)
   }
   function exibirMetrica(alertasPorComponente) {
 
@@ -228,7 +226,9 @@
     }
   }
   document.addEventListener('DOMContentLoaded', function () {
-    mostrarMuralDeAlertas()
+    mostrarMuralDeAlertas();
+    carregarMetricas(); // Chame a função uma vez para carregar as métricas imediatamente
+    setInterval(carregarMetricas, 15000);
   });
 
 </script>
