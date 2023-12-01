@@ -11,7 +11,7 @@ router.get("/carregarAplicativosProibidos/:idResponsavel", function (req , res) 
     processosController.carregarAplicativosProibidos(req,res);
 })
 
-router.get("/adicionarAplicativoProibido/:idResponsavel", function (req , res) {
+router.get("/adicionarAplicativoProibido", function (req , res) {
     processosController.adicionarAplicativoProibido(req,res);
 })
 
