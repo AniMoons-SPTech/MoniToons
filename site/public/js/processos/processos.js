@@ -63,14 +63,14 @@ function excluirApp(idProcesso){
     }).then(function (resposta) {
         if(resposta.ok){
             
-            window.alert("Funcionário Deletado com sucesso")
+            window.alert("Aplivativo proibido deletado com sucesso")
             mostrarPopupExcluirFunc();
             location.reload(true);
 
         }else if(resposta.status == 404){
             window.alert("Deu 404!")
         }else{
-            throw("Houve um erro ao tentar excluir funcionário!" + resposta.status);
+            throw("Houve um erro ao tentar excluir o aplicativo proibido!" + resposta.status);
         }
     }).catch(function(resposta){
         console.log(`#ERRO: ${resposta}` )
