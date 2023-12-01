@@ -10,7 +10,7 @@ function adicionarAplicativoProibido(){
             body: JSON.stringify({
                 nomeAplicativo: nomeForm,
                 idResponsavel: fkGestor
-            }) 
+            })  
         }).then(function (resposta) {
     
             console.log("resposta:", resposta);

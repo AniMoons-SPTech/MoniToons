@@ -40,7 +40,7 @@ function carregarAplicativosProibidos(req, res){
 
 function adicionarAplicativoProibido(req,res){
     var {nomeAplicativo, idResponsavel}  = req.body;
-
+    console.log(nomeAplicativo, idResponsavel)
     if(idResponsavel == undefined) {
         res.status(400).send("Id do usuário está indefinido!");
     } else if(nomeAplicativo == undefined){
