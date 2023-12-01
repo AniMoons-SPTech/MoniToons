@@ -25,7 +25,7 @@ function carregarAplicativosProibidos(req, res){
     if(idResponsavel == undefined) {
         res.status(400).send("Id do usuário está indefinido!");
     }else{
-        processosModel.carregarAplicativosAbertos(idResponsavel).then(function (resultado) {
+        processosModel.carregarAplicativosProibidos(idResponsavel).then(function (resultado) {
             if(resultado.length > 0){
                 res.status(200).json(resultado);
             }else{
