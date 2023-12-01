@@ -64,7 +64,6 @@ function excluirApp(idProcesso){
         if(resposta.ok){
             
             window.alert("Aplivativo proibido deletado com sucesso")
-            mostrarPopupExcluirFunc();
             location.reload(true);
 
         }else if(resposta.status == 404){
